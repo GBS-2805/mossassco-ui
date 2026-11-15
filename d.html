@@ -1,13 +1,13 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mossassco — a repository</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Space+Grotesk:wght@400;500&family=DM+Sans:wght@400;500&family=Archivo:wght@400;500&family=Bricolage+Grotesque:wght@400;500&family=Playfair+Display:ital@0;1&family=IBM+Plex+Mono:wght@400&family=JetBrains+Mono:wght@300;400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=clash-display@400,500&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#e9e8e3;--dim:#9a9aa2;--line:rgba(255,255,255,.07);--mono:"JetBrains Mono",monospace}
+:root{--ink:#e9e8e3;--line:rgba(255,255,255,.07);--mono:"JetBrains Mono",monospace}
 *{box-sizing:border-box}
 html{background:#08080a}
 body{margin:0;color:var(--ink);font-family:Satoshi,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;
   background:radial-gradient(140% 70% at 50% -10%,#17171a 0%,#0c0c0e 45%,#08080a 100%) fixed}
-.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.35;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.55'/></svg>")}
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.32;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.55'/></svg>")}
 header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:30px 34px 0;flex-wrap:wrap}
 .brand{font-family:"Instrument Serif",serif;font-size:18px;color:#c9c8c2}
 .brand i{font-style:italic;color:#7f7f86}
@@ -20,29 +20,37 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .rule{height:1px;margin:16px 34px 0;background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.02))}
 .wall{columns:2;column-gap:30px;padding:30px 34px 54px;max-width:1400px;margin:0 auto}
 .item{break-inside:avoid;margin:0 0 30px;cursor:pointer;display:block;width:100%}
-.frame{position:relative;overflow:hidden;background:#0e0e11;width:100%;aspect-ratio:3/1;box-shadow:0 18px 34px -20px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.06);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
-.frame:after{content:"";position:absolute;inset:0 0 auto;height:13%;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,0));pointer-events:none;z-index:3}
-.frame.shot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
-.frame.shot:before{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);pointer-events:none;z-index:4}
+.frame{position:relative;overflow:hidden;background:#0d0d10;width:100%;aspect-ratio:3/1;box-shadow:0 18px 34px -20px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.06);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.frame:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.045);pointer-events:none;z-index:4}
 .item:hover .frame{transform:translateY(-4px);box-shadow:0 28px 46px -20px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.17)}
 .cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:10px}
-.cap b{font-size:11px;font-weight:500;letter-spacing:-.005em;color:#cfcec8;transition:color .3s}
+.cap b{font-size:11px;font-weight:500;color:#cfcec8;transition:color .3s}
 .item:hover .cap b{color:#fff}
 .cap i{font-family:var(--mono);font-style:normal;font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#4c4c54;white-space:nowrap}
-.sub{margin-top:4px;font-family:var(--mono);font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#3e3e45;line-height:1.5}
-.spec{position:relative;height:100%;display:flex;flex-direction:row;align-items:flex-end;justify-content:space-between;gap:6%;padding:4% 5%;background:#efeee7;color:#111}
-.spec .word{font-size:clamp(30px,4.6vw,52px);line-height:.8;letter-spacing:-.04em;font-weight:500;align-self:center}
-.spec .set{font-size:9.5px;line-height:1.45;color:#2c2c27;margin-bottom:2px}
-.spec .foot{font-family:var(--mono);font-size:6.5px;letter-spacing:.16em;text-transform:uppercase;color:#7a786f;position:absolute;right:5%;top:6%}
-.spec.ink{background:#111114;color:#f2f1ec}
-.spec.ink .set{color:#b4b4bc}.spec.ink .foot{color:#5e5e66}
-.render{height:100%;display:grid;place-items:center;background:radial-gradient(90% 80% at 50% 30%,#1d1d21 0%,#0d0d10 70%)}
-.render img{max-width:72%;max-height:86%;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(0,0,0,.8))}
-.grid{height:100%;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;gap:4%;background:#f4f2ec;padding:5% 6%}
-.grid img{width:38%;opacity:.85}
-.void{height:100%;display:grid;place-items:center;text-align:center;background:radial-gradient(120% 100% at 50% 0%,#19191d,#0a0a0c 68%);padding:10%;position:relative;overflow:hidden}
-.void:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.16) 1px,transparent 1px);background-size:13px 13px;opacity:.5;-webkit-mask-image:radial-gradient(circle at 50% 45%,#000 12%,transparent 70%);mask-image:radial-gradient(circle at 50% 45%,#000 12%,transparent 70%)}
-.void span{position:relative;font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a94;line-height:1.9;background:rgba(8,8,10,.9);padding:12px 16px;border:1px solid rgba(255,255,255,.1)}
+.sub{margin-top:4px;font-family:var(--mono);font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#3e3e45}
+.pv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.tag{position:absolute;left:4.5%;top:9%;font-family:var(--mono);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5a62;z-index:2}
+.type .word{position:absolute;left:4.5%;bottom:6%;font-size:clamp(34px,5.6vw,62px);line-height:.78;letter-spacing:-.04em;font-weight:400;color:#f4f3ee;white-space:nowrap}
+.type.light{background:#efeee7}
+.type.light .word{color:#141412}
+.type.light .tag{color:#8b887d}
+.type.ink{background:#0a0a0c}
+.icons{background:#0e0e11}
+.icons .pv{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:7% 8% 8%}
+.icons img{width:44%;max-width:46px;opacity:.92;filter:invert(1) brightness(2)}
+.icons.brand img{filter:grayscale(1) invert(1) brightness(1.7);opacity:.82}
+.icons.five .pv{grid-template-columns:repeat(5,1fr);padding:9% 9%}
+.icons.light{background:#f2f0e9}
+.icons.light img{filter:none;opacity:.86}
+.img .pv img{width:100%;height:100%;object-fit:cover;display:block}
+.img.fit .pv img{object-fit:contain;width:74%;height:76%;filter:drop-shadow(0 22px 34px rgba(0,0,0,.8))}
+.mesh{background:
+  radial-gradient(60% 120% at 20% 20%,#4b2f6b 0%,transparent 60%),
+  radial-gradient(70% 110% at 78% 30%,#1d5b6b 0%,transparent 62%),
+  radial-gradient(80% 130% at 50% 100%,#8c3b5e 0%,transparent 66%),#12121a}
+.void{background:radial-gradient(120% 100% at 50% 0%,#19191d,#0a0a0c 68%)}
+.void:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:13px 13px;opacity:.5;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 12%,transparent 68%);mask-image:radial-gradient(circle at 50% 50%,#000 12%,transparent 68%)}
+.void span{position:relative;font-family:var(--mono);font-size:6.5px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a94;line-height:1.9;text-align:center;padding:0 8%}
 .sheet{position:fixed;inset:0;z-index:70;background:#0a0a0c;display:none;flex-direction:column}
 .sheet.on{display:flex}
 .sheet .bar{display:flex;align-items:center;gap:14px;padding:13px 22px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#5b5b63;flex-wrap:wrap}
@@ -52,15 +60,9 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sheet .bar button{background:none;border:0;color:#6d6d75;font:inherit;letter-spacing:inherit;text-transform:uppercase;cursor:pointer;padding:4px 0}
 .sheet .bar button:hover{color:#fff}
 .sheet .body{flex:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,1fr);min-height:0}
-.sheet .preview{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:34px 24px;background:radial-gradient(90% 90% at 50% 20%,#141417,#08080a 72%);border-right:1px solid var(--line);min-height:0;overflow:hidden}
+.sheet .preview{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:34px 24px;background:radial-gradient(90% 90% at 50% 20%,#141417,#08080a 72%);border-right:1px solid var(--line);overflow:hidden}
+.sheet .preview .frame{max-width:860px;width:100%;box-shadow:0 50px 90px -40px #000,0 0 0 1px rgba(255,255,255,.09)}
 .pcap{font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:#4a4a52}
-.sheet .preview .frame{max-width:820px;width:100%;box-shadow:0 50px 90px -40px #000,0 0 0 1px rgba(255,255,255,.09)}
-.sheet .preview .frame.shot{aspect-ratio:3/1!important;max-width:100%;background:#0b0b0d}
-.sheet .preview .frame.shot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
-.sheet .preview .frame{height:auto!important}
-.sheet .preview .frame.spec,.sheet .preview .frame.grid,.sheet .preview .frame.void{aspect-ratio:3/1!important;min-height:0}
-.sheet .preview .frame.spec .word{font-size:clamp(54px,7vw,96px)}
-.sheet .preview .frame.spec .set{font-size:14px}
 .sheet .info{padding:30px 32px 56px;overflow:auto}
 .sheet .info .k{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:#4d4d55}
 .sheet h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(32px,4vw,44px);line-height:1;letter-spacing:-.015em;margin:10px 0 14px;color:#f2f1ec}
@@ -76,114 +78,127 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .kv b{font-weight:400;color:#e2e1db}
 .watch{border-left:2px solid #ff9d3d;padding-left:12px;color:#c8b7a6!important}
 .cta{display:flex;gap:8px;margin-top:26px}
-.cta a,.cta button{flex:1;text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:13px 10px;border:0;cursor:pointer;border-radius:2px}
+.cta a,.cta button{flex:1;text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:13px 10px;border:0;cursor:pointer}
 .cta .go{background:#e9e8e3;color:#0b0b0d}
 .cta .next{background:rgba(255,255,255,.06);color:#e9e8e3;border:1px solid var(--line)}
 footer{display:flex;justify-content:space-between;gap:20px;padding:0 34px 34px;font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;text-transform:uppercase;color:#3f3f46;flex-wrap:wrap}
 footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.1);margin-right:12px}
-@media(min-width:1420px){.wall{columns:3}}
 @media(max-width:1000px){.sheet .body{grid-template-columns:1fr}.sheet .preview{border-right:0;border-bottom:1px solid var(--line);padding:22px}}
-@media(max-width:760px){.wall{columns:1;padding:22px 18px 40px}header,.kinds{padding-left:18px;padding-right:18px}.rule{margin-left:18px;margin-right:18px}
-  .sheet .info{padding:22px 18px 44px}}
+@media(max-width:760px){.wall{columns:1;padding:22px 18px 40px}header,.kinds{padding-left:18px;padding-right:18px}.rule{margin-left:18px;margin-right:18px}.sheet .info{padding:22px 18px 44px}}
 </style></head><body>
 <div class="grain"></div>
 <header><span class="brand">Mossassco<i> — a repository</i></span><span class="meta">33 items · 7 kinds · reviewed licence by licence</span></header>
 <div class="kinds" id="kinds"></div>
 <div class="rule"></div>
 <div class="wall" id="wall"></div>
-<footer><span>specimens set live · icons from source · share images © their sites</span><span>older attempts <a href="b2.html">instrument</a><a href="a.html">palette</a><a href="c.html">front page</a></span></footer>
+<footer><span>set live · icons from source · share images © their sites</span><span>older attempts <a href="b2.html">instrument</a><a href="a.html">palette</a><a href="c.html">front page</a></span></footer>
 <div class="sheet" id="sheet"></div>
 <script>
-var ICONS=['heart','star','bell','map-pin','camera','mail','lock','search','settings','music','sun','cloud'];
-var I=[
-{name:"Satoshi",kind:"type",cap:"specimen · live",lic:"ITF Free",dl:"click-through",host:"fontshare.com",href:"https://www.fontshare.com/fonts/satoshi",
- view:{t:"spec",ui:'<div class="word" style="font-family:Satoshi">Aa</div><div class="set">Aa Bb Cc Dd Ee Ff Gg<br>0123456789 — the quick brown fox</div>',foot:"12–96px · ui text · itf free"},
- lead:"A geometric sans with a human axis. The body face of this page — every caption, label and link you're reading is Satoshi at work.",
- about:"Satoshi comes from Indian Type Foundry and sits at the rare point where a free sans doesn't look like a free sans. Nine weights, matching italics, and a lowercase that opens up nicely at 11–13px. It's the default UI voice in this repository because it holds small sizes without looking cramped.",
- use:["Body text on dark UIs, 12–16px","Navigation and caption type at 8–11px","Headlines at 32–56px when you want geometry, not personality"],
- watch:"The free licence forbids subsetting or converting the files. You can use it on the web through their CDN, but you can't generate your own woff2 from the download and ship that.",
- format:"OTF / TTF / variable",size:"9 weights + italics"},
-{name:"Unsplash",kind:"image",cap:"photograph · live",lic:"free use, no resale",dl:"click-through",host:"unsplash.com",href:"https://unsplash.com/s/photos/mountains",
- view:{t:"shot",src:"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1400&q=85",pos:"50% 62%"},
- lead:"Mountains at dusk, from the nature collection. A library you can search by mood, light and place — not just by object.",
- about:"Unsplash is the most-used free photo source and the most-abused. The images are good; the discipline is missing. Search by light direction and colour temperature rather than by noun and you'll find the two or three frames per topic that are actually usable.",
- use:["Full-bleed hero backgrounds with a dark overlay","Mood boards and pitch decks","Card imagery where the subject sits off-centre"],
- watch:"Free for commercial use, but you can't sell unmodified copies, and you can't compile photos to build a competing image service. Attribution is optional and appreciated.",
- format:"JPEG, up to 6k",size:"5M+ photos"},
-{name:"Figma Community",kind:"plugins",cap:"share image · the site's own",lic:"mixed — per plugin",dl:"Figma account",host:"figma.com",href:"https://www.figma.com/community/plugins",
- view:{t:"shot",src:"https://static.figma.com/uploads/3d791db872a0158f92798fa0134d8eeaf6af5535"},
- lead:"Plugins you install in two clicks. The bento grid builder alone is 20,000 users deep, and it's free.",
- about:"The Community is where Figma's ecosystem actually lives: layout generators, content fillers, export tools. Quality varies wildly, so the useful filter is installs and last-updated — anything untouched for a year is usually broken by the next Figma release.",
- use:["Bento and collage layout generators","Bulk image and text filling for mockups","SVG clean-up before export"],
- watch:"Each plugin carries its own licence and its own permissions. Anything asking for network access can read your file contents — check before you run it on client work.",
- format:"Figma plugin",size:"thousands of plugins"},
-{name:"Instrument Serif",kind:"type",cap:"specimen · live",lic:"OFL 1.1",dl:"direct .zip",host:"fonts.google.com",href:"https://fonts.google.com/specimen/Instrument+Serif",
- view:{t:"spec",ui:'<div class="word" style="font-family:\'Instrument Serif\',serif;font-weight:400">Aa<em>Gg</em></div><div class="set" style="font-family:\'Instrument Serif\',serif;font-size:11px">Whereas disregard and contempt for human rights have resulted</div>',foot:"40–120px · display · ofl 1.1"},
- lead:"An editorial serif that survives at 120px. One weight, one italic, no fuss — and no licence homework.",
- about:"Instrument Serif is a display face built for scale: high contrast, sharp shoulders, a genuinely lovely italic. It has exactly one weight, which is a feature — you use it for the thing it's good at and stop pretending it's a text face.",
- use:["Editorial headlines and pull quotes","One-off display words at 72px and up","Italic emphasis inside a sans body"],
- watch:"Not for body copy — it thins out below about 24px on screen. And it only ships in Latin, so don't plan a multilingual site around it.",
- format:"TTF / woff2",size:"1 weight + italic"},
-{name:"Lucide",kind:"icons",cap:"12 icons · live svg",lic:"ISC",dl:"direct .zip",host:"lucide.dev",href:"https://lucide.dev/icons/",
- view:{t:"grid"},
- lead:"1.5px stroke at 24px, consistent joints, 2,046 icons. The default icon voice in this project.",
- about:"Lucide began as a fork of Feather and grew into the most reliable general-purpose icon set for interfaces. Every icon is drawn on the same 24px grid with the same stroke weight, which is why a set of twelve looks like a set and not a collage.",
- use:["Interface icons at 16, 20 and 24px","Icon buttons where the stroke must match type weight","React, Vue or plain SVG via unpkg"],
- watch:"It's an outline set. If your UI needs filled icons at the same optical weight, pair it with Phosphor rather than mixing Lucide's fill variants.",
- format:"SVG / React / font",size:"2,046 icons"},
-{name:"Potted plant 01",kind:"3D",cap:"model render · live",lic:"CC0",dl:"direct asset",host:"polyhaven.com",href:"https://polyhaven.com/models",
- view:{t:"render",src:"https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=1200&height=1200"},
- lead:"A scanned prop, lit and ready. Public domain — no account, no attribution, no catch.",
- about:"Poly Haven is the quiet backbone of a lot of arch-viz and product work: HDRIs, PBR textures and scanned models, all CC0. This plant is a single photographed-and-scanned prop, which is exactly what you want when a scene needs one believable object and no hero asset.",
- use:["Filling a corner of an arch-viz scene","Product mockups that need a real plant","Lighting tests with HDRIs"],
- watch:"CC0 means no obligations at all — but check polycount before dropping scanned models into a realtime scene. These are built for offline renders first.",
- format:"blend / fbx / gltf",size:"scanned prop"},
-{name:"Shapefest",kind:"3D",cap:"no signal · by licence",lic:"512px free, no republishing",dl:"click-through",host:"shapefest.com",href:"https://shapefest.com",
- view:{t:"void",txt:"RENDERS CANNOT<br>BE REPUBLISHED<br>—<br>SO THERE IS NOTHING HONEST TO SHOW"},
- lead:"Good files, terms that forbid showing them here. The empty frame is the honest preview.",
- about:"Shapefest makes ray-traced 3D objects — balloons, spheres, blobs — in the soft studio look everyone was chasing a few years ago. The files are genuinely nice. The terms let you use renders in your own work but not republish them, so a public gallery of their previews would break the agreement.",
- use:["Decorative 3D objects in hero sections","Social layouts that need one glossy shape","Blender scenes with ready materials"],
- watch:"Free tier is capped at 512px. Above that you're on a paid plan, and the republishing restriction still applies to the previews.",
- format:"PNG renders / blend",size:"512px free tier"},
-{name:"Clash Display",kind:"type",cap:"specimen · live",lic:"ITF Free",dl:"click-through",host:"fontshare.com",href:"https://www.fontshare.com/fonts/clash-display",
- view:{t:"spec",ink:1,ui:'<div class="word" style="font-family:\'Clash Display\',Satoshi;font-weight:500">Clash</div><div class="set" style="font-family:Satoshi">Display 400 / 500 · headline cuts<br>72–200px</div>',foot:"72–200px · display · itf free"},
- lead:"Tight, wide-shouldered display cuts for headlines that need to shout politely.",
- about:"Clash Display is a grotesque with a lot of shoulder — wide caps, tight spacing, a slightly condensed feel at heavy weights. It's built to sit at the top of a poster or a landing page and hold its own against an image behind it.",
- use:["Poster and hero headlines at 72px+","Short all-caps section titles","Numbers and dates in editorial layouts"],
- watch:"Below 40px the tight spacing starts to close counters. It's a display face — don't set paragraphs in it.",
- format:"OTF / variable",size:"6 weights"},
-{name:"Google Fonts",kind:"sites",cap:"share image · the site's own",lic:"OFL / Apache",dl:"direct .zip",host:"fonts.google.com",href:"https://fonts.google.com",
- view:{t:"shot",src:"https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/opengraph_color.png"},
- lead:"1,800 families, licence stated on every page. The correct place to start when you need a typeface today.",
- about:"The catalogue is uneven — plenty of faces you'd never use — but the licence model is the best in the business: every family tells you exactly what you can do, and the API serves the files. If you need something obscure, search by classification rather than by name.",
- use:["Prototyping with a real webfont in minutes","Finding a variable font for a design system","Sourcing non-Latin scripts and extended sets"],
- watch:"The catalogue hides as much as it shows — the good stuff is often on page 4 of a category. And 'open source' still means reading the OFL: reserved font names matter.",
- format:"TTF / woff2 / variable",size:"1,800+ families"},
-{name:"Phosphor",kind:"icons",cap:"asset · live svg",lic:"MIT",dl:"direct .zip",host:"phosphoricons.com",href:"https://phosphoricons.com",
- view:{t:"bigicon",src:"https://unpkg.com/@phosphor-icons/core@2.0.8/assets/regular/heart.svg"},
- lead:"Six weights of one drawing — thin through fill — so an icon can carry emphasis instead of changing shape.",
- about:"Phosphor's trick is that every icon is drawn six ways: thin, light, regular, bold, fill and duotone. That gives you a way to show state and hierarchy inside one visual language, which most icon sets make you fake by swapping symbols.",
- use:["Filled and outlined states of the same action","Heavier icons next to heavy type","Duotone illustrations from icon parts"],
- watch:"Six weights is also six chances to be inconsistent. Pick two — regular and fill — and stay there.",
- format:"SVG / React / font",size:"1,248 icons × 6"}
-];
+var I=[];
+function T(name,fam,word,label,opts){var o=opts||{};I.push({n:name,k:'type',cap:label,fam:fam,view:{t:'type',fam:fam,word:word,light:o.light},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+ lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'TTF / woff2',size:o.size||'family'})}
+function IC(name,base,label,opts){var o=opts||{};I.push({n:name,k:'icons',cap:label,view:{t:'icons',base:base,light:o.light,names:o.names},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+ lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'SVG',size:o.size})}
+function IM(name,src,kap,lab,opts){var o=opts||{};I.push({n:name,k:kap,cap:lab,view:{t:'img',src:src,fit:o.fit},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+ lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt,size:o.size,pos:o.pos})}
+
+T('Satoshi','Satoshi','Aa','type · fontshare',{light:1,lic:'ITF Free · no conversion',dl:'click-through',host:'fontshare.com',href:'https://www.fontshare.com/fonts/satoshi',
+ lead:'A geometric sans with a human axis. The body face of this page.',about:'Nine weights and a lowercase that opens up at 11–13px, which is why it holds captions this small without looking cramped.',use:['Body text on dark UIs, 12–16px','Labels and navigation at 8–11px'],watch:'The free licence forbids subsetting or converting the files. CDN yes, your own woff2 no.',fmt:'OTF / variable',size:'9 weights'});
+T('Clash Display','Clash Display','Clash','type · fontshare',{lic:'ITF Free · no conversion',dl:'click-through',host:'fontshare.com',href:'https://www.fontshare.com/fonts/clash-display',
+ lead:'Wide-shouldered display cuts that hold their own against an image.',about:'A grotesque with a lot of shoulder — tight spacing, a slightly condensed feel at heavy weights. Built for the top of a page.',use:['Hero headlines at 72px+','Short all-caps titles'],watch:'Below 40px the counters start to close. Display only.',fmt:'OTF / variable',size:'6 weights'});
+T('Instrument Serif','Instrument Serif','Aa','type · google',{light:1,lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Instrument+Serif',
+ lead:'An editorial serif that survives at 120px. One weight, one italic.',about:'High contrast, sharp shoulders, a genuinely lovely italic, and no licence homework at all.',use:['Editorial headlines and pull quotes','One-off display words'],watch:'Not for body copy — it thins out below about 24px. Latin only.',fmt:'TTF / woff2',size:'1 + italic'});
+T('Inter','Inter','Aa','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Inter',
+ lead:'The default UI sans of the last decade, for better and worse.',about:'Inter was drawn for screens: tall x-height, tight apertures, a variable axis that goes from 9 to 144. It is the safe answer, and safe is sometimes correct.',use:['Dense product UI','Interfaces with mixed languages'],watch:'Ubiquity is the problem — it reads as default unless you set it with intent.',fmt:'TTF / variable',size:'variable'});
+T('Fraunces','Fraunces','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Fraunces',
+ lead:'A soft-serif with a wonk axis, made for personality at display sizes.',about:'Fraunces has axes most serifs do not: optical size, softness, and a wonk that tilts the letters. Turned up, it is charming; left alone, it is a competent old-style.',use:['Editorial headlines with warmth','Logos and short marks'],watch:'The wonk axis is addictive. One glyph at the wrong setting looks like a mistake.',fmt:'TTF / variable',size:'variable axes'});
+T('Space Grotesk','Space Grotesk','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Space+Grotesk',
+ lead:'A proportional grotesque with square-ish terminals and a technical feel.',about:'Derived from Space Mono, then smoothed. It reads as engineering rather than fashion, which makes it useful for product and data.',use:['Dashboards and technical UI','Section headings'],watch:'Its quirks show at large sizes. Set it small or set it deliberately.',fmt:'TTF / woff2',size:'5 weights'});
+T('DM Sans','DM Sans','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/DM+Sans',
+ lead:'A low-contrast geometric that stays calm at every size.',about:'DM Sans trades the personality of a display face for even colour. Nine weights, low contrast, and it never fights the content.',use:['Long-form body copy','Interfaces that need to disappear'],watch:'So neutral it can read as unfinished. Pair it with something with a point of view.',fmt:'TTF / variable',size:'variable'});
+T('Archivo','Archivo','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Archivo',
+ lead:'A grotesque built for signage — strong at small sizes, wide at large.',about:'Archivo comes from a family designed for print headlines and urban signage. The width axis is the useful part: condense it for labels, widen it for statements.',use:['Signage-like headlines','Condensed labels and tables'],watch:'The expanded end is easy to overuse; two widths in one layout is plenty.',fmt:'TTF / variable',size:'variable'});
+T('Bricolage Grotesque','Bricolage Grotesque','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Bricolage+Grotesque',
+ lead:'A wonky grotesque with an optical-size axis and a sense of humour.',about:'Bricolage mixes a geometric skeleton with calligraphic details that only appear at large optical sizes. It is the rare free face that looks hand-made.',use:['Posters and covers','Brand headlines'],watch:'The details vanish at 12px — it is not a body face.',fmt:'TTF / variable',size:'variable'});
+T('Playfair Display','Playfair Display','Aa','type · google',{light:1,lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Playfair+Display',
+ lead:'The high-contrast didone everyone reaches for, and for good reason.',about:'Playfair is a transitional serif pushed to didone contrast: fine hairlines, heavy stems, tall ascenders. It gives a headline instant editorial weight.',use:['Magazine-style headlines','Italic pull quotes'],watch:'The hairlines disappear on low-DPI screens and in small sizes. Display only.',fmt:'TTF / variable',size:'variable'});
+T('IBM Plex Mono','IBM Plex Mono','01','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/IBM+Plex+Mono',
+ lead:'A monospace with humanist bones — technical without being cold.',about:'Plex Mono keeps the rhythm of code type but softens the terminals, so it reads well inside prose and labels as well as in terminals.',use:['Labels, metadata and numbers','Code blocks'],watch:'Wide by nature — long strings will overflow tight columns.',fmt:'TTF / woff2',size:'8 weights'});
+T('JetBrains Mono','JetBrains Mono','01','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/JetBrains+Mono',
+ lead:'A coding mono with taller lowercase and larger apertures.',about:'JetBrains Mono increases x-height and opens the apertures, which is exactly what makes it readable at 11px in a dark editor — and in a caption like this one.',use:['Code and terminal UI','Micro labels like this'],watch:'Its ligatures are a switch, not a default; check before shipping code samples.',fmt:'TTF / variable',size:'8 weights'});
+
+IC('Lucide','https://unpkg.com/lucide-static/icons/','icons · lucide',{names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'ISC',dl:'direct .zip',host:'lucide.dev',href:'https://lucide.dev/icons/',
+ lead:'1.5px stroke at 24px, consistent joints, 2,046 icons.',about:'Every icon sits on the same 24px grid, which is why a set of twelve reads as a set and not a collage.',use:['Interface icons at 16–24px','Icon buttons that must match type weight'],watch:'Outline only. Mixing its fill variants breaks the rhythm.',size:'2,046 icons'});
+IC('Phosphor','https://unpkg.com/@phosphor-icons/core@2.0.8/assets/regular/','icons · phosphor',{names:['heart','star','bell','camera','lock-simple','magnifying-glass','gear','music-notes','cloud','house','user','image'],lic:'MIT',dl:'direct .zip',host:'phosphoricons.com',href:'https://phosphoricons.com',
+ lead:'Six weights of one drawing — thin through fill.',about:'State and hierarchy inside one visual language instead of swapping symbols.',use:['Filled and outlined states','Heavier icons next to heavy type'],watch:'Six weights is six chances to be inconsistent. Pick two.',size:'1,248 × 6'});
+IC('Tabler','https://unpkg.com/@tabler/icons/icons/outline/','icons · tabler',{names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'tabler.io',href:'https://tabler.io/icons',
+ lead:'A 2px-stroke set built for dashboards, 5,700 icons deep.',about:'Tabler is wider and more literal than Lucide — more objects, fewer abstractions — which helps when a label needs an unmistakable picture.',use:['Admin and dashboard UI','Icons that must be instantly legible'],watch:'2px is heavier than most UI type strokes. Match your weights.',size:'5,700 icons'});
+IC('Heroicons','https://unpkg.com/heroicons@2.0.18/24/outline/','icons · heroicons',{names:['heart','star','bell','camera','envelope','lock-closed','magnifying-glass','cog-6-tooth','musical-note','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'heroicons.com',href:'https://heroicons.com',
+ lead:'Tailwind\'s own set: outline, solid and mini in one drawing.',about:'Three sizes of the same idea, drawn to sit next to Inter and a 4px grid. Nothing surprising, everything consistent.',use:['Tailwind projects','Outline and solid pairs'],watch:'The solid set is optically heavier; do not mix outline and solid on one row.',size:'~300 icons'});
+IC('Bootstrap Icons','https://unpkg.com/bootstrap-icons@1.11.3/icons/','icons · bootstrap',{names:['heart','star','bell','camera','envelope','lock','search','gear','music-note','sun','cloud','house'],lic:'MIT',dl:'direct .zip',host:'icons.getbootstrap.com',href:'https://icons.getbootstrap.com',
+ lead:'A plain, wide, 2,000-icon set with almost no attitude.',about:'Bootstrap Icons is the utility drawer: brands, arrows, files, media, weather. It is not elegant, but it is complete.',use:['Prototypes that need an icon now','Utility and file actions'],watch:'Some glyphs are visibly inconsistent in weight. Check the row before shipping.',size:'2,000 icons'});
+IC('Feather','https://unpkg.com/feather-icons@4.29.2/dist/icons/','icons · feather',{names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'feathericons.com',href:'https://feathericons.com',
+ lead:'The 2014 set that taught everyone to draw with 2px strokes.',about:'286 icons, one weight, uncompromisingly simple. Lucide started here before growing up.',use:['Minimal UI with a single stroke weight','Small, low-count interfaces'],watch:'Frozen since 2020 — no new icons, and some shapes are now the odd ones out.',size:'286 icons'});
+IC('Iconoir','https://unpkg.com/iconoir@7.7.0/icons/regular/','icons · iconoir',{names:['heart','star','bell','camera','mail','lock','search','settings','music-note','sun-light','cloud','home'],lic:'MIT',dl:'direct .zip',host:'iconoir.com',href:'https://iconoir.com',
+ lead:'A softer, rounder set with a slightly hand-drawn feel.',about:'Iconoir hides a huge library behind a quiet aesthetic — 1,500 icons with rounded joins and generous corners.',use:['Consumer apps with a friendly tone','Marketing pages'],watch:'Round joins read softer at large sizes; it can feel childish in dense tools.',size:'1,500 icons'});
+IC('Simple Icons','https://cdn.simpleicons.org/','icons · simple icons',{names:['github','figma','notion','spotify','vercel','dribbble','react','supabase','stripe','framer'],lic:'CC0 · brand marks',dl:'direct asset',host:'simpleicons.org',href:'https://simpleicons.org',
+ lead:'Free brand marks, one slug per company.',about:'Every logo as a single-colour SVG you can request by name and tint with CSS. The pragmatic answer for social rows and integrations.',use:['Social and integration rows','Footer brand marks'],watch:'The licence is CC0 but the trademarks are not yours to redraw. Follow each brand\'s rules.',size:'3,200 brands'});
+
+IM('Potted plant 01','https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=1200&height=1200','3D','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
+ lead:'A scanned prop, lit and ready. Public domain, no attribution.',about:'One believable object for the corner of a scene, which is usually exactly what an arch-viz frame needs.',use:['Filling a corner of a scene','Product mockups that need a real plant'],watch:'These are built for offline renders — check polycount before realtime.',fmt:'blend / fbx / gltf',size:'scanned prop'});
+IM('Wooden bowl','https://cdn.polyhaven.com/asset_img/thumbs/wooden_bowl_01.png?width=1200&height=1200','3D','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
+ lead:'A scanned bowl with real wear on the rim.',about:'Scanned props carry surface detail that modelled primitives never get: chipped edges, uneven grain, dust in the seams.',use:['Tabletop and product scenes','Foreground props with real texture'],watch:'Scanned meshes are heavy and not optimised for games out of the box.',fmt:'blend / fbx / gltf',size:'scanned prop'});
+IM('Arm chair','https://cdn.polyhaven.com/asset_img/thumbs/modern_arm_chair_01.png?width=1200&height=1200','3D','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
+ lead:'A modern armchair, scanned and materialled.',about:'Furniture is the fastest way to give an interior render scale. This one has believable upholstery and a neutral silhouette.',use:['Interior scenes and mood renders','Scale reference in layouts'],watch:'Upholstery scans get heavy fast — decimate before realtime use.',fmt:'blend / gltf',size:'scanned prop'});
+IM('Window render','https://cdn.polyhaven.com/site_images/home/window_rend.jpg?width=1200','3D','3d · interior render',{lic:'CC0 assets',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com',
+ lead:'A finished frame made entirely from their CC0 library.',about:'The clearest argument for the library: HDRI light, scanned props, PBR textures — and none of it owes anyone attribution.',use:['Reference for lighting an interior','Proving a CC0 pipeline end to end'],watch:'It is a render, not a scene file. The assets are CC0; this image is their example.',fmt:'JPEG',size:'1,200px'});
+IM('Shapefest','','3D','3d · no signal',{fit:1,lic:'512px free · no republishing',dl:'click-through',host:'shapefest.com',href:'https://shapefest.com',
+ lead:'Good files, terms that forbid showing them here. The empty frame is the honest preview.',about:'Ray-traced objects in the soft studio look. You can use the renders in your own work, but you cannot republish them — so a public gallery of their previews would break the agreement.',use:['Decorative 3D in hero sections','One glossy shape in a social layout'],watch:'Free tier is capped at 512px, and the republishing restriction stands.',fmt:'PNG / blend',size:'512px tier'});
+
+IM('Unsplash · lake','https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1400&q=85','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/lake',pos:'50% 62%',
+ lead:'Still water at dusk. Search by light, not by noun.',about:'Unsplash rewards searching for a colour temperature rather than an object: dusk blue reflection finds better frames than lake.',use:['Full-bleed hero backgrounds','Mood boards'],watch:'You cannot sell unmodified copies or build a competing image service.',fmt:'JPEG',size:'5M+ photos'});
+IM('Unsplash · night range','https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1400&q=85','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/mountains',pos:'50% 45%',
+ lead:'A cold mountain range under a clear night.',about:'Low-noise, high-contrast photo that survives a dark overlay — which is the only test that matters for a hero image.',use:['Dark heroes with white type','Section breaks'],watch:'Watch the histogram: these crush to black if you add a heavy gradient.',fmt:'JPEG',size:'5M+ photos'});
+IM('Unsplash · forest','https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=85','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/forest',pos:'50% 50%',
+ lead:'Looking up through a canopy — texture rather than subject.',about:'Good photographic texture is rare and it makes a flat colour feel alive when placed behind a headline at 15% opacity.',use:['Textured backgrounds','Editorial accents'],watch:'Too much foliage detail fights type. Blur or darken it before use.',fmt:'JPEG',size:'5M+ photos'});
+IM('Pexels · dog','https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&w=1400','image','photograph · pexels',{lic:'free use, no attribution',dl:'click-through',host:'pexels.com',href:'https://www.pexels.com',
+ lead:'The other big free library, and the less fashion-driven one.',about:'Pexels is where you go when Unsplash has gone too editorial: more ordinary subjects, more usable people and animals, same no-attribution licence.',use:['Everyday subject photography','People and lifestyle shots'],watch:'The library is thinner on genuinely beautiful light. Search harder.',fmt:'JPEG',size:'3M+ photos'});
+
+IM('Google Fonts','https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/opengraph_color.png','sites','site · share image',{lic:'OFL / Apache',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com',
+ lead:'1,800 families, licence stated on every page.',about:'The catalogue is uneven, but the licence model is the best in the business — every family tells you exactly what you can do.',use:['A webfont in minutes','Non-Latin scripts'],watch:'The good stuff hides on page 4 of a category. Read the OFL; reserved names matter.',fmt:'TTF / woff2',size:'1,800 families'});
+IM('Figma Community','https://static.figma.com/uploads/3d791db872a0158f92798fa0134d8eeaf6af5535','plugins','plugin · share image',{lic:'mixed · per plugin',dl:'Figma account',host:'figma.com',href:'https://www.figma.com/community/plugins',
+ lead:'Plugins you install in two clicks. The bento builder is 20,000 users deep.',about:'Layout generators, content fillers, exporters. Filter by installs and last-updated — anything untouched for a year is usually broken by the next release.',use:['Bento and collage generators','Bulk image and text filling'],watch:'Each plugin has its own licence and permissions. Network access means it can read your file.',fmt:'Figma plugin',size:'thousands'});
+IM('Are.na','https://www.are.na/og-image.png','sites','site · share image',{lic:'reference only',dl:'sign in',host:'are.na',href:'https://www.are.na',
+ lead:'A place to keep references that stays small on purpose.',about:'No algorithm, no engagement loop — channels you build and share. The best design research on the internet is hidden in other people\'s private channels.',use:['Collecting a project\'s visual language','Reading how other designers think'],watch:'Private channels are private. Screenshot for citation, never republish the work as your own.',fmt:'web',size:'web'});
+
+I.push({n:'MeshSVG',k:'tools',cap:'tool · output rendered live',view:{t:'mesh'},lic:'free browser tool',dl:'open tool',host:'meshsvg.com',href:'https://meshsvg.com',
+ lead:'Draw a grainy mesh gradient and copy the CSS out. This frame is its output, rendered live in CSS.',about:'Mesh gradients are the soft colour fields behind most modern hero sections. Doing them in CSS rather than an image keeps them sharp at any size and editable later.',use:['Soft colour behind a headline','Section backgrounds without an image'],watch:'Stacked radial gradients get expensive on large surfaces. Test on a phone before shipping six of them.',fmt:'CSS',size:'gradient'});
+
 var wall=document.getElementById('wall'),sheet=document.getElementById('sheet'),cur=0;
-function body(r){
+function pvBody(r){
   var v=r.view;
-  if(v.t==='spec')return '<div class="frame spec'+(v.ink?' ink':'')+'">'+v.ui+'<div class="foot">'+v.foot+'</div></div>';
-  if(v.t==='grid'){var h='';ICONS.forEach(function(n){h+='<img src="https://unpkg.com/lucide-static/icons/'+n+'.svg" alt="">'});return '<div class="frame grid">'+h+'</div>'}
-  if(v.t==='render')return '<div class="frame render"><img src="'+v.src+'" alt=""></div>';
-  if(v.t==='bigicon')return '<div class="frame render"><img src="'+v.src+'" alt="" style="max-width:34%;filter:invert(1);opacity:.93"></div>';
-  if(v.t==='void')return '<div class="frame void"><span>'+v.txt+'</span></div>';
-  return '<div class="frame shot"><img src="'+v.src+'" alt=""'+(v.pos?' style="object-position:'+v.pos+'"':'')+'></div>';
+  if(v.t==='type')return '<div class="pv"><div class="tag">'+r.n+'</div><div class="word" style="font-family:\''+v.fam+'\'">'+v.word+'</div></div>';
+  if(v.t==='icons'){var ext=v.base.indexOf('simpleicons')>-1?'':'.svg',ns=v.names,h='<div class="pv">';ns.forEach(function(n){h+='<img src="'+v.base+n+ext+'" alt="">'});return h+'</div>'}
+  if(v.t==='img'&&!v.src)return '<div class="pv"><span>RENDERS CANNOT BE REPUBLISHED<br>— SO THERE IS NOTHING HONEST TO SHOW</span></div>';
+  if(v.t==='img')return '<div class="pv"><img src="'+v.src+'" alt=""'+(r.pos?' style="object-position:'+r.pos+'"':'')+'></div>';
+  return '<div class="pv"></div>';
+}
+function frameHTML(r){
+  var v=r.view,c='frame';
+  if(v.t==='type')c+=' type'+(v.light?' light':'');
+  if(v.t==='icons')c+=' icons'+(v.names.length<12?' five':'')+(v.base.indexOf('simpleicons')>-1?' brand':'');
+  if(v.t==='img')c+=' img '+(v.fit?'fit':'');
+  if(v.t==='mesh')c+=' mesh';
+  if(v.t==='img'&&!v.src)c+=' void';
+  return '<div class="'+c+'">'+pvBody(r)+'</div>';
 }
 I.forEach(function(r,i){
-  var el=document.createElement('div');el.className='item';el.dataset.kind=r.kind;
-  el.innerHTML=body(r)+'<div class="cap"><b>'+r.name+'</b><i>'+r.kind+'</i></div><div class="sub">'+r.cap+'</div>';
+  var el=document.createElement('div');el.className='item';el.dataset.kind=r.k;
+  el.innerHTML=frameHTML(r)+'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.cap+'</div>';
   el.onclick=function(){openTab(i)};
   wall.appendChild(el);
 });
-var kinds=['all','type','image','3D','icons','sites','plugins'],kb=document.getElementById('kinds');
+var kinds=['all','type','image','3D','icons','sites','plugins','tools'],kb=document.getElementById('kinds');
 kinds.forEach(function(k,idx){
   var b=document.createElement('button');b.textContent=k;if(idx===0)b.className='on';
   b.onclick=function(){
@@ -194,16 +209,16 @@ kinds.forEach(function(k,idx){
 });
 function openTab(i){
   cur=i;var r=I[i],n=I.length;
-  sheet.innerHTML='<div class="bar"><span class="dot"></span><b>'+r.name+'</b><span>'+r.kind+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()">close ✕</button></div>'+
-  '<div class="body"><div class="preview">'+body(r)+'<div class="pcap">'+r.kind+' · '+r.cap+'</div></div>'+
-  '<div class="info"><div class="k">'+r.kind+' · '+r.cap+'</div><h1>'+r.name+'</h1><p class="lead">'+r.lead+'</p>'+
+  sheet.innerHTML='<div class="bar"><span class="dot"></span><b>'+r.n+'</b><span>'+r.k+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()">close ✕</button></div>'+
+  '<div class="body"><div class="preview">'+frameHTML(r)+'<div class="pcap">'+r.cap+'</div></div>'+
+  '<div class="info"><div class="k">'+r.cap+'</div><h1>'+r.n+'</h1><p class="lead">'+r.lead+'</p>'+
   '<div class="sec"><span class="lab">about</span><p>'+r.about+'</p></div>'+
   '<div class="sec"><span class="lab">use it for</span><ul>'+r.use.map(function(u){return '<li>'+u+'</li>'}).join('')+'</ul></div>'+
   '<div class="sec"><span class="lab">watch out</span><p class="watch">'+r.watch+'</p></div>'+
   '<div class="sec"><span class="lab">the facts</span>'+
     '<div class="kv"><span>licence</span><b>'+r.lic+'</b></div>'+
     '<div class="kv"><span>download</span><b>'+r.dl+'</b></div>'+
-    '<div class="kv"><span>format</span><b>'+r.format+'</b></div>'+
+    '<div class="kv"><span>format</span><b>'+r.fmt+'</b></div>'+
     '<div class="kv"><span>size</span><b>'+r.size+'</b></div>'+
     '<div class="kv"><span>source</span><b>'+r.host+'</b></div>'+
   '</div>'+
