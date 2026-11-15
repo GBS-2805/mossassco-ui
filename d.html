@@ -18,7 +18,12 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .kinds button.on:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;opacity:.55}
 .kinds button:hover{color:#b9b8b2}
 .rule{height:1px;margin:16px 34px 0;background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.02))}
-.wall{columns:2;column-gap:30px;padding:30px 34px 54px;max-width:1400px;margin:0 auto}
+.gh{display:flex;align-items:center;gap:14px;padding:36px 34px 0;max-width:1400px;margin:0 auto}
+.gh h2{margin:0;font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#d3d2cc;font-weight:400;white-space:nowrap}
+.gh span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;color:#44444b}
+.gh i{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.13),rgba(255,255,255,0))}
+.wall{columns:2;column-gap:30px;padding:18px 34px 26px;max-width:1400px;margin:0 auto}
+.group:last-child .wall{padding-bottom:54px}
 .item{break-inside:avoid;margin:0 0 30px;cursor:pointer;display:block;width:100%}
 .frame{position:relative;overflow:hidden;background:#0d0d10;width:100%;aspect-ratio:3/1;box-shadow:0 18px 34px -20px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.06);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
 .frame:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.045);pointer-events:none;z-index:4}
@@ -30,8 +35,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sub{margin-top:4px;font-family:var(--mono);font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#3e3e45}
 .pv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .tag{position:absolute;left:4.5%;top:9%;font-family:var(--mono);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5a62;z-index:2}
-.type .word{position:absolute;left:4.5%;bottom:6%;font-size:clamp(34px,5.6vw,62px);line-height:.78;letter-spacing:-.04em;font-weight:400;color:#f4f3ee;white-space:nowrap}
-.type.ink{background:#0a0a0c}
+.type .word{position:absolute;left:4.5%;bottom:6%;right:4.5%;line-height:.86;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.type.w-lg .word{font-size:clamp(34px,5.4vw,60px)}
+.type.w-md .word{font-size:clamp(26px,4vw,46px)}
+.type.w-sm .word{font-size:clamp(18px,2.9vw,33px)}
 .icons{background:#0e0e11}
 .icons .pv{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:7% 8% 8%}
 .icons img{width:44%;max-width:46px;opacity:.92;filter:invert(1) brightness(2)}
@@ -80,20 +87,20 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 footer{display:flex;justify-content:space-between;gap:20px;padding:0 34px 34px;font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;text-transform:uppercase;color:#3f3f46;flex-wrap:wrap}
 footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.1);margin-right:12px}
 @media(max-width:1000px){.sheet .body{grid-template-columns:1fr}.sheet .preview{border-right:0;border-bottom:1px solid var(--line);padding:22px}}
-@media(max-width:760px){.wall{columns:1;padding:22px 18px 40px}header,.kinds{padding-left:18px;padding-right:18px}.rule{margin-left:18px;margin-right:18px}.sheet .info{padding:22px 18px 44px}}
+@media(max-width:760px){.wall{columns:1;padding:22px 18px 40px}header,.kinds{padding-left:18px;padding-right:18px}.rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}}
 </style></head><body>
 <div class="grain"></div>
-<header><span class="brand">Mossassco<i> — a repository</i></span><span class="meta">33 items · 7 kinds · reviewed licence by licence</span></header>
+<header><span class="brand">Mossassco<i> — a repository</i></span><span class="meta">loading</span></header>
 <div class="kinds" id="kinds"></div>
 <div class="rule"></div>
-<div class="wall" id="wall"></div>
+<div id="groups"></div>
 <footer><span>set live · icons from source · share images © their sites</span><span>older attempts <a href="b2.html">instrument</a><a href="a.html">palette</a><a href="c.html">front page</a></span></footer>
 <div class="sheet" id="sheet"></div>
 <script>
 var I=[];
-function T(name,fam,word,label,opts){var o=opts||{};I.push({n:name,k:'type',cap:label,fam:fam,view:{t:'type',fam:fam,word:word,light:o.light},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+function T(name,fam,word,label,opts){var o=opts||{};I.push({n:name,k:'type',cap:label,fam:fam,view:{t:'type',fam:fam,word:word},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'TTF / woff2',size:o.size||'family'})}
-function IC(name,base,label,opts){var o=opts||{};I.push({n:name,k:'icons',cap:label,view:{t:'icons',base:base,light:o.light,names:o.names},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+function IC(name,base,label,opts){var o=opts||{};I.push({n:name,k:'icons',cap:label,view:{t:'icons',base:base,names:o.names},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'SVG',size:o.size})}
 function IM(name,src,kap,lab,opts){var o=opts||{};I.push({n:name,k:kap,cap:lab,view:{t:'img',src:src,fit:o.fit,card:o.card},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt,size:o.size,pos:o.pos})}
@@ -170,10 +177,10 @@ IM('Are.na','https://www.are.na/og-image.png','sites','site · share image, show
 I.push({n:'MeshSVG',k:'tools',cap:'tool · output rendered live',view:{t:'mesh'},lic:'free browser tool',dl:'open tool',host:'meshsvg.com',href:'https://meshsvg.com',
  lead:'Draw a grainy mesh gradient and copy the CSS out. This frame is its output, rendered live in CSS.',about:'Mesh gradients are the soft colour fields behind most modern hero sections. Doing them in CSS rather than an image keeps them sharp at any size and editable later.',use:['Soft colour behind a headline','Section backgrounds without an image'],watch:'Stacked radial gradients get expensive on large surfaces. Test on a phone before shipping six of them.',fmt:'CSS',size:'gradient'});
 
-var wall=document.getElementById('wall'),sheet=document.getElementById('sheet'),cur=0;
+var sheet=document.getElementById('sheet'),cur=0;
 function pvBody(r){
   var v=r.view;
-  if(v.t==='type')return '<div class="pv"><div class="tag">'+r.n+'</div><div class="word" style="font-family:\''+v.fam+'\'">'+v.word+'</div></div>';
+  if(v.t==='type')return '<div class="pv"><div class="tag">'+r.cap+'</div><div class="word" style="font-family:\''+v.fam+'\'">'+r.n+'</div></div>';
   if(v.t==='icons'){var ext=v.base.indexOf('simpleicons')>-1?'':'.svg',ns=v.names,h='<div class="pv">';ns.forEach(function(n){h+='<img src="'+v.base+n+ext+'" alt="">'});return h+'</div>'}
   if(v.t==='img'&&!v.src)return '<div class="pv"><span>RENDERS CANNOT BE REPUBLISHED<br>— SO THERE IS NOTHING HONEST TO SHOW</span></div>';
   if(v.t==='img')return '<div class="pv"><img src="'+v.src+'" alt=""'+(r.pos?' style="object-position:'+r.pos+'"':'')+'></div>';
@@ -181,25 +188,36 @@ function pvBody(r){
 }
 function frameHTML(r){
   var v=r.view,c='frame';
-  if(v.t==='type')c+=' type'+(v.light?' light':'');
+  if(v.t==='type'){var L=r.n.length;c+=' type w-'+(L<=7?'lg':(L<=13?'md':'sm'))}
   if(v.t==='icons')c+=' icons'+(v.names.length<12?' five':'')+(v.base.indexOf('simpleicons')>-1?' brand':'');
   if(v.t==='img')c+=' img '+(v.fit?'fit ':'')+(v.card?'card':'');
   if(v.t==='mesh')c+=' mesh';
   if(v.t==='img'&&!v.src)c+=' void';
   return '<div class="'+c+'">'+pvBody(r)+'</div>';
 }
-I.forEach(function(r,i){
-  var el=document.createElement('div');el.className='item';el.dataset.kind=r.k;
-  el.innerHTML=frameHTML(r)+'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.cap+'</div>';
-  el.onclick=function(){openTab(i)};
-  wall.appendChild(el);
+var GROUPS=[['type','Type'],['icons','Icons'],['3D','3D objects'],['image','Image'],['sites','Sites'],['plugins','Plugins'],['tools','Tools']];
+var groupsEl=document.getElementById('groups');
+GROUPS.forEach(function(g){
+  var idxs=[];I.forEach(function(r,i){if(r.k===g[0])idxs.push(i)});
+  if(!idxs.length)return;
+  var sec=document.createElement('section');sec.className='group';sec.dataset.kind=g[0];
+  sec.innerHTML='<div class="gh"><h2>'+g[1]+'</h2><span>'+String(idxs.length).padStart(2,'0')+'</span><i></i></div><div class="wall"></div>';
+  var w=sec.querySelector('.wall');
+  idxs.forEach(function(i){
+    var r=I[i],el=document.createElement('div');el.className='item';el.dataset.kind=r.k;
+    el.innerHTML=frameHTML(r)+'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.lic+'</div>';
+    el.onclick=function(){openTab(i)};
+    w.appendChild(el);
+  });
+  groupsEl.appendChild(sec);
 });
-var kinds=['all','type','image','3D','icons','sites','plugins','tools'],kb=document.getElementById('kinds');
+document.querySelector('.meta').textContent=I.length+' items · '+document.querySelectorAll('.group').length+' sections · reviewed licence by licence';
+var kinds=['all'].concat(GROUPS.map(function(g){return g[0]})),kb=document.getElementById('kinds');
 kinds.forEach(function(k,idx){
   var b=document.createElement('button');b.textContent=k;if(idx===0)b.className='on';
   b.onclick=function(){
     [].forEach.call(kb.children,function(c){c.classList.remove('on')});b.classList.add('on');
-    [].forEach.call(wall.children,function(el){el.style.display=(k==='all'||el.dataset.kind===k)?'':'none'});
+    [].forEach.call(groupsEl.children,function(sec){sec.style.display=(k==='all'||sec.dataset.kind===k)?'':'none'});
   };
   kb.appendChild(b);
 });
