@@ -33,7 +33,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-
 .screen .smp{font-size:38px;font-weight:700;letter-spacing:-.03em;text-align:center;padding:0 12%}
 .screen .tag{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-family:"JetBrains Mono",monospace;font-size:8px;letter-spacing:.14em;opacity:.55}
 .screen.icons{display:grid;grid-template-columns:repeat(3,1fr);place-items:center;padding:18% 10%}
-.screen.icons img{width:46%;filter:invert(1)}
+.screen.icons img{width:46%}
 .screen.photo{padding:0}
 .screen.photo img{width:100%;height:100%;object-fit:cover}
 .screen.dead{background:repeating-linear-gradient(to bottom,#1b1b14 0 3px,#26261c 3px 6px);color:var(--acid)}
@@ -75,7 +75,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-
   </div>
 </section>
 </main>
-<div class="leg"><div><b>real previews</b>Type set in the actual face, icons are the actual SVG paths, renders and photos are the real files.</div><div><b>no signal</b>Where a site forbids republishing, the screen says so instead of faking it.</div><div><b>this is a mockup</b>Eight records wired up; the rest follow once you like the shape.</div></div>
+<div class="leg"><div><b>real previews</b>Type set in the actual face, icons are the actual SVG paths, renders and photos are the real files.</div><div><b>no signal</b>Where a site forbids republishing, the screen says so instead of faking it.</div><div><b>this is a mockup</b>Eleven records wired up; the rest follow once you like the shape.</div></div>
 </div>
 <script>
 var R=[
@@ -86,7 +86,10 @@ var R=[
  {n:"07",name:"Unsplash",lic:"no resale",lim:"no compiling into a stock site",dl:"click-through",kind:"photo",img:"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=75",url:"https://unsplash.com",desc:"The soft-light photo library everyone reaches for first."},
  {n:"12",name:"Shapefest",lic:"512px free",lim:"their terms contradict each other",dl:"click-through",kind:"dead",url:"https://shapefest.com",desc:"Ray-traced 3D objects. Previews cannot be republished, so this screen stays dark."},
  {n:"13",name:"Poly Haven",lic:"CC0",lim:"none",dl:"direct asset url",kind:"photo",img:"https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=640&height=640",url:"https://polyhaven.com",desc:"HDRIs, models and textures, all public domain."},
- {n:"17",name:"Lucide",lic:"ISC",lim:"keep the notice",dl:"direct zip",kind:"icons",url:"https://lucide.dev",desc:"1.5px stroke at 24px. The set this project uses by default."}
+ {n:"17",name:"Lucide",lic:"ISC",lim:"keep the notice",dl:"direct zip",kind:"icons",url:"https://lucide.dev",desc:"1.5px stroke at 24px. The set this project uses by default."},
+ {n:"18",name:"Phosphor",lic:"MIT",lim:"six weights, all free",dl:"direct package",kind:"icons2",url:"https://phosphoricons.com",desc:"Softer terminals than Lucide, same grid discipline."},
+ {n:"19",name:"Tabler",lic:"MIT",lim:"paid bundles exist, icons stay MIT",dl:"direct zip",kind:"icons3",url:"https://tabler.io/icons",desc:"6,287 icons at 24px, dense and technical."},
+ {n:"21",name:"MeshSVG",lic:"free tool",lim:"exports carry an invisible credit",dl:"none · browser tool",kind:"dead2",url:"https://meshsvg.com",desc:"Draw a grainy mesh gradient, copy the CSS or take an SVG."}
 ];
 var list=document.getElementById('list');
 R.forEach(function(r,i){
@@ -95,12 +98,14 @@ R.forEach(function(r,i){
   li.firstChild.onclick=function(){show(i)};
   list.appendChild(li);
 });
+function icons(base,names){return names.map(function(x){return '<img src="'+base+x+'.svg">'}).join('')}
+var LC="https://unpkg.com/lucide-static/icons/",PH="https://unpkg.com/@phosphor-icons/core@2.0.8/assets/regular/",TB="https://unpkg.com/@tabler/icons/icons/outline/";
 function show(i){
   var r=R[i],scr=document.getElementById('screen');
   document.querySelectorAll('.row').forEach(function(b){b.removeAttribute('aria-current')});
   document.querySelectorAll('.row')[i].setAttribute('aria-current','true');
   document.getElementById('p-part').textContent='MS-'+r.n;
-  document.getElementById('p-kind').textContent=r.kind;
+  document.getElementById('p-kind').textContent=r.kind.replace(/[0-9]/,'');
   document.getElementById('p-name').textContent=r.name;
   document.getElementById('p-desc').textContent=r.desc;
   document.getElementById('p-lic').textContent=r.lic;
@@ -109,7 +114,10 @@ function show(i){
   document.getElementById('p-open').href=r.url;
   scr.className='screen';
   if(r.kind==='dead'){scr.className='screen dead';scr.innerHTML='<div class="smp">NO SIGNAL</div><div class="tag">480 × 480</div>';return}
-  if(r.kind==='icons'){scr.className='screen icons';scr.innerHTML='<img src="https://unpkg.com/lucide-static/icons/heart.svg"><img src="https://unpkg.com/lucide-static/icons/star.svg"><img src="https://unpkg.com/lucide-static/icons/bell.svg"><img src="https://unpkg.com/lucide-static/icons/camera.svg"><img src="https://unpkg.com/lucide-static/icons/search.svg"><img src="https://unpkg.com/lucide-static/icons/lock.svg">';return}
+  if(r.kind==='dead2'){scr.className='screen';scr.innerHTML='<div class="smp" style="font-size:14px;font-family:\'JetBrains Mono\',monospace;letter-spacing:.2em;line-height:1.8">MAKE<br>IN BROWSER</div><div class="tag">480 × 480</div>';return}
+  if(r.kind==='icons'){scr.className='screen icons';scr.innerHTML=icons(LC,['heart','star','bell','camera','search','lock']);return}
+  if(r.kind==='icons2'){scr.className='screen icons';scr.innerHTML=icons(PH,['heart','star','bell','globe','camera','lock']);return}
+  if(r.kind==='icons3'){scr.className='screen icons';scr.innerHTML=icons(TB,['heart','star','bell','world','camera','lock']);return}
   if(r.kind==='photo'){scr.className='screen photo';scr.innerHTML='<img src="'+r.img+'">';return}
   scr.className='screen';scr.innerHTML='<div class="smp" style="font-family:\''+r.fam+'\'">Mossassco</div><div class="tag">480 × 480</div>';
 }
