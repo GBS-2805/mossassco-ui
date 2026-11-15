@@ -35,12 +35,12 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sub{margin-top:4px;font-family:var(--mono);font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#3e3e45}
 .pv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .tag{position:absolute;left:4.5%;top:9%;font-family:var(--mono);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5a62;z-index:2}
-.type .word{position:absolute;left:4.5%;bottom:4%;right:24%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
+.type .word{position:absolute;left:4.5%;bottom:4%;right:28%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
 .icons{background:#0e0e11}
-.icons .pv{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:8% 17% 9% 6%}
+.icons .pv{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:8% 27% 9% 5%}
 .icons img{width:52%;max-width:42px;opacity:.92;filter:invert(1) brightness(2)}
 .icons.brand img{filter:grayscale(1) invert(1) brightness(1.7);opacity:.82}
-.icons.five .pv{grid-template-columns:repeat(5,1fr);padding:10% 17% 10% 8%}
+.icons.five .pv{grid-template-columns:repeat(5,1fr);padding:10% 27% 10% 7%}
 .img .pv img{width:100%;height:100%;object-fit:cover;display:block}
 .img.fit .pv img{object-fit:contain;width:70%;height:76%;filter:drop-shadow(0 22px 34px rgba(0,0,0,.8))}
 .img.card .pv img{object-fit:contain;width:52%;height:64%;box-shadow:0 26px 44px -18px rgba(0,0,0,.95)}
@@ -51,9 +51,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .void{background:radial-gradient(120% 100% at 50% 0%,#19191d,#0a0a0c 68%)}
 .void:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:13px 13px;opacity:.5;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 12%,transparent 68%);mask-image:radial-gradient(circle at 50% 50%,#000 12%,transparent 68%)}
 .void span{position:relative;font-family:var(--mono);font-size:6.5px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a94;line-height:1.9;text-align:center;padding:0 8%}
-.rail{position:absolute;right:0;top:0;bottom:0;width:24%;display:grid;place-items:center;z-index:5}
-.chip{font-family:var(--mono);font-size:6.5px;letter-spacing:.1em;text-transform:uppercase;color:#9b9ba3;border:1px solid rgba(255,255,255,.16);padding:4px 6px;background:rgba(10,10,12,.55);cursor:pointer;white-space:nowrap;line-height:1}
-.chip:hover{color:#fff;border-color:rgba(255,255,255,.42)}
+.rail{position:absolute;right:0;top:12%;bottom:12%;width:26%;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:2px;padding:0 4% 0 0;z-index:5;border-left:1px solid rgba(255,255,255,.09)}
+.opt{font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#4c4c54;background:none;border:0;padding:5px 3px;margin:0;width:100%;cursor:pointer;line-height:1;text-align:right;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.opt:hover{color:#c9c8c2}
+.opt.on{color:#f4f3ee}
 .sheet{position:fixed;inset:0;z-index:70;background:#0a0a0c;display:none;flex-direction:column}
 .sheet.on{display:flex}
 .sheet .bar{display:flex;align-items:center;gap:14px;padding:13px 22px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#5b5b63;flex-wrap:wrap}
@@ -66,9 +67,13 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sheet .preview{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:34px 24px;background:radial-gradient(90% 90% at 50% 20%,#141417,#08080a 72%);border-right:1px solid var(--line);overflow:hidden}
 .sheet .preview .frame{max-width:860px;width:100%;box-shadow:0 50px 90px -40px #000,0 0 0 1px rgba(255,255,255,.09)}
 .sheet .preview .tag{display:none}
+.sheet .preview .rail{display:none}
+.sheet .preview .type .word{right:4.5%}
+.sheet .preview .icons .pv{padding-right:8%}
+.sheet .preview .icons.five .pv{padding-right:10%}
 .pcap{font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:#4a4a52}
 .vars{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:860px;width:100%}
-.vars button{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;padding:7px 11px;background:none;border:1px solid rgba(255,255,255,.14);color:#8c8c94;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.vars button{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;padding:9px 13px;min-height:34px;background:none;border:1px solid rgba(255,255,255,.14);color:#8c8c94;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
 .vars button:hover{color:#fff;border-color:rgba(255,255,255,.36)}
 .vars button.on{background:#e9e8e3;color:#0b0b0d;border-color:#e9e8e3}
 .sheet .info{padding:30px 32px 56px;overflow:auto}
@@ -95,7 +100,7 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
   .kinds{padding:20px 0 6px 18px;flex-wrap:nowrap;overflow-x:auto;gap:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .kinds::-webkit-scrollbar{display:none}
   .rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}
-  .type .word{right:26%}.icons .pv{padding-right:18%}}
+  .type .word{right:30%}.icons .pv{padding-right:29%}.rail{top:4%;bottom:4%;width:27%;gap:0}.opt{padding:4px 2px;font-size:7px;color:#5d5d66}}
 </style></head><body>
 <div class="grain"></div>
 <header><span class="brand">Mossassco<i> — a repository</i></span><span class="meta">loading</span></header>
@@ -203,18 +208,19 @@ function fitTypes(scope){
 }
 var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){fitTypes()},140)});
 function varList(r){return r.k==='type'?r.vs:(r.styles||null)}
+function optList(r,i,list){var h='<div class="rail">';list.forEach(function(x,j){h+='<button class="opt'+(j===r.vi?' on':'')+'" data-i="'+i+'" data-v="'+j+'">'+x.l+'</button>'});return h+'</div>'}
 function frameHTML(r,i){
   var v=r.view,c='frame',rail='';
   if(v.t==='type'){
     var vs=r.vs,d=vs[r.vi]||vs[0];
     c+=' type';
-    rail='<div class="rail"><span class="chip" data-i="'+i+'">'+d.l+'</span></div>';
+    rail=optList(r,i,vs);
     return '<div class="'+c+'"><div class="pv"><div class="tag">'+r.cap+'</div><div class="word" data-w="'+(d.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(d.w||400)+';font-style:'+(d.s||'normal')+'">'+r.n+'</div></div>'+rail+'</div>';
   }
   if(v.t==='icons'){
     var st=r.styles?r.styles[r.vi]:null,base=st?st.b:v.base,suf=st?st.s:v.suf;
     c+=' icons'+(v.names.length<12?' five':'')+(base.indexOf('simpleicons')>-1?' brand':'');
-    if(r.styles)rail='<div class="rail"><span class="chip" data-i="'+i+'">'+st.l+'</span></div>';
+    if(r.styles)rail=optList(r,i,r.styles);
     var h='<div class="pv">';
     v.names.forEach(function(n){h+='<img src="'+base+n+suf+'" alt="">'});
     return '<div class="'+c+'">'+h+'</div>'+rail+'</div>';
@@ -235,7 +241,7 @@ GROUPS.forEach(function(g){
   idxs.forEach(function(i){
     var r=I[i],el=document.createElement('div');el.className='item';el.dataset.kind=r.k;el.dataset.i=i;
     el.innerHTML=frameHTML(r,i)+'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.lic+'</div>';
-    el.onclick=function(e){if(e.target.closest('.chip'))return;openTab(i)};
+    el.onclick=function(e){if(e.target.closest('.opt'))return;openTab(i)};
     w.appendChild(el);
   });
   groupsEl.appendChild(sec);
@@ -265,12 +271,10 @@ function pickVar(i,vi){
   r.vi=vi;repaint(i);
 }
 groupsEl.addEventListener('click',function(e){
-  var chip=e.target.closest('.chip');
-  if(!chip)return;
-  e.stopPropagation();
-  var i=+chip.dataset.i,r=I[i],list=varList(r);
-  if(!list)return;
-  r.vi=(r.vi+1)%list.length;repaint(i);
+  var o=e.target.closest('.opt');
+  if(!o)return;
+  e.stopPropagation();e.preventDefault();
+  pickVar(+o.dataset.i,+o.dataset.v);
 });
 function varButtons(r,i){
   var list=varList(r);
