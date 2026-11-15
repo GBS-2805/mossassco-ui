@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mossassco parts</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#edeae3;--ink:#14140f;--acid:#d8ff3d;--red:#e8402a;--blue:#2b46ff;--dim:#6d6b60}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1220px;margin:0 auto;padding:0 24px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:2px solid var(--ink)}
+.top b{font-family:"Instrument Serif",serif;font-size:20px;font-weight:400}
+.top span{font-family:"JetBrains Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.1em}
+.top .kit{border:1.5px solid var(--ink);padding:5px 10px}
+.hero{background:var(--acid);margin:0 -24px;padding:30px 24px 22px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background-image:radial-gradient(#000 1px,transparent 1.1px);background-size:4px 4px;opacity:.14;pointer-events:none}
+.hero p{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.14em;margin:0 0 10px}
+.hero h1{margin:0;font-weight:900;font-size:clamp(38px,7vw,74px);line-height:.86;letter-spacing:-.045em;max-width:16ch}
+.hero h1 em{font-family:"Instrument Serif",serif;font-weight:400;font-style:italic;letter-spacing:-.02em}
+.filters{display:flex;gap:7px;margin-top:18px;flex-wrap:wrap;position:relative;z-index:1}
+.filters button{font-family:"JetBrains Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;border:1.5px solid var(--ink);background:transparent;padding:6px 10px;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--acid)}
+.app{display:grid;grid-template-columns:minmax(300px,0.86fr) 1.14fr;gap:22px;padding:22px 0 10px;align-items:start}
+.list{margin:0;padding:0;list-style:none;border-top:2px solid var(--ink)}
+.row{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(20,20,15,.22);padding:11px 8px;cursor:pointer;font:inherit;color:inherit;transition:background .12s,color .12s}
+.row:hover,.row[aria-current=true]{background:var(--ink);color:var(--paper)}
+.row:hover .lic,.row[aria-current=true] .lic{color:rgba(237,234,227,.6)}
+.row .n{font-family:"JetBrains Mono",monospace;font-size:9.5px;opacity:.55}
+.row .nm{font-size:15.5px;font-weight:500;letter-spacing:-.01em}
+.row .lic{font-family:"JetBrains Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim)}
+.stage{position:sticky;top:16px}
+.panel{background:var(--ink);color:var(--paper);padding:20px;position:relative;overflow:hidden}
+.panel .head{display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:rgba(237,234,227,.55);margin-bottom:14px}
+.screen{width:min(300px,74%);aspect-ratio:1/1;border-radius:50%;background:var(--acid);color:var(--ink);margin:6px auto 18px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.screen .smp{font-size:38px;font-weight:700;letter-spacing:-.03em;text-align:center;padding:0 12%}
+.screen .tag{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-family:"JetBrains Mono",monospace;font-size:8px;letter-spacing:.14em;opacity:.55}
+.screen.icons{display:grid;grid-template-columns:repeat(3,1fr);place-items:center;padding:18% 10%}
+.screen.icons img{width:46%;filter:invert(1)}
+.screen.photo{padding:0}
+.screen.photo img{width:100%;height:100%;object-fit:cover}
+.screen.dead{background:repeating-linear-gradient(to bottom,#1b1b14 0 3px,#26261c 3px 6px);color:var(--acid)}
+.screen.dead .smp{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;font-weight:400}
+.panel h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:42px;line-height:.95;margin:0 0 6px;letter-spacing:-.02em}
+.panel .desc{margin:0 0 16px;font-size:13px;color:rgba(237,234,227,.72);max-width:40ch}
+.kv{border-top:1px solid rgba(237,234,227,.25)}
+.kv div{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-bottom:1px solid rgba(237,234,227,.25);font-size:12.5px}
+.kv span{font-family:"JetBrains Mono",monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:.1em;color:rgba(237,234,227,.5)}
+.acts{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.btn{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;padding:11px 14px;background:var(--acid);color:var(--ink);text-decoration:none;border:0;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--paper);border:1px solid rgba(237,234,227,.45)}
+.btn:hover{background:var(--red);color:var(--paper)}
+.leg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:2px solid var(--ink);margin-top:26px;padding:18px 0 46px;font-family:"JetBrains Mono",monospace;font-size:9px;line-height:1.75;text-transform:uppercase;letter-spacing:.05em;color:var(--dim)}
+.leg b{display:block;color:var(--ink);margin-bottom:3px}
+@media(max-width:860px){.app{grid-template-columns:1fr}.stage{position:static;order:-1}.hero h1{font-size:clamp(34px,9vw,52px)}.leg{grid-template-columns:1fr;gap:12px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><div class="wrap">
+<div class="top"><b>mossassco / parts</b><span class="kit">kit · 0</span></div>
+<header class="hero">
+<p>a database of the good free stuff · 33 entries</p>
+<h1>Everything free, <em>on one screen.</em></h1>
+<div class="filters"><button aria-pressed="true">all 26</button><button>direct 9</button><button>cc0 7</button><button>no login 14</button><button>read 7</button></div>
+</header>
+<main class="app">
+<ul class="list" id="list"></ul>
+<section class="stage">
+  <div class="panel">
+    <div class="head"><span id="p-part">MS-02</span><span id="p-kind">type</span></div>
+    <div class="screen" id="screen"><div class="smp" id="smp">Mossassco</div><div class="tag">480 × 480</div></div>
+    <h2 id="p-name">Fontshare</h2>
+    <p class="desc" id="p-desc">Twelve geometric families from Indian Type Foundry.</p>
+    <div class="kv">
+      <div><span>licence</span><b id="p-lic">ITF Free Font · commercial</b></div>
+      <div><span>limits</span><b id="p-lim">no subsetting, no conversion</b></div>
+      <div><span>download</span><b id="p-dl">click-through · .zip</b></div>
+    </div>
+    <div class="acts"><a class="btn" id="p-open" href="https://www.fontshare.com" target="_blank" rel="noopener">Open source ↗</a><button class="btn ghost">+ kit</button></div>
+  </div>
+</section>
+</main>
+<div class="leg"><div><b>real previews</b>Type set in the actual face, icons are the actual SVG paths, renders and photos are the real files.</div><div><b>no signal</b>Where a site forbids republishing, the screen says so instead of faking it.</div><div><b>this is a mockup</b>Eight records wired up; the rest follow once you like the shape.</div></div>
+</div>
+<script>
+var R=[
+ {n:"01",name:"Google Fonts",lic:"OFL / Apache",lim:"some families are Apache",dl:"direct .zip",kind:"type",fam:"Inter",url:"https://fonts.google.com",desc:"1,800+ open families. The default source for anything you ship."},
+ {n:"02",name:"Fontshare",lic:"ITF Free · commercial",lim:"no subsetting, no conversion",dl:"click-through · .zip",kind:"type",fam:"Satoshi",url:"https://www.fontshare.com",desc:"Twelve geometric families from Indian Type Foundry."},
+ {n:"03",name:"Fontsource",lic:"tool MIT",lim:"fonts keep their own licence",dl:"direct cdn file",kind:"type",fam:"Satoshi",url:"https://fontsource.org",desc:"Self-hosted woff2, 16.7 kb per weight, no Google request."},
+ {n:"04",name:"Velvetyne",lic:"open, per font",lim:"they are moving off OFL",dl:"click-through · .zip",kind:"type",fam:"Instrument Serif",url:"https://velvetyne.fr",desc:"Experimental display faces from a French collective."},
+ {n:"07",name:"Unsplash",lic:"no resale",lim:"no compiling into a stock site",dl:"click-through",kind:"photo",img:"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=75",url:"https://unsplash.com",desc:"The soft-light photo library everyone reaches for first."},
+ {n:"12",name:"Shapefest",lic:"512px free",lim:"their terms contradict each other",dl:"click-through",kind:"dead",url:"https://shapefest.com",desc:"Ray-traced 3D objects. Previews cannot be republished, so this screen stays dark."},
+ {n:"13",name:"Poly Haven",lic:"CC0",lim:"none",dl:"direct asset url",kind:"photo",img:"https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=640&height=640",url:"https://polyhaven.com",desc:"HDRIs, models and textures, all public domain."},
+ {n:"17",name:"Lucide",lic:"ISC",lim:"keep the notice",dl:"direct zip",kind:"icons",url:"https://lucide.dev",desc:"1.5px stroke at 24px. The set this project uses by default."}
+];
+var list=document.getElementById('list');
+R.forEach(function(r,i){
+  var li=document.createElement('li');
+  li.innerHTML='<button class="row"'+(i===1?' aria-current="true"':'')+'><span class="n">'+r.n+'</span><span class="nm">'+r.name+'</span><span class="lic">'+r.lic+'</span></button>';
+  li.firstChild.onclick=function(){show(i)};
+  list.appendChild(li);
+});
+function show(i){
+  var r=R[i],scr=document.getElementById('screen');
+  document.querySelectorAll('.row').forEach(function(b){b.removeAttribute('aria-current')});
+  document.querySelectorAll('.row')[i].setAttribute('aria-current','true');
+  document.getElementById('p-part').textContent='MS-'+r.n;
+  document.getElementById('p-kind').textContent=r.kind;
+  document.getElementById('p-name').textContent=r.name;
+  document.getElementById('p-desc').textContent=r.desc;
+  document.getElementById('p-lic').textContent=r.lic;
+  document.getElementById('p-lim').textContent=r.lim;
+  document.getElementById('p-dl').textContent=r.dl;
+  document.getElementById('p-open').href=r.url;
+  scr.className='screen';
+  if(r.kind==='dead'){scr.className='screen dead';scr.innerHTML='<div class="smp">NO SIGNAL</div><div class="tag">480 × 480</div>';return}
+  if(r.kind==='icons'){scr.className='screen icons';scr.innerHTML='<img src="https://unpkg.com/lucide-static/icons/heart.svg"><img src="https://unpkg.com/lucide-static/icons/star.svg"><img src="https://unpkg.com/lucide-static/icons/bell.svg"><img src="https://unpkg.com/lucide-static/icons/camera.svg"><img src="https://unpkg.com/lucide-static/icons/search.svg"><img src="https://unpkg.com/lucide-static/icons/lock.svg">';return}
+  if(r.kind==='photo'){scr.className='screen photo';scr.innerHTML='<img src="'+r.img+'">';return}
+  scr.className='screen';scr.innerHTML='<div class="smp" style="font-family:\''+r.fam+'\'">Mossassco</div><div class="tag">480 × 480</div>';
+}
+</script></body></html>
