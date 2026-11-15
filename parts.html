@@ -1,124 +1,146 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mossassco parts</title>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@500;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#edeae3;--ink:#14140f;--acid:#d8ff3d;--red:#e8402a;--blue:#2b46ff;--dim:#6d6b60}
+:root{--paper:#edeae3;--ink:#14140f;--acid:#d8ff3d;--red:#e8402a;--blue:#2b46ff;--dim:#6d6b60;--rule:rgba(20,20,15,.2)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1220px;margin:0 auto;padding:0 24px}
-.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:2px solid var(--ink)}
-.top b{font-family:"Instrument Serif",serif;font-size:20px;font-weight:400}
-.top span{font-family:"JetBrains Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.1em}
-.top .kit{border:1.5px solid var(--ink);padding:5px 10px}
-.hero{background:var(--acid);margin:0 -24px;padding:30px 24px 22px;position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;inset:0;background-image:radial-gradient(#000 1px,transparent 1.1px);background-size:4px 4px;opacity:.14;pointer-events:none}
-.hero p{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.14em;margin:0 0 10px}
-.hero h1{margin:0;font-weight:900;font-size:clamp(38px,7vw,74px);line-height:.86;letter-spacing:-.045em;max-width:16ch}
-.hero h1 em{font-family:"Instrument Serif",serif;font-weight:400;font-style:italic;letter-spacing:-.02em}
-.filters{display:flex;gap:7px;margin-top:18px;flex-wrap:wrap;position:relative;z-index:1}
-.filters button{font-family:"JetBrains Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;border:1.5px solid var(--ink);background:transparent;padding:6px 10px;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:2px solid var(--ink)}
+.top b{font-family:"Instrument Serif",serif;font-size:19px;font-weight:400}
+.top span{font-family:"JetBrains Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.11em}
+.top .kit{border:1.5px solid var(--ink);padding:5px 9px}
+header{padding:26px 0 0}
+h1{margin:0;font-weight:900;font-size:clamp(30px,5.2vw,52px);line-height:.94;letter-spacing:-.04em;max-width:22ch}
+.lede{margin:12px 0 0;font-size:14px;color:#4c4a41;max-width:56ch}
+.filters{display:flex;gap:6px;margin:20px 0 0;flex-wrap:wrap;align-items:center}
+.filters button{font-family:"JetBrains Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;border:1.5px solid var(--ink);background:transparent;padding:6px 9px;cursor:pointer;color:inherit}
 .filters button[aria-pressed=true]{background:var(--ink);color:var(--acid)}
-.app{display:grid;grid-template-columns:minmax(300px,0.86fr) 1.14fr;gap:22px;padding:22px 0 10px;align-items:start}
-.list{margin:0;padding:0;list-style:none;border-top:2px solid var(--ink)}
-.row{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(20,20,15,.22);padding:11px 8px;cursor:pointer;font:inherit;color:inherit;transition:background .12s,color .12s}
-.row:hover,.row[aria-current=true]{background:var(--ink);color:var(--paper)}
-.row:hover .lic,.row[aria-current=true] .lic{color:rgba(237,234,227,.6)}
-.row .n{font-family:"JetBrains Mono",monospace;font-size:9.5px;opacity:.55}
-.row .nm{font-size:15.5px;font-weight:500;letter-spacing:-.01em}
-.row .lic{font-family:"JetBrains Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim)}
-.stage{position:sticky;top:16px}
-.panel{background:var(--ink);color:var(--paper);padding:20px;position:relative;overflow:hidden}
-.panel .head{display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:rgba(237,234,227,.55);margin-bottom:14px}
-.screen{width:min(300px,74%);aspect-ratio:1/1;border-radius:50%;background:var(--acid);color:var(--ink);margin:6px auto 18px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.screen .smp{font-size:38px;font-weight:700;letter-spacing:-.03em;text-align:center;padding:0 12%}
-.screen .tag{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-family:"JetBrains Mono",monospace;font-size:8px;letter-spacing:.14em;opacity:.55}
-.screen.icons{display:grid;grid-template-columns:repeat(3,1fr);place-items:center;padding:18% 10%}
-.screen.icons img{width:46%}
-.screen.photo{padding:0}
+.filters button i{font-style:normal;opacity:.5;margin-left:5px}
+.key{display:flex;gap:13px;flex-wrap:wrap;margin:14px 0 0;font-family:"JetBrains Mono",monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:.08em;color:#55534a}
+.key span{display:flex;align-items:center;gap:5px}
+.key b{width:9px;height:9px;display:block}
+.app{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:22px 0 6px;align-items:start}
+ul.list{margin:0;padding:0;list-style:none;border-top:2px solid var(--ink)}
+li{position:relative}
+li::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c)}
+.row{display:grid;grid-template-columns:30px 1fr auto;grid-template-rows:auto auto;column-gap:10px;row-gap:2px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule);padding:10px 8px 10px 14px;cursor:pointer;font:inherit;color:inherit}
+.row:hover{background:rgba(20,20,15,.05)}
+li[data-open] .row{background:var(--ink);color:var(--paper)}
+li[data-open] .row .lic{color:rgba(237,234,227,.55)}
+li[data-open] .row .use{color:rgba(237,234,227,.72)}
+.row .n{font-family:"JetBrains Mono",monospace;font-size:9px;opacity:.5;grid-row:span 2;padding-top:3px}
+.row .nm{font-size:15px;font-weight:500;letter-spacing:-.01em}
+.row .lic{font-family:"JetBrains Mono",monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);grid-row:span 2;align-self:center;padding-left:8px;white-space:nowrap}
+.row .use{grid-column:2;font-size:11.5px;color:#6a6759;letter-spacing:-.005em}
+.stage{position:sticky;top:14px;border:2px solid var(--ink);background:#f5f3ec}
+.panel{padding:18px}
+.panel .head{display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:.11em;color:#5d5b50;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.screenwrap{text-align:center;padding:18px 0 12px}
+.screen{width:250px;height:250px;max-width:100%;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:2px solid var(--ink)}
+.screen .smp{font-size:34px;font-weight:500;letter-spacing:-.03em;text-align:center;padding:0 14%}
+.screen.icons{display:grid;grid-template-columns:repeat(3,1fr);place-items:center;padding:20% 12%}
+.screen.icons img{width:44%}
 .screen.photo img{width:100%;height:100%;object-fit:cover}
-.screen.dead{background:repeating-linear-gradient(to bottom,#1b1b14 0 3px,#26261c 3px 6px);color:var(--acid)}
-.screen.dead .smp{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;font-weight:400}
-.panel h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:42px;line-height:.95;margin:0 0 6px;letter-spacing:-.02em}
-.panel .desc{margin:0 0 16px;font-size:13px;color:rgba(237,234,227,.72);max-width:40ch}
-.kv{border-top:1px solid rgba(237,234,227,.25)}
-.kv div{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-bottom:1px solid rgba(237,234,227,.25);font-size:12.5px}
-.kv span{font-family:"JetBrains Mono",monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:.1em;color:rgba(237,234,227,.5)}
-.acts{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
-.btn{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;padding:11px 14px;background:var(--acid);color:var(--ink);text-decoration:none;border:0;cursor:pointer}
-.btn.ghost{background:transparent;color:var(--paper);border:1px solid rgba(237,234,227,.45)}
-.btn:hover{background:var(--red);color:var(--paper)}
-.leg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:2px solid var(--ink);margin-top:26px;padding:18px 0 46px;font-family:"JetBrains Mono",monospace;font-size:9px;line-height:1.75;text-transform:uppercase;letter-spacing:.05em;color:var(--dim)}
+.screen.dead b{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;color:var(--acid);font-weight:400}
+.screenwrap .cap{font-family:"JetBrains Mono",monospace;font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#5d5b50;margin-top:9px}
+.noscreen{padding:26px 0 18px;text-align:center;font-family:"JetBrains Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#5d5b50;line-height:1.9;border-bottom:1px solid var(--rule)}
+.panel h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:38px;line-height:.95;margin:14px 0 5px;letter-spacing:-.02em}
+.panel .desc{margin:0 0 14px;font-size:12.5px;color:#4c4a41;max-width:38ch}
+.kv div{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-top:1px solid var(--rule);font-size:12px}
+.kv span{font-family:"JetBrains Mono",monospace;font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#6d6b60;padding-top:2px}
+.acts{display:flex;gap:7px;margin-top:14px;flex-wrap:wrap}
+.btn{font-family:"JetBrains Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;padding:10px 13px;background:var(--ink);color:var(--paper);text-decoration:none;border:1.5px solid var(--ink);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.detail{display:none}
+.leg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:2px solid var(--ink);margin-top:24px;padding:16px 0 44px;font-family:"JetBrains Mono",monospace;font-size:9px;line-height:1.75;text-transform:uppercase;letter-spacing:.05em;color:#5d5b50}
 .leg b{display:block;color:var(--ink);margin-bottom:3px}
-@media(max-width:860px){.app{grid-template-columns:1fr}.stage{position:static;order:-1}.hero h1{font-size:clamp(34px,9vw,52px)}.leg{grid-template-columns:1fr;gap:12px}}
+@media(max-width:860px){
+ .app{grid-template-columns:1fr;gap:0}
+ .stage{display:none}
+ .detail{display:none;padding:0 0 14px 14px}
+ li[data-open] .detail{display:block}
+ .panel{border:0;background:transparent;padding:14px 0 0}
+ .panel h2{font-size:30px}
+ .screen{width:210px;height:210px}
+ h1{font-size:clamp(28px,8vw,40px)}
+ .leg{grid-template-columns:1fr;gap:12px}
+}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head><body><div class="wrap">
 <div class="top"><b>mossassco / parts</b><span class="kit">kit · 0</span></div>
-<header class="hero">
-<p>a database of the good free stuff · 33 entries</p>
-<h1>Everything free, <em>on one screen.</em></h1>
-<div class="filters"><button aria-pressed="true">all 26</button><button>direct 9</button><button>cc0 7</button><button>no login 14</button><button>read 7</button></div>
+<header>
+<h1>Free parts for a 480 screen</h1>
+<p class="lede">Thirty-three sources, checked licence by licence. Pick a record to see what it looks like on the board, what it allows you to do, and how the file reaches you.</p>
+<div class="filters" id="filters"></div>
+<div class="key"><span><b style="background:var(--acid)"></b>type</span><span><b style="background:var(--red)"></b>photography</span><span><b style="background:var(--blue)"></b>3d</span><span><b style="background:var(--ink)"></b>icons</span><span><b style="background:#a8a494"></b>tools</span><span><b style="background:#fff;border:1px solid var(--ink)"></b>places to read</span></div>
 </header>
 <main class="app">
 <ul class="list" id="list"></ul>
-<section class="stage">
-  <div class="panel">
-    <div class="head"><span id="p-part">MS-02</span><span id="p-kind">type</span></div>
-    <div class="screen" id="screen"><div class="smp" id="smp">Mossassco</div><div class="tag">480 × 480</div></div>
-    <h2 id="p-name">Fontshare</h2>
-    <p class="desc" id="p-desc">Twelve geometric families from Indian Type Foundry.</p>
-    <div class="kv">
-      <div><span>licence</span><b id="p-lic">ITF Free Font · commercial</b></div>
-      <div><span>limits</span><b id="p-lim">no subsetting, no conversion</b></div>
-      <div><span>download</span><b id="p-dl">click-through · .zip</b></div>
-    </div>
-    <div class="acts"><a class="btn" id="p-open" href="https://www.fontshare.com" target="_blank" rel="noopener">Open source ↗</a><button class="btn ghost">+ kit</button></div>
-  </div>
-</section>
+<aside class="stage"><div class="panel" id="panel"></div></aside>
 </main>
-<div class="leg"><div><b>real previews</b>Type set in the actual face, icons are the actual SVG paths, renders and photos are the real files.</div><div><b>no signal</b>Where a site forbids republishing, the screen says so instead of faking it.</div><div><b>this is a mockup</b>Eleven records wired up; the rest follow once you like the shape.</div></div>
+<div class="leg"><div><b>what you see</b>Type is set in the actual face, icons are the actual SVG paths, renders and photos are the real files, shown on a 480px circle because that is the board's screen.</div><div><b>no signal</b>Two records cannot be previewed: one forbids republishing its renders, one is a browser tool. They say so instead of faking it.</div><div><b>scope</b>Thirteen of the thirty-three records are wired in this build. The rest are data entries in the same shape.</div></div>
 </div>
 <script>
 var R=[
- {n:"01",name:"Google Fonts",lic:"OFL / Apache",lim:"some families are Apache",dl:"direct .zip",kind:"type",fam:"Inter",url:"https://fonts.google.com",desc:"1,800+ open families. The default source for anything you ship."},
- {n:"02",name:"Fontshare",lic:"ITF Free · commercial",lim:"no subsetting, no conversion",dl:"click-through · .zip",kind:"type",fam:"Satoshi",url:"https://www.fontshare.com",desc:"Twelve geometric families from Indian Type Foundry."},
- {n:"03",name:"Fontsource",lic:"tool MIT",lim:"fonts keep their own licence",dl:"direct cdn file",kind:"type",fam:"Satoshi",url:"https://fontsource.org",desc:"Self-hosted woff2, 16.7 kb per weight, no Google request."},
- {n:"04",name:"Velvetyne",lic:"open, per font",lim:"they are moving off OFL",dl:"click-through · .zip",kind:"type",fam:"Instrument Serif",url:"https://velvetyne.fr",desc:"Experimental display faces from a French collective."},
- {n:"07",name:"Unsplash",lic:"no resale",lim:"no compiling into a stock site",dl:"click-through",kind:"photo",img:"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=75",url:"https://unsplash.com",desc:"The soft-light photo library everyone reaches for first."},
- {n:"12",name:"Shapefest",lic:"512px free",lim:"their terms contradict each other",dl:"click-through",kind:"dead",url:"https://shapefest.com",desc:"Ray-traced 3D objects. Previews cannot be republished, so this screen stays dark."},
- {n:"13",name:"Poly Haven",lic:"CC0",lim:"none",dl:"direct asset url",kind:"photo",img:"https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=640&height=640",url:"https://polyhaven.com",desc:"HDRIs, models and textures, all public domain."},
- {n:"17",name:"Lucide",lic:"ISC",lim:"keep the notice",dl:"direct zip",kind:"icons",url:"https://lucide.dev",desc:"1.5px stroke at 24px. The set this project uses by default."},
- {n:"18",name:"Phosphor",lic:"MIT",lim:"six weights, all free",dl:"direct package",kind:"icons2",url:"https://phosphoricons.com",desc:"Softer terminals than Lucide, same grid discipline."},
- {n:"19",name:"Tabler",lic:"MIT",lim:"paid bundles exist, icons stay MIT",dl:"direct zip",kind:"icons3",url:"https://tabler.io/icons",desc:"6,287 icons at 24px, dense and technical."},
- {n:"21",name:"MeshSVG",lic:"free tool",lim:"exports carry an invisible credit",dl:"none · browser tool",kind:"dead2",url:"https://meshsvg.com",desc:"Draw a grainy mesh gradient, copy the CSS or take an SVG."}
+{n:"01",name:"Google Fonts",use:"1,800 open families",lic:"OFL / Apache",lim:"some families are Apache",dl:"direct .zip",kind:"type",c:"#d8ff3d",fam:"Inter",url:"https://fonts.google.com",desc:"The default source. Inter, Instrument, Manrope, the Noto range.",cc0:0,direct:1,read:0,screen:1},
+{n:"02",name:"Fontshare",use:"12 geometric families",lic:"ITF Free · commercial",lim:"no subsetting, no conversion",dl:"click-through · .zip",kind:"type",c:"#d8ff3d",fam:"Satoshi",url:"https://www.fontshare.com",desc:"Satoshi, General Sans, Switzer, Clash. The best free UI faces right now.",cc0:0,direct:0,read:0,screen:1},
+{n:"03",name:"Fontsource",use:"self-hosted woff2",lic:"tool MIT",lim:"fonts keep their own licence",dl:"direct cdn file",kind:"type",c:"#d8ff3d",fam:"Instrument Serif",url:"https://fontsource.org",desc:"Takes Google Fonts out of the request path. 16.7 kb per weight.",cc0:0,direct:1,read:0,screen:1},
+{n:"04",name:"Velvetyne",use:"experimental display faces",lic:"open, per font",lim:"they are moving off OFL",dl:"click-through · .zip",kind:"type",c:"#d8ff3d",fam:"Instrument Serif",url:"https://velvetyne.fr",desc:"A French collective that ships strange, confident type for free.",cc0:0,direct:0,read:0,screen:1},
+{n:"07",name:"Unsplash",use:"the soft-light photo library",lic:"no resale",lim:"no compiling into a competing site",dl:"click-through",kind:"photo",c:"#e8402a",img:"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=75",url:"https://unsplash.com",desc:"Commercial use, no credit needed. You cannot sell an unmodified photo.",cc0:0,direct:0,read:0,screen:1},
+{n:"12",name:"Shapefest",use:"ray-traced 3D objects",lic:"512px free",lim:"terms contradict each other",dl:"click-through",kind:"dead",c:"#2b46ff",url:"https://shapefest.com",desc:"Beautiful renders at 512px. Their licence page and their terms disagree, so treat it carefully.",cc0:0,direct:0,read:0,screen:1},
+{n:"13",name:"Poly Haven",use:"CC0 HDRIs, models, textures",lic:"CC0",lim:"none",dl:"direct asset url",kind:"photo",c:"#2b46ff",img:"https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=640&height=640",url:"https://polyhaven.com",desc:"Eight thousand assets, no conditions at all. The safest 3D source on this list.",cc0:1,direct:1,read:0,screen:1},
+{n:"17",name:"Lucide",use:"1.5px stroke at 24px",lic:"ISC",lim:"keep the notice",dl:"direct zip",kind:"icons",c:"#14140f",set:"https://unpkg.com/lucide-static/icons/",names:["heart","star","bell","camera","search","lock"],url:"https://lucide.dev",desc:"The set this project already uses. Feather's geometry with more coverage.",cc0:0,direct:1,read:0,screen:1},
+{n:"18",name:"Phosphor",use:"six weights, softer terminals",lic:"MIT",lim:"all weights free",dl:"direct package",kind:"icons",c:"#14140f",set:"https://unpkg.com/@phosphor-icons/core@2.0.8/assets/regular/",names:["heart","star","bell","globe","camera","lock"],url:"https://phosphoricons.com",desc:"Friendlier than Lucide without losing the grid. Good when the UI is warm.",cc0:0,direct:1,read:0,screen:1},
+{n:"19",name:"Tabler",use:"6,287 dense technical icons",lic:"MIT",lim:"paid bundles exist, icons stay MIT",dl:"direct zip",kind:"icons",c:"#14140f",set:"https://unpkg.com/@tabler/icons/icons/outline/",names:["heart","star","bell","world","camera","lock"],url:"https://tabler.io/icons",desc:"The largest of the three. Best coverage for odd actions and hardware.",cc0:0,direct:1,read:0,screen:1},
+{n:"21",name:"MeshSVG",use:"grainy mesh gradients \u2192 CSS",lic:"free tool",lim:"export carries an invisible credit, removable",dl:"browser tool",kind:"tool",c:"#a8a494",url:"https://meshsvg.com",desc:"Build the background in the browser, copy the CSS or download an SVG. Nothing to install.",cc0:0,direct:0,read:0,screen:0},
+{n:"27",name:"Are.na",use:"boards worth looking at",lic:"look only",lim:"nothing here is licensed to you",dl:"no file",kind:"read",c:"#fff",url:"https://www.are.na",desc:"Where half the references in this project came from. Reading, not sourcing.",cc0:0,direct:0,read:1,screen:0},
+{n:"28",name:"Font Review Journal",use:"essays on single typefaces",lic:"look only",lim:"reference only",dl:"no file",kind:"read",c:"#fff",url:"https://fontreviewjournal.com",desc:"Why a typeface works, argued properly. Read before you commit to a face.",cc0:0,direct:0,read:1,screen:0}
 ];
-var list=document.getElementById('list');
-R.forEach(function(r,i){
-  var li=document.createElement('li');
-  li.innerHTML='<button class="row"'+(i===1?' aria-current="true"':'')+'><span class="n">'+r.n+'</span><span class="nm">'+r.name+'</span><span class="lic">'+r.lic+'</span></button>';
-  li.firstChild.onclick=function(){show(i)};
-  list.appendChild(li);
-});
-function icons(base,names){return names.map(function(x){return '<img src="'+base+x+'.svg">'}).join('')}
-var LC="https://unpkg.com/lucide-static/icons/",PH="https://unpkg.com/@phosphor-icons/core@2.0.8/assets/regular/",TB="https://unpkg.com/@tabler/icons/icons/outline/";
-function show(i){
-  var r=R[i],scr=document.getElementById('screen');
-  document.querySelectorAll('.row').forEach(function(b){b.removeAttribute('aria-current')});
-  document.querySelectorAll('.row')[i].setAttribute('aria-current','true');
-  document.getElementById('p-part').textContent='MS-'+r.n;
-  document.getElementById('p-kind').textContent=r.kind.replace(/[0-9]/,'');
-  document.getElementById('p-name').textContent=r.name;
-  document.getElementById('p-desc').textContent=r.desc;
-  document.getElementById('p-lic').textContent=r.lic;
-  document.getElementById('p-lim').textContent=r.lim;
-  document.getElementById('p-dl').textContent=r.dl;
-  document.getElementById('p-open').href=r.url;
-  scr.className='screen';
-  if(r.kind==='dead'){scr.className='screen dead';scr.innerHTML='<div class="smp">NO SIGNAL</div><div class="tag">480 × 480</div>';return}
-  if(r.kind==='dead2'){scr.className='screen';scr.innerHTML='<div class="smp" style="font-size:14px;font-family:\'JetBrains Mono\',monospace;letter-spacing:.2em;line-height:1.8">MAKE<br>IN BROWSER</div><div class="tag">480 × 480</div>';return}
-  if(r.kind==='icons'){scr.className='screen icons';scr.innerHTML=icons(LC,['heart','star','bell','camera','search','lock']);return}
-  if(r.kind==='icons2'){scr.className='screen icons';scr.innerHTML=icons(PH,['heart','star','bell','globe','camera','lock']);return}
-  if(r.kind==='icons3'){scr.className='screen icons';scr.innerHTML=icons(TB,['heart','star','bell','world','camera','lock']);return}
-  if(r.kind==='photo'){scr.className='screen photo';scr.innerHTML='<img src="'+r.img+'">';return}
-  scr.className='screen';scr.innerHTML='<div class="smp" style="font-family:\''+r.fam+'\'">Mossassco</div><div class="tag">480 × 480</div>';
+var list=document.getElementById('list'),panel=document.getElementById('panel'),filters=document.getElementById('filters');
+function screenHTML(r){
+ if(!r.screen) return '<div class="noscreen">no screen preview<br>this one is a '+(r.kind==='read'?'place to read':'tool')+'</div>';
+ if(r.kind==='dead') return '<div class="screenwrap"><div class="screen dead" style="background:repeating-linear-gradient(180deg,#1b1b14 0 3px,#26261c 3px 6px)"><b>NO SIGNAL</b></div><div class="cap">renders cannot be republished</div></div>';
+ if(r.kind==='photo') return '<div class="screenwrap"><div class="screen photo"><img src="'+r.img+'" alt=""></div><div class="cap">on the board\u2019s screen \u00b7 480 \u00d7 480</div></div>';
+ if(r.kind==='icons') return '<div class="screenwrap"><div class="screen icons" style="background:var(--acid)">'+r.names.map(function(x){return '<img src="'+r.set+x+'.svg" alt="">'}).join('')+'</div><div class="cap">on the board\u2019s screen \u00b7 480 \u00d7 480</div></div>';
+ return '<div class="screenwrap"><div class="screen" style="background:var(--acid)"><div class="smp" style="font-family:\''+r.fam+'\'">Mossassco</div></div><div class="cap">text on the board\u2019s screen \u00b7 480 \u00d7 480</div></div>';
 }
+function bodyHTML(r){
+ return screenHTML(r)+'<h2>'+r.name+'</h2><p class="desc">'+r.desc+'</p><div class="kv">'+
+ '<div><span>licence</span><b>'+r.lic+'</b></div><div><span>limits</span><b>'+r.lim+'</b></div><div><span>download</span><b>'+r.dl+'</b></div></div>'+
+ '<div class="acts"><a class="btn" href="'+r.url+'" target="_blank" rel="noopener">Open source \u2197</a><button class="btn ghost">+ kit</button></div>';
+}
+R.forEach(function(r,i){
+ var li=document.createElement('li');
+ li.style.setProperty('--c',r.c);
+ li.innerHTML='<button class="row"><span class="n">'+r.n+'</span><span class="nm">'+r.name+'</span><span class="lic">'+r.lic+'</span><span class="use">'+r.use+'</span></button>'+
+ '<div class="detail"><div class="panel">'+bodyHTML(r)+'</div></div>';
+ li.querySelector('.row').onclick=function(){select(i)};
+ list.appendChild(li);
+});
+var active=1;
+function select(i){
+ active=i;
+ document.querySelectorAll('li').forEach(function(li,j){li.toggleAttribute('data-open',j===i)});
+ var r=R[i];
+ panel.innerHTML='<div class="head"><span>MS-'+r.n+'</span><span>'+r.kind+'</span></div>'+bodyHTML(r);
+}
+var F=[{k:'all',label:'all'},{k:'direct',label:'direct'},{k:'cc0',label:'cc0'},{k:'read',label:'read'}];
+function count(k){return R.filter(function(r){return k==='all'?true:r[k]===1}).length}
+F.forEach(function(f){
+ var b=document.createElement('button');
+ b.innerHTML=f.label+'<i>'+count(f.k)+'</i>';
+ b.setAttribute('aria-pressed',f.k==='all');
+ b.onclick=function(){
+   document.querySelectorAll('#filters button').forEach(function(x){x.setAttribute('aria-pressed','false')});
+   b.setAttribute('aria-pressed','true');
+   document.querySelectorAll('li').forEach(function(li,i){
+     var r=R[i]; var show=f.k==='all'?true:r[f.k]===1;
+     li.style.display=show?'':'none';
+   });
+ };
+ filters.appendChild(b);
+});
+select(active);
 </script></body></html>
