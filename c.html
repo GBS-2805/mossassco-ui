@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>C · the front page</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fdfcf7;--ink:#15140f;--dim:#7d7a6f;--rule:rgba(21,20,15,.16);--red:#d93a1f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.mast{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:2px solid var(--ink);padding:16px 0 8px;flex-wrap:wrap}
+.mast h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(26px,4.4vw,44px);margin:0;letter-spacing:-.02em}
+.mast span{font-family:"JetBrains Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--dim)}
+.lead{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--rule)}
+.pic{aspect-ratio:4/3;background:#f0efe7;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.pic img{width:100%;height:100%;object-fit:cover}
+.pic .type{font-size:clamp(48px,9vw,96px);letter-spacing:-.05em;font-weight:600}
+.kicker{font-family:"JetBrains Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--red);margin:0 0 8px}
+.lead h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(28px,4vw,42px);line-height:1.02;margin:0 0 10px;letter-spacing:-.02em}
+.stand{margin:0 0 16px;font-size:14.5px;line-height:1.55;color:#4a473e;max-width:46ch}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--rule);margin-bottom:16px}
+.facts div{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--rule);font-size:12px}
+.facts span{font-family:"JetBrains Mono",monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim)}
+.btn{display:inline-block;font-size:12.5px;text-decoration:none;background:var(--ink);color:var(--paper);padding:10px 16px}
+.idx{display:grid;grid-template-columns:repeat(3,1fr);gap:0 30px;padding:24px 0 0}
+.col h3{font-family:"JetBrains Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.13em;color:var(--dim);margin:0 0 6px;padding-bottom:5px;border-bottom:1px solid var(--rule);font-weight:400}
+.item{display:block;text-decoration:none;color:inherit;padding:8px 0;border-bottom:1px solid var(--rule)}
+.item b{display:block;font-size:13.5px;font-weight:600;letter-spacing:-.01em}
+.item i{display:block;font-style:normal;font-size:11.5px;color:#6a675c;margin-top:2px}
+.item u{float:right;font-family:"JetBrains Mono",monospace;font-size:8.5px;text-decoration:none;color:var(--dim);text-transform:uppercase;letter-spacing:.05em}
+.nav{padding:26px 0 56px;font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--dim)}
+.nav a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);margin-right:12px}
+@media(max-width:820px){.lead{grid-template-columns:1fr}.idx{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<div class="mast"><h1>Mossassco Parts</h1><span>33 sources · reviewed licence by licence</span></div>
+<div class="lead">
+  <div class="pic"><div class="type" style="font-family:Satoshi">Aa</div></div>
+  <div>
+    <p class="kicker">type · this week's pick</p>
+    <h2>Fontshare is the free font library that doesn't look free.</h2>
+    <p class="stand">Twelve geometric families from Indian Type Foundry — Satoshi, General Sans, Switzer, Clash. Commercially usable with no credit, but the licence stops you subsetting or converting the files, which matters if you were planning to make web fonts.</p>
+    <div class="facts">
+      <div><span>licence</span><b>ITF Free</b></div>
+      <div><span>download</span><b>click-through</b></div>
+      <div><span>part</span><b>MS-02</b></div>
+      <div><span>limit</span><b>no conversion</b></div>
+    </div>
+    <a class="btn" href="https://www.fontshare.com" target="_blank" rel="noopener">Open Fontshare</a>
+  </div>
+</div>
+<div class="idx">
+  <div class="col"><h3>type</h3>
+    <a class="item" href="https://fonts.google.com" target="_blank"><u>ofl</u><b>Google Fonts</b><i>1,800 open families</i></a>
+    <a class="item" href="https://www.fontshare.com" target="_blank"><u>free</u><b>Fontshare</b><i>12 geometric families</i></a>
+    <a class="item" href="https://fontsource.org" target="_blank"><u>cdn</u><b>Fontsource</b><i>self-hosted woff2</i></a>
+    <a class="item" href="https://velvetyne.fr" target="_blank"><u>open</u><b>Velvetyne</b><i>experimental display</i></a>
+  </div>
+  <div class="col"><h3>image &amp; 3d</h3>
+    <a class="item" href="https://unsplash.com" target="_blank"><u>no resale</u><b>Unsplash</b><i>soft light, interiors</i></a>
+    <a class="item" href="https://polyhaven.com" target="_blank"><u>cc0</u><b>Poly Haven</b><i>HDRIs, models, textures</i></a>
+    <a class="item" href="https://shapefest.com" target="_blank"><u>512px</u><b>Shapefest</b><i>ray-traced 3D objects</i></a>
+  </div>
+  <div class="col"><h3>icons &amp; tools</h3>
+    <a class="item" href="https://lucide.dev" target="_blank"><u>isc</u><b>Lucide</b><i>1.5px stroke at 24px</i></a>
+    <a class="item" href="https://phosphoricons.com" target="_blank"><u>mit</u><b>Phosphor</b><i>six weights</i></a>
+    <a class="item" href="https://meshsvg.com" target="_blank"><u>tool</u><b>MeshSVG</b><i>mesh gradients to CSS</i></a>
+    <a class="item" href="https://www.are.na" target="_blank"><u>read</u><b>Are.na</b><i>boards worth looking at</i></a>
+  </div>
+</div>
+<div class="nav">other directions <a href="a.html">a · the palette</a><a href="b.html">b · the dial</a></div>
+</div></body></html>
