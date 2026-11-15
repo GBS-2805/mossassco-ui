@@ -1,5 +1,9 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mossassco — a repository</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com"><link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com"><link rel="preconnect" href="https://images.pexels.com"><link rel="preconnect" href="https://cdn.polyhaven.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;700;900&family=Archivo:wght@400;500;700;900&family=Bricolage+Grotesque:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&f[]=clash-display@200,300,400,500,700&display=swap" rel="stylesheet">
 <style>
@@ -41,10 +45,11 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .tag{position:absolute;left:4.5%;top:9%;font-family:var(--mono);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5a62;z-index:2}
 .type .word{position:absolute;left:4.5%;bottom:4%;right:28%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
 .icons{background:#0e0e11}
-.icons .pv{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:8% 27% 9% 5%}
-.icons img{width:52%;max-width:42px;filter:invert(1) brightness(2);animation:icoIn .42s cubic-bezier(.2,.8,.2,1) both}
+.icons .pv{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:7% 8%}
+.icons.hasrail .pv{padding:7% 30% 7% 6%}
+.icons img{width:44%;max-width:40px;filter:invert(1) brightness(2);animation:icoIn .42s cubic-bezier(.2,.8,.2,1) both}
+.icons.hasrail img{width:55%;max-width:40px}
 .icons.brand img{filter:grayscale(1) invert(1) brightness(1.7);opacity:.82;animation:none}
-.icons.five .pv{grid-template-columns:repeat(5,1fr);padding:10% 27% 10% 7%}
 @keyframes icoIn{from{opacity:0;filter:invert(1) brightness(2) blur(5px)}to{opacity:.92;filter:invert(1) brightness(2) blur(0)}}
 .img .pv img{width:100%;height:100%;object-fit:cover;display:block;animation:fadeIn .5s ease both}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -81,8 +86,8 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sheet .preview .tag{display:none}
 .sheet .preview .rail{display:none}
 .sheet .preview .type .word{right:4.5%}
-.sheet .preview .icons .pv{padding:8% 6% 9% 6%}
-.sheet .preview .icons.five .pv{padding:10% 8% 10% 8%}
+.sheet .preview .icons .pv{padding:7% 8%}
+.sheet .preview .icons.hasrail .pv{padding:7% 10% 7% 8%}
 .sheet .preview .site .nm{font-size:38px;max-width:60%}
 .sheet .preview .site li{font-size:8px}
 .pcap{font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:#4a4a52}
@@ -120,7 +125,7 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
   .kinds::-webkit-scrollbar{display:none}
   .rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}
   .site .nm{max-width:58%}.site li{font-size:6px}
-  .type .word{right:30%}.icons .pv{padding:8% 29% 9% 5%}.icons.five .pv{padding:10% 29% 10% 6%}
+  .type .word{right:30%}.icons .pv{padding:8% 6%}.icons.hasrail .pv{padding:8% 30% 8% 5%}
   .opt{font-size:6.5px;letter-spacing:.06em;padding:0 4% 0 6%}}
 </style></head><body>
 <div class="grain"></div>
@@ -166,21 +171,21 @@ T('IBM Plex Mono','IBM Plex Mono','type · google',{vs:[{l:'300',w:300},{l:'400'
 T('JetBrains Mono','JetBrains Mono','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/JetBrains+Mono',
  lead:'A coding mono with taller lowercase and larger apertures.',about:'JetBrains Mono increases x-height and opens the apertures, which is exactly what makes it readable at 11px in a dark editor — and in a caption like this one.',use:['Code and terminal UI','Micro labels like this'],watch:'Its ligatures are a switch, not a default; check before shipping code samples.',fmt:'TTF / variable',size:'8 weights'});
 
-IC('Lucide','icons · lucide',{base:'https://unpkg.com/lucide-static/icons/',suf:'.svg',names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'ISC',dl:'direct .zip',host:'lucide.dev',href:'https://lucide.dev/icons/',
- lead:'1.5px stroke at 24px, consistent joints, 2,046 icons.',about:'Every icon sits on the same 24px grid, which is why a set of twelve reads as a set and not a collage. There is one style only — that is the point.',use:['Interface icons at 16–24px','Icon buttons that must match type weight'],watch:'Outline only. Mixing its fill variants breaks the rhythm.',size:'2,046 icons'});
-IC('Phosphor','icons · phosphor',{st:[{l:'thin',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/thin/',s:'-thin.svg'},{l:'light',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/light/',s:'-light.svg'},{l:'regular',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/regular/',s:'.svg'},{l:'bold',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/bold/',s:'-bold.svg'},{l:'fill',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/fill/',s:'-fill.svg'},{l:'duotone',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/duotone/',s:'-duotone.svg'}],names:['heart','star','bell','camera','lock-simple','magnifying-glass','gear','music-notes','cloud','house','user','image'],lic:'MIT',dl:'direct .zip',host:'phosphoricons.com',href:'https://phosphoricons.com',
+IC('Lucide','icons · lucide',{base:'https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/',suf:'.svg',names:['heart','star','bell','camera','mail','lock','search','house'],lic:'ISC',dl:'direct .zip',host:'lucide.dev',href:'https://lucide.dev/icons/',
+ lead:'1.5px stroke at 24px, consistent joints, 2,046 icons.',about:'Every icon sits on the same 24px grid, which is why a set of eight reads as a set and not a collage. There is one style only — that is the point.',use:['Interface icons at 16–24px','Icon buttons that must match type weight'],watch:'Outline only. Mixing its fill variants breaks the rhythm.',size:'2,046 icons'});
+IC('Phosphor','icons · phosphor',{st:[{l:'thin',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/thin/',s:'-thin.svg'},{l:'light',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/light/',s:'-light.svg'},{l:'regular',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/',s:'.svg'},{l:'bold',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/',s:'-bold.svg'},{l:'fill',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/',s:'-fill.svg'},{l:'duotone',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/duotone/',s:'-duotone.svg'}],names:['heart','star','bell','camera','lock-simple','magnifying-glass','house','user'],lic:'MIT',dl:'direct .zip',host:'phosphoricons.com',href:'https://phosphoricons.com',
  lead:'Six weights of one drawing — thin through fill.',about:'State and hierarchy inside one visual language instead of swapping symbols. Switch weight on the specimen and the whole set moves together.',use:['Filled and outlined states','Heavier icons next to heavy type'],watch:'Six weights is six chances to be inconsistent. Pick two.',size:'1,248 × 6'});
-IC('Tabler','icons · tabler',{st:[{l:'outline',b:'https://unpkg.com/@tabler/icons/icons/outline/',s:'.svg'},{l:'filled',b:'https://unpkg.com/@tabler/icons/icons/filled/',s:'.svg'}],names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'tabler.io',href:'https://tabler.io/icons',
+IC('Tabler','icons · tabler',{st:[{l:'outline',b:'https://cdn.jsdelivr.net/npm/@tabler/icons@3.19.0/icons/outline/',s:'.svg'},{l:'filled',b:'https://cdn.jsdelivr.net/npm/@tabler/icons@3.19.0/icons/filled/',s:'.svg'}],names:['heart','star','bell','camera','mail','lock','search','home'],lic:'MIT',dl:'direct .zip',host:'tabler.io',href:'https://tabler.io/icons',
  lead:'A 2px-stroke set built for dashboards, 5,700 icons deep.',about:'Tabler is wider and more literal than Lucide — more objects, fewer abstractions — and it ships every icon outlined and filled.',use:['Admin and dashboard UI','Icons that must be instantly legible'],watch:'2px is heavier than most UI type strokes. Match your weights.',size:'5,700 icons'});
-IC('Heroicons','icons · heroicons',{st:[{l:'outline',b:'https://unpkg.com/heroicons@2.0.18/24/outline/',s:'.svg'},{l:'solid',b:'https://unpkg.com/heroicons@2.0.18/24/solid/',s:'.svg'},{l:'mini',b:'https://unpkg.com/heroicons@2.0.18/20/solid/',s:'.svg'}],names:['heart','star','bell','camera','envelope','lock-closed','magnifying-glass','cog-6-tooth','musical-note','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'heroicons.com',href:'https://heroicons.com',
+IC('Heroicons','icons · heroicons',{st:[{l:'outline',b:'https://cdn.jsdelivr.net/npm/heroicons@2.0.18/24/outline/',s:'.svg'},{l:'solid',b:'https://cdn.jsdelivr.net/npm/heroicons@2.0.18/24/solid/',s:'.svg'},{l:'mini',b:'https://cdn.jsdelivr.net/npm/heroicons@2.0.18/20/solid/',s:'.svg'}],names:['heart','star','bell','camera','envelope','lock-closed','magnifying-glass','home'],lic:'MIT',dl:'direct .zip',host:'heroicons.com',href:'https://heroicons.com',
  lead:'Tailwind\'s own set: outline, solid and mini in one drawing.',about:'Three sizes of the same idea, drawn to sit next to Inter and a 4px grid. Switch between them and the shapes stay put; only the weight changes.',use:['Tailwind projects','Outline and solid pairs'],watch:'The solid set is optically heavier; do not mix outline and solid on one row.',size:'~300 icons'});
-IC('Bootstrap Icons','icons · bootstrap',{base:'https://unpkg.com/bootstrap-icons@1.11.3/icons/',suf:'.svg',names:['heart','star','bell','camera','envelope','lock','search','gear','music-note','sun','cloud','house'],lic:'MIT',dl:'direct .zip',host:'icons.getbootstrap.com',href:'https://icons.getbootstrap.com',
+IC('Bootstrap Icons','icons · bootstrap',{base:'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/',suf:'.svg',names:['heart','star','bell','camera','envelope','lock','search','house'],lic:'MIT',dl:'direct .zip',host:'icons.getbootstrap.com',href:'https://icons.getbootstrap.com',
  lead:'A plain, wide, 2,000-icon set with almost no attitude.',about:'Bootstrap Icons is the utility drawer: brands, arrows, files, media, weather. One style, and it is complete rather than elegant.',use:['Prototypes that need an icon now','Utility and file actions'],watch:'Some glyphs are visibly inconsistent in weight. Check the row before shipping.',size:'2,000 icons'});
-IC('Feather','icons · feather',{base:'https://unpkg.com/feather-icons@4.29.2/dist/icons/',suf:'.svg',names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'feathericons.com',href:'https://feathericons.com',
+IC('Feather','icons · feather',{base:'https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/icons/',suf:'.svg',names:['heart','star','bell','camera','mail','lock','search','home'],lic:'MIT',dl:'direct .zip',host:'feathericons.com',href:'https://feathericons.com',
  lead:'The 2014 set that taught everyone to draw with 2px strokes.',about:'286 icons, one weight, uncompromisingly simple. Lucide started here before growing up.',use:['Minimal UI with a single stroke weight','Small, low-count interfaces'],watch:'Frozen since 2020 — no new icons, and some shapes are now the odd ones out.',size:'286 icons'});
-IC('Iconoir','icons · iconoir',{st:[{l:'regular',b:'https://unpkg.com/iconoir@7.7.0/icons/regular/',s:'.svg'},{l:'solid',b:'https://unpkg.com/iconoir@7.7.0/icons/solid/',s:'.svg'}],names:['heart','star','bell','camera','mail','lock','search','settings','music-note','sun-light','cloud','home'],lic:'MIT',dl:'direct .zip',host:'iconoir.com',href:'https://iconoir.com',
+IC('Iconoir','icons · iconoir',{st:[{l:'regular',b:'https://cdn.jsdelivr.net/npm/iconoir@7.7.0/icons/regular/',s:'.svg'},{l:'solid',b:'https://cdn.jsdelivr.net/npm/iconoir@7.7.0/icons/solid/',s:'.svg'}],names:['heart','star','bell','camera','mail','lock','search','home'],lic:'MIT',dl:'direct .zip',host:'iconoir.com',href:'https://iconoir.com',
  lead:'A softer, rounder set with a slightly hand-drawn feel.',about:'A huge library behind a quiet aesthetic — 1,500 icons with rounded joins, drawn twice: regular and solid.',use:['Consumer apps with a friendly tone','Marketing pages'],watch:'Round joins read softer at large sizes; it can feel childish in dense tools.',size:'1,500 icons'});
-IC('Simple Icons','icons · simple icons',{base:'https://cdn.simpleicons.org/',suf:'',names:['github','figma','notion','spotify','vercel','dribbble','react','supabase','stripe','framer'],lic:'CC0 · brand marks',dl:'direct asset',host:'simpleicons.org',href:'https://simpleicons.org',
+IC('Simple Icons','icons · simple icons',{base:'https://cdn.simpleicons.org/',suf:'',names:['github','figma','notion','spotify','vercel','dribbble','react','framer'],lic:'CC0 · brand marks',dl:'direct asset',host:'simpleicons.org',href:'https://simpleicons.org',
  lead:'Free brand marks, one slug per company.',about:'Every logo as a single-colour SVG you can request by name and tint with CSS. The pragmatic answer for social rows and integrations.',use:['Social and integration rows','Footer brand marks'],watch:'The licence is CC0 but the trademarks are not yours to redraw. Follow each brand\'s rules.',size:'3,200 brands'});
 
 IM('Potted plant 01','https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=1200&height=1200','3D','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
@@ -194,13 +199,13 @@ IM('Window render','https://cdn.polyhaven.com/site_images/home/window_rend.jpg?w
 IM('Shapefest','','3D','3d · no signal',{fit:1,lic:'512px free · no republishing',dl:'click-through',host:'shapefest.com',href:'https://shapefest.com',
  lead:'Good files, terms that forbid showing them here. The empty frame is the honest preview.',about:'Ray-traced objects in the soft studio look. You can use the renders in your own work, but you cannot republish them — so a public gallery of their previews would break the agreement.',use:['Decorative 3D in hero sections','One glossy shape in a social layout'],watch:'Free tier is capped at 512px, and the republishing restriction stands.',fmt:'PNG / blend',size:'512px tier'});
 
-IM('Unsplash · lake','https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1400&q=85','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/lake',pos:'50% 62%',
+IM('Unsplash · lake','https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1000&q=72','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/lake',pos:'50% 62%',
  lead:'Still water at dusk. Search by light, not by noun.',about:'Unsplash rewards searching for a colour temperature rather than an object: dusk blue reflection finds better frames than lake.',use:['Full-bleed hero backgrounds','Mood boards'],watch:'You cannot sell unmodified copies or build a competing image service.',fmt:'JPEG',size:'5M+ photos'});
-IM('Unsplash · night range','https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1400&q=85','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/mountains',pos:'50% 45%',
+IM('Unsplash · night range','https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1000&q=72','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/mountains',pos:'50% 45%',
  lead:'A cold mountain range under a clear night.',about:'Low-noise, high-contrast photo that survives a dark overlay — which is the only test that matters for a hero image.',use:['Dark heroes with white type','Section breaks'],watch:'Watch the histogram: these crush to black if you add a heavy gradient.',fmt:'JPEG',size:'5M+ photos'});
-IM('Unsplash · forest','https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=85','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/forest',pos:'50% 50%',
+IM('Unsplash · forest','https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1000&q=72','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/forest',pos:'50% 50%',
  lead:'Looking up through a canopy — texture rather than subject.',about:'Good photographic texture is rare and it makes a flat colour feel alive when placed behind a headline at 15% opacity.',use:['Textured backgrounds','Editorial accents'],watch:'Too much foliage detail fights type. Blur or darken it before use.',fmt:'JPEG',size:'5M+ photos'});
-IM('Pexels · dog','https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&w=1400','image','photograph · pexels',{lic:'free use, no attribution',dl:'click-through',host:'pexels.com',href:'https://www.pexels.com',
+IM('Pexels · dog','https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&w=1000','image','photograph · pexels',{lic:'free use, no attribution',dl:'click-through',host:'pexels.com',href:'https://www.pexels.com',
  lead:'The other big free library, and the less fashion-driven one.',about:'Pexels is where you go when Unsplash has gone too editorial: more ordinary subjects, more usable people and animals, same no-attribution licence.',use:['Everyday subject photography','People and lifestyle shots'],watch:'The library is thinner on genuinely beautiful light. Search harder.',fmt:'JPEG',size:'3M+ photos'});
 
 IM('Google Fonts','','sites','site · what you get',{options:['1,800 families','variable axes','OFL / Apache','non-latin scripts'],lic:'OFL / Apache',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com',
@@ -254,9 +259,9 @@ function frameHTML(r,i){
   }
   if(v.t==='icons'){
     var st=r.styles?r.styles[r.vi]:null,base=st?st.b:v.base,suf=st?st.s:v.suf;
-    c+=' icons'+(v.names.length<12?' five':'')+(base.indexOf('simpleicons')>-1?' brand':'');
+    c+=' icons'+(r.styles?' hasrail':'')+(base.indexOf('simpleicons')>-1?' brand':'');
     var h='<div class="pv">';
-    v.names.forEach(function(n){h+='<img src="'+base+n+suf+'" alt="" loading="lazy" decoding="async">'});
+    v.names.forEach(function(n){h+='<img src="'+base+n+suf+'" alt="" decoding="async">'});
     return '<div class="'+c+'">'+h+'</div>'+(r.styles?optList(i,r.styles,r.vi):'')+'</div>';
   }
   if(v.t==='img'&&!v.src)return '<div class="frame img fit void"><div class="pv"><span>RENDERS CANNOT BE REPUBLISHED<br>— SO THERE IS NOTHING HONEST TO SHOW</span></div></div>';
