@@ -17,7 +17,7 @@ h1 em{font-style:italic;color:#57544b}
 .hub .nm{font-family:"Instrument Serif",serif;font-size:26px;line-height:1}
 .hub .lic{font-size:8.5px;letter-spacing:.16em;color:#a9a79c;text-transform:uppercase}
 .hub img{width:46%;filter:invert(1);opacity:.9}
-.node{position:absolute;left:50%;top:50%;width:96px;margin:-8px 0 0 -48px;text-align:center;cursor:pointer;background:none;border:0;font:inherit;color:inherit;padding:4px 0;transition:transform .25s ease}
+.node{position:absolute;width:96px;text-align:center;cursor:pointer;background:none;border:0;font:inherit;color:inherit;padding:4px 0;transition:left .3s ease,top .3s ease}
 .node b{display:block;font-size:10.5px;letter-spacing:-.01em;font-weight:400}
 .node span{display:block;font-size:8px;color:var(--dim);letter-spacing:.1em;margin-top:2px}
 .node.on b{color:#141412;background:#c8f14a;padding:2px 4px;border-radius:3px}
@@ -39,7 +39,7 @@ h1 em{font-style:italic;color:#57544b}
 <div class="stage">
   <div class="dialwrap" id="dial">
     <div class="ring2"></div><div class="ring"></div>
-    <div class="hub" id="hub"><div class="nm" id="hn">Fontshare</div><div class="lic" id="hl">ITF Free</div></div>
+    <div class="hub" id="hub"></div>
   </div>
   <div class="side">
     <div class="k" id="sk">type</div>
@@ -73,12 +73,15 @@ D.forEach(function(r,i){
 });
 function layout(){
   var n=D.length,step=360/n,rot=-cur*step;
+  var w=dial.clientWidth||520,h=dial.clientHeight||520,cx=w/2,cy=h/2,R=Math.min(w,h)*0.385;
   [].forEach.call(dial.querySelectorAll('.node'),function(b,i){
-    var a=i*step+rot;
-    b.style.transform='rotate('+a+'deg) translateY(-38%) rotate('+(-a)+'deg)';
+    var a=((i*step+rot)-90)*Math.PI/180;
+    b.style.left=(cx+R*Math.cos(a)-48)+'px';
+    b.style.top=(cy+R*Math.sin(a)-16)+'px';
     if(i===cur)b.classList.add('on');else b.classList.remove('on');
   });
 }
+window.addEventListener('resize',layout);
 function show(){
   var r=D[cur];
   document.getElementById('sk').textContent=r.kind==='font'?'type':r.kind==='img'?'image':'record';
