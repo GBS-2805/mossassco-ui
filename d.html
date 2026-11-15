@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mossassco — a repository</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Space+Grotesk:wght@400;500&family=DM+Sans:wght@400;500&family=Archivo:wght@400;500&family=Bricolage+Grotesque:wght@400;500&family=Playfair+Display:ital@0;1&family=IBM+Plex+Mono:wght@400&family=JetBrains+Mono:wght@300;400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=clash-display@400,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;700;900&family=Archivo:wght@400;500;700;900&family=Bricolage+Grotesque:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&f[]=clash-display@200,300,400,500,700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#e9e8e3;--line:rgba(255,255,255,.07);--mono:"JetBrains Mono",monospace}
 *{box-sizing:border-box}
@@ -35,14 +35,14 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sub{margin-top:4px;font-family:var(--mono);font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#3e3e45}
 .pv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .tag{position:absolute;left:4.5%;top:9%;font-family:var(--mono);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5a62;z-index:2}
-.type .word{position:absolute;left:4.5%;bottom:4%;right:4.5%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
+.type .word{position:absolute;left:4.5%;bottom:4%;right:24%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
 .icons{background:#0e0e11}
-.icons .pv{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:7% 8% 8%}
-.icons img{width:44%;max-width:46px;opacity:.92;filter:invert(1) brightness(2)}
+.icons .pv{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:8% 17% 9% 6%}
+.icons img{width:52%;max-width:42px;opacity:.92;filter:invert(1) brightness(2)}
 .icons.brand img{filter:grayscale(1) invert(1) brightness(1.7);opacity:.82}
-.icons.five .pv{grid-template-columns:repeat(5,1fr);padding:9% 9%}
+.icons.five .pv{grid-template-columns:repeat(5,1fr);padding:10% 17% 10% 8%}
 .img .pv img{width:100%;height:100%;object-fit:cover;display:block}
-.img.fit .pv img{object-fit:contain;width:74%;height:76%;filter:drop-shadow(0 22px 34px rgba(0,0,0,.8))}
+.img.fit .pv img{object-fit:contain;width:70%;height:76%;filter:drop-shadow(0 22px 34px rgba(0,0,0,.8))}
 .img.card .pv img{object-fit:contain;width:52%;height:64%;box-shadow:0 26px 44px -18px rgba(0,0,0,.95)}
 .mesh{background:
   radial-gradient(60% 120% at 20% 20%,#4b2f6b 0%,transparent 60%),
@@ -51,6 +51,9 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .void{background:radial-gradient(120% 100% at 50% 0%,#19191d,#0a0a0c 68%)}
 .void:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:13px 13px;opacity:.5;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 12%,transparent 68%);mask-image:radial-gradient(circle at 50% 50%,#000 12%,transparent 68%)}
 .void span{position:relative;font-family:var(--mono);font-size:6.5px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a94;line-height:1.9;text-align:center;padding:0 8%}
+.rail{position:absolute;right:0;top:0;bottom:0;width:24%;display:grid;place-items:center;z-index:5}
+.chip{font-family:var(--mono);font-size:6.5px;letter-spacing:.1em;text-transform:uppercase;color:#9b9ba3;border:1px solid rgba(255,255,255,.16);padding:4px 6px;background:rgba(10,10,12,.55);cursor:pointer;white-space:nowrap;line-height:1}
+.chip:hover{color:#fff;border-color:rgba(255,255,255,.42)}
 .sheet{position:fixed;inset:0;z-index:70;background:#0a0a0c;display:none;flex-direction:column}
 .sheet.on{display:flex}
 .sheet .bar{display:flex;align-items:center;gap:14px;padding:13px 22px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#5b5b63;flex-wrap:wrap}
@@ -60,12 +63,16 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sheet .bar button{background:none;border:0;color:#6d6d75;font:inherit;letter-spacing:inherit;text-transform:uppercase;cursor:pointer;padding:4px 0}
 .sheet .bar button:hover{color:#fff}
 .sheet .body{flex:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,1fr);min-height:0}
-.sheet .preview{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:34px 24px;background:radial-gradient(90% 90% at 50% 20%,#141417,#08080a 72%);border-right:1px solid var(--line);overflow:hidden}
+.sheet .preview{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:34px 24px;background:radial-gradient(90% 90% at 50% 20%,#141417,#08080a 72%);border-right:1px solid var(--line);overflow:hidden}
 .sheet .preview .frame{max-width:860px;width:100%;box-shadow:0 50px 90px -40px #000,0 0 0 1px rgba(255,255,255,.09)}
 .sheet .preview .tag{display:none}
 .pcap{font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:#4a4a52}
+.vars{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:860px;width:100%}
+.vars button{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;padding:7px 11px;background:none;border:1px solid rgba(255,255,255,.14);color:#8c8c94;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.vars button:hover{color:#fff;border-color:rgba(255,255,255,.36)}
+.vars button.on{background:#e9e8e3;color:#0b0b0d;border-color:#e9e8e3}
 .sheet .info{padding:30px 32px 56px;overflow:auto}
-.sheet h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(32px,4vw,44px);line-height:1;letter-spacing:-.015em;margin:0 0 14px;color:#f2f1ec}
+.sheet h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(32px,4vw,44px);line-height:1.05;letter-spacing:-.015em;margin:0 0 14px;color:#f2f1ec}
 .sheet .lead{font-size:13.5px;line-height:1.7;color:#a3a3ab;margin:0 0 6px}
 .sec{margin-top:24px;border-top:1px solid var(--line);padding-top:13px}
 .sec .lab{font-family:var(--mono);font-size:7.5px;letter-spacing:.22em;text-transform:uppercase;color:#4b4b53;display:block;margin-bottom:8px}
@@ -87,7 +94,8 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 @media(max-width:760px){.wall{columns:1;padding:22px 18px 40px}header{padding-left:18px;padding-right:18px}
   .kinds{padding:20px 0 6px 18px;flex-wrap:nowrap;overflow-x:auto;gap:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .kinds::-webkit-scrollbar{display:none}
-  .rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}}
+  .rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}
+  .type .word{right:26%}.icons .pv{padding-right:18%}}
 </style></head><body>
 <div class="grain"></div>
 <header><span class="brand">Mossassco<i> — a repository</i></span><span class="meta">loading</span></header>
@@ -98,53 +106,55 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 <div class="sheet" id="sheet"></div>
 <script>
 var I=[];
-function T(name,fam,word,label,opts){var o=opts||{};I.push({n:name,k:'type',cap:label,fam:fam,view:{t:'type',fam:fam,word:word},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+function T(name,fam,label,opts){var o=opts||{};var vs=o.vs||[{l:'400',w:400,s:'normal'}];var d=0;for(var i=0;i<vs.length;i++){if(vs[i].w===400&&(!vs[i].s||vs[i].s==='normal'))d=i}
+ I.push({n:name,k:'type',cap:label,fam:fam,vs:vs,vi:d,view:{t:'type',fam:fam},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'TTF / woff2',size:o.size||'family'})}
-function IC(name,base,label,opts){var o=opts||{};I.push({n:name,k:'icons',cap:label,view:{t:'icons',base:base,names:o.names},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+function IC(name,label,opts){var o=opts||{};var d=0;if(o.st){for(var i=0;i<o.st.length;i++){if(o.st[i].l==='regular'||o.st[i].l==='outline')d=i}}
+ I.push({n:name,k:'icons',cap:label,styles:o.st||null,vi:d,view:{t:'icons',base:o.st?o.st[d].b:o.base,suf:o.st?o.st[d].s:o.suf,names:o.names},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'SVG',size:o.size})}
-function IM(name,src,kap,lab,opts){var o=opts||{};I.push({n:name,k:kap,cap:lab,view:{t:'img',src:src,fit:o.fit,card:o.card},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+function IM(name,src,kap,lab,opts){var o=opts||{};I.push({n:name,k:kap,cap:lab,vi:0,view:{t:'img',src:src,fit:o.fit,card:o.card},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt,size:o.size,pos:o.pos})}
 
-T('Satoshi','Satoshi','Aa','type · fontshare',{lic:'ITF Free · no conversion',dl:'click-through',host:'fontshare.com',href:'https://www.fontshare.com/fonts/satoshi',
- lead:'A geometric sans with a human axis. The body face of this page.',about:'Nine weights and a lowercase that opens up at 11–13px, which is why it holds captions this small without looking cramped.',use:['Body text on dark UIs, 12–16px','Labels and navigation at 8–11px'],watch:'The free licence forbids subsetting or converting the files. CDN yes, your own woff2 no.',fmt:'OTF / variable',size:'9 weights'});
-T('Clash Display','Clash Display','Clash','type · fontshare',{lic:'ITF Free · no conversion',dl:'click-through',host:'fontshare.com',href:'https://www.fontshare.com/fonts/clash-display',
- lead:'Wide-shouldered display cuts that hold their own against an image.',about:'A grotesque with a lot of shoulder — tight spacing, a slightly condensed feel at heavy weights. Built for the top of a page.',use:['Hero headlines at 72px+','Short all-caps titles'],watch:'Below 40px the counters start to close. Display only.',fmt:'OTF / variable',size:'6 weights'});
-T('Instrument Serif','Instrument Serif','Aa','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Instrument+Serif',
- lead:'An editorial serif that survives at 120px. One weight, one italic.',about:'High contrast, sharp shoulders, a genuinely lovely italic, and no licence homework at all.',use:['Editorial headlines and pull quotes','One-off display words'],watch:'Not for body copy — it thins out below about 24px. Latin only.',fmt:'TTF / woff2',size:'1 + italic'});
-T('Inter','Inter','Aa','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Inter',
- lead:'The default UI sans of the last decade, for better and worse.',about:'Inter was drawn for screens: tall x-height, tight apertures, a variable axis that goes from 9 to 144. It is the safe answer, and safe is sometimes correct.',use:['Dense product UI','Interfaces with mixed languages'],watch:'Ubiquity is the problem — it reads as default unless you set it with intent.',fmt:'TTF / variable',size:'variable'});
-T('Fraunces','Fraunces','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Fraunces',
- lead:'A soft-serif with a wonk axis, made for personality at display sizes.',about:'Fraunces has axes most serifs do not: optical size, softness, and a wonk that tilts the letters. Turned up, it is charming; left alone, it is a competent old-style.',use:['Editorial headlines with warmth','Logos and short marks'],watch:'The wonk axis is addictive. One glyph at the wrong setting looks like a mistake.',fmt:'TTF / variable',size:'variable axes'});
-T('Space Grotesk','Space Grotesk','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Space+Grotesk',
+T('Satoshi','Satoshi','type · fontshare',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700},{l:'900',w:900}],lic:'ITF Free · no conversion',dl:'click-through',host:'fontshare.com',href:'https://www.fontshare.com/fonts/satoshi',
+ lead:'A geometric sans with a human axis. The body face of this page.',about:'Five weights that each hold their own shape — the 300 stays geometric rather than thinning into hairline, and the 900 keeps its counters open. Try them on the specimen before you commit.',use:['Body text on dark UIs, 12–16px','Labels and navigation at 8–11px'],watch:'The free licence forbids subsetting or converting the files. CDN yes, your own woff2 no.',fmt:'OTF / variable',size:'5 weights'});
+T('Clash Display','Clash Display','type · fontshare',{vs:[{l:'200',w:200},{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700}],lic:'ITF Free · no conversion',dl:'click-through',host:'fontshare.com',href:'https://www.fontshare.com/fonts/clash-display',
+ lead:'Wide-shouldered display cuts that hold their own against an image.',about:'Six cuts from 200 to 700. At 200 it whispers, at 700 it is a poster — the shape stays the same, only the volume changes.',use:['Hero headlines at 72px+','Short all-caps titles'],watch:'Below 40px the counters start to close. Display only.',fmt:'OTF / variable',size:'6 weights'});
+T('Instrument Serif','Instrument Serif','type · google',{vs:[{l:'roman',w:400,s:'normal'},{l:'italic',w:400,s:'italic'}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Instrument+Serif',
+ lead:'An editorial serif that survives at 120px. One weight, one italic.',about:'There is no weight axis here, only roman and italic — and the italic is the reason to use it. Compare the two on the specimen.',use:['Editorial headlines and pull quotes','One-off display words'],watch:'Not for body copy — it thins out below about 24px. Latin only.',fmt:'TTF / woff2',size:'1 + italic'});
+T('Inter','Inter','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700},{l:'900',w:900}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Inter',
+ lead:'The default UI sans of the last decade, for better and worse.',about:'Drawn for screens: tall x-height, tight apertures, a weight axis that runs 100 to 900. It is the safe answer, and safe is sometimes correct.',use:['Dense product UI','Interfaces with mixed languages'],watch:'Ubiquity is the problem — it reads as default unless you set it with intent.',fmt:'TTF / variable',size:'variable'});
+T('Fraunces','Fraunces','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700},{l:'900',w:900}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Fraunces',
+ lead:'A soft-serif with a wonk axis, made for personality at display sizes.',about:'Axes most serifs do not have: optical size, softness, and a wonk that tilts the letters. At 900 it is almost a different typeface from the 300.',use:['Editorial headlines with warmth','Logos and short marks'],watch:'The wonk axis is addictive. One glyph at the wrong setting looks like a mistake.',fmt:'TTF / variable',size:'variable axes'});
+T('Space Grotesk','Space Grotesk','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Space+Grotesk',
  lead:'A proportional grotesque with square-ish terminals and a technical feel.',about:'Derived from Space Mono, then smoothed. It reads as engineering rather than fashion, which makes it useful for product and data.',use:['Dashboards and technical UI','Section headings'],watch:'Its quirks show at large sizes. Set it small or set it deliberately.',fmt:'TTF / woff2',size:'5 weights'});
-T('DM Sans','DM Sans','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/DM+Sans',
- lead:'A low-contrast geometric that stays calm at every size.',about:'DM Sans trades the personality of a display face for even colour. Nine weights, low contrast, and it never fights the content.',use:['Long-form body copy','Interfaces that need to disappear'],watch:'So neutral it can read as unfinished. Pair it with something with a point of view.',fmt:'TTF / variable',size:'variable'});
-T('Archivo','Archivo','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Archivo',
- lead:'A grotesque built for signage — strong at small sizes, wide at large.',about:'Archivo comes from a family designed for print headlines and urban signage. The width axis is the useful part: condense it for labels, widen it for statements.',use:['Signage-like headlines','Condensed labels and tables'],watch:'The expanded end is easy to overuse; two widths in one layout is plenty.',fmt:'TTF / variable',size:'variable'});
-T('Bricolage Grotesque','Bricolage Grotesque','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Bricolage+Grotesque',
- lead:'A wonky grotesque with an optical-size axis and a sense of humour.',about:'Bricolage mixes a geometric skeleton with calligraphic details that only appear at large optical sizes. It is the rare free face that looks hand-made.',use:['Posters and covers','Brand headlines'],watch:'The details vanish at 12px — it is not a body face.',fmt:'TTF / variable',size:'variable'});
-T('Playfair Display','Playfair Display','Aa','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Playfair+Display',
- lead:'The high-contrast didone everyone reaches for, and for good reason.',about:'Playfair is a transitional serif pushed to didone contrast: fine hairlines, heavy stems, tall ascenders. It gives a headline instant editorial weight.',use:['Magazine-style headlines','Italic pull quotes'],watch:'The hairlines disappear on low-DPI screens and in small sizes. Display only.',fmt:'TTF / variable',size:'variable'});
-T('IBM Plex Mono','IBM Plex Mono','01','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/IBM+Plex+Mono',
+T('DM Sans','DM Sans','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700},{l:'900',w:900}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/DM+Sans',
+ lead:'A low-contrast geometric that stays calm at every size.',about:'DM Sans trades the personality of a display face for even colour. The weight range is wide enough to set a whole hierarchy from one family.',use:['Long-form body copy','Interfaces that need to disappear'],watch:'So neutral it can read as unfinished. Pair it with something with a point of view.',fmt:'TTF / variable',size:'variable'});
+T('Archivo','Archivo','type · google',{vs:[{l:'400',w:400},{l:'500',w:500},{l:'700',w:700},{l:'900',w:900}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Archivo',
+ lead:'A grotesque built for signage — strong at small sizes, wide at large.',about:'Designed for print headlines and urban signage. The width axis is the useful part: condense it for labels, widen it for statements.',use:['Signage-like headlines','Condensed labels and tables'],watch:'The expanded end is easy to overuse; two widths in one layout is plenty.',fmt:'TTF / variable',size:'variable'});
+T('Bricolage Grotesque','Bricolage Grotesque','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700},{l:'800',w:800}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Bricolage+Grotesque',
+ lead:'A wonky grotesque with an optical-size axis and a sense of humour.',about:'A geometric skeleton with calligraphic details that only appear at large optical sizes. The weight axis exaggerates them.',use:['Posters and covers','Brand headlines'],watch:'The details vanish at 12px — it is not a body face.',fmt:'TTF / variable',size:'variable'});
+T('Playfair Display','Playfair Display','type · google',{vs:[{l:'400',w:400},{l:'700',w:700},{l:'900',w:900},{l:'italic',w:400,s:'italic'}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Playfair+Display',
+ lead:'The high-contrast didone everyone reaches for, and for good reason.',about:'A transitional serif pushed to didone contrast: fine hairlines, heavy stems, tall ascenders. The 900 is almost blackletter-thick; the italic is a different mood entirely.',use:['Magazine-style headlines','Italic pull quotes'],watch:'The hairlines disappear on low-DPI screens and in small sizes. Display only.',fmt:'TTF / variable',size:'variable'});
+T('IBM Plex Mono','IBM Plex Mono','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/IBM+Plex+Mono',
  lead:'A monospace with humanist bones — technical without being cold.',about:'Plex Mono keeps the rhythm of code type but softens the terminals, so it reads well inside prose and labels as well as in terminals.',use:['Labels, metadata and numbers','Code blocks'],watch:'Wide by nature — long strings will overflow tight columns.',fmt:'TTF / woff2',size:'8 weights'});
-T('JetBrains Mono','JetBrains Mono','01','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/JetBrains+Mono',
+T('JetBrains Mono','JetBrains Mono','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/JetBrains+Mono',
  lead:'A coding mono with taller lowercase and larger apertures.',about:'JetBrains Mono increases x-height and opens the apertures, which is exactly what makes it readable at 11px in a dark editor — and in a caption like this one.',use:['Code and terminal UI','Micro labels like this'],watch:'Its ligatures are a switch, not a default; check before shipping code samples.',fmt:'TTF / variable',size:'8 weights'});
 
-IC('Lucide','https://unpkg.com/lucide-static/icons/','icons · lucide',{names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'ISC',dl:'direct .zip',host:'lucide.dev',href:'https://lucide.dev/icons/',
- lead:'1.5px stroke at 24px, consistent joints, 2,046 icons.',about:'Every icon sits on the same 24px grid, which is why a set of twelve reads as a set and not a collage.',use:['Interface icons at 16–24px','Icon buttons that must match type weight'],watch:'Outline only. Mixing its fill variants breaks the rhythm.',size:'2,046 icons'});
-IC('Phosphor','https://unpkg.com/@phosphor-icons/core@2.0.8/assets/regular/','icons · phosphor',{names:['heart','star','bell','camera','lock-simple','magnifying-glass','gear','music-notes','cloud','house','user','image'],lic:'MIT',dl:'direct .zip',host:'phosphoricons.com',href:'https://phosphoricons.com',
- lead:'Six weights of one drawing — thin through fill.',about:'State and hierarchy inside one visual language instead of swapping symbols.',use:['Filled and outlined states','Heavier icons next to heavy type'],watch:'Six weights is six chances to be inconsistent. Pick two.',size:'1,248 × 6'});
-IC('Tabler','https://unpkg.com/@tabler/icons/icons/outline/','icons · tabler',{names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'tabler.io',href:'https://tabler.io/icons',
- lead:'A 2px-stroke set built for dashboards, 5,700 icons deep.',about:'Tabler is wider and more literal than Lucide — more objects, fewer abstractions — which helps when a label needs an unmistakable picture.',use:['Admin and dashboard UI','Icons that must be instantly legible'],watch:'2px is heavier than most UI type strokes. Match your weights.',size:'5,700 icons'});
-IC('Heroicons','https://unpkg.com/heroicons@2.0.18/24/outline/','icons · heroicons',{names:['heart','star','bell','camera','envelope','lock-closed','magnifying-glass','cog-6-tooth','musical-note','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'heroicons.com',href:'https://heroicons.com',
- lead:'Tailwind\'s own set: outline, solid and mini in one drawing.',about:'Three sizes of the same idea, drawn to sit next to Inter and a 4px grid. Nothing surprising, everything consistent.',use:['Tailwind projects','Outline and solid pairs'],watch:'The solid set is optically heavier; do not mix outline and solid on one row.',size:'~300 icons'});
-IC('Bootstrap Icons','https://unpkg.com/bootstrap-icons@1.11.3/icons/','icons · bootstrap',{names:['heart','star','bell','camera','envelope','lock','search','gear','music-note','sun','cloud','house'],lic:'MIT',dl:'direct .zip',host:'icons.getbootstrap.com',href:'https://icons.getbootstrap.com',
- lead:'A plain, wide, 2,000-icon set with almost no attitude.',about:'Bootstrap Icons is the utility drawer: brands, arrows, files, media, weather. It is not elegant, but it is complete.',use:['Prototypes that need an icon now','Utility and file actions'],watch:'Some glyphs are visibly inconsistent in weight. Check the row before shipping.',size:'2,000 icons'});
-IC('Feather','https://unpkg.com/feather-icons@4.29.2/dist/icons/','icons · feather',{names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'feathericons.com',href:'https://feathericons.com',
+IC('Lucide','icons · lucide',{base:'https://unpkg.com/lucide-static/icons/',suf:'.svg',names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'ISC',dl:'direct .zip',host:'lucide.dev',href:'https://lucide.dev/icons/',
+ lead:'1.5px stroke at 24px, consistent joints, 2,046 icons.',about:'Every icon sits on the same 24px grid, which is why a set of twelve reads as a set and not a collage. There is one style only — that is the point.',use:['Interface icons at 16–24px','Icon buttons that must match type weight'],watch:'Outline only. Mixing its fill variants breaks the rhythm.',size:'2,046 icons'});
+IC('Phosphor','icons · phosphor',{st:[{l:'thin',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/thin/',s:'-thin.svg'},{l:'light',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/light/',s:'-light.svg'},{l:'regular',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/regular/',s:'.svg'},{l:'bold',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/bold/',s:'-bold.svg'},{l:'fill',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/fill/',s:'-fill.svg'},{l:'duotone',b:'https://unpkg.com/@phosphor-icons/core@2.1.1/assets/duotone/',s:'-duotone.svg'}],names:['heart','star','bell','camera','lock-simple','magnifying-glass','gear','music-notes','cloud','house','user','image'],lic:'MIT',dl:'direct .zip',host:'phosphoricons.com',href:'https://phosphoricons.com',
+ lead:'Six weights of one drawing — thin through fill.',about:'State and hierarchy inside one visual language instead of swapping symbols. Switch weight on the specimen and the whole set moves together.',use:['Filled and outlined states','Heavier icons next to heavy type'],watch:'Six weights is six chances to be inconsistent. Pick two.',size:'1,248 × 6'});
+IC('Tabler','icons · tabler',{st:[{l:'outline',b:'https://unpkg.com/@tabler/icons/icons/outline/',s:'.svg'},{l:'filled',b:'https://unpkg.com/@tabler/icons/icons/filled/',s:'.svg'}],names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'tabler.io',href:'https://tabler.io/icons',
+ lead:'A 2px-stroke set built for dashboards, 5,700 icons deep.',about:'Tabler is wider and more literal than Lucide — more objects, fewer abstractions — and it ships every icon outlined and filled.',use:['Admin and dashboard UI','Icons that must be instantly legible'],watch:'2px is heavier than most UI type strokes. Match your weights.',size:'5,700 icons'});
+IC('Heroicons','icons · heroicons',{st:[{l:'outline',b:'https://unpkg.com/heroicons@2.0.18/24/outline/',s:'.svg'},{l:'solid',b:'https://unpkg.com/heroicons@2.0.18/24/solid/',s:'.svg'},{l:'mini',b:'https://unpkg.com/heroicons@2.0.18/20/solid/',s:'.svg'}],names:['heart','star','bell','camera','envelope','lock-closed','magnifying-glass','cog-6-tooth','musical-note','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'heroicons.com',href:'https://heroicons.com',
+ lead:'Tailwind\'s own set: outline, solid and mini in one drawing.',about:'Three sizes of the same idea, drawn to sit next to Inter and a 4px grid. Switch between them and the shapes stay put; only the weight changes.',use:['Tailwind projects','Outline and solid pairs'],watch:'The solid set is optically heavier; do not mix outline and solid on one row.',size:'~300 icons'});
+IC('Bootstrap Icons','icons · bootstrap',{base:'https://unpkg.com/bootstrap-icons@1.11.3/icons/',suf:'.svg',names:['heart','star','bell','camera','envelope','lock','search','gear','music-note','sun','cloud','house'],lic:'MIT',dl:'direct .zip',host:'icons.getbootstrap.com',href:'https://icons.getbootstrap.com',
+ lead:'A plain, wide, 2,000-icon set with almost no attitude.',about:'Bootstrap Icons is the utility drawer: brands, arrows, files, media, weather. One style, and it is complete rather than elegant.',use:['Prototypes that need an icon now','Utility and file actions'],watch:'Some glyphs are visibly inconsistent in weight. Check the row before shipping.',size:'2,000 icons'});
+IC('Feather','icons · feather',{base:'https://unpkg.com/feather-icons@4.29.2/dist/icons/',suf:'.svg',names:['heart','star','bell','camera','mail','lock','search','settings','music','sun','cloud','home'],lic:'MIT',dl:'direct .zip',host:'feathericons.com',href:'https://feathericons.com',
  lead:'The 2014 set that taught everyone to draw with 2px strokes.',about:'286 icons, one weight, uncompromisingly simple. Lucide started here before growing up.',use:['Minimal UI with a single stroke weight','Small, low-count interfaces'],watch:'Frozen since 2020 — no new icons, and some shapes are now the odd ones out.',size:'286 icons'});
-IC('Iconoir','https://unpkg.com/iconoir@7.7.0/icons/regular/','icons · iconoir',{names:['heart','star','bell','camera','mail','lock','search','settings','music-note','sun-light','cloud','home'],lic:'MIT',dl:'direct .zip',host:'iconoir.com',href:'https://iconoir.com',
- lead:'A softer, rounder set with a slightly hand-drawn feel.',about:'Iconoir hides a huge library behind a quiet aesthetic — 1,500 icons with rounded joins and generous corners.',use:['Consumer apps with a friendly tone','Marketing pages'],watch:'Round joins read softer at large sizes; it can feel childish in dense tools.',size:'1,500 icons'});
-IC('Simple Icons','https://cdn.simpleicons.org/','icons · simple icons',{names:['github','figma','notion','spotify','vercel','dribbble','react','supabase','stripe','framer'],lic:'CC0 · brand marks',dl:'direct asset',host:'simpleicons.org',href:'https://simpleicons.org',
+IC('Iconoir','icons · iconoir',{st:[{l:'regular',b:'https://unpkg.com/iconoir@7.7.0/icons/regular/',s:'.svg'},{l:'solid',b:'https://unpkg.com/iconoir@7.7.0/icons/solid/',s:'.svg'}],names:['heart','star','bell','camera','mail','lock','search','settings','music-note','sun-light','cloud','home'],lic:'MIT',dl:'direct .zip',host:'iconoir.com',href:'https://iconoir.com',
+ lead:'A softer, rounder set with a slightly hand-drawn feel.',about:'A huge library behind a quiet aesthetic — 1,500 icons with rounded joins, drawn twice: regular and solid.',use:['Consumer apps with a friendly tone','Marketing pages'],watch:'Round joins read softer at large sizes; it can feel childish in dense tools.',size:'1,500 icons'});
+IC('Simple Icons','icons · simple icons',{base:'https://cdn.simpleicons.org/',suf:'',names:['github','figma','notion','spotify','vercel','dribbble','react','supabase','stripe','framer'],lic:'CC0 · brand marks',dl:'direct asset',host:'simpleicons.org',href:'https://simpleicons.org',
  lead:'Free brand marks, one slug per company.',about:'Every logo as a single-colour SVG you can request by name and tint with CSS. The pragmatic answer for social rows and integrations.',use:['Social and integration rows','Footer brand marks'],watch:'The licence is CC0 but the trademarks are not yours to redraw. Follow each brand\'s rules.',size:'3,200 brands'});
 
 IM('Potted plant 01','https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=1200&height=1200','3D','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
@@ -174,40 +184,45 @@ IM('Figma Community','https://static.figma.com/uploads/3d791db872a0158f92798fa01
 IM('Are.na','https://www.are.na/og-image.png','sites','site · share image, shown as a card',{card:1,lic:'reference only',dl:'sign in',host:'are.na',href:'https://www.are.na',
  lead:'A place to keep references that stays small on purpose.',about:'No algorithm, no engagement loop — channels you build and share. The best design research on the internet is hidden in other people\'s private channels.',use:['Collecting a project\'s visual language','Reading how other designers think'],watch:'Private channels are private. Screenshot for citation, never republish the work as your own.',fmt:'web',size:'web'});
 
-I.push({n:'MeshSVG',k:'tools',cap:'tool · output rendered live',view:{t:'mesh'},lic:'free browser tool',dl:'open tool',host:'meshsvg.com',href:'https://meshsvg.com',
+I.push({n:'MeshSVG',k:'tools',cap:'tool · output rendered live',view:{t:'mesh'},vi:0,lic:'free browser tool',dl:'open tool',host:'meshsvg.com',href:'https://meshsvg.com',
  lead:'Draw a grainy mesh gradient and copy the CSS out. This frame is its output, rendered live in CSS.',about:'Mesh gradients are the soft colour fields behind most modern hero sections. Doing them in CSS rather than an image keeps them sharp at any size and editable later.',use:['Soft colour behind a headline','Section backgrounds without an image'],watch:'Stacked radial gradients get expensive on large surfaces. Test on a phone before shipping six of them.',fmt:'CSS',size:'gradient'});
 
 var sheet=document.getElementById('sheet'),cur=0;
 var mc=document.createElement('canvas').getContext('2d');
-function metrics(fam,txt){mc.font='100px "'+fam+'", serif';var m=mc.measureText(txt);return{asc:m.actualBoundingBoxAscent||72,w:m.width||txt.length*52}}
+function metrics(fam,txt,w){mc.font=(w||400)+' 100px "'+fam+'", serif';var m=mc.measureText(txt);return{asc:m.actualBoundingBoxAscent||72,w:m.width||txt.length*52}}
 function fitTypes(scope){
   var frames=[].slice.call((scope||document).querySelectorAll('.frame.type'));
   if(!frames.length)return;
-  var data=frames.map(function(f){var w=f.querySelector('.word');if(!w)return null;var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];return{f:f,w:w,m:metrics(fam,w.textContent.trim())}}).filter(Boolean);
+  var data=frames.map(function(f){var w=f.querySelector('.word');if(!w)return null;var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];return{f:f,w:w,m:metrics(fam,w.textContent.trim(),w.dataset.w)}}).filter(Boolean);
   var W=Math.min.apply(null,data.map(function(d){return d.f.clientWidth||99999}));
   if(!W||W>9000)return;
-  var T=Math.min(W*0.14,(W/3)*0.46),worst=0;
-  data.forEach(function(d){worst=Math.max(worst,(d.m.w*T/d.m.asc)/(W*0.86))});
+  var T=Math.min(W*0.115,(W/3)*0.42),worst=0;
+  data.forEach(function(d){worst=Math.max(worst,(d.m.w*T/d.m.asc)/(W*0.66))});
   if(worst>1)T/=worst;
   data.forEach(function(d){d.w.style.fontSize=(100*T/d.m.asc).toFixed(2)+'px'});
 }
 var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){fitTypes()},140)});
-function pvBody(r){
-  var v=r.view;
-  if(v.t==='type')return '<div class="pv"><div class="tag">'+r.cap+'</div><div class="word" style="font-family:\''+v.fam+'\'">'+r.n+'</div></div>';
-  if(v.t==='icons'){var ext=v.base.indexOf('simpleicons')>-1?'':'.svg',ns=v.names,h='<div class="pv">';ns.forEach(function(n){h+='<img src="'+v.base+n+ext+'" alt="">'});return h+'</div>'}
-  if(v.t==='img'&&!v.src)return '<div class="pv"><span>RENDERS CANNOT BE REPUBLISHED<br>— SO THERE IS NOTHING HONEST TO SHOW</span></div>';
-  if(v.t==='img')return '<div class="pv"><img src="'+v.src+'" alt=""'+(r.pos?' style="object-position:'+r.pos+'"':'')+'></div>';
-  return '<div class="pv"></div>';
-}
-function frameHTML(r){
-  var v=r.view,c='frame';
-  if(v.t==='type')c+=' type';
-  if(v.t==='icons')c+=' icons'+(v.names.length<12?' five':'')+(v.base.indexOf('simpleicons')>-1?' brand':'');
-  if(v.t==='img')c+=' img '+(v.fit?'fit ':'')+(v.card?'card':'');
-  if(v.t==='mesh')c+=' mesh';
-  if(v.t==='img'&&!v.src)c+=' void';
-  return '<div class="'+c+'">'+pvBody(r)+'</div>';
+function varList(r){return r.k==='type'?r.vs:(r.styles||null)}
+function frameHTML(r,i){
+  var v=r.view,c='frame',rail='';
+  if(v.t==='type'){
+    var vs=r.vs,d=vs[r.vi]||vs[0];
+    c+=' type';
+    rail='<div class="rail"><span class="chip" data-i="'+i+'">'+d.l+'</span></div>';
+    return '<div class="'+c+'"><div class="pv"><div class="tag">'+r.cap+'</div><div class="word" data-w="'+(d.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(d.w||400)+';font-style:'+(d.s||'normal')+'">'+r.n+'</div></div>'+rail+'</div>';
+  }
+  if(v.t==='icons'){
+    var st=r.styles?r.styles[r.vi]:null,base=st?st.b:v.base,suf=st?st.s:v.suf;
+    c+=' icons'+(v.names.length<12?' five':'')+(base.indexOf('simpleicons')>-1?' brand':'');
+    if(r.styles)rail='<div class="rail"><span class="chip" data-i="'+i+'">'+st.l+'</span></div>';
+    var h='<div class="pv">';
+    v.names.forEach(function(n){h+='<img src="'+base+n+suf+'" alt="">'});
+    return '<div class="'+c+'">'+h+'</div>'+rail+'</div>';
+  }
+  if(v.t==='img'&&!v.src)return '<div class="frame img fit void"><div class="pv"><span>RENDERS CANNOT BE REPUBLISHED<br>— SO THERE IS NOTHING HONEST TO SHOW</span></div></div>';
+  if(v.t==='img')return '<div class="frame img '+(v.fit?'fit ':'')+(v.card?'card':'')+'"><div class="pv"><img src="'+v.src+'" alt=""'+(r.pos?' style="object-position:'+r.pos+'"':'')+'></div></div>';
+  if(v.t==='mesh')return '<div class="frame mesh"><div class="pv"></div></div>';
+  return '<div class="frame"><div class="pv"></div></div>';
 }
 var GROUPS=[['type','Type'],['icons','Icons'],['3D','3D objects'],['image','Image'],['sites','Sites'],['plugins','Plugins'],['tools','Tools']];
 var groupsEl=document.getElementById('groups');
@@ -218,9 +233,9 @@ GROUPS.forEach(function(g){
   sec.innerHTML='<div class="gh"><h2>'+g[1]+'</h2><span>'+String(idxs.length).padStart(2,'0')+'</span><i></i></div><div class="wall"></div>';
   var w=sec.querySelector('.wall');
   idxs.forEach(function(i){
-    var r=I[i],el=document.createElement('div');el.className='item';el.dataset.kind=r.k;
-    el.innerHTML=frameHTML(r)+'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.lic+'</div>';
-    el.onclick=function(){openTab(i)};
+    var r=I[i],el=document.createElement('div');el.className='item';el.dataset.kind=r.k;el.dataset.i=i;
+    el.innerHTML=frameHTML(r,i)+'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.lic+'</div>';
+    el.onclick=function(e){if(e.target.closest('.chip'))return;openTab(i)};
     w.appendChild(el);
   });
   groupsEl.appendChild(sec);
@@ -238,10 +253,36 @@ kinds.forEach(function(k,idx){
   };
   kb.appendChild(b);
 });
+function repaint(i){
+  var r=I[i],el=groupsEl.querySelector('.item[data-i="'+i+'"]');
+  if(el)el.innerHTML=frameHTML(r,i)+'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.lic+'</div>';
+  if(sheet.classList.contains('on')&&cur===i)openTab(i);
+  fitTypes();
+}
+function pickVar(i,vi){
+  var r=I[i],list=varList(r);
+  if(!list||vi>=list.length)return;
+  r.vi=vi;repaint(i);
+}
+groupsEl.addEventListener('click',function(e){
+  var chip=e.target.closest('.chip');
+  if(!chip)return;
+  e.stopPropagation();
+  var i=+chip.dataset.i,r=I[i],list=varList(r);
+  if(!list)return;
+  r.vi=(r.vi+1)%list.length;repaint(i);
+});
+function varButtons(r,i){
+  var list=varList(r);
+  if(!list||list.length<2)return '';
+  var h='<div class="vars">';
+  list.forEach(function(x,j){h+='<button class="'+(j===r.vi?'on':'')+'" onclick="pickVar('+i+','+j+')">'+x.l+'</button>'});
+  return h+'</div>';
+}
 function openTab(i){
   cur=i;var r=I[i],n=I.length;
   sheet.innerHTML='<div class="bar"><span class="dot"></span><b>'+r.n+'</b><span>'+r.k+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()">close ✕</button></div>'+
-  '<div class="body"><div class="preview">'+frameHTML(r)+'<div class="pcap">'+r.cap+'</div></div>'+
+  '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="pcap">'+r.cap+'</div>'+varButtons(r,i)+'</div>'+
   '<div class="info"><h1>'+r.n+'</h1><p class="lead">'+r.lead+'</p>'+
   '<div class="sec"><span class="lab">about</span><p>'+r.about+'</p></div>'+
   '<div class="sec"><span class="lab">use it for</span><ul>'+r.use.map(function(u){return '<li>'+u+'</li>'}).join('')+'</ul></div>'+
