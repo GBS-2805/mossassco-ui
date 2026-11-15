@@ -36,9 +36,6 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .pv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .tag{position:absolute;left:4.5%;top:9%;font-family:var(--mono);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5a62;z-index:2}
 .type .word{position:absolute;left:4.5%;bottom:4%;right:4.5%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
-.type.w-lg .word{font-size:clamp(32px,5.2vw,58px)}
-.type.w-md .word{font-size:clamp(24px,3.8vw,44px)}
-.type.w-sm .word{font-size:clamp(17px,2.7vw,31px)}
 .icons{background:#0e0e11}
 .icons .pv{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:7% 8% 8%}
 .icons img{width:44%;max-width:46px;opacity:.92;filter:invert(1) brightness(2)}
@@ -178,6 +175,20 @@ I.push({n:'MeshSVG',k:'tools',cap:'tool · output rendered live',view:{t:'mesh'}
  lead:'Draw a grainy mesh gradient and copy the CSS out. This frame is its output, rendered live in CSS.',about:'Mesh gradients are the soft colour fields behind most modern hero sections. Doing them in CSS rather than an image keeps them sharp at any size and editable later.',use:['Soft colour behind a headline','Section backgrounds without an image'],watch:'Stacked radial gradients get expensive on large surfaces. Test on a phone before shipping six of them.',fmt:'CSS',size:'gradient'});
 
 var sheet=document.getElementById('sheet'),cur=0;
+var mc=document.createElement('canvas').getContext('2d');
+function metrics(fam,txt){mc.font='100px "'+fam+'", serif';var m=mc.measureText(txt);return{asc:m.actualBoundingBoxAscent||72,w:m.width||txt.length*52}}
+function fitTypes(scope){
+  var frames=[].slice.call((scope||document).querySelectorAll('.frame.type'));
+  if(!frames.length)return;
+  var data=frames.map(function(f){var w=f.querySelector('.word');if(!w)return null;var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];return{f:f,w:w,m:metrics(fam,w.textContent.trim())}}).filter(Boolean);
+  var W=Math.min.apply(null,data.map(function(d){return d.f.clientWidth||99999}));
+  if(!W||W>9000)return;
+  var T=Math.min(W*0.14,(W/3)*0.46),worst=0;
+  data.forEach(function(d){worst=Math.max(worst,(d.m.w*T/d.m.asc)/(W*0.86))});
+  if(worst>1)T/=worst;
+  data.forEach(function(d){d.w.style.fontSize=(100*T/d.m.asc).toFixed(2)+'px'});
+}
+var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){fitTypes()},140)});
 function pvBody(r){
   var v=r.view;
   if(v.t==='type')return '<div class="pv"><div class="tag">'+r.cap+'</div><div class="word" style="font-family:\''+v.fam+'\'">'+r.n+'</div></div>';
@@ -188,7 +199,7 @@ function pvBody(r){
 }
 function frameHTML(r){
   var v=r.view,c='frame';
-  if(v.t==='type'){var L=r.n.length;c+=' type w-'+(L<=7?'lg':(L<=13?'md':'sm'))}
+  if(v.t==='type')c+=' type';
   if(v.t==='icons')c+=' icons'+(v.names.length<12?' five':'')+(v.base.indexOf('simpleicons')>-1?' brand':'');
   if(v.t==='img')c+=' img '+(v.fit?'fit ':'')+(v.card?'card':'');
   if(v.t==='mesh')c+=' mesh';
@@ -212,12 +223,15 @@ GROUPS.forEach(function(g){
   groupsEl.appendChild(sec);
 });
 document.querySelector('.meta').textContent=I.length+' items · '+document.querySelectorAll('.group').length+' sections · reviewed licence by licence';
+fitTypes();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitTypes()});
 var kinds=['all'].concat(GROUPS.map(function(g){return g[0]})),kb=document.getElementById('kinds');
 kinds.forEach(function(k,idx){
   var b=document.createElement('button');b.textContent=k;if(idx===0)b.className='on';
   b.onclick=function(){
     [].forEach.call(kb.children,function(c){c.classList.remove('on')});b.classList.add('on');
     [].forEach.call(groupsEl.children,function(sec){sec.style.display=(k==='all'||sec.dataset.kind===k)?'':'none'});
+    fitTypes();
   };
   kb.appendChild(b);
 });
@@ -239,6 +253,7 @@ function openTab(i){
   '<div class="cta"><a class="go" href="'+r.href+'" target="_blank" rel="noopener">open '+r.host+' ↗</a><button class="next" onclick="step(1)">next item →</button></div>'+
   '</div></div>';
   sheet.classList.add('on');document.body.style.overflow='hidden';
+  fitTypes(sheet);
 }
 function step(d){cur=(cur+d+I.length)%I.length;openTab(cur)}
 function closeTab(){sheet.classList.remove('on');sheet.innerHTML='';document.body.style.overflow=''}
