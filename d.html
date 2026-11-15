@@ -31,19 +31,15 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .pv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .tag{position:absolute;left:4.5%;top:9%;font-family:var(--mono);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5a62;z-index:2}
 .type .word{position:absolute;left:4.5%;bottom:6%;font-size:clamp(34px,5.6vw,62px);line-height:.78;letter-spacing:-.04em;font-weight:400;color:#f4f3ee;white-space:nowrap}
-.type.light{background:#efeee7}
-.type.light .word{color:#141412}
-.type.light .tag{color:#8b887d}
 .type.ink{background:#0a0a0c}
 .icons{background:#0e0e11}
 .icons .pv{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:7% 8% 8%}
 .icons img{width:44%;max-width:46px;opacity:.92;filter:invert(1) brightness(2)}
 .icons.brand img{filter:grayscale(1) invert(1) brightness(1.7);opacity:.82}
 .icons.five .pv{grid-template-columns:repeat(5,1fr);padding:9% 9%}
-.icons.light{background:#f2f0e9}
-.icons.light img{filter:none;opacity:.86}
 .img .pv img{width:100%;height:100%;object-fit:cover;display:block}
 .img.fit .pv img{object-fit:contain;width:74%;height:76%;filter:drop-shadow(0 22px 34px rgba(0,0,0,.8))}
+.img.card .pv img{object-fit:contain;width:52%;height:64%;box-shadow:0 26px 44px -18px rgba(0,0,0,.95)}
 .mesh{background:
   radial-gradient(60% 120% at 20% 20%,#4b2f6b 0%,transparent 60%),
   radial-gradient(70% 110% at 78% 30%,#1d5b6b 0%,transparent 62%),
@@ -99,14 +95,14 @@ function T(name,fam,word,label,opts){var o=opts||{};I.push({n:name,k:'type',cap:
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'TTF / woff2',size:o.size||'family'})}
 function IC(name,base,label,opts){var o=opts||{};I.push({n:name,k:'icons',cap:label,view:{t:'icons',base:base,light:o.light,names:o.names},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'SVG',size:o.size})}
-function IM(name,src,kap,lab,opts){var o=opts||{};I.push({n:name,k:kap,cap:lab,view:{t:'img',src:src,fit:o.fit},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+function IM(name,src,kap,lab,opts){var o=opts||{};I.push({n:name,k:kap,cap:lab,view:{t:'img',src:src,fit:o.fit,card:o.card},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt,size:o.size,pos:o.pos})}
 
-T('Satoshi','Satoshi','Aa','type · fontshare',{light:1,lic:'ITF Free · no conversion',dl:'click-through',host:'fontshare.com',href:'https://www.fontshare.com/fonts/satoshi',
+T('Satoshi','Satoshi','Aa','type · fontshare',{lic:'ITF Free · no conversion',dl:'click-through',host:'fontshare.com',href:'https://www.fontshare.com/fonts/satoshi',
  lead:'A geometric sans with a human axis. The body face of this page.',about:'Nine weights and a lowercase that opens up at 11–13px, which is why it holds captions this small without looking cramped.',use:['Body text on dark UIs, 12–16px','Labels and navigation at 8–11px'],watch:'The free licence forbids subsetting or converting the files. CDN yes, your own woff2 no.',fmt:'OTF / variable',size:'9 weights'});
 T('Clash Display','Clash Display','Clash','type · fontshare',{lic:'ITF Free · no conversion',dl:'click-through',host:'fontshare.com',href:'https://www.fontshare.com/fonts/clash-display',
  lead:'Wide-shouldered display cuts that hold their own against an image.',about:'A grotesque with a lot of shoulder — tight spacing, a slightly condensed feel at heavy weights. Built for the top of a page.',use:['Hero headlines at 72px+','Short all-caps titles'],watch:'Below 40px the counters start to close. Display only.',fmt:'OTF / variable',size:'6 weights'});
-T('Instrument Serif','Instrument Serif','Aa','type · google',{light:1,lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Instrument+Serif',
+T('Instrument Serif','Instrument Serif','Aa','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Instrument+Serif',
  lead:'An editorial serif that survives at 120px. One weight, one italic.',about:'High contrast, sharp shoulders, a genuinely lovely italic, and no licence homework at all.',use:['Editorial headlines and pull quotes','One-off display words'],watch:'Not for body copy — it thins out below about 24px. Latin only.',fmt:'TTF / woff2',size:'1 + italic'});
 T('Inter','Inter','Aa','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Inter',
  lead:'The default UI sans of the last decade, for better and worse.',about:'Inter was drawn for screens: tall x-height, tight apertures, a variable axis that goes from 9 to 144. It is the safe answer, and safe is sometimes correct.',use:['Dense product UI','Interfaces with mixed languages'],watch:'Ubiquity is the problem — it reads as default unless you set it with intent.',fmt:'TTF / variable',size:'variable'});
@@ -120,7 +116,7 @@ T('Archivo','Archivo','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host
  lead:'A grotesque built for signage — strong at small sizes, wide at large.',about:'Archivo comes from a family designed for print headlines and urban signage. The width axis is the useful part: condense it for labels, widen it for statements.',use:['Signage-like headlines','Condensed labels and tables'],watch:'The expanded end is easy to overuse; two widths in one layout is plenty.',fmt:'TTF / variable',size:'variable'});
 T('Bricolage Grotesque','Bricolage Grotesque','Ag','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Bricolage+Grotesque',
  lead:'A wonky grotesque with an optical-size axis and a sense of humour.',about:'Bricolage mixes a geometric skeleton with calligraphic details that only appear at large optical sizes. It is the rare free face that looks hand-made.',use:['Posters and covers','Brand headlines'],watch:'The details vanish at 12px — it is not a body face.',fmt:'TTF / variable',size:'variable'});
-T('Playfair Display','Playfair Display','Aa','type · google',{light:1,lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Playfair+Display',
+T('Playfair Display','Playfair Display','Aa','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Playfair+Display',
  lead:'The high-contrast didone everyone reaches for, and for good reason.',about:'Playfair is a transitional serif pushed to didone contrast: fine hairlines, heavy stems, tall ascenders. It gives a headline instant editorial weight.',use:['Magazine-style headlines','Italic pull quotes'],watch:'The hairlines disappear on low-DPI screens and in small sizes. Display only.',fmt:'TTF / variable',size:'variable'});
 T('IBM Plex Mono','IBM Plex Mono','01','type · google',{lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/IBM+Plex+Mono',
  lead:'A monospace with humanist bones — technical without being cold.',about:'Plex Mono keeps the rhythm of code type but softens the terminals, so it reads well inside prose and labels as well as in terminals.',use:['Labels, metadata and numbers','Code blocks'],watch:'Wide by nature — long strings will overflow tight columns.',fmt:'TTF / woff2',size:'8 weights'});
@@ -164,11 +160,11 @@ IM('Unsplash · forest','https://images.unsplash.com/photo-1441974231531-c6227db
 IM('Pexels · dog','https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&w=1400','image','photograph · pexels',{lic:'free use, no attribution',dl:'click-through',host:'pexels.com',href:'https://www.pexels.com',
  lead:'The other big free library, and the less fashion-driven one.',about:'Pexels is where you go when Unsplash has gone too editorial: more ordinary subjects, more usable people and animals, same no-attribution licence.',use:['Everyday subject photography','People and lifestyle shots'],watch:'The library is thinner on genuinely beautiful light. Search harder.',fmt:'JPEG',size:'3M+ photos'});
 
-IM('Google Fonts','https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/opengraph_color.png','sites','site · share image',{lic:'OFL / Apache',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com',
+IM('Google Fonts','https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/opengraph_color.png','sites','site · share image, shown as a card',{card:1,lic:'OFL / Apache',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com',
  lead:'1,800 families, licence stated on every page.',about:'The catalogue is uneven, but the licence model is the best in the business — every family tells you exactly what you can do.',use:['A webfont in minutes','Non-Latin scripts'],watch:'The good stuff hides on page 4 of a category. Read the OFL; reserved names matter.',fmt:'TTF / woff2',size:'1,800 families'});
-IM('Figma Community','https://static.figma.com/uploads/3d791db872a0158f92798fa0134d8eeaf6af5535','plugins','plugin · share image',{lic:'mixed · per plugin',dl:'Figma account',host:'figma.com',href:'https://www.figma.com/community/plugins',
+IM('Figma Community','https://static.figma.com/uploads/3d791db872a0158f92798fa0134d8eeaf6af5535','plugins','plugin · share image, shown as a card',{card:1,lic:'mixed · per plugin',dl:'Figma account',host:'figma.com',href:'https://www.figma.com/community/plugins',
  lead:'Plugins you install in two clicks. The bento builder is 20,000 users deep.',about:'Layout generators, content fillers, exporters. Filter by installs and last-updated — anything untouched for a year is usually broken by the next release.',use:['Bento and collage generators','Bulk image and text filling'],watch:'Each plugin has its own licence and permissions. Network access means it can read your file.',fmt:'Figma plugin',size:'thousands'});
-IM('Are.na','https://www.are.na/og-image.png','sites','site · share image',{lic:'reference only',dl:'sign in',host:'are.na',href:'https://www.are.na',
+IM('Are.na','https://www.are.na/og-image.png','sites','site · share image, shown as a card',{card:1,lic:'reference only',dl:'sign in',host:'are.na',href:'https://www.are.na',
  lead:'A place to keep references that stays small on purpose.',about:'No algorithm, no engagement loop — channels you build and share. The best design research on the internet is hidden in other people\'s private channels.',use:['Collecting a project\'s visual language','Reading how other designers think'],watch:'Private channels are private. Screenshot for citation, never republish the work as your own.',fmt:'web',size:'web'});
 
 I.push({n:'MeshSVG',k:'tools',cap:'tool · output rendered live',view:{t:'mesh'},lic:'free browser tool',dl:'open tool',host:'meshsvg.com',href:'https://meshsvg.com',
@@ -187,7 +183,7 @@ function frameHTML(r){
   var v=r.view,c='frame';
   if(v.t==='type')c+=' type'+(v.light?' light':'');
   if(v.t==='icons')c+=' icons'+(v.names.length<12?' five':'')+(v.base.indexOf('simpleicons')>-1?' brand':'');
-  if(v.t==='img')c+=' img '+(v.fit?'fit':'');
+  if(v.t==='img')c+=' img '+(v.fit?'fit ':'')+(v.card?'card':'');
   if(v.t==='mesh')c+=' mesh';
   if(v.t==='img'&&!v.src)c+=' void';
   return '<div class="'+c+'">'+pvBody(r)+'</div>';
