@@ -62,10 +62,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sheet .body{flex:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,1fr);min-height:0}
 .sheet .preview{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:34px 24px;background:radial-gradient(90% 90% at 50% 20%,#141417,#08080a 72%);border-right:1px solid var(--line);overflow:hidden}
 .sheet .preview .frame{max-width:860px;width:100%;box-shadow:0 50px 90px -40px #000,0 0 0 1px rgba(255,255,255,.09)}
+.sheet .preview .tag{display:none}
 .pcap{font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:#4a4a52}
 .sheet .info{padding:30px 32px 56px;overflow:auto}
-.sheet .info .k{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:#4d4d55}
-.sheet h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(32px,4vw,44px);line-height:1;letter-spacing:-.015em;margin:10px 0 14px;color:#f2f1ec}
+.sheet h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(32px,4vw,44px);line-height:1;letter-spacing:-.015em;margin:0 0 14px;color:#f2f1ec}
 .sheet .lead{font-size:13.5px;line-height:1.7;color:#a3a3ab;margin:0 0 6px}
 .sec{margin-top:24px;border-top:1px solid var(--line);padding-top:13px}
 .sec .lab{font-family:var(--mono);font-size:7.5px;letter-spacing:.22em;text-transform:uppercase;color:#4b4b53;display:block;margin-bottom:8px}
@@ -84,7 +84,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 footer{display:flex;justify-content:space-between;gap:20px;padding:0 34px 34px;font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;text-transform:uppercase;color:#3f3f46;flex-wrap:wrap}
 footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.1);margin-right:12px}
 @media(max-width:1000px){.sheet .body{grid-template-columns:1fr}.sheet .preview{border-right:0;border-bottom:1px solid var(--line);padding:22px}}
-@media(max-width:760px){.wall{columns:1;padding:22px 18px 40px}header,.kinds{padding-left:18px;padding-right:18px}.rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}}
+@media(max-width:760px){.wall{columns:1;padding:22px 18px 40px}header{padding-left:18px;padding-right:18px}
+  .kinds{padding:20px 0 6px 18px;flex-wrap:nowrap;overflow-x:auto;gap:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .kinds::-webkit-scrollbar{display:none}
+  .rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}}
 </style></head><body>
 <div class="grain"></div>
 <header><span class="brand">Mossassco<i> — a repository</i></span><span class="meta">loading</span></header>
@@ -239,7 +242,7 @@ function openTab(i){
   cur=i;var r=I[i],n=I.length;
   sheet.innerHTML='<div class="bar"><span class="dot"></span><b>'+r.n+'</b><span>'+r.k+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()">close ✕</button></div>'+
   '<div class="body"><div class="preview">'+frameHTML(r)+'<div class="pcap">'+r.cap+'</div></div>'+
-  '<div class="info"><div class="k">'+r.cap+'</div><h1>'+r.n+'</h1><p class="lead">'+r.lead+'</p>'+
+  '<div class="info"><h1>'+r.n+'</h1><p class="lead">'+r.lead+'</p>'+
   '<div class="sec"><span class="lab">about</span><p>'+r.about+'</p></div>'+
   '<div class="sec"><span class="lab">use it for</span><ul>'+r.use.map(function(u){return '<li>'+u+'</li>'}).join('')+'</ul></div>'+
   '<div class="sec"><span class="lab">watch out</span><p class="watch">'+r.watch+'</p></div>'+
