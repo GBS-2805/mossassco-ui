@@ -18,30 +18,31 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .kinds button.on:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;opacity:.55}
 .kinds button:hover{color:#b9b8b2}
 .rule{height:1px;margin:16px 34px 0;background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.02))}
-.wall{columns:3;column-gap:26px;padding:30px 34px 54px;max-width:1500px;margin:0 auto}
+.wall{columns:2;column-gap:30px;padding:30px 34px 54px;max-width:1400px;margin:0 auto}
 .item{break-inside:avoid;margin:0 0 30px;cursor:pointer;display:block;width:100%}
-.frame{position:relative;overflow:hidden;background:#101013;width:100%;box-shadow:0 18px 34px -20px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.06);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.frame{position:relative;overflow:hidden;background:#0e0e11;width:100%;aspect-ratio:3/1;box-shadow:0 18px 34px -20px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.06);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
 .frame:after{content:"";position:absolute;inset:0 0 auto;height:13%;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,0));pointer-events:none;z-index:3}
-.frame.shot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.frame.shot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.frame.shot:before{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);pointer-events:none;z-index:4}
 .item:hover .frame{transform:translateY(-4px);box-shadow:0 28px 46px -20px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.17)}
 .cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:10px}
 .cap b{font-size:11px;font-weight:500;letter-spacing:-.005em;color:#cfcec8;transition:color .3s}
 .item:hover .cap b{color:#fff}
 .cap i{font-family:var(--mono);font-style:normal;font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#4c4c54;white-space:nowrap}
 .sub{margin-top:4px;font-family:var(--mono);font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#3e3e45;line-height:1.5}
-.spec{height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:8% 8%;background:#efeee7;color:#111}
-.spec .word{font-size:clamp(26px,3.4vw,46px);line-height:.84;letter-spacing:-.035em;font-weight:500}
-.spec .set{font-size:10px;line-height:1.5;color:#2c2c27;margin-top:8px}
-.spec .foot{font-family:var(--mono);font-size:6.5px;letter-spacing:.16em;text-transform:uppercase;color:#7a786f}
+.spec{position:relative;height:100%;display:flex;flex-direction:row;align-items:flex-end;justify-content:space-between;gap:6%;padding:4% 5%;background:#efeee7;color:#111}
+.spec .word{font-size:clamp(30px,4.6vw,52px);line-height:.8;letter-spacing:-.04em;font-weight:500;align-self:center}
+.spec .set{font-size:9.5px;line-height:1.45;color:#2c2c27;margin-bottom:2px}
+.spec .foot{font-family:var(--mono);font-size:6.5px;letter-spacing:.16em;text-transform:uppercase;color:#7a786f;position:absolute;right:5%;top:6%}
 .spec.ink{background:#111114;color:#f2f1ec}
 .spec.ink .set{color:#b4b4bc}.spec.ink .foot{color:#5e5e66}
 .render{height:100%;display:grid;place-items:center;background:radial-gradient(90% 80% at 50% 30%,#1d1d21 0%,#0d0d10 70%)}
-.render img{max-width:74%;max-height:74%;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(0,0,0,.8))}
-.grid{height:100%;display:grid;grid-template-columns:repeat(4,1fr);place-items:center;gap:5%;background:#f4f2ec;padding:9%}
-.grid img{width:44%;opacity:.85}
-.void{height:100%;display:grid;place-items:center;text-align:center;background:radial-gradient(120% 100% at 50% 0%,#19191d,#0a0a0c 68%);padding:10%;position:relative}
-.void:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.16) 1px,transparent 1px);background-size:13px 13px;opacity:.5;-webkit-mask-image:radial-gradient(circle at 50% 45%,#000 12%,transparent 68%);mask-image:radial-gradient(circle at 50% 45%,#000 12%,transparent 68%)}
-.void span{position:relative;font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a94;line-height:2.1;background:rgba(8,8,10,.9);padding:16px 18px;border:1px solid rgba(255,255,255,.1)}
+.render img{max-width:72%;max-height:86%;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(0,0,0,.8))}
+.grid{height:100%;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);place-items:center;gap:4%;background:#f4f2ec;padding:5% 6%}
+.grid img{width:38%;opacity:.85}
+.void{height:100%;display:grid;place-items:center;text-align:center;background:radial-gradient(120% 100% at 50% 0%,#19191d,#0a0a0c 68%);padding:10%;position:relative;overflow:hidden}
+.void:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.16) 1px,transparent 1px);background-size:13px 13px;opacity:.5;-webkit-mask-image:radial-gradient(circle at 50% 45%,#000 12%,transparent 70%);mask-image:radial-gradient(circle at 50% 45%,#000 12%,transparent 70%)}
+.void span{position:relative;font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a94;line-height:1.9;background:rgba(8,8,10,.9);padding:12px 16px;border:1px solid rgba(255,255,255,.1)}
 .sheet{position:fixed;inset:0;z-index:70;background:#0a0a0c;display:none;flex-direction:column}
 .sheet.on{display:flex}
 .sheet .bar{display:flex;align-items:center;gap:14px;padding:13px 22px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#5b5b63;flex-wrap:wrap}
@@ -51,12 +52,13 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sheet .bar button{background:none;border:0;color:#6d6d75;font:inherit;letter-spacing:inherit;text-transform:uppercase;cursor:pointer;padding:4px 0}
 .sheet .bar button:hover{color:#fff}
 .sheet .body{flex:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,1fr);min-height:0}
-.sheet .preview{display:grid;place-items:center;padding:34px;background:radial-gradient(90% 90% at 50% 10%,#121215,#08080a 70%);border-right:1px solid var(--line);min-height:0;overflow:hidden}
-.sheet .preview .frame{max-width:760px;width:100%;box-shadow:0 50px 90px -40px #000,0 0 0 1px rgba(255,255,255,.09)}
-.sheet .preview .frame.shot{aspect-ratio:auto!important;max-height:calc(100vh - 140px);display:grid;place-items:center;background:#0b0b0d}
-.sheet .preview .frame.shot>img{position:static;width:100%;height:auto;max-height:calc(100vh - 140px);object-fit:contain}
+.sheet .preview{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:34px 24px;background:radial-gradient(90% 90% at 50% 20%,#141417,#08080a 72%);border-right:1px solid var(--line);min-height:0;overflow:hidden}
+.pcap{font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:#4a4a52}
+.sheet .preview .frame{max-width:820px;width:100%;box-shadow:0 50px 90px -40px #000,0 0 0 1px rgba(255,255,255,.09)}
+.sheet .preview .frame.shot{aspect-ratio:3/1!important;max-width:100%;background:#0b0b0d}
+.sheet .preview .frame.shot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
 .sheet .preview .frame{height:auto!important}
-.sheet .preview .frame.spec,.sheet .preview .frame.grid,.sheet .preview .frame.void{aspect-ratio:4/3!important;min-height:0;max-height:68vh}
+.sheet .preview .frame.spec,.sheet .preview .frame.grid,.sheet .preview .frame.void{aspect-ratio:3/1!important;min-height:0}
 .sheet .preview .frame.spec .word{font-size:clamp(54px,7vw,96px)}
 .sheet .preview .frame.spec .set{font-size:14px}
 .sheet .info{padding:30px 32px 56px;overflow:auto}
@@ -79,11 +81,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .cta .next{background:rgba(255,255,255,.06);color:#e9e8e3;border:1px solid var(--line)}
 footer{display:flex;justify-content:space-between;gap:20px;padding:0 34px 34px;font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;text-transform:uppercase;color:#3f3f46;flex-wrap:wrap}
 footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.1);margin-right:12px}
-@media(min-width:1500px){.wall{columns:4}}
-@media(max-width:900px){.wall{columns:2}}
+@media(min-width:1420px){.wall{columns:3}}
 @media(max-width:1000px){.sheet .body{grid-template-columns:1fr}.sheet .preview{border-right:0;border-bottom:1px solid var(--line);padding:22px}}
-@media(max-width:600px){.wall{columns:1;padding:22px 18px 40px}header,.kinds{padding-left:18px;padding-right:18px}.rule{margin-left:18px;margin-right:18px}
-  .sheet .info{padding:22px 18px 44px}.sheet .preview .frame.shot>img{max-height:46vh}}
+@media(max-width:760px){.wall{columns:1;padding:22px 18px 40px}header,.kinds{padding-left:18px;padding-right:18px}.rule{margin-left:18px;margin-right:18px}
+  .sheet .info{padding:22px 18px 44px}}
 </style></head><body>
 <div class="grain"></div>
 <header><span class="brand">Mossassco<i> — a repository</i></span><span class="meta">33 items · 7 kinds · reviewed licence by licence</span></header>
@@ -95,70 +96,70 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 <script>
 var ICONS=['heart','star','bell','map-pin','camera','mail','lock','search','settings','music','sun','cloud'];
 var I=[
-{name:"Satoshi",kind:"type",ar:"1/1",cap:"specimen · live",lic:"ITF Free",dl:"click-through",host:"fontshare.com",href:"https://www.fontshare.com/fonts/satoshi",
+{name:"Satoshi",kind:"type",cap:"specimen · live",lic:"ITF Free",dl:"click-through",host:"fontshare.com",href:"https://www.fontshare.com/fonts/satoshi",
  view:{t:"spec",ui:'<div class="word" style="font-family:Satoshi">Aa</div><div class="set">Aa Bb Cc Dd Ee Ff Gg<br>0123456789 — the quick brown fox</div>',foot:"12–96px · ui text · itf free"},
  lead:"A geometric sans with a human axis. The body face of this page — every caption, label and link you're reading is Satoshi at work.",
  about:"Satoshi comes from Indian Type Foundry and sits at the rare point where a free sans doesn't look like a free sans. Nine weights, matching italics, and a lowercase that opens up nicely at 11–13px. It's the default UI voice in this repository because it holds small sizes without looking cramped.",
  use:["Body text on dark UIs, 12–16px","Navigation and caption type at 8–11px","Headlines at 32–56px when you want geometry, not personality"],
  watch:"The free licence forbids subsetting or converting the files. You can use it on the web through their CDN, but you can't generate your own woff2 from the download and ship that.",
  format:"OTF / TTF / variable",size:"9 weights + italics"},
-{name:"Unsplash",kind:"image",ar:"4/5",cap:"photograph · live",lic:"free use, no resale",dl:"click-through",host:"unsplash.com",href:"https://unsplash.com/s/photos/mountains",
- view:{t:"shot",src:"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1400&q=85"},
+{name:"Unsplash",kind:"image",cap:"photograph · live",lic:"free use, no resale",dl:"click-through",host:"unsplash.com",href:"https://unsplash.com/s/photos/mountains",
+ view:{t:"shot",src:"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1400&q=85",pos:"50% 62%"},
  lead:"Mountains at dusk, from the nature collection. A library you can search by mood, light and place — not just by object.",
  about:"Unsplash is the most-used free photo source and the most-abused. The images are good; the discipline is missing. Search by light direction and colour temperature rather than by noun and you'll find the two or three frames per topic that are actually usable.",
  use:["Full-bleed hero backgrounds with a dark overlay","Mood boards and pitch decks","Card imagery where the subject sits off-centre"],
  watch:"Free for commercial use, but you can't sell unmodified copies, and you can't compile photos to build a competing image service. Attribution is optional and appreciated.",
  format:"JPEG, up to 6k",size:"5M+ photos"},
-{name:"Figma Community",kind:"plugins",ar:"16/11",cap:"share image · the site's own",lic:"mixed — per plugin",dl:"Figma account",host:"figma.com",href:"https://www.figma.com/community/plugins",
+{name:"Figma Community",kind:"plugins",cap:"share image · the site's own",lic:"mixed — per plugin",dl:"Figma account",host:"figma.com",href:"https://www.figma.com/community/plugins",
  view:{t:"shot",src:"https://static.figma.com/uploads/3d791db872a0158f92798fa0134d8eeaf6af5535"},
  lead:"Plugins you install in two clicks. The bento grid builder alone is 20,000 users deep, and it's free.",
  about:"The Community is where Figma's ecosystem actually lives: layout generators, content fillers, export tools. Quality varies wildly, so the useful filter is installs and last-updated — anything untouched for a year is usually broken by the next Figma release.",
  use:["Bento and collage layout generators","Bulk image and text filling for mockups","SVG clean-up before export"],
  watch:"Each plugin carries its own licence and its own permissions. Anything asking for network access can read your file contents — check before you run it on client work.",
  format:"Figma plugin",size:"thousands of plugins"},
-{name:"Instrument Serif",kind:"type",ar:"4/5",cap:"specimen · live",lic:"OFL 1.1",dl:"direct .zip",host:"fonts.google.com",href:"https://fonts.google.com/specimen/Instrument+Serif",
- view:{t:"spec",ui:'<div class="word" style="font-family:\'Instrument Serif\',serif;font-weight:400">Aa<em>Gg</em></div><div class="set" style="font-family:\'Instrument Serif\',serif;font-size:15px">Whereas disregard and contempt for human rights have resulted</div>',foot:"40–120px · display · ofl 1.1"},
+{name:"Instrument Serif",kind:"type",cap:"specimen · live",lic:"OFL 1.1",dl:"direct .zip",host:"fonts.google.com",href:"https://fonts.google.com/specimen/Instrument+Serif",
+ view:{t:"spec",ui:'<div class="word" style="font-family:\'Instrument Serif\',serif;font-weight:400">Aa<em>Gg</em></div><div class="set" style="font-family:\'Instrument Serif\',serif;font-size:11px">Whereas disregard and contempt for human rights have resulted</div>',foot:"40–120px · display · ofl 1.1"},
  lead:"An editorial serif that survives at 120px. One weight, one italic, no fuss — and no licence homework.",
  about:"Instrument Serif is a display face built for scale: high contrast, sharp shoulders, a genuinely lovely italic. It has exactly one weight, which is a feature — you use it for the thing it's good at and stop pretending it's a text face.",
  use:["Editorial headlines and pull quotes","One-off display words at 72px and up","Italic emphasis inside a sans body"],
  watch:"Not for body copy — it thins out below about 24px on screen. And it only ships in Latin, so don't plan a multilingual site around it.",
  format:"TTF / woff2",size:"1 weight + italic"},
-{name:"Lucide",kind:"icons",ar:"16/11",cap:"12 icons · live svg",lic:"ISC",dl:"direct .zip",host:"lucide.dev",href:"https://lucide.dev/icons/",
+{name:"Lucide",kind:"icons",cap:"12 icons · live svg",lic:"ISC",dl:"direct .zip",host:"lucide.dev",href:"https://lucide.dev/icons/",
  view:{t:"grid"},
  lead:"1.5px stroke at 24px, consistent joints, 2,046 icons. The default icon voice in this project.",
  about:"Lucide began as a fork of Feather and grew into the most reliable general-purpose icon set for interfaces. Every icon is drawn on the same 24px grid with the same stroke weight, which is why a set of twelve looks like a set and not a collage.",
  use:["Interface icons at 16, 20 and 24px","Icon buttons where the stroke must match type weight","React, Vue or plain SVG via unpkg"],
  watch:"It's an outline set. If your UI needs filled icons at the same optical weight, pair it with Phosphor rather than mixing Lucide's fill variants.",
  format:"SVG / React / font",size:"2,046 icons"},
-{name:"Potted plant 01",kind:"3D",ar:"1/1",cap:"model render · live",lic:"CC0",dl:"direct asset",host:"polyhaven.com",href:"https://polyhaven.com/models",
+{name:"Potted plant 01",kind:"3D",cap:"model render · live",lic:"CC0",dl:"direct asset",host:"polyhaven.com",href:"https://polyhaven.com/models",
  view:{t:"render",src:"https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=1200&height=1200"},
  lead:"A scanned prop, lit and ready. Public domain — no account, no attribution, no catch.",
  about:"Poly Haven is the quiet backbone of a lot of arch-viz and product work: HDRIs, PBR textures and scanned models, all CC0. This plant is a single photographed-and-scanned prop, which is exactly what you want when a scene needs one believable object and no hero asset.",
  use:["Filling a corner of an arch-viz scene","Product mockups that need a real plant","Lighting tests with HDRIs"],
  watch:"CC0 means no obligations at all — but check polycount before dropping scanned models into a realtime scene. These are built for offline renders first.",
  format:"blend / fbx / gltf",size:"scanned prop"},
-{name:"Shapefest",kind:"3D",ar:"1/1",cap:"no signal · by licence",lic:"512px free, no republishing",dl:"click-through",host:"shapefest.com",href:"https://shapefest.com",
- view:{t:"void",txt:"RENDERS CANNOT<br>BE REPUBLISHED<br>—<br>SO THERE IS NOTHING<br>HONEST TO SHOW"},
+{name:"Shapefest",kind:"3D",cap:"no signal · by licence",lic:"512px free, no republishing",dl:"click-through",host:"shapefest.com",href:"https://shapefest.com",
+ view:{t:"void",txt:"RENDERS CANNOT<br>BE REPUBLISHED<br>—<br>SO THERE IS NOTHING HONEST TO SHOW"},
  lead:"Good files, terms that forbid showing them here. The empty frame is the honest preview.",
  about:"Shapefest makes ray-traced 3D objects — balloons, spheres, blobs — in the soft studio look everyone was chasing a few years ago. The files are genuinely nice. The terms let you use renders in your own work but not republish them, so a public gallery of their previews would break the agreement.",
  use:["Decorative 3D objects in hero sections","Social layouts that need one glossy shape","Blender scenes with ready materials"],
  watch:"Free tier is capped at 512px. Above that you're on a paid plan, and the republishing restriction still applies to the previews.",
  format:"PNG renders / blend",size:"512px free tier"},
-{name:"Clash Display",kind:"type",ar:"4/5",cap:"specimen · live",lic:"ITF Free",dl:"click-through",host:"fontshare.com",href:"https://www.fontshare.com/fonts/clash-display",
+{name:"Clash Display",kind:"type",cap:"specimen · live",lic:"ITF Free",dl:"click-through",host:"fontshare.com",href:"https://www.fontshare.com/fonts/clash-display",
  view:{t:"spec",ink:1,ui:'<div class="word" style="font-family:\'Clash Display\',Satoshi;font-weight:500">Clash</div><div class="set" style="font-family:Satoshi">Display 400 / 500 · headline cuts<br>72–200px</div>',foot:"72–200px · display · itf free"},
  lead:"Tight, wide-shouldered display cuts for headlines that need to shout politely.",
  about:"Clash Display is a grotesque with a lot of shoulder — wide caps, tight spacing, a slightly condensed feel at heavy weights. It's built to sit at the top of a poster or a landing page and hold its own against an image behind it.",
  use:["Poster and hero headlines at 72px+","Short all-caps section titles","Numbers and dates in editorial layouts"],
  watch:"Below 40px the tight spacing starts to close counters. It's a display face — don't set paragraphs in it.",
  format:"OTF / variable",size:"6 weights"},
-{name:"Google Fonts",kind:"sites",ar:"16/11",cap:"share image · the site's own",lic:"OFL / Apache",dl:"direct .zip",host:"fonts.google.com",href:"https://fonts.google.com",
+{name:"Google Fonts",kind:"sites",cap:"share image · the site's own",lic:"OFL / Apache",dl:"direct .zip",host:"fonts.google.com",href:"https://fonts.google.com",
  view:{t:"shot",src:"https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/opengraph_color.png"},
  lead:"1,800 families, licence stated on every page. The correct place to start when you need a typeface today.",
  about:"The catalogue is uneven — plenty of faces you'd never use — but the licence model is the best in the business: every family tells you exactly what you can do, and the API serves the files. If you need something obscure, search by classification rather than by name.",
  use:["Prototyping with a real webfont in minutes","Finding a variable font for a design system","Sourcing non-Latin scripts and extended sets"],
  watch:"The catalogue hides as much as it shows — the good stuff is often on page 4 of a category. And 'open source' still means reading the OFL: reserved font names matter.",
  format:"TTF / woff2 / variable",size:"1,800+ families"},
-{name:"Phosphor",kind:"icons",ar:"1/1",cap:"asset · live svg",lic:"MIT",dl:"direct .zip",host:"phosphoricons.com",href:"https://phosphoricons.com",
+{name:"Phosphor",kind:"icons",cap:"asset · live svg",lic:"MIT",dl:"direct .zip",host:"phosphoricons.com",href:"https://phosphoricons.com",
  view:{t:"bigicon",src:"https://unpkg.com/@phosphor-icons/core@2.0.8/assets/regular/heart.svg"},
  lead:"Six weights of one drawing — thin through fill — so an icon can carry emphasis instead of changing shape.",
  about:"Phosphor's trick is that every icon is drawn six ways: thin, light, regular, bold, fill and duotone. That gives you a way to show state and hierarchy inside one visual language, which most icon sets make you fake by swapping symbols.",
@@ -167,14 +168,14 @@ var I=[
  format:"SVG / React / font",size:"1,248 icons × 6"}
 ];
 var wall=document.getElementById('wall'),sheet=document.getElementById('sheet'),cur=0;
-function body(r,big){
+function body(r){
   var v=r.view;
-  if(v.t==='spec')return '<div class="frame spec'+(v.ink?' ink':'')+'"'+(big?'':' style="aspect-ratio:'+r.ar+'"')+'>'+v.ui+'<div class="foot">'+v.foot+'</div></div>';
-  if(v.t==='grid'){var h='';ICONS.forEach(function(n){h+='<img src="https://unpkg.com/lucide-static/icons/'+n+'.svg" alt="">'});return '<div class="frame grid"'+(big?'':' style="aspect-ratio:'+r.ar+'"')+'>'+h+'</div>'}
-  if(v.t==='render')return '<div class="frame render"'+(big?'':' style="aspect-ratio:'+r.ar+'"')+'><img src="'+v.src+'" alt=""></div>';
-  if(v.t==='bigicon')return '<div class="frame render"'+(big?'':' style="aspect-ratio:'+r.ar+'"')+'><img src="'+v.src+'" alt="" style="max-width:42%;filter:invert(1);opacity:.93"></div>';
-  if(v.t==='void')return '<div class="frame void"'+(big?'':' style="aspect-ratio:'+r.ar+'"')+'><span>'+v.txt+'</span></div>';
-  return '<div class="frame shot"'+(big?'':' style="aspect-ratio:'+r.ar+'"')+'><img src="'+v.src+'" alt=""></div>';
+  if(v.t==='spec')return '<div class="frame spec'+(v.ink?' ink':'')+'">'+v.ui+'<div class="foot">'+v.foot+'</div></div>';
+  if(v.t==='grid'){var h='';ICONS.forEach(function(n){h+='<img src="https://unpkg.com/lucide-static/icons/'+n+'.svg" alt="">'});return '<div class="frame grid">'+h+'</div>'}
+  if(v.t==='render')return '<div class="frame render"><img src="'+v.src+'" alt=""></div>';
+  if(v.t==='bigicon')return '<div class="frame render"><img src="'+v.src+'" alt="" style="max-width:34%;filter:invert(1);opacity:.93"></div>';
+  if(v.t==='void')return '<div class="frame void"><span>'+v.txt+'</span></div>';
+  return '<div class="frame shot"><img src="'+v.src+'" alt=""'+(v.pos?' style="object-position:'+v.pos+'"':'')+'></div>';
 }
 I.forEach(function(r,i){
   var el=document.createElement('div');el.className='item';el.dataset.kind=r.kind;
@@ -194,7 +195,7 @@ kinds.forEach(function(k,idx){
 function openTab(i){
   cur=i;var r=I[i],n=I.length;
   sheet.innerHTML='<div class="bar"><span class="dot"></span><b>'+r.name+'</b><span>'+r.kind+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()">close ✕</button></div>'+
-  '<div class="body"><div class="preview">'+body(r,1)+'</div>'+
+  '<div class="body"><div class="preview">'+body(r)+'<div class="pcap">'+r.kind+' · '+r.cap+'</div></div>'+
   '<div class="info"><div class="k">'+r.kind+' · '+r.cap+'</div><h1>'+r.name+'</h1><p class="lead">'+r.lead+'</p>'+
   '<div class="sec"><span class="lab">about</span><p>'+r.about+'</p></div>'+
   '<div class="sec"><span class="lab">use it for</span><ul>'+r.use.map(function(u){return '<li>'+u+'</li>'}).join('')+'</ul></div>'+
