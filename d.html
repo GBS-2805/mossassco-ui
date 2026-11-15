@@ -4,7 +4,8 @@
 <link rel="preconnect" href="https://api.fontshare.com"><link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com"><link rel="preconnect" href="https://images.pexels.com"><link rel="preconnect" href="https://cdn.polyhaven.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;700;900&family=Archivo:wght@400;500;700;900&family=Bricolage+Grotesque:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;700;900&family=Archivo:wght@400;500;700;900&family=Bricolage+Grotesque:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all';if(window.refit)refit()">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;700;900&family=Archivo:wght@400;500;700;900&family=Bricolage+Grotesque:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"></noscript>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&f[]=clash-display@200,300,400,500,700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#e9e8e3;--line:rgba(255,255,255,.07);--mono:"JetBrains Mono",monospace}
@@ -289,8 +290,13 @@ GROUPS.forEach(function(g){
   groupsEl.appendChild(sec);
 });
 document.querySelector('.meta').textContent=I.length+' items · '+document.querySelectorAll('.group').length+' sections · reviewed licence by licence';
-fitTypes();fitSites();
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitTypes();fitSites()});
+function refit(){fitTypes();fitSites();if(sheet.classList.contains('on')){fitTypes(sheet);fitSites(sheet)}}
+window.refit=refit;
+refit();
+if(document.fonts){
+  if(document.fonts.ready)document.fonts.ready.then(refit);
+  if(document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',refit);
+}
 var kinds=['all'].concat(GROUPS.map(function(g){return g[0]})),kb=document.getElementById('kinds');
 kinds.forEach(function(k,idx){
   var b=document.createElement('button');b.textContent=k;if(idx===0)b.className='on';
