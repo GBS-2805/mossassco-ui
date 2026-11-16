@@ -208,7 +208,22 @@ for (const [selector, min] of touchTargets) {
 // Three marks, three claims. A record's tier comes from its licence string, so
 // the icon can never drift from the text next to it in the sheet.
 const tierOf = (lic) =>
-  /^CC0/.test(lic) && !/CC BY|CC-BY/.test(lic) ? 'pd' : /\b(OFL|MIT|ISC|Apache)\b/.test(lic) ? 'open' : 'terms';
+  /CC BY-NC|CC-BY-NC|CC BY-ND|CC-BY-ND/.test(lic) ? 'terms'
+  : /CC BY|CC-BY/.test(lic) ? 'open'
+  : /^(CC0|public domain)/i.test(lic) || /\b(OFL|MIT|ISC|Apache)\b/.test(lic) ? 'pd'
+  : 'terms';
+
+// The mapping is the whole point: a free font or icon set must never come out
+// as anything but full freedom.
+for (const [lic, want] of [
+  ['OFL 1.1', 'pd'], ['OFL 1.1 / Apache 2.0', 'pd'], ['MIT', 'pd'], ['ISC · MIT (Feather icons)', 'pd'],
+  ['CC0 1.0', 'pd'], ['CC0 · brand marks', 'pd'], ['CC0 1.0 / CC BY 3.0', 'open'], ['CC BY-SA 4.0', 'open'],
+  ['CC BY-NC 4.0', 'terms'], ['per model · CC0 to CC BY-NC-ND', 'terms'], ['ITF Free · no conversion', 'terms'],
+  ['Unsplash License · no resale', 'terms'], ['IconScout Simple License', 'terms'],
+]) {
+  const got = tierOf(lic);
+  if (got !== want) problems.push(`tierOf("${lic}") returns ${got}, expected ${want} — a free licence must read as full freedom`);
+}
 
 if (!/var TIER_ORDER=\['pd','open','terms'\];/.test(html)) problems.push('TIER_ORDER must list pd, open, terms in that order');
 for (const t of ['pd', 'open', 'terms']) {
@@ -240,7 +255,6 @@ for (const r of recordLines) {
     continue;
   }
   const tier = tierOf(lic);
-  if (!/^CC0/.test(lic) && /^(CC BY|CC-BY)/.test(lic)) problems.push(`${name}: an attribution licence must not read as public domain: ${lic}`);
   if (r.line.includes("tier:'") && !r.line.includes(`tier:'${tier}'`)) problems.push(`${name}: declares a tier that disagrees with its licence "${lic}"`);
   tierCount[tier]++;
 }
@@ -287,7 +301,7 @@ console.log(w('set', 18) + w('names', 7) + w('styles', 8) + w('urls', 6) + 'brok
 for (const r of rows) console.log(w(r.label, 18) + w(r.names, 7) + w(r.styles, 8) + w(r.urls, 6) + r.broken);
 console.log(`photos/sites/plugins checked: ${imUrls}`);
 console.log(`layout: ${edgesChecked} safe-area edges checked, viewport-fit=cover, 380/760/1280 breakpoints, thumb targets`);
-console.log(`licences: ${recordLines.length} records · pd ${tierCount.pd} · open ${tierCount.open} · terms ${tierCount.terms} · missing ${noLicence}`);
+console.log(`licences: ${recordLines.length} records · full freedom ${tierCount.pd} · credit ${tierCount.open} · restricted ${tierCount.terms} · missing ${noLicence}`);
 console.log(`motion: cached chip geometry, rAF-throttled scroll, in-place preview paint`);
 
 if (problems.length) {

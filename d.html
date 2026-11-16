@@ -172,17 +172,20 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 <div class="sheet" id="sheet"></div>
 <script>
 var I=[];var ptext='';
-// Three licence tiers, drawn as fill: solid is yours outright, half keeps the
-// notice with the files, hollow means the terms restrict something.
-var TIER={pd:{n:'public domain',g:'no conditions',h:'No conditions: use it, change it, ship it, no credit line.'},
-           open:{n:'open licence',g:'keep the notice',h:'Open source and free: the copyright and licence notice travels with the files.'},
-           terms:{n:'terms apply',g:'read first',h:'Free to use, but the terms restrict something. Read the row before shipping.'}};
+// Three licence tiers, drawn as fill: solid is free and open, half asks you to
+// name the maker, hollow means the terms restrict something. OFL and MIT belong
+// in the solid one — free fonts and icons are the point of the shelf.
+var TIER={pd:{n:'full freedom',g:'use, change, ship',h:'Open source and free: use it, change it, ship it. No credit line — the licence file travels with the copy.'},
+           open:{n:'credit needed',g:'name the maker',h:'Free to use, but the creator has to be named, with a link to the licence.'},
+           terms:{n:'restricted',g:'read first',h:'Free to use, but the terms forbid something — conversion, republishing or resale. Read the row before shipping.'}};
 var TIER_ORDER=['pd','open','terms'];
 function glyph(t){return '<svg viewBox="0 0 8 8" aria-hidden="true">'+(t==='pd'?'<circle cx="4" cy="4" r="3.1"/>':t==='open'?'<path d="M4 .9A3.1 3.1 0 0 0 4 7.1z"/>':'<circle cx="4" cy="4" r="2.6" fill="none" stroke="currentColor" stroke-width="1.3"/>')+'</svg>'}
 function mark(t,c){return '<span class="m '+t+'" role="img" title="'+TIER[t].h+'" aria-label="'+(c?c+' ':'')+TIER[t].n+'">'+glyph(t)+(c?'<span class="c">'+c+'</span>':'')+'</span>'}
 function tierOf(r){if(r.tier)return r.tier;var l=r.lic||'';
-  if(/^CC0/.test(l)&&!/CC BY|CC-BY/.test(l))return 'pd';
-  if(/\b(OFL|MIT|ISC|Apache)\b/.test(l))return 'open';
+  if(/CC BY-NC|CC-BY-NC|CC BY-ND|CC-BY-ND/.test(l))return 'terms';   // non-commercial and no-derivatives are not open
+  if(/CC BY|CC-BY/.test(l))return 'open';                            // attribution: free, but name the maker
+  if(/^(CC0|public domain)/i.test(l))return 'pd';
+  if(/\b(OFL|MIT|ISC|Apache)\b/.test(l))return 'pd';                  // SIL and OSI licences: free, no credit in the UI
   return 'terms'}
 function T(name,fam,label,opts){var o=opts||{};var vs=o.vs||[{l:'400',w:400,s:'normal'}];
  var ws=[],seen={},ss=[{l:'roman',s:'normal'}],ital=false;
