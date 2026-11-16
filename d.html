@@ -27,6 +27,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .gh h2{margin:0;font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#d3d2cc;font-weight:400;white-space:nowrap}
 .gh span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;color:#44444b;font-variant-numeric:tabular-nums}
 .gh i{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.13),rgba(255,255,255,0))}
+.gh .txtwrap{flex:1;min-width:0;overflow:hidden;display:block}
+.gh .txt{width:200%;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.16);padding:0 0 5px;font-family:var(--mono);font-size:16px;letter-spacing:.2em;color:#cfcec8;outline:none;transform:scale(.5);transform-origin:left center;-webkit-appearance:none;border-radius:0}
+.gh .txt::placeholder{color:#3f3f46}
+.gh .txt:focus{border-bottom-color:rgba(255,255,255,.42)}
 .wall{columns:2;column-gap:30px;padding:18px 34px 26px;max-width:1400px;margin:0 auto}
 .group:last-child .wall{padding-bottom:54px}
 .item{break-inside:avoid;margin:0 0 30px;cursor:pointer;display:block;width:100%;-webkit-tap-highlight-color:transparent}
@@ -46,7 +50,6 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .tag{position:absolute;left:4.5%;top:9%;font-family:var(--mono);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5a62;z-index:2}
 .type .word{position:absolute;left:4.5%;bottom:14px;right:28%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
 .frame.type{aspect-ratio:auto}
-.type .tag{top:11px}
 .strip{position:absolute;right:0;top:0;bottom:0;width:27%;display:flex;align-items:center;gap:16px;padding:0 10%;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-left:1px solid rgba(255,255,255,.1);z-index:5;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 16px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 16px),transparent 100%);scroll-snap-type:x mandatory;perspective:600px}
 .strip::-webkit-scrollbar{display:none}
 .strip .opt{flex:0 0 auto;width:auto;padding:12px 0;border:0;background:none;font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#55555d;line-height:1;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;;scroll-snap-align:center;transform-origin:50% 50%;backface-visibility:hidden;will-change:transform;transition:transform .16s ease-out,opacity .16s ease-out,color .14s}
@@ -149,7 +152,7 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 <footer><span>set live · icons from source · share images © their sites</span><span>older attempts <a href="b2.html">instrument</a><a href="a.html">palette</a><a href="c.html">front page</a></span></footer>
 <div class="sheet" id="sheet"></div>
 <script>
-var I=[];
+var I=[];var ptext='';
 function T(name,fam,label,opts){var o=opts||{};var vs=o.vs||[{l:'400',w:400,s:'normal'}];
  var ws=[],seen={},ss=[{l:'roman',s:'normal'}],ital=false;
  vs.forEach(function(v){if(v.s==='italic'){ital=true;return}var w=v.w||400;if(!seen[w]){seen[w]=1;ws.push({l:String(w),w:w})}});
@@ -286,7 +289,7 @@ function frameHTML(r,i){
     var dials=(r.ws.length>1?1:0)+(r.ss.length>1?1:0);
     var tail=(r.ws.length>1?optList(i,r.ws,r.wi,1,'w',dials>1?'wtop':''):'')
             +(r.ss.length>1?optList(i,r.ss,r.si,1,'s',dials>1?'sbot':''):'');
-    return '<div class="'+c+' type"><div class="pv"><div class="tag">'+typeLabel(r)+'</div><div class="word" data-w="'+(wv.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(wv.w||400)+';font-style:'+(sv.s||'normal')+'">'+r.n+'</div></div>'+tail+'</div>';
+    return '<div class="'+c+' type"><div class="pv"><div class="word" data-w="'+(wv.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(wv.w||400)+';font-style:'+(sv.s||'normal')+'">'+(ptext||r.n)+'</div></div>'+tail+'</div>';
   }
   if(v.t==='icons'){
     var st=r.styles?r.styles[r.vi]:null,base=st?st.b:v.base,suf=st?st.s:v.suf;
@@ -306,7 +309,9 @@ GROUPS.forEach(function(g){
   var idxs=[];I.forEach(function(r,i){if(r.k===g[0])idxs.push(i)});
   if(!idxs.length)return;
   var sec=document.createElement('section');sec.className='group';sec.dataset.kind=g[0];
-  sec.innerHTML='<div class="gh"><h2>'+g[1]+'</h2><span>'+String(idxs.length).padStart(2,'0')+'</span><i></i></div><div class="wall"></div>';
+  sec.innerHTML='<div class="gh"><h2>'+g[1]+'</h2><span>'+String(idxs.length).padStart(2,'0')+'</span>'
+  +(g[0]==='type'?'<label class="txtwrap"><input class="txt" type="text" placeholder="type to preview every font" aria-label="preview text for all font specimens" autocomplete="off" spellcheck="false"></label>':'<i></i>')
+  +'</div><div class="wall"></div>';
   var w=sec.querySelector('.wall');
   idxs.forEach(function(i){
     var r=I[i],el=document.createElement('div');el.className='item';el.dataset.kind=r.k;el.dataset.i=i;
@@ -317,6 +322,15 @@ GROUPS.forEach(function(g){
     el.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openTab(i)}};
     w.appendChild(el);
   });
+  if(g[0]==='type'){
+    var inp=sec.querySelector('.txt');
+    inp.addEventListener('input',function(){
+      ptext=inp.value;
+      [].forEach.call(sec.querySelectorAll('.item[data-kind="type"] .word'),function(w){w.textContent=ptext||I[+w.closest('.item').dataset.i].n});
+      fitTypes();
+      if(sheet.classList.contains('on')&&I[cur]&&I[cur].k==='type')openTab(cur);
+    });
+  }
   groupsEl.appendChild(sec);
 });
 document.querySelector('.meta').textContent=I.length+' items · '+document.querySelectorAll('.group').length+' sections · reviewed licence by licence';
