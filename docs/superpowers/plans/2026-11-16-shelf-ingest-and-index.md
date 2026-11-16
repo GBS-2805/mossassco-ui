@@ -213,6 +213,8 @@ test('the cache makes the second run hit the network zero times', …);     // c
 
 `creditAsked` promotes `ofl` to `ofl-credit`: the foundry's own words outrank the licence name.
 
+One correction learned while auditing all 163 by hand: `fonts.json` has no licence field, but **each rendered font page on uncut.wtf does** (`/display/cambrian` names "SIL Open Font License 1.1"). That field is a catalogue claim, not the designer's wording, so it goes in as `evidence.kind: 'catalogue'` and a designer or foundry statement overrides it — six faces (Cambrian, Phosphène, Berlin Grotesk, Slibinas, Boris, Granturismo) rest on it alone, and the sheet must say so.
+
 - [ ] **Step 5: Implement `ingest.mjs`**
 
 Crawl order `list → items → page (or repo licence file)`; concurrency 8; 15 s timeout; one retry on network error or 5xx, never on 403/404 (mirror the icon probe in `audit.mjs`); cache raw bodies by URL hash, `--check` reads the cache first. Candidate ids are `slug(name)`; duplicates inside one source are a problem. `problems` entries are `{id, url, reason}` and any non-empty `problems` exits 1.
