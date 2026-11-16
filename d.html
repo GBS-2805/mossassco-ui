@@ -52,6 +52,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .strip .opt:hover{color:#c9c8c2}
 .strip .opt:active{color:#fff}
 .strip .opt.on{color:#f4f3ee}
+.strip.wtop{top:0;bottom:50%;border-bottom:1px solid rgba(255,255,255,.07)}
+.strip.sbot{top:50%;bottom:0}
+.vars .vlab{font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#4a4a52;align-self:center;margin:0 2px 0 0}
+.vars{align-items:center}
 .icons{background:#0e0e11}
 .icons .pv{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:7%}
 .icons.hasrail .pv{padding:7% calc(27% + 7%) 7% 7%}
@@ -145,8 +149,12 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 <div class="sheet" id="sheet"></div>
 <script>
 var I=[];
-function T(name,fam,label,opts){var o=opts||{};var vs=o.vs||[{l:'400',w:400,s:'normal'}];var d=0;for(var i=0;i<vs.length;i++){if(vs[i].w===400&&(!vs[i].s||vs[i].s==='normal'))d=i}
- I.push({n:name,k:'type',cap:label,fam:fam,vs:vs,vi:d,view:{t:'type',fam:fam},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+function T(name,fam,label,opts){var o=opts||{};var vs=o.vs||[{l:'400',w:400,s:'normal'}];
+ var ws=[],seen={},ss=[{l:'roman',s:'normal'}],ital=false;
+ vs.forEach(function(v){if(v.s==='italic'){ital=true;return}var w=v.w||400;if(!seen[w]){seen[w]=1;ws.push({l:String(w),w:w})}});
+ if(ital)ss.push({l:'italic',s:'italic'});
+ ws.sort(function(a,b){return a.w-b.w});var wi=0;for(var i=0;i<ws.length;i++){if(ws[i].w===400)wi=i}
+ I.push({n:name,k:'type',cap:label,fam:fam,ws:ws,ss:ss,wi:wi,si:0,view:{t:'type',fam:fam},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'TTF / woff2',size:o.size||'family'})}
 function IC(name,label,opts){var o=opts||{};var d=0;if(o.st){for(var i=0;i<o.st.length;i++){if(o.st[i].l==='regular'||o.st[i].l==='outline')d=i}}
  I.push({n:name,k:'icons',cap:label,styles:o.st||null,vi:d,view:{t:'icons',base:o.st?o.st[d].b:o.base,suf:o.st?o.st[d].s:o.suf,names:o.names},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
@@ -162,7 +170,7 @@ T('Instrument Serif','Instrument Serif','type · google',{vs:[{l:'roman',w:400,s
  lead:'An editorial serif that survives at 120px. One weight, one italic.',about:'There is no weight axis here, only roman and italic — and the italic is the reason to use it. Compare the two on the specimen.',use:['Editorial headlines and pull quotes','One-off display words'],watch:'Not for body copy — it thins out below about 24px. Latin only.',fmt:'TTF / woff2',size:'1 + italic'});
 T('Inter','Inter','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700},{l:'900',w:900}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Inter',
  lead:'The default UI sans of the last decade, for better and worse.',about:'Drawn for screens: tall x-height, tight apertures, a weight axis that runs 100 to 900. It is the safe answer, and safe is sometimes correct.',use:['Dense product UI','Interfaces with mixed languages'],watch:'Ubiquity is the problem — it reads as default unless you set it with intent.',fmt:'TTF / variable',size:'variable'});
-T('Fraunces','Fraunces','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700},{l:'900',w:900}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Fraunces',
+T('Fraunces','Fraunces','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700},{l:'900',w:900},{l:'italic',w:400,s:'italic'}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Fraunces',
  lead:'A soft-serif with a wonk axis, made for personality at display sizes.',about:'Axes most serifs do not have: optical size, softness, and a wonk that tilts the letters. At 900 it is almost a different typeface from the 300.',use:['Editorial headlines with warmth','Logos and short marks'],watch:'The wonk axis is addictive. One glyph at the wrong setting looks like a mistake.',fmt:'TTF / variable',size:'variable axes'});
 T('Space Grotesk','Space Grotesk','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/Space+Grotesk',
  lead:'A proportional grotesque with square-ish terminals and a technical feel.',about:'Derived from Space Mono, then smoothed. It reads as engineering rather than fashion, which makes it useful for product and data.',use:['Dashboards and technical UI','Section headings'],watch:'Its quirks show at large sizes. Set it small or set it deliberately.',fmt:'TTF / woff2',size:'5 weights'});
@@ -258,10 +266,9 @@ function fitSites(scope){
   });
 }
 var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){fitTypes();fitSites()},140)});
-function varList(r){return r.k==='type'?r.vs:(r.styles||null)}
-function optList(i,list,cur,flat){
-  var h='<div class="'+(flat?'strip':'rail')+'" role="group" aria-label="options">';
-  list.forEach(function(x,j){h+='<button class="opt'+(j===cur?' on':'')+'" data-i="'+i+'" data-v="'+j+'" aria-pressed="'+(j===cur)+'">'+x.l+'</button>'});
+function optList(i,list,cur,flat,dim,cls){
+  var h='<div class="'+(flat?'strip '+(cls||''):'rail')+'" data-i="'+i+'" data-d="'+(dim||'v')+'" role="group" aria-label="options">';
+  list.forEach(function(x,j){h+='<button class="opt'+(j===cur?' on':'')+'" data-i="'+i+'" data-v="'+j+'" data-d="'+(dim||'v')+'" aria-pressed="'+(j===cur)+'">'+x.l+'</button>'});
   return h+'</div>';
 }
 function siteFrame(r,c){
@@ -273,8 +280,11 @@ function frameHTML(r,i){
   var v=r.view,c='frame';
   if(r.k==='sites'||r.k==='plugins')return siteFrame(r,c);
   if(v.t==='type'){
-    var vs=r.vs,d=vs[r.vi]||vs[0];
-    return '<div class="'+c+' type"><div class="pv"><div class="tag">'+r.cap+'</div><div class="word" data-w="'+(d.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(d.w||400)+';font-style:'+(d.s||'normal')+'">'+r.n+'</div></div>'+optList(i,vs,r.vi,1)+'</div>';
+    var wv=r.ws[r.wi]||{w:400},sv=r.ss[r.si]||{s:'normal'};
+    var dials=(r.ws.length>1?1:0)+(r.ss.length>1?1:0);
+    var tail=(r.ws.length>1?optList(i,r.ws,r.wi,1,'w',dials>1?'wtop':''):'')
+            +(r.ss.length>1?optList(i,r.ss,r.si,1,'s',dials>1?'sbot':''):'');
+    return '<div class="'+c+' type"><div class="pv"><div class="tag">'+r.cap+'</div><div class="word" data-w="'+(wv.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(wv.w||400)+';font-style:'+(sv.s||'normal')+'">'+r.n+'</div></div>'+tail+'</div>';
   }
   if(v.t==='icons'){
     var st=r.styles?r.styles[r.vi]:null,base=st?st.b:v.base,suf=st?st.s:v.suf;
@@ -334,39 +344,43 @@ function roulette(s){
     if(s.__p)return;
     var mid2=s.scrollLeft+s.clientWidth/2,best=null,bd=1e9;
     chips.forEach(function(c){var d=Math.abs(c.offsetLeft+c.offsetWidth/2-mid2);if(d<bd){bd=d;best=c}});
-    if(best)applyVariant(+best.dataset.i,+best.dataset.v);
+    if(best)applyVariant(+best.dataset.i,best.dataset.d||'v',+best.dataset.v);
   },90);
 }
-function applyVariant(i,j){                          // swap the option without rebuilding the card
-  var r=I[i],l=varList(r);
-  if(!l||j<0||j>=l.length||r.vi===j)return false;
-  r.vi=j;
+function applyVariant(i,dim,j){
+  var r=I[i],list,key;dim=dim||'v';
+  if(dim==='w'){list=r.ws;key='wi'}else if(dim==='s'){list=r.ss;key='si'}else{list=r.styles;key='vi'}
+  if(!list||j<0||j>=list.length||r[key]===j)return false;
+  r[key]=j;
   var el=groupsEl.querySelector('.item[data-i="'+i+'"]');if(!el)return false;
-  var x=l[j];
   if(r.k==='type'){
-    var w=el.querySelector('.word');
-    if(w){w.style.fontWeight=x.w||400;w.style.fontStyle=x.s||'normal';w.dataset.w=x.w||400}
-  }else if(r.styles){
-    [].forEach.call(el.querySelectorAll('.pv img'),function(im,k){var n=r.view.names[k];if(n)im.src=x.b+n+x.s});
+    var w=el.querySelector('.word'),wv=r.ws[r.wi],sv=r.ss[r.si];
+    if(w&&wv&&sv){w.style.fontWeight=wv.w||400;w.style.fontStyle=sv.s||'normal';w.dataset.w=wv.w||400}
+  }else if(dim==='v'&&list[j]&&list[j].b){
+    var st=list[j];
+    [].forEach.call(el.querySelectorAll('.pv img'),function(im,k){var n=r.view.names[k];if(n)im.src=st.b+n+st.s});
   }
-  [].forEach.call(el.querySelectorAll('.opt'),function(o,k){o.classList.toggle('on',k===j);o.setAttribute('aria-pressed',k===j)});
+  [].forEach.call(el.querySelectorAll('.opt[data-d="'+dim+'"]'),function(o,k){o.classList.toggle('on',k===j);o.setAttribute('aria-pressed',k===j)});
   fitTypes();fitSites();
   if(sheet.classList.contains('on')&&cur===i)openTab(i);
   return true;
 }
-function pickVar(i,vi){applyVariant(i,vi)}
+function pickDim(i,dim,j){applyVariant(i,dim,j)}
 groupsEl.addEventListener('click',function(e){
   var o=e.target.closest('.opt');
   if(!o)return;
   e.stopPropagation();e.preventDefault();
-  pickVar(+o.dataset.i,+o.dataset.v);
+  applyVariant(+o.dataset.i,o.dataset.d||'v',+o.dataset.v);
 });
 function varButtons(r,i){
-  var list=varList(r);
-  if(!list||list.length<2)return '';
-  var h='<div class="vars" role="group" aria-label="variants">';
-  list.forEach(function(x,j){h+='<button class="'+(j===r.vi?'on':'')+'" aria-pressed="'+(j===r.vi)+'" onclick="pickVar('+i+','+j+')">'+x.l+'</button>'});
-  return h+'</div>';
+  var out='',btn=function(list,cur,dim){return list.map(function(x,j){return '<button class="'+(j===cur?'on':'')+'" onclick="pickDim('+i+',\''+dim+'\','+j+')">'+x.l+'</button>'}).join('')};
+  if(r.k==='type'){
+    if(r.ws.length>1)out+='<div class="vars" data-d="w"><span class="vlab">degree</span>'+btn(r.ws,r.wi,'w')+'</div>';
+    if(r.ss.length>1)out+='<div class="vars" data-d="s"><span class="vlab">type</span>'+btn(r.ss,r.si,'s')+'</div>';
+    return out;
+  }
+  if(!r.styles||r.styles.length<2)return '';
+  return '<div class="vars" data-d="v">'+btn(r.styles,r.vi,'v')+'</div>';
 }
 function openTab(i){
   cur=i;var r=I[i],n=I.length;
