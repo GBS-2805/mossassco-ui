@@ -27,6 +27,17 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .gh h2{margin:0;font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#d3d2cc;font-weight:400;white-space:nowrap}
 .gh span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;color:#44444b;font-variant-numeric:tabular-nums}
 .gh i{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.13),rgba(255,255,255,0))}
+.gh .lic{flex:0 0 auto}
+.lic{display:inline-flex;align-items:center;gap:6px}
+.m{display:inline-flex;align-items:center;gap:3px;font-family:var(--mono);font-size:7px;font-style:normal;letter-spacing:.1em;line-height:1;color:#61616a;font-variant-numeric:tabular-nums}
+.m svg,.lic>svg{width:8px;height:8px;display:block;flex:0 0 auto}
+.m.pd svg,.m.open svg{fill:currentColor}
+.m.terms svg{fill:none;stroke:currentColor;stroke-width:1.3}
+.m .c{font-style:normal;color:#45454c}
+.legend{display:flex;align-items:center;gap:8px 20px;flex-wrap:wrap;padding:12px calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));max-width:1400px;margin:0 auto;font-family:var(--mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#4c4c54}
+.legend .m{gap:5px}
+.legend .lg{color:#3f3f46;letter-spacing:.22em}
+.legend .m b{font-weight:400;color:#5f5f67;letter-spacing:.1em}
 .gh .txtwrap{flex:1;min-width:0;overflow:hidden;display:block}
 .gh .txt{width:200%;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.16);padding:0 0 5px;font-family:var(--mono);font-size:16px;letter-spacing:.2em;color:#cfcec8;outline:none;transform:scale(.5);transform-origin:left center;-webkit-appearance:none;border-radius:0}
 .gh .txt::placeholder{color:#3f3f46}
@@ -53,7 +64,7 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .frame.type{aspect-ratio:auto}
 .strip{position:absolute;right:0;top:0;bottom:0;width:27%;display:flex;align-items:center;gap:16px;padding:0 10%;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-left:1px solid rgba(255,255,255,.1);z-index:5;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 16px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 16px),transparent 100%);scroll-snap-type:x mandatory;perspective:600px}
 .strip::-webkit-scrollbar{display:none}
-.strip .opt{flex:0 0 auto;width:auto;padding:12px 0;border:0;background:none;font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#55555d;line-height:1;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;;scroll-snap-align:center;transform-origin:50% 50%;backface-visibility:hidden;will-change:transform;transition:transform .16s ease-out,opacity .16s ease-out,color .14s}
+.strip .opt{flex:0 0 auto;width:auto;padding:12px 0;border:0;background:none;font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#55555d;line-height:1;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;;scroll-snap-align:center;transform-origin:50% 50%;backface-visibility:hidden;will-change:transform,opacity;transition:color .14s}
 .strip .opt:hover{color:#c9c8c2}
 .strip .opt:active{color:#fff}
 .strip .opt.on{color:#f4f3ee}
@@ -132,6 +143,7 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:9px;font-variant-numeric:tabular-nums}
 .kv span{color:#4b4b53;text-transform:uppercase;letter-spacing:.16em;font-size:7px;padding-top:2px}
 .kv b{font-weight:400;color:#e2e1db}
+.kv b.lv{display:inline-flex;align-items:center;gap:5px;text-align:right}
 .watch{border-left:2px solid #ff9d3d;padding-left:12px;color:#c8b7a6!important}
 .cta{display:flex;gap:8px;margin-top:26px}
 .cta a,.cta button{flex:1;text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:14px 10px;min-height:44px;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center}
@@ -147,29 +159,42 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
   .rule{margin-left:calc(18px + var(--sa-l));margin-right:calc(18px + var(--sa-r))}.gh{padding:22px calc(18px + var(--sa-r)) 0 calc(18px + var(--sa-l))}.sheet .info{padding:22px calc(18px + var(--sa-r)) calc(44px + var(--sa-b)) calc(18px + var(--sa-l))}
   .site .nm{max-width:58%}.site li{font-size:6px}
   .type .word{right:30%}.icons .pv{padding:1%}.icons.hasrail .pv{padding:1% calc(27% + 1%) 1% 1%}
-  .opt{font-size:6.5px;letter-spacing:.06em;padding:0 4% 0 6%}}
-@media(max-width:380px){header{padding-left:calc(16px + var(--sa-l));padding-right:calc(16px + var(--sa-r))}.kinds{padding-left:calc(14px + var(--sa-l))}.rule{margin-left:calc(16px + var(--sa-l));margin-right:calc(16px + var(--sa-r))}.gh{padding-left:calc(16px + var(--sa-l));padding-right:calc(16px + var(--sa-r))}.wall{padding-left:calc(16px + var(--sa-l));padding-right:calc(16px + var(--sa-r))}}
+  .opt{font-size:6.5px;letter-spacing:.06em;padding:0 4% 0 6%}.legend{padding-left:calc(18px + var(--sa-l));padding-right:calc(18px + var(--sa-r))}}
+@media(max-width:380px){header{padding-left:calc(16px + var(--sa-l));padding-right:calc(16px + var(--sa-r))}.kinds{padding-left:calc(14px + var(--sa-l))}.rule{margin-left:calc(16px + var(--sa-l));margin-right:calc(16px + var(--sa-r))}.gh{padding-left:calc(16px + var(--sa-l));padding-right:calc(16px + var(--sa-r))}.wall{padding-left:calc(16px + var(--sa-l));padding-right:calc(16px + var(--sa-r))}.legend{padding-left:calc(16px + var(--sa-l));padding-right:calc(16px + var(--sa-r))}}
 </style></head><body>
 <div class="grain"></div>
 <header><span class="brand">Shelf<i> — a repository</i></span><span class="meta">loading</span></header>
 <div class="kinds" id="kinds"></div>
 <div class="rule"></div>
+<div class="legend" id="legend"></div>
 <div id="groups"></div>
 <footer><span>set live · icons from source · share images © their sites</span><span>older attempts <a href="b2.html">instrument</a><a href="a.html">palette</a><a href="c.html">front page</a></span></footer>
 <div class="sheet" id="sheet"></div>
 <script>
 var I=[];var ptext='';
+// Three licence tiers, drawn as fill: solid is yours outright, half keeps the
+// notice with the files, hollow means the terms restrict something.
+var TIER={pd:{n:'public domain',g:'no conditions',h:'No conditions: use it, change it, ship it, no credit line.'},
+           open:{n:'open licence',g:'keep the notice',h:'Open source and free: the copyright and licence notice travels with the files.'},
+           terms:{n:'terms apply',g:'read first',h:'Free to use, but the terms restrict something. Read the row before shipping.'}};
+var TIER_ORDER=['pd','open','terms'];
+function glyph(t){return '<svg viewBox="0 0 8 8" aria-hidden="true">'+(t==='pd'?'<circle cx="4" cy="4" r="3.1"/>':t==='open'?'<path d="M4 .9A3.1 3.1 0 0 0 4 7.1z"/>':'<circle cx="4" cy="4" r="2.6" fill="none" stroke="currentColor" stroke-width="1.3"/>')+'</svg>'}
+function mark(t,c){return '<span class="m '+t+'" role="img" title="'+TIER[t].h+'" aria-label="'+(c?c+' ':'')+TIER[t].n+'">'+glyph(t)+(c?'<span class="c">'+c+'</span>':'')+'</span>'}
+function tierOf(r){if(r.tier)return r.tier;var l=r.lic||'';
+  if(/^CC0/.test(l)&&!/CC BY|CC-BY/.test(l))return 'pd';
+  if(/\b(OFL|MIT|ISC|Apache)\b/.test(l))return 'open';
+  return 'terms'}
 function T(name,fam,label,opts){var o=opts||{};var vs=o.vs||[{l:'400',w:400,s:'normal'}];
  var ws=[],seen={},ss=[{l:'roman',s:'normal'}],ital=false;
  vs.forEach(function(v){if(v.s==='italic'){ital=true;return}var w=v.w||400;if(!seen[w]){seen[w]=1;ws.push({l:String(w),w:w})}});
  if(ital)ss.push({l:'italic',s:'italic'});
  ws.sort(function(a,b){return a.w-b.w});var wi=0;for(var i=0;i<ws.length;i++){if(ws[i].w===400)wi=i}
- I.push({n:name,k:'type',cap:label,fam:fam,ws:ws,ss:ss,wi:wi,si:0,view:{t:'type',fam:fam},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+ I.push({n:name,k:'type',cap:label,fam:fam,ws:ws,ss:ss,wi:wi,si:0,view:{t:'type',fam:fam},lic:o.lic,dl:o.dl, host:o.host,href:o.href,tier:o.tier,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'TTF / woff2',size:o.size||'family'})}
 function IC(name,label,opts){var o=opts||{};var d=0;if(o.st){for(var i=0;i<o.st.length;i++){if(o.st[i].l==='regular'||o.st[i].l==='outline')d=i}}
- I.push({n:name,k:'icons',cap:label,styles:o.st||null,vi:d,view:{t:'icons',base:o.st?o.st[d].b:o.base,suf:o.st?o.st[d].s:o.suf,names:o.names},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+ I.push({n:name,k:'icons',cap:label,styles:o.st||null,vi:d, view:{t:'icons',base:o.st?o.st[d].b:o.base,suf:o.st?o.st[d].s:o.suf,names:o.names},lic:o.lic,dl:o.dl,host:o.host,href:o.href,tier:o.tier,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt||'SVG',size:o.size})}
-function IM(name,src,kap,lab,opts){var o=opts||{};I.push({n:name,k:kap,cap:lab,vi:0,view:{t:'img',src:src,fit:o.fit,card:o.card},lic:o.lic,dl:o.dl,host:o.host,href:o.href,
+function IM(name,src,kap,lab,opts){var o=opts||{};I.push({n:name,k:kap,cap:lab,vi:0, view:{t:'img',src:src,fit:o.fit,card:o.card},lic:o.lic,dl:o.dl,host:o.host,href:o.href,tier:o.tier,
  lead:o.lead,about:o.about,use:o.use,watch:o.watch,fmt:o.fmt,size:o.size,pos:o.pos,options:o.options})}
 
 T('Satoshi','Satoshi','type · fontshare',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700},{l:'900',w:900}],lic:'ITF Free · no conversion',dl:'click-through',host:'fontshare.com',href:'https://www.fontshare.com/fonts/satoshi',
@@ -197,7 +222,7 @@ T('IBM Plex Mono','IBM Plex Mono','type · google',{vs:[{l:'300',w:300},{l:'400'
 T('JetBrains Mono','JetBrains Mono','type · google',{vs:[{l:'300',w:300},{l:'400',w:400},{l:'500',w:500},{l:'700',w:700}],lic:'OFL 1.1',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com/specimen/JetBrains+Mono',
  lead:'A coding mono with taller lowercase and larger apertures.',about:'JetBrains Mono increases x-height and opens the apertures, which is exactly what makes it readable at 11px in a dark editor — and in a caption like this one.',use:['Code and terminal UI','Micro labels like this'],watch:'Its ligatures are a switch, not a default; check before shipping code samples.',fmt:'TTF / variable',size:'8 weights'});
 
-IC('Lucide','icons · lucide',{base:'https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/',suf:'.svg',names:['heart','star','bell','camera','mail','lock','search','house','calendar','clock'],lic:'ISC',dl:'direct .zip',host:'lucide.dev',href:'https://lucide.dev/icons/',
+IC('Lucide','icons · lucide',{base:'https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/',suf:'.svg',names:['heart','star','bell','camera','mail','lock','search','house','calendar','clock'],lic:'ISC · MIT (Feather icons)',dl:'direct .zip',host:'lucide.dev',href:'https://lucide.dev/icons/',
  lead:'1.5px stroke at 24px, consistent joints, 2,046 icons.',about:'Every icon sits on the same 24px grid, which is why a set of ten reads as a set and not a collage. There is one style only — that is the point.',use:['Interface icons at 16–24px','Icon buttons that must match type weight'],watch:'Outline only. Mixing its fill variants breaks the rhythm.',size:'2,046 icons'});
 IC('Phosphor','icons · phosphor',{st:[{l:'thin',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/thin/',s:'-thin.svg'},{l:'light',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/light/',s:'-light.svg'},{l:'regular',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/',s:'.svg'},{l:'bold',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/',s:'-bold.svg'},{l:'fill',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/',s:'-fill.svg'},{l:'duotone',b:'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/duotone/',s:'-duotone.svg'}],names:['heart','star','bell','camera','envelope','lock','magnifying-glass','house','user','calendar'],lic:'MIT',dl:'direct .zip',host:'phosphoricons.com',href:'https://phosphoricons.com',
  lead:'Six weights of one drawing — thin through fill.',about:'State and hierarchy inside one visual language instead of swapping symbols. Switch weight on the specimen and the whole set moves together.',use:['Filled and outlined states','Heavier icons next to heavy type'],watch:'Six weights is six chances to be inconsistent. Pick two.',size:'1,248 × 6'});
@@ -216,33 +241,33 @@ IC('Simple Icons','icons · simple icons',{base:'https://cdn.simpleicons.org/',s
 
 IM('Poly Haven','','3d-model','library · cc0',{options:['models, HDRIs, textures','blend / fbx / gltf','CC0, no attribution','scanned and modelled'],lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
  lead:'The CC0 library most of this shelf comes from — props, furniture and the light itself.',about:'Every model ships as blend, fbx and gltf, and the HDRIs that light the renders come from the same place. No account, no attribution, no catch worth reading twice.',use:['Arch-viz props and lighting','Filling a scene without licence homework'],watch:'Scanned meshes are heavy. Decimate before anything realtime.',fmt:'blend / fbx / gltf',size:'hundreds of models'});
-IM('Poly Pizza','','3d-model','library · cc0 search',{options:['search across CC0','gltf in the browser','low-poly focus','one-click download'],lic:'CC0 / CC-BY',dl:'direct asset',host:'poly.pizza',href:'https://poly.pizza',
+IM('Poly Pizza','','3d-model','library · cc0 search',{options:['search across CC0','gltf in the browser','low-poly focus','one-click download'],lic:'CC0 1.0 / CC BY 3.0',dl:'direct asset',host:'poly.pizza',href:'https://poly.pizza',
  lead:'A search engine that only returns models you are allowed to ship.',about:'It indexes Poly Haven, Kenney, Quaternius and the archived Google Poly — filtered to CC0 and attribution licences, previewed in the browser, downloaded as gltf.',use:['Finding one prop fast','Low-poly game and web scenes'],watch:'Attribution licences are mixed in. Check the badge before you publish.',fmt:'gltf',size:'10,000+ models'});
 IM('Kenney','','3d-model','library · cc0 kits',{options:['kits, not singles','gltf / fbx / blend','game-ready polycount','CC0, attribution optional'],lic:'CC0',dl:'direct .zip',host:'kenney.nl',href:'https://kenney.nl/assets',
  lead:'Complete kits in one download, drawn to match each other.',about:'Kenney ships whole sets — a racing kit, a platformer kit, a city — with consistent scale and shading, which is the part that is hard to fake one asset at a time.',use:['Prototypes and game jams','Whole scenes that must look related'],watch:'The style is deliberately simple. It will not pass as arch-viz.',fmt:'gltf / fbx / blend',size:'40+ kits'});
 IM('Quaternius','','3d-model','library · cc0 animated',{options:['animated packs','gltf / fbx / blend','low-poly characters','CC0'],lic:'CC0',dl:'direct .zip',host:'quaternius.com',href:'https://quaternius.com',
  lead:'Low-poly characters and creatures that arrive already animated.',about:'Rigs and animation clips are included, which saves the slowest part of building a scene. Everything is CC0 and small enough for the web.',use:['Characters in a browser scene','Animated placeholders'],watch:'One visual style across every pack — fine inside a project, repetitive across one.',fmt:'gltf / fbx / blend',size:'100+ packs'});
-IM('Sketchfab','','3d-model','marketplace · mixed',{options:['scans and originals','gltf / usdz download','filter by licence','account to download'],lic:'per model',dl:'Sketchfab account',host:'sketchfab.com',href:'https://sketchfab.com/3d-models',
+IM('Sketchfab','','3d-model','marketplace · mixed',{options:['scans and originals','gltf / usdz download','filter by licence','account to download'],lic:'per model · CC0 to CC BY-NC-ND',dl:'Sketchfab account',host:'sketchfab.com',href:'https://sketchfab.com/3d-models',
  lead:'The biggest catalogue, and the one that needs the most reading.',about:'Museum scans, game assets, student work. Search can filter to downloadable and to a licence, and the viewer in the browser is genuinely useful for judging a mesh before you commit.',use:['Museum and heritage scans','One specific object nobody else has'],watch:'Licences run from CC0 to all-rights-reserved. The download button is not permission.',fmt:'gltf / usdz / original',size:'millions'});
-IM('BlenderKit','','3d-model','library · in blender',{options:['add-on inside Blender','blend files, materials','free tier + paid','account required'],lic:'free + paid',dl:'Blender add-on',host:'blenderkit.com',href:'https://www.blenderkit.com',
- lead:'A library that lives in Blender, with materials and brushes too.',about:'Install the add-on and assets drop straight into the file with their materials intact — no export, no re-link. The free tier is large; the paid tier is a subscription.',use:['Materials and brushes, not just meshes','Assets that keep their shading'],watch:'Free downloads need an account, and some assets are subscribers-only.',fmt:'blend',size:'free + paid'});
+IM('BlenderKit','','3d-model','library · in blender',{options:['add-on inside Blender','blend files, materials','royalty-free or CC0','no account for the free tier'],lic:'royalty-free / CC0 per asset',dl:'Blender add-on',host:'blenderkit.com',href:'https://www.blenderkit.com',
+ lead:'A library that lives in Blender, with materials and brushes too.',about:'Install the add-on and assets drop straight into the file with their materials intact — no export, no re-link. The free selection downloads without an account; the paid tier is a subscription.',use:['Materials and brushes, not just meshes','Assets that keep their shading'],watch:'The licence is per asset, not per site: royalty-free or CC0, and BlenderKit\'s own terms still stop you shipping an asset on its own.',fmt:'blend',size:'free + paid'});
 
 IM('Shapefest','','3d-illust','library · png / figma',{options:['ray-traced shapes','PNG / Figma','512px free tier','no republishing'],lic:'512px free · no republishing',dl:'click-through',host:'shapefest.com',href:'https://shapefest.com',
  lead:'Good files, terms that forbid showing them here. The empty frame is the honest preview.',about:'Ray-traced objects in a soft studio look, delivered as PNG and Figma components. You can use the renders in your own work, but you cannot republish them — so a public gallery of their previews would break the agreement.',use:['Decorative 3D in hero sections','One glossy shape in a social layout'],watch:'Free tier is capped at 512px, and the republishing restriction stands.',fmt:'PNG / Figma',size:'512px tier'});
-IM('3dicons','','3d-illust','library · cc0 icons',{options:['open-source 3D icons','PNG / blend','four styles','CC0'],lic:'CC0',dl:'direct .zip',host:'3dicons.co',href:'https://3dicons.co',
+IM('3dicons','','3d-illust','library · cc0 icons',{options:['open-source 3D icons','PNG / blend','four styles','CC0'],lic:'CC0 1.0',dl:'direct .zip',host:'3dicons.co',href:'https://3dicons.co',
  lead:'A 3D icon set you can actually ship, with the source files.',about:'Over a thousand icons in four treatments, exported as PNG and as blend so you can re-light them. CC0, so no credit line in the footer.',use:['Feature blocks and empty states','Icons with real depth'],watch:'Renders are lit for a light background; on a dark UI they need relighting or a new shadow.',fmt:'PNG / blend',size:'1,400+ icons'});
-IM('IconScout 3D','','3d-illust','marketplace · subscription',{options:['3D icon sets','PNG / Figma / blend','free daily limit','per-asset licence'],lic:'subscription · some free',dl:'IconScout account',host:'iconscout.com',href:'https://iconscout.com/3d-assets',
- lead:'The biggest paid 3D icon shelf, with a usable free tier.',about:'Thousands of consistent sets — devices, food, weather, people — sold as subscriptions. The free allowance resets daily, which is enough for a small project.',use:['A themed set for one product','Consistent device and object icons'],watch:'Licence terms differ between free and paid downloads. Read the row, not the page.',fmt:'PNG / Figma / blend',size:'100,000+'});
-IM('Unsplash · lake','https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1000&q=72','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/lake',pos:'50% 62%',
+IM('IconScout 3D','','3d-illust','marketplace · subscription',{options:['3D icon sets','PNG / Figma / blend','free daily limit','per-asset licence'],lic:'IconScout Simple License',dl:'IconScout account',host:'iconscout.com',href:'https://iconscout.com/3d-assets',
+ lead:'The biggest paid 3D icon shelf, with a usable free tier.',about:'Thousands of consistent sets — devices, food, weather, people — sold as subscriptions. The free allowance resets daily, which is enough for a small project.',use:['A themed set for one product','Consistent device and object icons'],watch:'Free downloads ask for a credit; paid plans do not. Neither lets you repost the file on its own.',fmt:'PNG / Figma / blend',size:'100,000+'});
+IM('Unsplash · lake','https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1000&q=72','image','photograph · unsplash',{lic:'Unsplash License · no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/lake',pos:'50% 62%',
  lead:'Still water at dusk. Search by light, not by noun.',about:'Unsplash rewards searching for a colour temperature rather than an object: dusk blue reflection finds better frames than lake.',use:['Full-bleed hero backgrounds','Mood boards'],watch:'You cannot sell unmodified copies or build a competing image service.',fmt:'JPEG',size:'5M+ photos'});
-IM('Unsplash · night range','https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1000&q=72','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/mountains',pos:'50% 45%',
+IM('Unsplash · night range','https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1000&q=72','image','photograph · unsplash',{lic:'Unsplash License · no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/mountains',pos:'50% 45%',
  lead:'A cold mountain range under a clear night.',about:'Low-noise, high-contrast photo that survives a dark overlay — which is the only test that matters for a hero image.',use:['Dark heroes with white type','Section breaks'],watch:'Watch the histogram: these crush to black if you add a heavy gradient.',fmt:'JPEG',size:'5M+ photos'});
-IM('Unsplash · forest','https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1000&q=72','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/forest',pos:'50% 50%',
+IM('Unsplash · forest','https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1000&q=72','image','photograph · unsplash',{lic:'Unsplash License · no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/forest',pos:'50% 50%',
  lead:'Looking up through a canopy — texture rather than subject.',about:'Good photographic texture is rare and it makes a flat colour feel alive when placed behind a headline at 15% opacity.',use:['Textured backgrounds','Editorial accents'],watch:'Too much foliage detail fights type. Blur or darken it before use.',fmt:'JPEG',size:'5M+ photos'});
-IM('Pexels · dog','https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&w=1000','image','photograph · pexels',{lic:'free use, no attribution',dl:'click-through',host:'pexels.com',href:'https://www.pexels.com',
+IM('Pexels · dog','https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&w=1000','image','photograph · pexels',{lic:'Pexels License · no resale',dl:'click-through',host:'pexels.com',href:'https://www.pexels.com',
  lead:'The other big free library, and the less fashion-driven one.',about:'Pexels is where you go when Unsplash has gone too editorial: more ordinary subjects, more usable people and animals, same no-attribution licence.',use:['Everyday subject photography','People and lifestyle shots'],watch:'The library is thinner on genuinely beautiful light. Search harder.',fmt:'JPEG',size:'3M+ photos'});
 
-IM('Google Fonts','','sites','site · what you get',{options:['1,800 families','variable axes','OFL / Apache','non-latin scripts'],lic:'OFL / Apache',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com',
+IM('Google Fonts','','sites','site · what you get',{options:['1,800 families','variable axes','OFL / Apache','non-latin scripts'],lic:'OFL 1.1 / Apache 2.0',dl:'direct .zip',host:'fonts.google.com',href:'https://fonts.google.com',
  lead:'1,800 families, licence stated on every page.',about:'The catalogue is uneven, but the licence model is the best in the business — every family tells you exactly what you can do.',use:['A webfont in minutes','Non-Latin scripts'],watch:'The good stuff hides on page 4 of a category. Read the OFL; reserved names matter.',fmt:'TTF / woff2',size:'1,800 families'});
 IM('Figma Community','','plugins','plugin · what you get',{options:['layout generators','content fillers','exporters','free + paid'],lic:'mixed · per plugin',dl:'Figma account',host:'figma.com',href:'https://www.figma.com/community/plugins',
  lead:'Plugins you install in two clicks. The bento builder is 20,000 users deep.',about:'Layout generators, content fillers, exporters. Filter by installs and last-updated — anything untouched for a year is usually broken by the next release.',use:['Bento and collage generators','Bulk image and text filling'],watch:'Each plugin has its own licence and permissions. Network access means it can read your file.',fmt:'Figma plugin',size:'thousands'});
@@ -264,7 +289,7 @@ function fitTypes(scope){
   var T=Math.min(W*0.115,(W/3)*0.42),worst=0;
   data.forEach(function(d){worst=Math.max(worst,(d.m.w*T/d.m.asc)/(W*0.66))});
   if(worst>1)T/=worst;
-  data.forEach(function(d){d.w.style.fontSize=(100*T/d.m.asc).toFixed(2)+'px'});
+  data.forEach(function(d){var fs=(100*T/d.m.asc).toFixed(2);d.w.dataset.fs=fs;d.w.style.fontSize=fs+'px'});
   var FH=Math.round(W*0.19);                          // one height for every card, whatever text is shown
   [].forEach.call((scope||document).querySelectorAll('.item .frame'),function(f){
     if(f.closest('.sheet')){f.style.height='';return}
@@ -275,14 +300,16 @@ function fitTypes(scope){
   });
   data.forEach(function(d){                           // a tall string may shrink, it may never grow the card
     var cur=parseFloat(d.w.style.fontSize)||0,max=(FH-24)/1.06;
-    if(cur>max)d.w.style.fontSize=max.toFixed(2)+'px';
+    if(cur>max){d.w.style.fontSize=max.toFixed(2)+'px';d.w.dataset.fs=max.toFixed(2)}
   });
-  [].forEach.call((scope||document).querySelectorAll('.strip'),function(s){
-    var on=s.querySelector('.opt.on');
-    if(on){s.__p=1;s.scrollLeft=on.offsetLeft-(s.clientWidth-on.offsetWidth)/2;setTimeout(function(){s.__p=0},60)}
-    if(!s.__w){s.__w=1;s.addEventListener('scroll',function(){roulette(s)},{passive:true})}
-    roulette(s);
-  });
+}
+function fitOneType(f){                                // a weight change nudges the width; never grow the card
+  if(!f)return;
+  var w=f.querySelector('.word');if(!w)return;
+  var fs=parseFloat(w.dataset.fs)||0;if(!fs)return;
+  w.style.fontSize=fs+'px';
+  var max=(f.clientWidth||0)*.7;
+  if(max&&w.scrollWidth>max)w.style.fontSize=(fs*max/w.scrollWidth).toFixed(2)+'px';
 }
 function fitSites(scope){
   [].slice.call((scope||document).querySelectorAll('.site .nm')).forEach(function(n){
@@ -290,7 +317,27 @@ function fitSites(scope){
     n.style.fontSize=Math.max(10,Math.min(Math.round(W*0.075),Math.round((n.parentNode.clientHeight||64)*0.34)))+'px';
   });
 }
-var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){fitTypes();fitSites()},140)});
+function prepStrip(s){                                // geometry read once, never inside the scroll handler
+  s.__chips=[].slice.call(s.querySelectorAll('.opt'));
+  s.__c=s.__chips.map(function(c){return c.offsetLeft+c.offsetWidth/2});
+  s.__chips.forEach(function(c){c.__p=null});
+  if(!s.__on){s.__on=1;s.addEventListener('scroll',function(){
+    if(s.__raf)return;
+    s.__raf=requestAnimationFrame(function(){s.__raf=0;roulette(s)});
+  },{passive:true})}
+}
+function centreStrip(s){
+  var on=s.querySelector('.opt.on');if(!on)return;
+  var x=on.offsetLeft-(s.clientWidth-on.offsetWidth)/2;
+  s.__p=1;
+  if(Math.abs(s.scrollLeft-x)>1)s.scrollLeft=x;
+  setTimeout(function(){s.__p=0;roulette(s)},60);
+}
+function strips(){
+  [].forEach.call(document.querySelectorAll('.strip'),function(s){prepStrip(s);centreStrip(s);roulette(s)});
+}
+function layoutAll(){fitTypes();fitSites();strips()}
+var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(layoutAll,140)});
 function optList(i,list,cur,flat,dim,cls){
   var h='<div class="'+(flat?'strip '+(cls||''):'rail')+'" data-i="'+i+'" data-d="'+(dim||'v')+'" role="group" aria-label="options">';
   list.forEach(function(x,j){h+='<button class="opt'+(j===cur?' on':'')+'" data-i="'+i+'" data-v="'+j+'" data-d="'+(dim||'v')+'" aria-pressed="'+(j===cur)+'">'+x.l+'</button>'});
@@ -330,8 +377,10 @@ var groupsEl=document.getElementById('groups');
 GROUPS.forEach(function(g){
   var idxs=[];I.forEach(function(r,i){if(r.k===g[0])idxs.push(i)});
   if(!idxs.length)return;
+  var counts={};idxs.forEach(function(i){var t=tierOf(I[i]);counts[t]=(counts[t]||0)+1});
+  var marks='<span class="lic" aria-label="licence mix in this shelf">'+TIER_ORDER.filter(function(t){return counts[t]}).map(function(t){return mark(t,counts[t])}).join('')+'</span>';
   var sec=document.createElement('section');sec.className='group';sec.dataset.kind=g[0];
-  sec.innerHTML='<div class="gh"><h2>'+g[1]+'</h2><span>'+String(idxs.length).padStart(2,'0')+'</span>'
+  sec.innerHTML='<div class="gh"><h2>'+g[1]+'</h2>'+marks+'<span>'+String(idxs.length).padStart(2,'0')+'</span>'
   +(g[0]==='type'?'<label class="txtwrap"><input class="txt" type="text" placeholder="type to preview every font" aria-label="preview text for all font specimens" autocomplete="off" spellcheck="false"></label>':'<i></i>')
   +'</div><div class="wall"></div>';
   var w=sec.querySelector('.wall');
@@ -350,58 +399,86 @@ GROUPS.forEach(function(g){
       ptext=inp.value;
       [].forEach.call(sec.querySelectorAll('.item[data-kind="type"] .word'),function(w){w.textContent=ptext||I[+w.closest('.item').dataset.i].n});
       fitTypes();
-      if(sheet.classList.contains('on')&&I[cur]&&I[cur].k==='type')openTab(cur);
+      if(sheet.classList.contains('on')&&I[cur]&&I[cur].k==='type'){
+        var sw=sheet.querySelector('.preview .word');
+        if(sw){sw.textContent=ptext||I[cur].n;fitTypes(sheet)}
+      }
     });
   }
   groupsEl.appendChild(sec);
 });
 document.querySelector('.meta').textContent=I.length+' items · '+document.querySelectorAll('.group').length+' sections · reviewed licence by licence';
-fitTypes();fitSites();
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitTypes();fitSites()});
+var legend=document.getElementById('legend');
+if(legend)legend.innerHTML='<span class="lg">licence</span>'+TIER_ORDER.map(function(t){
+  return '<span class="m '+t+'">'+glyph(t)+'<b>'+TIER[t].n+' · '+TIER[t].g+'</b></span>'}).join('');
+layoutAll();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layoutAll);
 var kinds=[{k:'all',t:'all'}].concat(GROUPS.map(function(g){return {k:g[0],t:g[1]}})),kb=document.getElementById('kinds');
 kinds.forEach(function(o,idx){
   var b=document.createElement('button');b.textContent=o.t;if(idx===0)b.className='on';
   b.onclick=function(){
     [].forEach.call(kb.children,function(c){c.classList.remove('on')});b.classList.add('on');
     [].forEach.call(groupsEl.children,function(sec){sec.style.display=(o.k==='all'||sec.dataset.kind===o.k)?'':'none'});
-    fitTypes();fitSites();
+    layoutAll();
   };
   kb.appendChild(b);
 });
-function roulette(s){
-  var chips=[].slice.call(s.querySelectorAll('.opt')),mid=s.scrollLeft+s.clientWidth/2;
-  if(!chips.length)return;
-  chips.forEach(function(c){
-    var d=c.offsetLeft+c.offsetWidth/2-mid,p=Math.max(-1,Math.min(1,d/(s.clientWidth/2)));
-    c.style.transform='rotateY('+(-p*52).toFixed(1)+'deg) scale('+(1-0.16*Math.abs(p)).toFixed(3)+')';
-    c.style.opacity=(1-0.5*Math.abs(p)).toFixed(2);
-  });
+function roulette(s){                                 // one read, one pass of writes, no layout inside the loop
+  if(!s.__chips)prepStrip(s);
+  var chips=s.__chips,c=s.__c;
+  if(!chips||!chips.length)return;
+  var half=s.clientWidth/2||1,mid=s.scrollLeft+half;
+  for(var i=0;i<chips.length;i++){
+    var p=(c[i]-mid)/half;if(p>1)p=1;else if(p<-1)p=-1;
+    if(chips[i].__p===p)continue;
+    chips[i].__p=p;
+    var ap=p<0?-p:p;
+    chips[i].style.transform='translate3d(0,0,0) rotateY('+(-p*52).toFixed(1)+'deg) scale('+(1-.16*ap).toFixed(3)+')';
+    chips[i].style.opacity=(1-.5*ap).toFixed(2);
+  }
   if(s.__p)return;
   clearTimeout(s.__t);
   s.__t=setTimeout(function(){                       // whichever sits in front becomes the live preview
     if(s.__p)return;
-    var mid2=s.scrollLeft+s.clientWidth/2,best=null,bd=1e9;
-    chips.forEach(function(c){var d=Math.abs(c.offsetLeft+c.offsetWidth/2-mid2);if(d<bd){bd=d;best=c}});
+    var mid2=s.scrollLeft+(s.clientWidth/2),best=null,bd=1e9;
+    for(var j=0;j<chips.length;j++){var d=Math.abs(s.__c[j]-mid2);if(d<bd){bd=d;best=chips[j]}}
     if(best)applyVariant(+best.dataset.i,best.dataset.d||'v',+best.dataset.v);
-  },90);
+  },70);
 }
-function applyVariant(i,dim,j){
+function applyVariant(i,dim,j){                       // paint what changed; never rebuild the sheet
   var r=I[i],list,key;dim=dim||'v';
   if(dim==='w'){list=r.ws;key='wi'}else if(dim==='s'){list=r.ss;key='si'}else{list=r.styles;key='vi'}
   if(!list||j<0||j>=list.length||r[key]===j)return false;
   r[key]=j;
-  var el=groupsEl.querySelector('.item[data-i="'+i+'"]');if(!el)return false;
+  var el=groupsEl.querySelector('.item[data-i="'+i+'"]');
+  if(el)paintCard(el,r,dim,j);
+  if(sheet.classList.contains('on')&&cur===i)paintSheet(r,dim,j);
+  return true;
+}
+function paintCard(el,r,dim,j){
+  var wv=r.ws?r.ws[r.wi]:null,sv=r.ss?r.ss[r.si]:null,st=r.styles&&r.styles[j],pv=el.querySelector('.pv');
   if(r.k==='type'){
-    var w=el.querySelector('.word'),wv=r.ws[r.wi],sv=r.ss[r.si];
-    if(w&&wv&&sv){w.style.fontWeight=wv.w||400;w.style.fontStyle=sv.s||'normal';w.dataset.w=wv.w||400}
-  }else if(dim==='v'&&list[j]&&list[j].b){
-    var st=list[j];
-    [].forEach.call(el.querySelectorAll('.pv img'),function(im,k){var n=r.view.names[k];if(n)im.src=st.b+n+st.s});
+    var w=el.querySelector('.word');
+    if(w&&wv&&sv){w.style.fontWeight=wv.w||400;w.style.fontStyle=sv.s||'normal';w.dataset.w=wv.w||400;fitOneType(el.querySelector('.frame.type'))}
+  }else if(st&&st.b&&r.view.names&&pv){
+    [].forEach.call(pv.querySelectorAll('img'),function(im,k){var n=r.view.names[k];if(n)im.src=st.b+n+st.s});
   }
   [].forEach.call(el.querySelectorAll('.opt[data-d="'+dim+'"]'),function(o,k){o.classList.toggle('on',k===j);o.setAttribute('aria-pressed',k===j)});
-  fitTypes();fitSites();
-  if(sheet.classList.contains('on')&&cur===i)openTab(i);
-  return true;
+}
+function paintSheet(r,dim,j){
+  var p=sheet.querySelector('.preview');if(!p)return;
+  var wv=r.ws?r.ws[r.wi]:null,sv=r.ss?r.ss[r.si]:null,st=r.styles&&r.styles[j];
+  if(r.k==='type'){
+    var w=p.querySelector('.word');
+    if(w&&wv&&sv){w.style.fontWeight=wv.w||400;w.style.fontStyle=sv.s||'normal';w.dataset.w=wv.w||400;fitOneType(p.querySelector('.frame.type'))}
+  }else if(st&&st.b&&r.view.names){
+    var pv=p.querySelector('.pv');
+    if(pv)[].forEach.call(pv.querySelectorAll('img'),function(im,k){var n=r.view.names[k];if(n)im.src=st.b+n+st.s});
+  }
+  [].forEach.call(p.querySelectorAll('.vars'),function(row){
+    if(row.dataset.d&&row.dataset.d!==dim)return;
+    [].forEach.call(row.querySelectorAll('button'),function(b,k){b.classList.toggle('on',k===j)});
+  });
 }
 function pickDim(i,dim,j){applyVariant(i,dim,j)}
 function copySpecimen(btn){
@@ -429,15 +506,15 @@ function varButtons(r,i){
 var histPushed=false;
 function openTab(i){
   if(!histPushed){histPushed=true;try{history.pushState({sheet:1},'')}catch(e){}}
-  cur=i;var r=I[i],n=I.length;
-  sheet.innerHTML='<div class="bar"><span class="dot"></span><span>'+kTag(r.k)+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()" aria-label="close preview">close ✕</button></div>'+
+  cur=i;var r=I[i],n=I.length,t=tierOf(r);
+  sheet.innerHTML='<div class="bar"><span class="dot"></span><span>'+kTag(r.k)+'</span><span class="lic">'+mark(t)+'<b>'+TIER[t].n+'</b></span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()" aria-label="close preview">close ✕</button></div>'+
   '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="prow"><span class="pcap">'+(r.k==='type'?(typeLabel(r).split(' · ')[0]||''):r.cap)+'</span>'+(r.k==='type'?'<button class="copy" onclick="copySpecimen(this)">copy txt</button>':'')+'</div>'+varButtons(r,i)+'</div>'+
   '<div class="info"><h1>'+r.n+'</h1><p class="lead">'+r.lead+'</p>'+
   '<div class="sec"><span class="lab">about</span><p>'+r.about+'</p></div>'+
   '<div class="sec"><span class="lab">use it for</span><ul>'+r.use.map(function(u){return '<li>'+u+'</li>'}).join('')+'</ul></div>'+
   '<div class="sec"><span class="lab">watch out</span><p class="watch">'+r.watch+'</p></div>'+
   '<div class="sec"><span class="lab">the facts</span>'+
-    '<div class="kv"><span>licence</span><b>'+r.lic+'</b></div>'+
+    '<div class="kv"><span>licence</span><b class="lv">'+mark(t)+r.lic+'</b></div>'+
     '<div class="kv"><span>download</span><b>'+r.dl+'</b></div>'+
     '<div class="kv"><span>format</span><b>'+r.fmt+'</b></div>'+
     '<div class="kv"><span>size</span><b>'+r.size+'</b></div>'+

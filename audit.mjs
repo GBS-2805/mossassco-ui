@@ -12,6 +12,12 @@
 //   - a padded edge loses its safe-area inset (including inside a media query)
 //   - the phone, narrow-phone or three-column breakpoint goes missing or loses
 //     its order, so a wider block overrides a narrower one
+//   - a record has no licence, or a CC0 / open-licence record is filed under
+//     the wrong tier mark
+//   - a category header loses its licence marks, or the legend loses a tier
+//   - the roulette goes back to measuring inside the scroll handler, or the
+//     sheet goes back to re-rendering on every option change (both made it
+//     jitter)
 //   - a filter, close or copy button drops below thumb size
 //
 // Data is read out of d.html itself, so the audit follows the file.
@@ -145,6 +151,7 @@ const surfaces = [
   ['.kinds', 'padding', ['right', 'left']],
   ['.rule', 'margin', ['right', 'left']],
   ['.gh', 'padding', ['right', 'left']],
+  ['.legend', 'padding', ['right', 'left']],
   ['.wall', 'padding', ['right', 'left']],
   ['footer', 'padding', ['right', 'left', 'bottom']],
   ['.sheet .bar', 'padding', ['top', 'right', 'left']],
@@ -197,6 +204,82 @@ for (const [selector, min] of touchTargets) {
   if (best < min) problems.push(`${selector} needs min-height:${min}px under a thumb, found ${best ? best + 'px' : 'none'}`);
 }
 
+// ---- licence tiers -----------------------------------------------------------
+// Three marks, three claims. A record's tier comes from its licence string, so
+// the icon can never drift from the text next to it in the sheet.
+const tierOf = (lic) =>
+  /^CC0/.test(lic) && !/CC BY|CC-BY/.test(lic) ? 'pd' : /\b(OFL|MIT|ISC|Apache)\b/.test(lic) ? 'open' : 'terms';
+
+if (!/var TIER_ORDER=\['pd','open','terms'\];/.test(html)) problems.push('TIER_ORDER must list pd, open, terms in that order');
+for (const t of ['pd', 'open', 'terms']) {
+  if (!new RegExp(`\\.m\\.${t} svg`).test(html)) problems.push(`no .m.${t} svg style, so the ${t} mark has no shape`);
+}
+
+const recordLines = [];
+for (const [fn, kind] of [['T', 'type'], ['IC', 'icons'], ['IM', 'image/3d']]) {
+  for (const chunk of html.split(new RegExp(`\\n${fn}\\(`)).slice(1)) {
+    const end = chunk.indexOf('});');
+    if (end < 0) continue;
+    recordLines.push({ fn, kind, line: chunk.slice(0, end + 3) });
+  }
+}
+for (const chunk of html.split("I.push({").slice(1)) {
+  const end = chunk.indexOf('});');
+  const body = end < 0 ? chunk : chunk.slice(0, end + 3);
+  if (body.includes("k:'tools'")) recordLines.push({ fn: 'I.push', kind: 'tools', line: body });
+}
+
+const tierCount = { pd: 0, open: 0, terms: 0 };
+let noLicence = 0;
+for (const r of recordLines) {
+  const name = (r.line.match(/^'([^']+)'|n:'([^']+)'/) || []).slice(1).filter(Boolean)[0] || r.kind;
+  const lic = (r.line.match(/lic:'([^']*)'/) || [])[1];
+  if (!lic) {
+    noLicence++;
+    problems.push(`${name}: no licence string, so no tier mark can be honest`);
+    continue;
+  }
+  const tier = tierOf(lic);
+  if (!/^CC0/.test(lic) && /^(CC BY|CC-BY)/.test(lic)) problems.push(`${name}: an attribution licence must not read as public domain: ${lic}`);
+  if (r.line.includes("tier:'") && !r.line.includes(`tier:'${tier}'`)) problems.push(`${name}: declares a tier that disagrees with its licence "${lic}"`);
+  tierCount[tier]++;
+}
+
+if (!/counts\[t\]/.test(html) || !/mark\(t,counts\[t\]\)/.test(html)) problems.push('category headers must print the licence mix: counts[t] + mark(t,counts[t])');
+if (!/id="legend"/.test(html) || !/TIER_ORDER\.map/.test(html)) problems.push('the legend under the rule must spell out every tier');
+if (!/<div class="lic"/.test(html) && !/class="lic"/.test(html)) problems.push('the record bar must carry its tier mark');
+
+// ---- motion -----------------------------------------------------------------
+// Layered fixes for the jitter: cached chip geometry, one rAF per scroll frame,
+// and in-place preview painting instead of rebuilding the sheet.
+const optRule = (html.match(/\.strip \.opt\{([^}]*)\}/) || [])[1] || '';
+if (!optRule) problems.push('no .strip .opt rule');
+if (/transition:[^;}]*transform/.test(optRule)) problems.push('.strip .opt must not transition transform — every scroll frame restarts the tween, which is the jitter');
+if (!/will-change:transform/.test(optRule)) problems.push('.strip .opt must declare will-change:transform so the chips stay on their own layer');
+if (!/backface-visibility:hidden/.test(optRule)) problems.push('.strip .opt must declare backface-visibility:hidden for the rotateY tilt');
+
+function fnBody(name) {
+  const start = html.indexOf('function ' + name + '(');
+  if (start < 0) return '';
+  const next = html.indexOf('\nfunction ', start + 10);
+  return html.slice(start, next < 0 ? start + 1600 : next);
+}
+const rouletteBody = fnBody('roulette');
+if (!rouletteBody) problems.push('no roulette() found');
+if (/offsetLeft|offsetWidth/.test(rouletteBody)) {
+  problems.push('roulette() must not read offsetLeft/offsetWidth — cache them in prepStrip() instead');
+}
+if (!/requestAnimationFrame/.test(html)) problems.push('the strip scroll handler must be rAF-throttled');
+if (!/\\.__chips|__chips/.test(rouletteBody)) problems.push('roulette() must use the cached chip centres');
+
+const variantBody = fnBody('applyVariant');
+if (!variantBody) problems.push('no applyVariant() found');
+if (/openTab\(/.test(variantBody)) problems.push('applyVariant() must not call openTab() — rebuilding the sheet on every option change is the flicker');
+if (!/paintCard\(/.test(variantBody) || !/paintSheet\(/.test(variantBody)) problems.push('applyVariant() must paint the card and the open sheet in place');
+
+if (!/function paintSheet\(/.test(html)) problems.push('no paintSheet(): the open preview needs an in-place update');
+if (!/function fitOneType\(/.test(html)) problems.push('no fitOneType(): a weight change must not re-fit every specimen');
+
 // ---- report ------------------------------------------------------------------
 const w = (s, n) => String(s).padEnd(n);
 console.log(`grid ${cols} x ${gridRows} = ${cols * gridRows} cells, padding ${padding}, rail ${railWidth}%`);
@@ -204,6 +287,8 @@ console.log(w('set', 18) + w('names', 7) + w('styles', 8) + w('urls', 6) + 'brok
 for (const r of rows) console.log(w(r.label, 18) + w(r.names, 7) + w(r.styles, 8) + w(r.urls, 6) + r.broken);
 console.log(`photos/sites/plugins checked: ${imUrls}`);
 console.log(`layout: ${edgesChecked} safe-area edges checked, viewport-fit=cover, 380/760/1280 breakpoints, thumb targets`);
+console.log(`licences: ${recordLines.length} records · pd ${tierCount.pd} · open ${tierCount.open} · terms ${tierCount.terms} · missing ${noLicence}`);
+console.log(`motion: cached chip geometry, rAF-throttled scroll, in-place preview paint`);
 
 if (problems.length) {
   console.error(`\n${problems.length} problem(s):`);
