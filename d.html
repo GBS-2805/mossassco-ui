@@ -37,6 +37,7 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .item:focus-visible{outline:none}
 .item:focus-visible .frame{box-shadow:0 0 0 2px rgba(233,232,227,.55),0 28px 46px -20px #000}
 .cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:10px}
+.cap.top{margin:0 0 10px}
 .cap b{font-size:11px;font-weight:500;color:#cfcec8;transition:color .3s}
 .item:hover .cap b{color:#fff}
 .cap i{font-family:var(--mono);font-style:normal;font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#4c4c54;white-space:nowrap}
@@ -276,7 +277,7 @@ function siteFrame(r,c){
   list.forEach(function(x){h+='<li>'+x+'</li>'});
   return h+'</ul></div></div>';
 }
-function typeLabel(r){var src=(r.cap||'').split('·')[1];src=src?src.trim():'';return r.n+(src?' · '+src:'')+(r.lic?' · '+r.lic:'')}
+function typeLabel(r){var src=(r.cap||'').split('·')[1];src=src?src.trim():'';return src+(r.lic?' · '+r.lic:'')}
 function frameHTML(r,i){
   var v=r.view,c='frame';
   if(r.k==='sites'||r.k==='plugins')return siteFrame(r,c);
@@ -309,7 +310,7 @@ GROUPS.forEach(function(g){
   var w=sec.querySelector('.wall');
   idxs.forEach(function(i){
     var r=I[i],el=document.createElement('div');el.className='item';el.dataset.kind=r.k;el.dataset.i=i;
-    el.innerHTML=frameHTML(r,i)+(r.k==='type'?'':'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.lic+'</div>');
+    el.innerHTML=(r.k==='type'?'<div class="cap top"><b>'+r.n+'</b><i>'+r.k+'</i></div>':'')+frameHTML(r,i)+(r.k==='type'?'':'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.lic+'</div>');
     el.setAttribute('role','button');el.setAttribute('tabindex','0');
     el.setAttribute('aria-label',r.n+' — open preview, options on the right');
     el.onclick=function(e){if(e.target.closest('.opt'))return;openTab(i)};
@@ -386,7 +387,7 @@ function varButtons(r,i){
 function openTab(i){
   cur=i;var r=I[i],n=I.length;
   sheet.innerHTML='<div class="bar"><span class="dot"></span><span>'+r.k+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()" aria-label="close preview">close ✕</button></div>'+
-  '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="pcap">'+(r.k==='type'?(typeLabel(r).split(' · ')[1]||''):r.cap)+'</div>'+varButtons(r,i)+'</div>'+
+  '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="pcap">'+(r.k==='type'?(typeLabel(r).split(' · ')[0]||''):r.cap)+'</div>'+varButtons(r,i)+'</div>'+
   '<div class="info"><h1>'+r.n+'</h1><p class="lead">'+r.lead+'</p>'+
   '<div class="sec"><span class="lab">about</span><p>'+r.about+'</p></div>'+
   '<div class="sec"><span class="lab">use it for</span><ul>'+r.use.map(function(u){return '<li>'+u+'</li>'}).join('')+'</ul></div>'+
