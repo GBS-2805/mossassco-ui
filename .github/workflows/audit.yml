@@ -1,0 +1,45 @@
+name: audit
+
+# The gate that stops a broken page: dead asset URLs, a record with no licence,
+# a tier that disagrees with its licence string, a layout rule broken, the
+# roulette going back to measuring inside its scroll handler, or a script that
+# no longer parses. See audit.mjs for the full list.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    # Assets rot: a CDN path moves, a photo is deleted. Ask the live page daily
+    # whether it is still the file in this repository.
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # No dependencies to install: the audit is one file using node built-ins.
+      - name: Audit (offline checks)
+        run: node audit.mjs
+
+      - name: Audit (live page is this file)
+        # Only meaningful for what is already deployed, and Pages needs a few
+        # minutes after a push, so this runs on the schedule, not on every push.
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: node audit.mjs --live
