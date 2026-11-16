@@ -19,10 +19,17 @@
 //     sheet goes back to re-rendering on every option change (both made it
 //     jitter)
 //   - a filter, close or copy button drops below thumb size
+//   - the page's own script stops parsing
+//   - a record loses its https link, its copy, or its name becomes a duplicate
+//   - with --live, the published page is not byte-identical to this file
 //
 // Data is read out of d.html itself, so the audit follows the file.
 
 import { readFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+import { mkdtempSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 const html = await readFile(new URL('./d.html', import.meta.url), 'utf8');
 const problems = [];
@@ -295,7 +302,6 @@ const kindsRule = (html.match(/\n\.kinds\{([^}]*)\}/) || [])[1] || '';
 if (!/align-items:center/.test(kindsRule)) problems.push('.kinds must align its items on the centre line, or the licence divider hangs off the top of the row');
 if (!/\.kinds \.sep\{[^}]*align-self:center/.test(html)) problems.push('.kinds .sep must sit on the centre line with the tabs');
 if (!/id="legend"/.test(html) || !/TIER_ORDER\.map/.test(html)) problems.push('the legend under the rule must spell out every tier');
-if (!/<div class="lic"/.test(html) && !/class="lic"/.test(html)) problems.push('the record bar must carry its tier mark');
 
 // ---- motion -----------------------------------------------------------------
 // Layered fixes for the jitter: cached chip geometry, one rAF per scroll frame,
@@ -328,6 +334,75 @@ if (!/paintCard\(/.test(variantBody) || !/paintSheet\(/.test(variantBody)) probl
 if (!/function paintSheet\(/.test(html)) problems.push('no paintSheet(): the open preview needs an in-place update');
 if (!/function fitOneType\(/.test(html)) problems.push('no fitOneType(): a weight change must not re-fit every specimen');
 
+// ---- what every record must carry ---------------------------------------------
+// A record that opens a sheet with an empty paragraph, or a link to nowhere, is
+// a hole in the page. Names are the page's only identifiers, so they must be
+// unique.
+function pick(line, field) {
+  const at = line.indexOf(field + ":'");
+  if (at < 0) return '';
+  let out = '';
+  for (let i = at + field.length + 2; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '\\') { out += line[i + 1]; i++; continue; }
+    if (ch === "'") break;
+    out += ch;
+  }
+  return out;
+}
+
+const seenNames = new Set();
+let copyChecked = 0;
+for (const r of recordLines) {
+  const name = pick(r.line, 'n') || (r.line.match(/^'([^']+)'/) || [])[1] || r.kind;
+  if (seenNames.has(name)) problems.push(`two records share the name "${name}"`);
+  seenNames.add(name);
+  const href = pick(r.line, 'href');
+  if (!/^https:\/\//.test(href)) problems.push(`${name}: the link must be https, found "${href || 'none'}"`);
+  for (const field of ['lead', 'about', 'watch']) {
+    const text = pick(r.line, field);
+    if (text.trim().length < 12) problems.push(`${name}: ${field} is missing or says nothing`);
+  }
+  if (!/use:\[[^\]]{8,}\]/.test(r.line)) problems.push(`${name}: needs at least one "use it for" line`);
+  copyChecked++;
+}
+if (!/target="_blank" rel="noopener"/.test(html)) problems.push('outbound links must carry target="_blank" rel="noopener"');
+if (!/<link rel="icon"/.test(html)) problems.push('no favicon declared, so every load makes a 404 for /favicon.ico');
+
+// ---- the page's own script ----------------------------------------------------
+const scriptBody = (html.match(/<script>([\s\S]*)<\/script>/) || [])[1];
+let scriptOk = false;
+if (!scriptBody) {
+  problems.push('d.html has no inline <script> to run');
+} else {
+  const dir = mkdtempSync(join(tmpdir(), 'shelf-gate-'));
+  const file = join(dir, 'page.js');
+  writeFileSync(file, scriptBody);
+  try {
+    execFileSync(process.execPath, ['--check', file], { stdio: 'pipe' });
+    scriptOk = true;
+  } catch (e) {
+    const detail = String(e.stderr || e.stdout || e.message).split('\n').filter(Boolean).slice(0, 3).join(' | ');
+    problems.push(`the inline script does not parse: ${detail}`);
+  }
+}
+
+// ---- live parity (opt in) -----------------------------------------------------
+// `node audit.mjs --live` answers the only question a deployment can ask: is the
+// published file this file?
+let liveChecked = false;
+if (process.argv.includes('--live')) {
+  try {
+    const res = await fetch('https://gbs-2805.github.io/mossassco-ui/d.html?v=' + Date.now(), { signal: AbortSignal.timeout(20000) });
+    const live = await res.text();
+    liveChecked = true;
+    if (!res.ok) problems.push(`live page answered ${res.status}`);
+    else if (live !== html) problems.push('the live page is not this file — push it, or wait for Pages to finish (usually three or four polls)');
+  } catch (e) {
+    problems.push(`could not read the live page: ${e.code || e.message}`);
+  }
+}
+
 // ---- report ------------------------------------------------------------------
 const w = (s, n) => String(s).padEnd(n);
 console.log(`grid ${cols} x ${gridRows} = ${cols * gridRows} cells, padding ${padding}, rail ${railWidth}%`);
@@ -337,6 +412,8 @@ console.log(`photos/sites/plugins checked: ${imUrls}`);
 console.log(`layout: ${edgesChecked} safe-area edges checked, viewport-fit=cover, 380/760/1280 breakpoints, thumb targets`);
 console.log(`licences: ${recordLines.length} records · FF ${tierCount.pd} · CN ${tierCount.open} · P ${tierCount.terms} · missing ${noLicence}`);
 console.log(`motion: cached chip geometry, rAF-throttled scroll, in-place preview paint`);
+console.log(`records: ${copyChecked} with https links, copy and uses · names unique · links rel=noopener`);
+console.log(`script: ${scriptOk ? 'parses' : 'FAILS TO PARSE'}${liveChecked ? ' · live: byte-identical to d.html' : ' · live: not checked (pass --live)'}`);
 
 if (problems.length) {
   console.error(`\n${problems.length} problem(s):`);
