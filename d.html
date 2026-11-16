@@ -43,10 +43,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sub{margin-top:4px;font-family:var(--mono);font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#3e3e45}
 .pv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .tag{position:absolute;left:4.5%;top:9%;font-family:var(--mono);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5a62;z-index:2}
-.type .word{position:absolute;left:4.5%;bottom:34px;right:4.5%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
+.type .word{position:absolute;left:4.5%;bottom:14px;right:28%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
 .frame.type{aspect-ratio:auto}
 .type .tag{top:11px}
-.strip{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;align-items:center;gap:16px;padding:0 4.5%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.08);z-index:5}
+.strip{position:absolute;right:0;top:0;bottom:0;width:27%;display:flex;align-items:center;gap:16px;padding:0 10%;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-left:1px solid rgba(255,255,255,.1);z-index:5}
 .strip::-webkit-scrollbar{display:none}
 .strip .opt{flex:0 0 auto;width:auto;padding:12px 0;border:0;background:none;font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#55555d;line-height:1;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:color .14s}
 .strip .opt:hover{color:#c9c8c2}
@@ -133,7 +133,7 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
   .kinds::-webkit-scrollbar{display:none}
   .rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}
   .site .nm{max-width:58%}.site li{font-size:6px}
-  .type .word{right:4.5%}.icons .pv{padding:6%}.icons.hasrail .pv{padding:6% calc(27% + 6%) 6% 6%}
+  .type .word{right:30%}.icons .pv{padding:6%}.icons.hasrail .pv{padding:6% calc(27% + 6%) 6% 6%}
   .opt{font-size:6.5px;letter-spacing:.06em;padding:0 4% 0 6%}}
 </style></head><body>
 <div class="grain"></div>
@@ -242,7 +242,13 @@ function fitTypes(scope){
   data.forEach(function(d){                            // frame height = tag + name + strip, no band
     if(d.f.closest('.sheet')){d.f.style.height='';return}
     var b=d.w.getBoundingClientRect(),tag=d.f.querySelector('.tag');
-    d.f.style.height=Math.round(34+b.height+10+(tag?tag.offsetHeight:0)+10)+'px';
+    d.f.style.height=Math.round(14+b.height+10+(tag?tag.offsetHeight:0)+10)+'px';
+  });
+  [].forEach.call((scope||document).querySelectorAll('.strip'),function(s){   // keep the live weight in view
+    var on=s.querySelector('.opt.on');if(!on)return;
+    s.scrollLeft=on.offsetLeft-(s.clientWidth-on.offsetWidth)/2;
+  });
+  data.forEach(function(d){
   });
 }
 function fitSites(scope){
