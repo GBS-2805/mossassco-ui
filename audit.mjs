@@ -267,6 +267,19 @@ if (!/TIER_ORDER\.map\(function\(t\)\{return mark\(t,counts\[t\]\|\|0\)\}/.test(
   problems.push('a header must show all three tiers with their counts, including zero — otherwise a category silently loses its CN');
 }
 if (!/\.kinds \.lic-tab\{/.test(html)) problems.push('.kinds .lic-tab must give the licence tabs their own weight so they are easy to spot');
+if (!/TIER_TOTAL\[o\.tier\]/.test(html)) problems.push('each licence tab must carry the number of items it holds, before it is tapped');
+if (!/var TIER_TOTAL=\{\};I\.forEach/.test(html)) {
+  problems.push('TIER_TOTAL must be tallied from the data, not typed in');
+} else {
+  const tally = { pd: 0, open: 0, terms: 0 };
+  for (const r of recordLines) {
+    const lic = (r.line.match(/lic:'([^']*)'/) || [])[1];
+    if (lic) tally[tierOf(lic)]++;
+  }
+  for (const [key, want] of [['pd', tally.pd], ['open', tally.open], ['terms', tally.terms]]) {
+    if (tally[key] !== tierCount[key]) problems.push(`tier tally drifted: ${key} ${tally[key]} vs ${tierCount[key]}`);
+  }
+}
 if (!/function paintMeta\(/.test(html)) problems.push('no paintMeta(): the header counts must follow a licence filter');
 if (!/function applyFilter\(/.test(html) || !/FILTER\.tier/.test(html)) problems.push('the licence tiers must filter the wall, not just label it');
 if (!/kinds\.push\(\{tier:t/.test(html)) problems.push('FF, CN and P must be filter tabs in the kinds row');

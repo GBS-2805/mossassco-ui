@@ -40,6 +40,7 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .kinds button .m{color:inherit;gap:5px}
 .kinds .lic-tab{color:#7d7d86}
 .kinds .lic-tab.on,.kinds .lic-tab:hover{color:var(--ink)}
+.kinds .lic-tab .m .c{color:inherit;opacity:.62}
 .kinds button .m b{color:inherit}
 .legend{display:flex;align-items:center;gap:6px 16px;flex-wrap:wrap;padding:11px calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));max-width:1400px;margin:0 auto;font-family:var(--mono);font-size:7px;letter-spacing:.14em;text-transform:uppercase;color:#4c4c54}
 .legend .m{gap:4px;white-space:nowrap}
@@ -450,6 +451,7 @@ function applyFilter(){
   });
   layoutAll();
 }
+var TIER_TOTAL={};I.forEach(function(r){var t=tierOf(r);TIER_TOTAL[t]=(TIER_TOTAL[t]||0)+1});
 var kinds=[{k:'all',t:'all'}];
 TIER_ORDER.forEach(function(t){kinds.push({tier:t,t:TIER[t].a})});
 kinds.push({sep:1});
@@ -458,7 +460,7 @@ var kb=document.getElementById('kinds');
 kinds.forEach(function(o,idx){
   if(o.sep){var sp=document.createElement('i');sp.className='sep';sp.setAttribute('aria-hidden','true');kb.appendChild(sp);return}
   var b=document.createElement('button');
-  if(o.tier){b.className='lic-tab';b.innerHTML='<span class="m '+o.tier+'"><i class="g">'+glyph(o.tier)+'</i><b>'+TIER[o.tier].a+'</b></span>'}
+  if(o.tier){b.className='lic-tab';b.innerHTML='<span class="m '+o.tier+'"><i class="g">'+glyph(o.tier)+'</i><b>'+TIER[o.tier].a+'</b><span class="c">'+(TIER_TOTAL[o.tier]||0)+'</span></span>'}
   else b.textContent=o.t;
   b.setAttribute('aria-label','filter: '+(o.tier?TIER[o.tier].n:o.t));
   if(idx===0)b.className='on';
