@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mossassco — a repository</title>
+<title>Shelf — a repository</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com"><link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -61,10 +61,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .vars .vlab{font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#4a4a52;align-self:center;margin:0 2px 0 0}
 .vars{align-items:center}
 .icons{background:#0e0e11}
-.icons .pv{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:7%}
-.icons.hasrail .pv{padding:7% calc(27% + 7%) 7% 7%}
-.icons img{width:44%;max-width:40px;filter:invert(1) brightness(2);animation:icoIn .42s cubic-bezier(.2,.8,.2,1) both}
-.icons.hasrail img{width:55%;max-width:40px}
+.icons .pv{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:1%}
+.icons.hasrail .pv{padding:1% calc(27% + 1%) 1% 1%}
+.icons img{height:calc(var(--fh,120px)*.42);width:auto;max-width:100%;object-fit:contain;filter:invert(1) brightness(2);animation:icoIn .42s cubic-bezier(.2,.8,.2,1) both}
+.icons.hasrail img{max-width:calc(100% - 2px)}
 .icons.brand img{filter:grayscale(1) invert(1) brightness(1.7);opacity:.82;animation:none}
 @keyframes icoIn{from{opacity:0;filter:invert(1) brightness(2) blur(5px)}to{opacity:.92;filter:invert(1) brightness(2) blur(0)}}
 .img .pv img{width:100%;height:100%;object-fit:cover;display:block;animation:fadeIn .5s ease both}
@@ -78,10 +78,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .void{background:radial-gradient(120% 100% at 50% 0%,#19191d,#0a0a0c 68%)}
 .void:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:13px 13px;opacity:.5;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 12%,transparent 68%);mask-image:radial-gradient(circle at 50% 50%,#000 12%,transparent 68%)}
 .void span{position:relative;font-family:var(--mono);font-size:6.5px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a94;line-height:1.9;text-align:center;padding:0 8%}
-.site .pv{align-items:flex-end;justify-content:space-between;gap:5%;padding:0 4.5% 6.8% 4.5%}
+.site .pv{align-items:center;justify-content:space-between;gap:16px;padding:6px 4.5%}
 .site .nm{font-family:"Instrument Serif",serif;font-size:26px;line-height:.94;letter-spacing:-.012em;color:#f2f1ec;max-width:56%}
 .site ul{margin:0;padding:0 0 2px;list-style:none;text-align:right;flex-shrink:0}
-.site li{font-family:var(--mono);font-size:6.5px;letter-spacing:.13em;text-transform:uppercase;color:#6f6f78;line-height:1.95;font-variant-numeric:tabular-nums}
+.site li{font-family:var(--mono);font-size:6.5px;letter-spacing:.13em;text-transform:uppercase;color:#6f6f78;line-height:1.62;font-variant-numeric:tabular-nums}
 .rail{position:absolute;right:0;top:0;bottom:0;width:27%;display:flex;flex-direction:column;border-left:1px solid rgba(255,255,255,.1);z-index:5}
 .opt{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:5px;width:100%;padding:0 5% 0 9%;margin:0;border:0;background:none;font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#55555d;line-height:1;text-align:right;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:color .14s,background .14s;font-variant-numeric:tabular-nums}
 .opt:hover{color:#c9c8c2;background:rgba(255,255,255,.035)}
@@ -141,11 +141,11 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
   .kinds::-webkit-scrollbar{display:none}
   .rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}
   .site .nm{max-width:58%}.site li{font-size:6px}
-  .type .word{right:30%}.icons .pv{padding:6%}.icons.hasrail .pv{padding:6% calc(27% + 6%) 6% 6%}
+  .type .word{right:30%}.icons .pv{padding:1%}.icons.hasrail .pv{padding:1% calc(27% + 1%) 1% 1%}
   .opt{font-size:6.5px;letter-spacing:.06em;padding:0 4% 0 6%}}
 </style></head><body>
 <div class="grain"></div>
-<header><span class="brand">Mossassco<i> — a repository</i></span><span class="meta">loading</span></header>
+<header><span class="brand">Shelf<i> — a repository</i></span><span class="meta">loading</span></header>
 <div class="kinds" id="kinds"></div>
 <div class="rule"></div>
 <div id="groups"></div>
@@ -251,10 +251,14 @@ function fitTypes(scope){
   data.forEach(function(d){worst=Math.max(worst,(d.m.w*T/d.m.asc)/(W*0.66))});
   if(worst>1)T/=worst;
   data.forEach(function(d){d.w.style.fontSize=(100*T/d.m.asc).toFixed(2)+'px'});
-  data.forEach(function(d){                            // frame height = tag + name + strip, no band
-    if(d.f.closest('.sheet')){d.f.style.height='';return}
-    var b=d.w.getBoundingClientRect(),tag=d.f.querySelector('.tag');
-    d.f.style.height=Math.round(14+b.height+10+(tag?tag.offsetHeight:0)+10)+'px';
+  var FH=Math.round(W*0.19);                          // one height for every card, whatever text is shown
+  [].forEach.call((scope||document).querySelectorAll('.item .frame'),function(f){
+    if(f.closest('.sheet')){f.style.height='';return}
+    f.style.height=FH+'px';f.style.setProperty('--fh',FH+'px');
+  });
+  data.forEach(function(d){                           // a tall string may shrink, it may never grow the card
+    var cur=parseFloat(d.w.style.fontSize)||0,max=(FH-24)/1.06;
+    if(cur>max)d.w.style.fontSize=max.toFixed(2)+'px';
   });
   [].forEach.call((scope||document).querySelectorAll('.strip'),function(s){
     var on=s.querySelector('.opt.on');
@@ -266,7 +270,7 @@ function fitTypes(scope){
 function fitSites(scope){
   [].slice.call((scope||document).querySelectorAll('.site .nm')).forEach(function(n){
     var W=n.parentNode.clientWidth||0;if(!W)return;
-    n.style.fontSize=Math.max(11,Math.round(W*0.075))+'px';
+    n.style.fontSize=Math.max(10,Math.min(Math.round(W*0.075),Math.round((n.parentNode.clientHeight||64)*0.34)))+'px';
   });
 }
 var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){fitTypes();fitSites()},140)});
@@ -276,7 +280,7 @@ function optList(i,list,cur,flat,dim,cls){
   return h+'</div>';
 }
 function siteFrame(r,c){
-  var list=r.options||r.use||[],h='<div class="'+c+' site"><div class="pv"><div class="tag">'+r.cap+'</div><div class="nm">'+r.n+'</div><ul>';
+  var list=r.options||r.use||[],h='<div class="'+c+' site"><div class="pv"><div class="nm">'+r.n+'</div><ul>';
   list.forEach(function(x){h+='<li>'+x+'</li>'});
   return h+'</ul></div></div>';
 }
@@ -315,7 +319,7 @@ GROUPS.forEach(function(g){
   var w=sec.querySelector('.wall');
   idxs.forEach(function(i){
     var r=I[i],el=document.createElement('div');el.className='item';el.dataset.kind=r.k;el.dataset.i=i;
-    el.innerHTML=(r.k==='type'?'<div class="cap top"><b>'+r.n+'</b><i>'+r.k+'</i></div>':'')+frameHTML(r,i)+(r.k==='type'?'':'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.lic+'</div>');
+    el.innerHTML='<div class="cap top"><b>'+r.n+'</b><i>'+r.k+'</i></div>'+frameHTML(r,i);
     el.setAttribute('role','button');el.setAttribute('tabindex','0');
     el.setAttribute('aria-label',r.n+' — open preview, options on the right');
     el.onclick=function(e){if(e.target.closest('.opt'))return;openTab(i)};
@@ -398,7 +402,9 @@ function varButtons(r,i){
   if(!r.styles||r.styles.length<2)return '';
   return '<div class="vars" data-d="v">'+btn(r.styles,r.vi,'v')+'</div>';
 }
+var histPushed=false;
 function openTab(i){
+  if(!histPushed){histPushed=true;try{history.pushState({sheet:1},'')}catch(e){}}
   cur=i;var r=I[i],n=I.length;
   sheet.innerHTML='<div class="bar"><span class="dot"></span><span>'+r.k+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()" aria-label="close preview">close ✕</button></div>'+
   '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="pcap">'+(r.k==='type'?(typeLabel(r).split(' · ')[0]||''):r.cap)+'</div>'+varButtons(r,i)+'</div>'+
@@ -420,7 +426,9 @@ function openTab(i){
   var b=sheet.querySelector('.body');if(b)b.scrollTop=0;
 }
 function step(d){cur=(cur+d+I.length)%I.length;openTab(cur)}
-function closeTab(){sheet.classList.remove('on');sheet.innerHTML='';document.body.style.overflow=''}
+function hideSheet(){sheet.classList.remove('on');sheet.innerHTML='';document.body.style.overflow=''}
+function closeTab(){if(histPushed){histPushed=false;history.back()}hideSheet()}
+window.addEventListener('popstate',function(){if(sheet.classList.contains('on')){histPushed=false;hideSheet()}});
 document.addEventListener('keydown',function(e){
   if(!sheet.classList.contains('on'))return;
   if(e.key==='Escape')closeTab();
