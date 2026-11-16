@@ -18,21 +18,108 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .brand{font-family:"Instrument Serif",serif;font-size:18px;color:#c9c8c2}
 .brand i{font-style:italic;color:#7f7f86}
 .meta{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:#4f4f57}
+/* the free index ships its own specimens: one woff2 per face, downloaded from
+   the foundry (or its repo) and served from fonts/ so nothing depends on
+   another site staying up or allowing hotlinks */
+@font-face{font-family:"Alfphabet";src:url('fonts/alfphabet.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Aspekta";src:url('fonts/aspekta.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Azeret Mono";src:url('fonts/azeret-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"BIZ UDMincho";src:url('fonts/biz-udmincho.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"BIZ UDPMincho";src:url('fonts/biz-udpmincho.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Barlaxent";src:url('fonts/barlaxent.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Basically A Mono";src:url('fonts/basically-a-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Blocks on Blocks";src:url('fonts/blocks-on-blocks.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Breite Grotesk";src:url('fonts/breite-grotesk.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"CAT Eckmann";src:url('fonts/cat-eckmann.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"CAT Neuzeit";src:url('fonts/cat-neuzeit.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Career";src:url('fonts/career.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Dauphine";src:url('fonts/dauphine.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Destra";src:url('fonts/destra.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Evening";src:url('fonts/evening.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Fibel Nord";src:url('fonts/fibel-nord.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Fragment Mono";src:url('fonts/fragment-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"FreeMono";src:url('fonts/freemono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"FreeSans";src:url('fonts/freesans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"FreeSerif";src:url('fonts/freeserif.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Frick";src:url('fonts/frick.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Fudd";src:url('fonts/fudd.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"GTL001";src:url('fonts/gtl001.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Galgo";src:url('fonts/galgo.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Gap Sans";src:url('fonts/gap-sans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Geist";src:url('fonts/geist.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Geist Mono";src:url('fonts/geist-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Getai Grotesk Display";src:url('fonts/getai-grotesk-display.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Gloock";src:url('fonts/gloock.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"HIKARU MONO";src:url('fonts/hikaru-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Handjet";src:url('fonts/handjet.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Hauora Sans";src:url('fonts/hauora-sans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Hedvig Letters Sans";src:url('fonts/hedvig-letters-sans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Hedvig Letters Serif";src:url('fonts/hedvig-letters-serif.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Helmet";src:url('fonts/helmet.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Honey";src:url('fonts/honey.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Inclusive Sans";src:url('fonts/inclusive-sans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Instrument Sans";src:url('fonts/instrument-sans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Kulim Park";src:url('fonts/kulim-park.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"LT Institute";src:url('fonts/lt-institute.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"LT Remark";src:url('fonts/lt-remark.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"LT Superior Mono";src:url('fonts/lt-superior-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Lab Mono";src:url('fonts/lab-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Lil Grotesk";src:url('fonts/lil-grotesk.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Lunchtype";src:url('fonts/lunchtype.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Maname";src:url('fonts/maname.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Manifont Grotesk";src:url('fonts/manifont-grotesk.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Martian Mono";src:url('fonts/martian-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Meta Old French";src:url('fonts/meta-old-french.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Micro Grotesk";src:url('fonts/micro-grotesk.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Miedinger*";src:url('fonts/miedinger.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Milford";src:url('fonts/milford.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Milkman";src:url('fonts/milkman.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Monor";src:url('fonts/monor.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"New Heterodox Mono";src:url('fonts/new-heterodox-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Opening Hours Sans";src:url('fonts/opening-hours-sans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Optician Sans";src:url('fonts/optician-sans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Overused Grotesk";src:url('fonts/overused-grotesk.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Panamera";src:url('fonts/panamera.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Paragon";src:url('fonts/paragon.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Prodigy Sans";src:url('fonts/prodigy-sans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Project Blackbird";src:url('fonts/project-blackbird.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Queering";src:url('fonts/queering.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Rag";src:url('fonts/rag.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Redaction";src:url('fonts/redaction.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Snap-it Mono";src:url('fonts/snap-it-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Solitus";src:url('fonts/solitus.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Sprat";src:url('fonts/sprat.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Sunday Masthead";src:url('fonts/sunday-masthead.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Swansea";src:url('fonts/swansea.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"TASA Orbiter";src:url('fonts/tasa-orbiter.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Times Newer Roman";src:url('fonts/times-newer-roman.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Uncut Plan8";src:url('fonts/uncut-plan8.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Uncut Sans";src:url('fonts/uncut-sans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Victor Mono";src:url('fonts/victor-mono.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Violet Sans";src:url('fonts/violet-sans.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Whois";src:url('fonts/whois.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Young Serif";src:url('fonts/young-serif.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Zarathustra";src:url('fonts/zarathustra.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"Zen Kaku Gothic New";src:url('fonts/zen-kaku-gothic-new.woff2') format('woff2');font-display:swap;font-weight:400;font-style:normal}
 .faces{padding-top:4px}
 .faces .idx{display:flex;flex-direction:column;padding:0 calc(34px + var(--sa-r)) 12px calc(34px + var(--sa-l));max-width:1400px;margin:0 auto}
 .faces .fnote{display:block;align-self:stretch;width:100%;font-family:var(--mono);font-style:normal;font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:#4f4f57;line-height:1.7;margin:12px 0 0;padding:0 calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));max-width:1400px;box-sizing:border-box}
 .faces h3{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-weight:400;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#5c5c65;margin:26px 0 0;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.16)}
 .faces h3 span{color:#3f3f47}
-.faces .row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit}
-.faces .row b{flex:1 1 auto;min-width:0;font-weight:400;font-size:17px;line-height:1.2;letter-spacing:-.012em;color:#e7e6e1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.faces .row[data-c=display] b{font-family:'Clash Display',Satoshi,system-ui,sans-serif}
-.faces .row[data-c=serif] b{font-family:'Instrument Serif',Georgia,serif;letter-spacing:0}
-.faces .row[data-c=monospace] b{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:15px;letter-spacing:-.03em}
-.faces .gh .lic{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.faces .row i{flex:0 0 auto;font-family:var(--mono);font-style:normal;font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:#63636c;white-space:nowrap}
-.faces .row:hover b{color:#fff}
-.faces .row:focus-visible{outline:1px solid rgba(233,232,227,.55);outline-offset:3px}
-@media(min-width:760px){.faces .row b{font-size:19px}.faces .row[data-c=monospace] b{font-size:16px}}
+/* each face is a landscape card: the specimen runs the full width, the name
+   and licence sit underneath. Same shape as the wall's type cards so the two
+   sections read as one sheet. */
+.faces .fc{display:flex;flex-direction:column;justify-content:space-between;height:109px;margin:0 0 9px;padding:11px 15px 10px;border:1px solid rgba(255,255,255,.09);border-radius:11px;background:rgba(255,255,255,.016);text-decoration:none;color:inherit;overflow:hidden}
+.faces .fc .word{display:block;font-size:40px;line-height:.92;letter-spacing:-.02em;color:#e9e8e3;white-space:nowrap;overflow:hidden}
+.faces .fc .ft{display:flex;justify-content:space-between;align-items:baseline;gap:12px;min-width:0}
+.faces .fc .ft b{font-family:var(--mono);font-weight:400;font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;color:#9a9aa2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.faces .fc .ft i{font-family:var(--mono);font-style:normal;font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:#5c5c65;white-space:nowrap}
+.faces .fc:hover .word{color:#fff}
+.faces .fc:focus-visible{outline:1px solid rgba(233,232,227,.55);outline-offset:3px}
+.faces .fc[data-nofile]{border-style:dashed;border-color:rgba(255,255,255,.13)}
+.faces .fc[data-nofile] .word{font-family:'Clash Display',Satoshi,system-ui,sans-serif;color:#6b6b74;font-size:26px;letter-spacing:-.01em}
+.faces .fc[data-nofile] .ft i{color:#4a4a52}
+@media(min-width:760px){.faces .fc{height:117px;padding:13px 18px 11px}.faces .fc .word{font-size:48px}}
 .kinds{display:flex;align-items:center;gap:18px;padding:22px calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;flex-wrap:wrap}
 .kinds button{background:none;border:0;padding:0 0 5px;font:inherit;letter-spacing:inherit;text-transform:inherit;color:#5b5b63;cursor:pointer;position:relative;min-height:40px;display:inline-flex;align-items:center;white-space:nowrap}
 .kinds button.on{color:var(--ink)}
@@ -195,7 +282,7 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 <footer><span>set live · licences read at source · icons from source · share images © their sites</span><span>older attempts <a href="b2.html">instrument</a><a href="a.html">palette</a><a href="c.html">front page</a></span></footer>
 <div class="sheet" id="sheet"></div>
 <script>
-var I=[];var ptext='';
+var I=[];var PTX='12345 - Shelf';var ptext=PTX;   // what every specimen shows until someone types something else
 // Three licence tiers: FF full freedom, CN credit needed, P prohibited terms.
 // The mark is a shape plus its letters, so it reads before it is decoded.
 var TIER={pd:{a:'FF',n:'full freedom',g:'free',h:'FF — full freedom. Open source and free: use it, change it, ship it. No credit line; the licence file travels with the copy.'},
@@ -362,7 +449,18 @@ function centreStrip(s){
 function strips(){
   [].forEach.call(document.querySelectorAll('.strip'),function(s){prepStrip(s);centreStrip(s);roulette(s)});
 }
-function layoutAll(){fitTypes();fitSites();strips()}
+function fitFaces(){                                   // one line of preview per card, scaled to the card's width
+  [].forEach.call(document.querySelectorAll('.faces .fc:not([data-nofile])'),function(a){
+    var w=a.querySelector('.word');if(!w)return;
+    var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];
+    var m=metrics(fam,w.textContent.trim(),400);
+    var W=(a.clientWidth||0)-30;
+    if(!W||!m.w)return;
+    var fs=Math.max(11,Math.min(W/m.w*100,72));
+    w.style.fontSize=fs.toFixed(1)+'px';
+  });
+}
+function layoutAll(){fitTypes();fitFaces();fitSites();strips()}
 var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(layoutAll,140)});
 function optList(i,list,cur,flat,dim,cls){
   var h='<div class="'+(flat?'strip '+(cls||''):'rail')+'" data-i="'+i+'" data-d="'+(dim||'v')+'" role="group" aria-label="options">';
@@ -422,7 +520,8 @@ GROUPS.forEach(function(g){
     inp.addEventListener('input',function(){
       ptext=inp.value;
       [].forEach.call(sec.querySelectorAll('.item[data-kind="type"] .word'),function(w){w.textContent=ptext||I[+w.closest('.item').dataset.i].n});
-      fitTypes();
+      [].forEach.call(document.querySelectorAll('.faces .fc:not([data-nofile]) .word'),function(w){w.textContent=ptext||PTX});
+      fitTypes();fitFaces();
       if(sheet.classList.contains('on')&&I[cur]&&I[cur].k==='type'){
         var sw=sheet.querySelector('.preview .word');
         if(sw){sw.textContent=ptext||I[cur].n;fitTypes(sheet)}
@@ -433,106 +532,106 @@ GROUPS.forEach(function(g){
   groupsEl.appendChild(sec);
 });
 var FREE=[
-{c:'display',n:'Blocks on Blocks',h:'github.com',u:'https://github.com/nervousattack/BLOCKS-ON-BLOCKS',l:'OFL'},
+{c:'display',n:'Blocks on Blocks',h:'github.com',u:'https://github.com/nervousattack/BLOCKS-ON-BLOCKS',f:'blocks-on-blocks',l:'OFL'},
 {c:'display',n:'Cakra',h:'cakra.oomtype.com',u:'https://www.cakra.oomtype.com/',l:'OFL'},
-{c:'display',n:'CAT Eckmann',h:'peter-wiegel.de',u:'https://www.peter-wiegel.de/eckmann.html',l:'OFL / GPL+exception'},
-{c:'display',n:'Destra',h:'fonderiz.fr',u:'https://fonderiz.fr/destra/',l:'OFL'},
-{c:'display',n:'Frick',h:'github.com',u:'https://github.com/dennisgrauel/Frick',l:'OFL'},
-{c:'display',n:'Galgo',h:'uncut.wtf',u:'https://uncut.wtf/downloads/galgovf.zip',l:'OFL'},
-{c:'display',n:'Gap Sans',h:'github.com',u:'https://github.com/Interstices-/GapSans',l:'OFL'},
+{c:'display',n:'CAT Eckmann',h:'peter-wiegel.de',u:'https://www.peter-wiegel.de/eckmann.html',f:'cat-eckmann',l:'OFL / GPL+exception'},
+{c:'display',n:'Destra',h:'fonderiz.fr',u:'https://fonderiz.fr/destra/',f:'destra',l:'OFL'},
+{c:'display',n:'Frick',h:'github.com',u:'https://github.com/dennisgrauel/Frick',f:'frick',l:'OFL'},
+{c:'display',n:'Galgo',h:'uncut.wtf',u:'https://uncut.wtf/downloads/galgovf.zip',f:'galgo',l:'OFL'},
+{c:'display',n:'Gap Sans',h:'github.com',u:'https://github.com/Interstices-/GapSans',f:'gap-sans',l:'OFL'},
 {c:'display',n:'Garamon(d/t)',h:'fonderie.download',u:'https://fonderie.download/garamondt.html',l:'WTFPL'},
 {c:'display',n:'Gemini',h:'hiyaaaaa.com',u:'https://hiyaaaaa.com/gemini/',l:'OFL 1.1'},
-{c:'display',n:'Getai Grotesk Display',h:'deathoftypography.com',u:'https://deathoftypography.com/getai-grotesk-display/',l:'OFL'},
-{c:'display',n:'Gloock',h:'github.com',u:'https://github.com/duartp/gloock',l:'OFL'},
-{c:'display',n:'GTL001',h:'github.com',u:'https://github.com/eliheuer/GTL001',l:'OFL'},
-{c:'display',n:'Handjet',h:'github.com',u:'https://github.com/rosettatype/handjet',l:'OFL'},
+{c:'display',n:'Getai Grotesk Display',h:'deathoftypography.com',u:'https://deathoftypography.com/getai-grotesk-display/',f:'getai-grotesk-display',l:'OFL'},
+{c:'display',n:'Gloock',h:'github.com',u:'https://github.com/duartp/gloock',f:'gloock',l:'OFL'},
+{c:'display',n:'GTL001',h:'github.com',u:'https://github.com/eliheuer/GTL001',f:'gtl001',l:'OFL'},
+{c:'display',n:'Handjet',h:'github.com',u:'https://github.com/rosettatype/handjet',f:'handjet',l:'OFL'},
 {c:'display',n:'Heal the Web',h:'healtheweb.site',u:'https://healtheweb.site/',l:'MPL 2.0'},
-{c:'display',n:'HIKARU MONO',h:'github.com',u:'https://github.com/AntoineVRM/VRM-HIKARU/tree/main',l:'OFL'},
-{c:'display',n:'Honey',h:'onlyanother.co',u:'https://www.onlyanother.co/honey',l:'OFL'},
+{c:'display',n:'HIKARU MONO',h:'github.com',u:'https://github.com/AntoineVRM/VRM-HIKARU/tree/main',f:'hikaru-mono',l:'OFL'},
+{c:'display',n:'Honey',h:'onlyanother.co',u:'https://www.onlyanother.co/honey',f:'honey',l:'OFL'},
 {c:'display',n:'LC Mogi',h:'lokalcontainer.com',u:'https://lokalcontainer.com/Typeface',l:'OFL 1.1'},
-{c:'display',n:'Queering',h:'adamnac.com',u:'https://www.adamnac.com/queering',l:'OFL'},
-{c:'display',n:'Sunday Masthead',h:'github.com',u:'https://github.com/dennisgrauel/The-Sunday-Paper-fonts',l:'OFL'},
+{c:'display',n:'Queering',h:'adamnac.com',u:'https://www.adamnac.com/queering',f:'queering',l:'OFL'},
+{c:'display',n:'Sunday Masthead',h:'github.com',u:'https://github.com/dennisgrauel/The-Sunday-Paper-fonts',f:'sunday-masthead',l:'OFL'},
 {c:'display',n:'Utara',h:'lokalcontainer.com',u:'https://lokalcontainer.com/Typeface',l:'OFL 1.1'},
-{c:'sans-serif',n:'Alfphabet',h:'osp.kitchen',u:'https://osp.kitchen/foundry/alfphabet/',l:'OFL'},
-{c:'sans-serif',n:'Aspekta',h:'github.com',u:'https://github.com/ivodolenc/aspekta',l:'OFL'},
+{c:'sans-serif',n:'Alfphabet',h:'osp.kitchen',u:'https://osp.kitchen/foundry/alfphabet/',f:'alfphabet',l:'OFL'},
+{c:'sans-serif',n:'Aspekta',h:'github.com',u:'https://github.com/ivodolenc/aspekta',f:'aspekta',l:'OFL'},
 {c:'sans-serif',n:'AUTHENTIC Sans',h:'authentic.website',u:'https://authentic.website/sans',l:'WTFPL'},
-{c:'sans-serif',n:'Barlaxent',h:'typotheque.le75.be',u:'https://typotheque.le75.be/#barlaxent',l:'OFL'},
+{c:'sans-serif',n:'Barlaxent',h:'typotheque.le75.be',u:'https://typotheque.le75.be/#barlaxent',f:'barlaxent',l:'OFL'},
 {c:'sans-serif',n:'BDO Grotesk',h:'lokalcontainer.com',u:'https://lokalcontainer.com/Typeface',l:'OFL 1.1'},
 {c:'sans-serif',n:'Bertioga Sans',h:'github.com',u:'https://github.com/cssobral2013/Bertioga-Sans',l:'OFL'},
-{c:'sans-serif',n:'Breite Grotesk',h:'github.com',u:'https://github.com/metapolator/Breite',l:'OFL'},
-{c:'sans-serif',n:'CAT Neuzeit',h:'peter-wiegel.de',u:'https://www.peter-wiegel.de/CAT_Neuzeit.html',l:'OFL / GPL+exception'},
-{c:'sans-serif',n:'Dauphine',h:'esad-gv.fr',u:'https://github.com/no-feature/dauphine',l:'OFL 1.1'},
-{c:'sans-serif',n:'Evening',h:'github.com',u:'https://github.com/brycewilner/Evening',l:'OFL'},
-{c:'sans-serif',n:'Fibel Nord',h:'peter-wiegel.de',u:'https://www.peter-wiegel.de/Fibel.html',l:'OFL'},
-{c:'sans-serif',n:'FreeSans',h:'ftp.gnu.org',u:'https://ftp.gnu.org/gnu/freefont/',l:'GPL + font exception'},
-{c:'sans-serif',n:'Fudd',h:'squaregear.net',u:'https://squaregear.net/fonts/fudd.html',l:'MIT-style'},
-{c:'sans-serif',n:'Geist',h:'vercel.com',u:'https://vercel.com/font',l:'OFL'},
+{c:'sans-serif',n:'Breite Grotesk',h:'github.com',u:'https://github.com/metapolator/Breite',f:'breite-grotesk',l:'OFL'},
+{c:'sans-serif',n:'CAT Neuzeit',h:'peter-wiegel.de',u:'https://www.peter-wiegel.de/CAT_Neuzeit.html',f:'cat-neuzeit',l:'OFL / GPL+exception'},
+{c:'sans-serif',n:'Dauphine',h:'esad-gv.fr',u:'https://github.com/no-feature/dauphine',f:'dauphine',l:'OFL 1.1'},
+{c:'sans-serif',n:'Evening',h:'github.com',u:'https://github.com/brycewilner/Evening',f:'evening',l:'OFL'},
+{c:'sans-serif',n:'Fibel Nord',h:'peter-wiegel.de',u:'https://www.peter-wiegel.de/Fibel.html',f:'fibel-nord',l:'OFL'},
+{c:'sans-serif',n:'FreeSans',h:'ftp.gnu.org',u:'https://ftp.gnu.org/gnu/freefont/',f:'freesans',l:'GPL + font exception'},
+{c:'sans-serif',n:'Fudd',h:'squaregear.net',u:'https://squaregear.net/fonts/fudd.html',f:'fudd',l:'MIT-style'},
+{c:'sans-serif',n:'Geist',h:'vercel.com',u:'https://vercel.com/font',f:'geist',l:'OFL'},
 {c:'sans-serif',n:'Giphurs',h:'github.com',u:'https://github.com/Corne2Plum3/Giphurs',l:'OFL'},
 {c:'sans-serif',n:'Hasköy',h:'haskoy.ertekinn.com',u:'https://haskoy.ertekinn.com/',l:'OFL'},
-{c:'sans-serif',n:'Hauora Sans',h:'github.com',u:'https://github.com/WCYS-Co/Hauora-Sans',l:'OFL'},
-{c:'sans-serif',n:'Hedvig Letters Sans',h:'github.com',u:'https://github.com/KanonFoundry/HedvigLetters/',l:'OFL'},
-{c:'sans-serif',n:'Helmet',h:'github.com',u:'https://github.com/carlenlund/helmet',l:'OFL'},
-{c:'sans-serif',n:'Inclusive Sans',h:'github.com',u:'https://github.com/LivKing/Inclusive-Sans',l:'OFL'},
-{c:'sans-serif',n:'Instrument Sans',h:'github.com',u:'https://github.com/Instrument/instrument-sans',l:'OFL'},
-{c:'sans-serif',n:'Kulim Park',h:'github.com',u:'https://github.com/noponies/Kulim-Park',l:'OFL'},
-{c:'sans-serif',n:'Lil Grotesk',h:'github.com',u:'https://github.com/noirblancrouge/LilGrotesk',l:'OFL'},
+{c:'sans-serif',n:'Hauora Sans',h:'github.com',u:'https://github.com/WCYS-Co/Hauora-Sans',f:'hauora-sans',l:'OFL'},
+{c:'sans-serif',n:'Hedvig Letters Sans',h:'github.com',u:'https://github.com/KanonFoundry/HedvigLetters/',f:'hedvig-letters-sans',l:'OFL'},
+{c:'sans-serif',n:'Helmet',h:'github.com',u:'https://github.com/carlenlund/helmet',f:'helmet',l:'OFL'},
+{c:'sans-serif',n:'Inclusive Sans',h:'github.com',u:'https://github.com/LivKing/Inclusive-Sans',f:'inclusive-sans',l:'OFL'},
+{c:'sans-serif',n:'Instrument Sans',h:'github.com',u:'https://github.com/Instrument/instrument-sans',f:'instrument-sans',l:'OFL'},
+{c:'sans-serif',n:'Kulim Park',h:'github.com',u:'https://github.com/noponies/Kulim-Park',f:'kulim-park',l:'OFL'},
+{c:'sans-serif',n:'Lil Grotesk',h:'github.com',u:'https://github.com/noirblancrouge/LilGrotesk',f:'lil-grotesk',l:'OFL'},
 {c:'sans-serif',n:'Logisoso',h:'osp.kitchen',u:'https://osp.kitchen/foundry/logisoso/',l:'GPL-2'},
-{c:'sans-serif',n:'LT Institute',h:'lyonstype4.wixsite.com',u:'https://lyonstype4.wixsite.com/lyonstype-beta/fonts',l:'CC0 / PD'},
-{c:'sans-serif',n:'Lunchtype',h:'uncut.wtf',u:'https://uncut.wtf/downloads/lunchtype.zip',l:'OFL 1.1'},
-{c:'sans-serif',n:'Manifont Grotesk',h:'github.com',u:'https://github.com/Interstices-/Manifont-Grotesk',l:'OFL'},
-{c:'sans-serif',n:'Micro Grotesk',h:'github.com',u:'https://github.com/eliheuer/micro-grotesk',l:'OFL'},
-{c:'sans-serif',n:'Miedinger*',h:'github.com',u:'https://github.com/indestructible-type/Miedinger',l:'OFL'},
-{c:'sans-serif',n:'Milford',h:'uncut.wtf',u:'https://uncut.wtf/downloads/milford.zip',l:'public domain · credit asked'},
-{c:'sans-serif',n:'Milkman',h:'uncut.wtf',u:'https://uncut.wtf/downloads/milkman.ttf.zip',l:'OFL 1.1'},
-{c:'sans-serif',n:'Opening Hours Sans',h:'github.com',u:'https://github.com/opening-hours-studio/opening-hours-sans',l:'OFL'},
-{c:'sans-serif',n:'Optician Sans',h:'github.com',u:'https://github.com/anewtypeofinterference/Optician-Sans',l:'OFL'},
-{c:'sans-serif',n:'Overused Grotesk',h:'github.com',u:'https://github.com/RandomMaerks/Overused-Grotesk',l:'OFL'},
-{c:'sans-serif',n:'Panamera',h:'github.com',u:'https://github.com/noirblancrouge/Panamera',l:'OFL'},
+{c:'sans-serif',n:'LT Institute',h:'lyonstype4.wixsite.com',u:'https://lyonstype4.wixsite.com/lyonstype-beta/fonts',f:'lt-institute',l:'CC0 / PD'},
+{c:'sans-serif',n:'Lunchtype',h:'uncut.wtf',u:'https://uncut.wtf/downloads/lunchtype.zip',f:'lunchtype',l:'OFL 1.1'},
+{c:'sans-serif',n:'Manifont Grotesk',h:'github.com',u:'https://github.com/Interstices-/Manifont-Grotesk',f:'manifont-grotesk',l:'OFL'},
+{c:'sans-serif',n:'Micro Grotesk',h:'github.com',u:'https://github.com/eliheuer/micro-grotesk',f:'micro-grotesk',l:'OFL'},
+{c:'sans-serif',n:'Miedinger*',h:'github.com',u:'https://github.com/indestructible-type/Miedinger',f:'miedinger',l:'OFL'},
+{c:'sans-serif',n:'Milford',h:'uncut.wtf',u:'https://uncut.wtf/downloads/milford.zip',f:'milford',l:'public domain · credit asked'},
+{c:'sans-serif',n:'Milkman',h:'uncut.wtf',u:'https://uncut.wtf/downloads/milkman.ttf.zip',f:'milkman',l:'OFL 1.1'},
+{c:'sans-serif',n:'Opening Hours Sans',h:'github.com',u:'https://github.com/opening-hours-studio/opening-hours-sans',f:'opening-hours-sans',l:'OFL'},
+{c:'sans-serif',n:'Optician Sans',h:'github.com',u:'https://github.com/anewtypeofinterference/Optician-Sans',f:'optician-sans',l:'OFL'},
+{c:'sans-serif',n:'Overused Grotesk',h:'github.com',u:'https://github.com/RandomMaerks/Overused-Grotesk',f:'overused-grotesk',l:'OFL'},
+{c:'sans-serif',n:'Panamera',h:'github.com',u:'https://github.com/noirblancrouge/Panamera',f:'panamera',l:'OFL'},
 {c:'sans-serif',n:'Perun',h:'github.com',u:'https://github.com/StefanPeev/Perun',l:'OFL'},
 {c:'sans-serif',n:'Pretendard',h:'github.com',u:'https://github.com/orioncactus/pretendard',l:'OFL'},
-{c:'sans-serif',n:'Prodigy Sans',h:'github.com',u:'https://github.com/weiweihuanghuang/Prodigy-Sans',l:'OFL'},
-{c:'sans-serif',n:'Project Blackbird',h:'uncut.wtf',u:'https://uncut.wtf/downloads/projekt_blackbird.otf.zip',l:'OFL'},
-{c:'sans-serif',n:'Rag',h:'github.com',u:'https://github.com/dennisgrauel/Rag',l:'OFL'},
+{c:'sans-serif',n:'Prodigy Sans',h:'github.com',u:'https://github.com/weiweihuanghuang/Prodigy-Sans',f:'prodigy-sans',l:'OFL'},
+{c:'sans-serif',n:'Project Blackbird',h:'uncut.wtf',u:'https://uncut.wtf/downloads/projekt_blackbird.otf.zip',f:'project-blackbird',l:'OFL'},
+{c:'sans-serif',n:'Rag',h:'github.com',u:'https://github.com/dennisgrauel/Rag',f:'rag',l:'OFL'},
 {c:'sans-serif',n:'Reglo',h:'osp.kitchen',u:'https://osp.kitchen/foundry/reglo/',l:'OFL 1.1'},
-{c:'sans-serif',n:'Solitus',h:'github.com',u:'https://github.com/jhudson100/Solitus-font',l:'OFL'},
-{c:'sans-serif',n:'Swansea',h:'uncut.wtf',u:'https://uncut.wtf/downloads/swansea.zip',l:'public domain · credit asked'},
-{c:'sans-serif',n:'TASA Orbiter',h:'github.com',u:'https://github.com/adrianzwz/TASA-Typeface-Collection',l:'OFL'},
-{c:'sans-serif',n:'Uncut Sans',h:'github.com',u:'https://github.com/kaspernordkvist/uncut_sans/',l:'OFL'},
-{c:'sans-serif',n:'Violet Sans',h:'github.com',u:'https://github.com/violetoffice/violet_sans',l:'OFL'},
-{c:'sans-serif',n:'Zen Kaku Gothic New',h:'fonts.google.com',u:'https://fonts.google.com/specimen/Zen+Kaku+Gothic+New',l:'OFL 1.1'},
-{c:'serif',n:'BIZ UDPMincho',h:'fonts.google.com',u:'https://fonts.google.com/specimen/BIZ+UDPMincho',l:'OFL 1.1'},
-{c:'serif',n:'Career',h:'github.com',u:'https://github.com/Antoine-Gelgon/CareerFont',l:'OFL'},
-{c:'serif',n:'FreeSerif',h:'ftp.gnu.org',u:'https://ftp.gnu.org/gnu/freefont/',l:'GPL + font exception'},
-{c:'serif',n:'Hedvig Letters Serif',h:'github.com',u:'https://github.com/KanonFoundry/HedvigLetters/',l:'OFL'},
+{c:'sans-serif',n:'Solitus',h:'github.com',u:'https://github.com/jhudson100/Solitus-font',f:'solitus',l:'OFL'},
+{c:'sans-serif',n:'Swansea',h:'uncut.wtf',u:'https://uncut.wtf/downloads/swansea.zip',f:'swansea',l:'public domain · credit asked'},
+{c:'sans-serif',n:'TASA Orbiter',h:'github.com',u:'https://github.com/adrianzwz/TASA-Typeface-Collection',f:'tasa-orbiter',l:'OFL'},
+{c:'sans-serif',n:'Uncut Sans',h:'github.com',u:'https://github.com/kaspernordkvist/uncut_sans/',f:'uncut-sans',l:'OFL'},
+{c:'sans-serif',n:'Violet Sans',h:'github.com',u:'https://github.com/violetoffice/violet_sans',f:'violet-sans',l:'OFL'},
+{c:'sans-serif',n:'Zen Kaku Gothic New',h:'fonts.google.com',u:'https://fonts.google.com/specimen/Zen+Kaku+Gothic+New',f:'zen-kaku-gothic-new',l:'OFL 1.1'},
+{c:'serif',n:'BIZ UDPMincho',h:'fonts.google.com',u:'https://fonts.google.com/specimen/BIZ+UDPMincho',f:'biz-udpmincho',l:'OFL 1.1'},
+{c:'serif',n:'Career',h:'github.com',u:'https://github.com/Antoine-Gelgon/CareerFont',f:'career',l:'OFL'},
+{c:'serif',n:'FreeSerif',h:'ftp.gnu.org',u:'https://ftp.gnu.org/gnu/freefont/',f:'freeserif',l:'GPL + font exception'},
+{c:'serif',n:'Hedvig Letters Serif',h:'github.com',u:'https://github.com/KanonFoundry/HedvigLetters/',f:'hedvig-letters-serif',l:'OFL'},
 {c:'serif',n:'Libertinage',h:'osp.kitchen',u:'https://osp.kitchen/foundry/libertinage/',l:'OFL 1.1'},
-{c:'serif',n:'LT Remark',h:'lyonstype4.wixsite.com',u:'https://lyonstype4.wixsite.com/lyonstype-beta/fonts',l:'CC0 / PD'},
-{c:'serif',n:'Maname',h:'github.com',u:'https://github.com/mooniak/maname-font',l:'OFL'},
-{c:'serif',n:'Meta Old French',h:'gitlab.com',u:'https://gitlab.com/Luuse/foundry/meta-old-french',l:'OFL'},
-{c:'serif',n:'Paragon',h:'fonderiz.fr',u:'https://fonderiz.fr/paragon/',l:'OFL'},
-{c:'serif',n:'Redaction',h:'redaction.us',u:'https://www.redaction.us/',l:'OFL 1.1'},
-{c:'serif',n:'Sprat',h:'github.com',u:'https://github.com/EthanNakache/Sprat-type',l:'OFL'},
+{c:'serif',n:'LT Remark',h:'lyonstype4.wixsite.com',u:'https://lyonstype4.wixsite.com/lyonstype-beta/fonts',f:'lt-remark',l:'CC0 / PD'},
+{c:'serif',n:'Maname',h:'github.com',u:'https://github.com/mooniak/maname-font',f:'maname',l:'OFL'},
+{c:'serif',n:'Meta Old French',h:'gitlab.com',u:'https://gitlab.com/Luuse/foundry/meta-old-french',f:'meta-old-french',l:'OFL'},
+{c:'serif',n:'Paragon',h:'fonderiz.fr',u:'https://fonderiz.fr/paragon/',f:'paragon',l:'OFL'},
+{c:'serif',n:'Redaction',h:'redaction.us',u:'https://www.redaction.us/',f:'redaction',l:'OFL 1.1'},
+{c:'serif',n:'Sprat',h:'github.com',u:'https://github.com/EthanNakache/Sprat-type',f:'sprat',l:'OFL'},
 {c:'serif',n:'Times Dot',h:'librarystack.org',u:'https://www.librarystack.org/times-dot/',l:'OFL'},
-{c:'serif',n:'Times Newer Roman',h:'timesnewerroman.com',u:'https://timesnewerroman.com/',l:'GPL-2'},
-{c:'serif',n:'Young Serif',h:'github.com',u:'https://github.com/noirblancrouge/YoungSerif',l:'OFL'},
-{c:'serif',n:'Zarathustra',h:'github.com',u:'https://github.com/lorene-cn/zarathustra-typeface',l:'OFL'},
-{c:'monospace',n:'Azeret Mono',h:'displaay.net',u:'https://displaay.net/typeface/azeret/azeret-mono/',l:'OFL 1.1'},
-{c:'monospace',n:'Basically A Mono',h:'experi.mentallydesigned.com',u:'https://experi.mentallydesigned.com/type/bam/',l:'OFL 1.1'},
-{c:'monospace',n:'BIZ UDMincho',h:'fonts.google.com',u:'https://fonts.google.com/specimen/BIZ+UDMincho',l:'OFL 1.1'},
+{c:'serif',n:'Times Newer Roman',h:'timesnewerroman.com',u:'https://timesnewerroman.com/',f:'times-newer-roman',l:'GPL-2'},
+{c:'serif',n:'Young Serif',h:'github.com',u:'https://github.com/noirblancrouge/YoungSerif',f:'young-serif',l:'OFL'},
+{c:'serif',n:'Zarathustra',h:'github.com',u:'https://github.com/lorene-cn/zarathustra-typeface',f:'zarathustra',l:'OFL'},
+{c:'monospace',n:'Azeret Mono',h:'displaay.net',u:'https://displaay.net/typeface/azeret/azeret-mono/',f:'azeret-mono',l:'OFL 1.1'},
+{c:'monospace',n:'Basically A Mono',h:'experi.mentallydesigned.com',u:'https://experi.mentallydesigned.com/type/bam/',f:'basically-a-mono',l:'OFL 1.1'},
+{c:'monospace',n:'BIZ UDMincho',h:'fonts.google.com',u:'https://fonts.google.com/specimen/BIZ+UDMincho',f:'biz-udmincho',l:'OFL 1.1'},
 {c:'monospace',n:'Commit Mono',h:'commitmono.com',u:'https://commitmono.com/',l:'OFL 1.1'},
 {c:'monospace',n:'Fairfax HD',h:'kreativekorp.com',u:'https://www.kreativekorp.com/software/fonts/fairfaxhd.shtml',l:'OFL 1.1'},
-{c:'monospace',n:'Fragment Mono',h:'github.com',u:'https://github.com/weiweihuanghuang/fragment-mono',l:'OFL'},
-{c:'monospace',n:'FreeMono',h:'ftp.gnu.org',u:'https://ftp.gnu.org/gnu/freefont/',l:'GPL + font exception'},
-{c:'monospace',n:'Geist Mono',h:'vercel.com',u:'https://vercel.com/font/mono',l:'OFL'},
-{c:'monospace',n:'Lab Mono',h:'github.com',u:'https://github.com/hatsumatsu/Lab-Mono',l:'OFL'},
-{c:'monospace',n:'LT Superior Mono',h:'lyonstype4.wixsite.com',u:'https://lyonstype4.wixsite.com/lyonstype-beta/fonts',l:'CC0 / PD'},
-{c:'monospace',n:'Martian Mono',h:'github.com',u:'https://github.com/evilmartians/mono',l:'OFL'},
+{c:'monospace',n:'Fragment Mono',h:'github.com',u:'https://github.com/weiweihuanghuang/fragment-mono',f:'fragment-mono',l:'OFL'},
+{c:'monospace',n:'FreeMono',h:'ftp.gnu.org',u:'https://ftp.gnu.org/gnu/freefont/',f:'freemono',l:'GPL + font exception'},
+{c:'monospace',n:'Geist Mono',h:'vercel.com',u:'https://vercel.com/font/mono',f:'geist-mono',l:'OFL'},
+{c:'monospace',n:'Lab Mono',h:'github.com',u:'https://github.com/hatsumatsu/Lab-Mono',f:'lab-mono',l:'OFL'},
+{c:'monospace',n:'LT Superior Mono',h:'lyonstype4.wixsite.com',u:'https://lyonstype4.wixsite.com/lyonstype-beta/fonts',f:'lt-superior-mono',l:'CC0 / PD'},
+{c:'monospace',n:'Martian Mono',h:'github.com',u:'https://github.com/evilmartians/mono',f:'martian-mono',l:'OFL'},
 {c:'monospace',n:'Max Hana',h:'github.com',u:'https://github.com/max32002/max-hana',l:'OFL'},
-{c:'monospace',n:'Monor',h:'fonderiz.fr',u:'https://fonderiz.fr/monor/',l:'OFL'},
-{c:'monospace',n:'New Heterodox Mono',h:'github.com',u:'https://github.com/hckiang/font-new-heterodox-mono',l:'OFL'},
-{c:'monospace',n:'Snap-it Mono',h:'gitlab.com',u:'https://gitlab.com/Alune/snap-it-mono-font',l:'OFL'},
-{c:'monospace',n:'Uncut Plan8',h:'github.com',u:'https://github.com/kaspernordkvist/uncut_plan8',l:'OFL'},
-{c:'monospace',n:'Victor Mono',h:'rubjo.github.io',u:'https://rubjo.github.io/victor-mono/',l:'OFL 1.1'},
-{c:'monospace',n:'Whois',h:'github.com',u:'https://github.com/raphaelbastide/Whois-mono',l:'OFL'}
+{c:'monospace',n:'Monor',h:'fonderiz.fr',u:'https://fonderiz.fr/monor/',f:'monor',l:'OFL'},
+{c:'monospace',n:'New Heterodox Mono',h:'github.com',u:'https://github.com/hckiang/font-new-heterodox-mono',f:'new-heterodox-mono',l:'OFL'},
+{c:'monospace',n:'Snap-it Mono',h:'gitlab.com',u:'https://gitlab.com/Alune/snap-it-mono-font',f:'snap-it-mono',l:'OFL'},
+{c:'monospace',n:'Uncut Plan8',h:'github.com',u:'https://github.com/kaspernordkvist/uncut_plan8',f:'uncut-plan8',l:'OFL'},
+{c:'monospace',n:'Victor Mono',h:'rubjo.github.io',u:'https://rubjo.github.io/victor-mono/',f:'victor-mono',l:'OFL 1.1'},
+{c:'monospace',n:'Whois',h:'github.com',u:'https://github.com/raphaelbastide/Whois-mono',f:'whois',l:'OFL'}
 ];
 (function(){
   var names={'display':'Display','sans-serif':'Sans','serif':'Serif','monospace':'Mono'};
@@ -542,11 +641,15 @@ var FREE=[
     var list=FREE.filter(function(f){return f.c===c});if(!list.length)return;
     body+='<h3>'+names[c]+'<span>'+list.length+'</span></h3>';
     list.forEach(function(f){
-      body+='<a class="row" data-c="'+c+'" href="'+f.u+'" target="_blank" rel="noopener"><b>'+f.n+'</b><i>'+f.l+' · '+f.h+'</i></a>'
+      var word=f.f?' style="font-family:\''+f.n+'\'"':'', txt=f.f?PTX:f.n;
+      body+='<a class="fc" data-c="'+c+'" href="'+f.u+'" target="_blank" rel="noopener"'+(f.f?'':' data-nofile="1"')
+        +' aria-label="'+f.n+' — '+f.l+', '+f.h+'">'
+        +'<span class="word"'+word+'>'+txt+'</span>'
+        +'<span class="ft"><b>'+f.n+'</b><i>'+(f.f?f.l+' · '+f.h:'no file · '+f.h)+'</i></span></a>'
     });
   });
   sec.innerHTML='<div class="gh"><h2>Type · free</h2><span class="lic">'+mark('pd',FREE.length)+'</span></div>'
-    +'<i class="fnote">every face in this list is FF: licence and source read at the foundry, no specimen embedded</i>'
+    +'<i class="fnote">every face is FF: licence read at the foundry; specimens are each foundry’s own files, downloaded to fonts/ and served from here</i>'
     +'<div class="idx">'+body+'</div>';
   groupsEl.appendChild(sec);
 })();
@@ -562,6 +665,8 @@ if(legend)legend.innerHTML='<span class="lg">licence</span>'+TIER_ORDER.map(func
   return '<span class="m '+t+'"><i class="g">'+glyph(t)+'</i><b>'+TIER[t].a+'</b>'+TIER[t].g+'</span>'}).join('');
 layoutAll();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layoutAll);
+if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',fitFaces);   // a specimen measured before its face arrived runs wide
+
 var FILTER={kind:'all',tier:null};
 function applyFilter(){
   [].forEach.call(groupsEl.children,function(sec){

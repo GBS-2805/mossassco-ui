@@ -13,7 +13,7 @@
 // and the declared total is an upper bound: a browser only fetches the faces
 // the rendered text actually uses. The audit gates what the repo controls.
 
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir, stat } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
@@ -95,11 +95,22 @@ for (const url of [...new Set(sheets)]) {
   }
 }
 
+// The free index ships its own specimens, so some of the page's weight is
+// ours to count: one woff2 per face, same origin, downloaded once.
+let specimenBytes = 0;
+let specimenFiles = 0;
+for (const f of await readdir(new URL('./fonts/', import.meta.url)).catch(() => [])) {
+  if (!f.endsWith('.woff2')) continue;
+  specimenBytes += (await stat(new URL('./fonts/' + f, import.meta.url))).size;
+  specimenFiles++;
+}
+
 const raw = Buffer.byteLength(html);
 const gz = gzipSync(html, { level: 9 }).length;
 const page = { 'github.io (the file)': { n: 1, b: gz } };
 console.log(`\nthe file: ${kb(raw)} raw · ${kb(gz)} gzip (what Pages sends)`);
 console.log(`fonts: ${faces} faces declared across ${families.size} families, ${latin} latin woff2 to fetch`);
+console.log(`specimens: ${specimenFiles} faces in fonts/, ${kb(specimenBytes)} on this origin`);
 for (const [h, v] of Object.entries({ ...page, ...hosts }).sort((a, b) => b[1].b - a[1].b)) {
   console.log(`  ${h.padEnd(24)} ${String(v.n).padStart(3)} req  ${kb(v.b).padStart(9)}`);
 }

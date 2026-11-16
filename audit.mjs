@@ -28,6 +28,7 @@
 import { readFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync } from 'node:fs';
+import { readdir } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -332,8 +333,8 @@ if (!freeBlock) problems.push('no FREE[] — the free-font index has no data to 
 if (html.indexOf('var FREE=[') < html.indexOf("var groupsEl=document.getElementById('groups');")) {
   problems.push('the index builds itself before groupsEl exists — it throws on load, and a syntax check will not see it');
 }
-const freeRows = [...freeBlock.matchAll(/\{c:'([^']+)',n:'([^']+)',h:'([^']+)',u:'(https:\/\/[^']+)',l:'([^']+)'\}/g)]
-  .map((m) => ({ c: m[1], n: m[2], h: m[3], u: m[4], l: m[5] }));
+const freeRows = [...freeBlock.matchAll(/\{c:'([^']+)',n:'([^']+)',h:'([^']+)',u:'(https:\/\/[^']+)',(?:f:'([^']+)',)?l:'([^']+)'\}/g)]
+  .map((m) => ({ c: m[1], n: m[2], h: m[3], u: m[4], f: m[5] || '', l: m[6] }));
 if (freeRows.length < 100) problems.push(`FREE[] lists ${freeRows.length} faces, expected at least 100`);
 for (const r of freeRows) {
   if (!['display', 'sans-serif', 'serif', 'monospace'].includes(r.c)) problems.push(`${r.n}: unknown category "${r.c}"`);
@@ -353,10 +354,32 @@ if (freeRows.length !== new Set(freeNames).size) problems.push('FREE[] has dupli
 if (!/TIER_TOTAL\.pd=\(TIER_TOTAL\.pd\|\|0\)\+FREE\.length/.test(html)) {
   problems.push('the FF tab count must add FREE.length, or the tab undercounts by the whole index');
 }
-if (!/\.faces \.row\{/.test(html) || !/\.faces \.fnote\{/.test(html)) problems.push('the free-font index has no row or note style');
-if (!/no specimen embedded/.test(html)) {
-  problems.push('the index must say it embeds no specimen: the list would otherwise read as a specimen sheet');
+if (!/\.faces \.fc\{/.test(html) || !/\.faces \.fc \.word\{/.test(html) || !/\.faces \.fnote\{/.test(html)) {
+  problems.push('the free index lost its card, specimen or note style');
 }
+if (!/downloaded to fonts\//.test(html)) {
+  problems.push('the index must say the specimens are served from this repo, or a reader cannot tell whose files they are');
+}
+
+// The specimens are the point: a card that names a face but shows a default
+// sans is the thing this section was built to stop doing.
+const faceFiles = await readdir(new URL('./fonts/', import.meta.url)).catch(() => []);
+const tagged = freeRows.filter((r) => r.f);
+const faceRules = [...html.matchAll(/@font-face\{font-family:"([^"]+)";src:url\('fonts\/([^']+)'\)/g)]
+  .map((m) => ({ name: m[1], file: m[2] }));
+const ruleByFile = new Map(faceRules.map((r) => [r.file, r.name]));
+for (const r of tagged) {
+  if (!faceFiles.includes(r.f + '.woff2')) problems.push(`${r.n}: tagged with ${r.f}.woff2 but fonts/ has no such file`);
+  const named = ruleByFile.get(r.f + '.woff2');
+  if (!named) problems.push(`${r.n}: no @font-face rule points at fonts/${r.f}.woff2 — the card would render in the fallback`);
+  else if (named !== r.n) problems.push(`${r.n}: its file is declared as "${named}", so the card sets the wrong family`);
+}
+for (const rule of faceRules) {
+  if (!tagged.some((r) => r.f + '.woff2' === rule.file)) problems.push(`fonts/${rule.file} is declared but no face uses it — dead weight in the download`);
+}
+if (!tagged.length) problems.push('no face in the index carries a specimen file');
+if (!/var PTX='12345 - Shelf'/.test(html)) problems.push("the preview text must default to '12345 - Shelf'");
+if (!/\.faces \.fc:not\(\[data-nofile\]\) \.word/.test(html)) problems.push('typing in the preview box must reach the index cards too');
 if (!/kinds\.push\(\{k:'faces'/.test(html)) problems.push('the kinds row needs a free fonts tab, or the index cannot be filtered to');
 if (!/sec\.dataset\.kind==='faces'/.test(html)) problems.push('applyFilter must treat the index as one block: it has rows, not .item cards');
 for (const gone of ['Cambrian', 'Phosphène', 'Berlin Grotesk', 'Slibinas', 'Boris', 'Granturismo']) {

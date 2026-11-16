@@ -8,6 +8,10 @@ terms.
 
 - `d.html` — the product. One file: markup, CSS, data and behaviour.
 - `index.html` — redirect to `d.html`.
+- `fonts/` — one woff2 specimen per face in the free index (80 of 100 today),
+  with the licence file beside it where the foundry shipped one, plus
+  `manifest.json` recording the source each file came from.
+- `weigh.mjs` — `node weigh.mjs` reports page and font weight; a report, not a gate.
 - `audit.mjs` — the gates; dependency-free.
 
 `a.html`, `b.html`, `b2.html`, `c.html` are older attempts, linked from the footer.
@@ -36,7 +40,8 @@ after `networkidle`:
 | | |
 |---|---|
 | the file | 78.9 KB raw · **24.1 KB gzip** (Pages sends gzip, not brotli; `max-age=600`) |
-| fonts | **438.6 KB** over 11 files — 76% of the page |
+| fonts (wall) | **438.6 KB** over 11 files — most of the page |
+| specimens (index) | **3.8 MB** across 80 files, one request per card that is in view |
 | icons | 107.8 KB over 80 requests, deferred and `fetchpriority="low"` |
 | total | **576.6 KB** over 96 requests |
 

@@ -1,0 +1,978 @@
+{
+ "AUTHENTIC Sans": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "AUTHENTIC Sans",
+  "u": "https://authentic.website/sans"
+ },
+ "Alfphabet": {
+  "c": null,
+  "file": "alfphabet.woff2",
+  "h": null,
+  "kb": 11.3,
+  "l": null,
+  "n": "Alfphabet",
+  "src": "http://osp.kitchen/api/osp.foundry.alfphabet/cd8588e52342be5f543db07571e5e327d7d26ad4/blob-data/Alfphabet-I.otf",
+  "u": "https://osp.kitchen/foundry/alfphabet/"
+ },
+ "Aspekta": {
+  "c": null,
+  "file": "aspekta.woff2",
+  "h": null,
+  "kb": 29.6,
+  "l": null,
+  "n": "Aspekta",
+  "src": "https://github.com/ivodolenc/aspekta/archive/refs/heads/main.zip",
+  "u": "https://github.com/ivodolenc/aspekta"
+ },
+ "Azeret Mono": {
+  "c": null,
+  "file": "azeret-mono.woff2",
+  "h": null,
+  "kb": 137.3,
+  "l": null,
+  "n": "Azeret Mono",
+  "src": "https://displaay.net/fonts/SaansVF.woff2",
+  "u": "https://displaay.net/typeface/azeret/azeret-mono/"
+ },
+ "BDO Grotesk": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "BDO Grotesk",
+  "u": "https://lokalcontainer.com/Typeface"
+ },
+ "BIZ UDMincho": {
+  "c": null,
+  "err": "no source",
+  "file": "biz-udmincho.woff2",
+  "h": null,
+  "kb": 21.1,
+  "l": null,
+  "n": "BIZ UDMincho",
+  "src": "https://fonts.gstatic.com/s/bizudmincho/v11/EJRRQgI6eOxFjBdKs38yhtWFcA76j8lI8A.woff2",
+  "u": "https://fonts.google.com/specimen/BIZ+UDMincho"
+ },
+ "BIZ UDPMincho": {
+  "c": null,
+  "err": "no source",
+  "file": "biz-udpmincho.woff2",
+  "h": null,
+  "kb": 25.9,
+  "l": null,
+  "n": "BIZ UDPMincho",
+  "src": "https://fonts.gstatic.com/s/bizudpmincho/v11/ypvfbXOBrmYppy7oWWTg1_58rh9StGT3kZg.woff2",
+  "u": "https://fonts.google.com/specimen/BIZ+UDPMincho"
+ },
+ "Barlaxent": {
+  "c": null,
+  "file": "barlaxent.woff2",
+  "h": null,
+  "kb": 31.4,
+  "l": null,
+  "n": "Barlaxent",
+  "src": "https://typotheque.le75.be/site/assets/files/1120/paradox.otf",
+  "u": "https://typotheque.le75.be/#barlaxent"
+ },
+ "Basically A Mono": {
+  "c": null,
+  "err": "no source",
+  "file": "basically-a-mono.woff2",
+  "h": null,
+  "kb": 94.5,
+  "l": null,
+  "n": "Basically A Mono",
+  "src": "https://experi.mentallydesigned.com/type/bass/fonts/BasicallyASansSerif-Light.woff2",
+  "u": "https://experi.mentallydesigned.com/type/bam/"
+ },
+ "Bertioga Sans": {
+  "c": null,
+  "err": "BadZipFile: File is not a zip file",
+  "h": null,
+  "l": null,
+  "n": "Bertioga Sans",
+  "u": "https://github.com/cssobral2013/Bertioga-Sans"
+ },
+ "Blocks on Blocks": {
+  "c": null,
+  "file": "blocks-on-blocks.woff2",
+  "h": null,
+  "kb": 1.1,
+  "l": null,
+  "n": "Blocks on Blocks",
+  "src": "https://github.com/nervousattack/BLOCKS-ON-BLOCKS/blob/master/BLOCKS-ONBLOCKS.otf",
+  "u": "https://github.com/nervousattack/BLOCKS-ON-BLOCKS"
+ },
+ "Breite Grotesk": {
+  "c": null,
+  "file": "breite-grotesk.woff2",
+  "h": null,
+  "kb": 22.5,
+  "l": null,
+  "n": "Breite Grotesk",
+  "src": "https://github.com/metapolator/Breite/archive/refs/heads/master.zip",
+  "u": "https://github.com/metapolator/Breite"
+ },
+ "CAT Eckmann": {
+  "c": null,
+  "file": "cat-eckmann.woff2",
+  "h": null,
+  "kb": 55.0,
+  "l": null,
+  "n": "CAT Eckmann",
+  "src": "http://www.peter-wiegel.de/Fonts/Eckmann.zip",
+  "u": "https://www.peter-wiegel.de/eckmann.html"
+ },
+ "CAT Neuzeit": {
+  "c": null,
+  "file": "cat-neuzeit.woff2",
+  "h": null,
+  "kb": 53.0,
+  "l": null,
+  "n": "CAT Neuzeit",
+  "src": "http://www.peter-wiegel.de/Fonts/CATNeuzeit.zip",
+  "u": "https://www.peter-wiegel.de/CAT_Neuzeit.html"
+ },
+ "Cakra": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Cakra",
+  "u": "https://www.cakra.oomtype.com/"
+ },
+ "Career": {
+  "c": null,
+  "err": "BadZipFile: File is not a zip file",
+  "file": "career.woff2",
+  "h": null,
+  "kb": 25.0,
+  "l": null,
+  "n": "Career",
+  "src": "https://raw.githubusercontent.com/Antoine-Gelgon/CareerFont/master/Career-font-V.1.zip#Career-font-V.1/Career.otf",
+  "u": "https://github.com/Antoine-Gelgon/CareerFont"
+ },
+ "Commit Mono": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Commit Mono",
+  "u": "https://commitmono.com/"
+ },
+ "Dauphine": {
+  "c": null,
+  "file": "dauphine.woff2",
+  "h": null,
+  "kb": 11.2,
+  "l": null,
+  "n": "Dauphine",
+  "src": "https://github.com/no-feature/dauphine/blob/gh-pages/Dauphine%20Regular.otf",
+  "u": "https://github.com/no-feature/dauphine"
+ },
+ "Destra": {
+  "c": null,
+  "file": "destra.woff2",
+  "h": null,
+  "kb": 9.2,
+  "l": null,
+  "n": "Destra",
+  "src": "https://fonderiz.fr/site/assets/files/1020/destra_bold.otf",
+  "u": "https://fonderiz.fr/destra/"
+ },
+ "Evening": {
+  "c": null,
+  "file": "evening.woff2",
+  "h": null,
+  "kb": 11.7,
+  "l": null,
+  "n": "Evening",
+  "src": "https://github.com/brycewilner/Evening/blob/master/Evening-Regular.otf",
+  "u": "https://github.com/brycewilner/Evening"
+ },
+ "Fairfax HD": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Fairfax HD",
+  "u": "https://www.kreativekorp.com/software/fonts/fairfaxhd.shtml"
+ },
+ "Fibel Nord": {
+  "c": null,
+  "file": "fibel-nord.woff2",
+  "h": null,
+  "kb": 17.9,
+  "l": null,
+  "n": "Fibel Nord",
+  "src": "http://www.peter-wiegel.de/Fonts/FibelNordTT.zip",
+  "u": "https://www.peter-wiegel.de/Fibel.html"
+ },
+ "Fragment Mono": {
+  "c": null,
+  "file": "fragment-mono.woff2",
+  "h": null,
+  "kb": 55.1,
+  "l": null,
+  "n": "Fragment Mono",
+  "src": "https://github.com/weiweihuanghuang/fragment-mono/archive/refs/heads/main.zip",
+  "u": "https://github.com/weiweihuanghuang/fragment-mono"
+ },
+ "FreeMono": {
+  "c": null,
+  "err": "no source",
+  "file": "freemono.woff2",
+  "h": null,
+  "kb": 116.8,
+  "l": null,
+  "n": "FreeMono",
+  "src": "https://ftp.gnu.org/gnu/freefont/freefont-otf-20080912.zip#freefont-20080912/FreeMono.otf",
+  "u": "https://ftp.gnu.org/gnu/freefont/"
+ },
+ "FreeSans": {
+  "c": null,
+  "err": "no source",
+  "file": "freesans.woff2",
+  "h": null,
+  "kb": 116.9,
+  "l": null,
+  "n": "FreeSans",
+  "src": "https://ftp.gnu.org/gnu/freefont/freefont-otf-20080912.zip#freefont-20080912/FreeMono.otf",
+  "u": "https://ftp.gnu.org/gnu/freefont/"
+ },
+ "FreeSerif": {
+  "c": null,
+  "err": "no source",
+  "file": "freeserif.woff2",
+  "h": null,
+  "kb": 116.9,
+  "l": null,
+  "n": "FreeSerif",
+  "src": "https://ftp.gnu.org/gnu/freefont/freefont-otf-20080912.zip#freefont-20080912/FreeMono.otf",
+  "u": "https://ftp.gnu.org/gnu/freefont/"
+ },
+ "Frick": {
+  "c": null,
+  "file": "frick.woff2",
+  "h": null,
+  "kb": 23.2,
+  "l": null,
+  "n": "Frick",
+  "src": "https://github.com/dennisgrauel/Frick/archive/refs/heads/main.zip",
+  "u": "https://github.com/dennisgrauel/Frick"
+ },
+ "Fudd": {
+  "c": null,
+  "err": "no source",
+  "file": "fudd.woff2",
+  "h": null,
+  "kb": 13.3,
+  "l": null,
+  "n": "Fudd",
+  "src": "https://squaregear.net/fonts/fudd.zip#fudd.ttf",
+  "u": "https://squaregear.net/fonts/fudd.html"
+ },
+ "GTL001": {
+  "c": null,
+  "file": "gtl001.woff2",
+  "h": null,
+  "kb": 6.2,
+  "l": null,
+  "n": "GTL001",
+  "src": "https://github.com/eliheuer/GTL001/archive/refs/heads/main.zip",
+  "u": "https://github.com/eliheuer/GTL001"
+ },
+ "Galgo": {
+  "c": null,
+  "file": "galgo.woff2",
+  "h": null,
+  "kb": 27.2,
+  "l": null,
+  "n": "Galgo",
+  "src": "https://uncut.wtf/downloads/galgovf.zip",
+  "u": "https://uncut.wtf/downloads/galgovf.zip"
+ },
+ "Gap Sans": {
+  "c": null,
+  "err": "BadZipFile: File is not a zip file",
+  "file": "gap-sans.woff2",
+  "h": null,
+  "kb": 15.1,
+  "l": null,
+  "n": "Gap Sans",
+  "src": "https://cdn.jsdelivr.net/gh/Interstices-/GapSans@HEAD/fonts/GapSans.ttf",
+  "u": "https://github.com/Interstices-/GapSans"
+ },
+ "Garamon(d/t)": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Garamon(d/t)",
+  "u": "https://fonderie.download/garamondt.html"
+ },
+ "Geist": {
+  "c": null,
+  "file": "geist.woff2",
+  "h": null,
+  "kb": 67.9,
+  "l": null,
+  "n": "Geist",
+  "src": "https://vercel.com/vc-ap-b3331f/_next/static/immutable/media/Geist_Variable-s.p.2wz-lhd5-5z0-.woff2",
+  "u": "https://vercel.com/font"
+ },
+ "Geist Mono": {
+  "c": null,
+  "file": "geist-mono.woff2",
+  "h": null,
+  "kb": 67.9,
+  "l": null,
+  "n": "Geist Mono",
+  "src": "https://vercel.com/vc-ap-b3331f/_next/static/immutable/media/Geist_Variable-s.p.2wz-lhd5-5z0-.woff2",
+  "u": "https://vercel.com/font/mono"
+ },
+ "Gemini": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Gemini",
+  "u": "https://hiyaaaaa.com/gemini/"
+ },
+ "Getai Grotesk Display": {
+  "c": null,
+  "file": "getai-grotesk-display.woff2",
+  "h": null,
+  "kb": 16.0,
+  "l": null,
+  "n": "Getai Grotesk Display",
+  "src": "https://deathoftypography.com/wp-content/uploads/2022/06/DTGetaiGroteskDisplay-Black.ttf",
+  "u": "https://deathoftypography.com/getai-grotesk-display/"
+ },
+ "Giphurs": {
+  "c": null,
+  "err": "BadZipFile: File is not a zip file",
+  "h": null,
+  "l": null,
+  "n": "Giphurs",
+  "u": "https://github.com/Corne2Plum3/Giphurs"
+ },
+ "Gloock": {
+  "c": null,
+  "err": "BadZipFile: File is not a zip file",
+  "file": "gloock.woff2",
+  "h": null,
+  "kb": 17.2,
+  "l": null,
+  "n": "Gloock",
+  "src": "https://fonts.gstatic.com/s/gloock/v8/Iurb6YFw84WUY4NJiBakJLRBjA.woff2",
+  "u": "https://github.com/duartp/gloock"
+ },
+ "HIKARU MONO": {
+  "c": null,
+  "file": "hikaru-mono.woff2",
+  "h": null,
+  "kb": 57.7,
+  "l": null,
+  "n": "HIKARU MONO",
+  "src": "https://github.com/AntoineVRM/VRM-HIKARU/blob/main/HIKARUMONO-Regular.otf",
+  "u": "https://github.com/AntoineVRM/VRM-HIKARU/tree/main"
+ },
+ "Handjet": {
+  "c": null,
+  "file": "handjet.woff2",
+  "h": null,
+  "kb": 58.4,
+  "l": null,
+  "n": "Handjet",
+  "src": "https://github.com/rosettatype/handjet/archive/refs/heads/master.zip",
+  "u": "https://github.com/rosettatype/handjet"
+ },
+ "Hask\u00f6y": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Hask\u00f6y",
+  "u": "https://haskoy.ertekinn.com/"
+ },
+ "Hauora Sans": {
+  "c": null,
+  "file": "hauora-sans.woff2",
+  "h": null,
+  "kb": 46.0,
+  "l": null,
+  "n": "Hauora Sans",
+  "src": "https://github.com/WCYS-Co/Hauora-Sans/archive/refs/heads/master.zip",
+  "u": "https://github.com/WCYS-Co/Hauora-Sans"
+ },
+ "Heal the Web": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Heal the Web",
+  "u": "https://healtheweb.site/"
+ },
+ "Hedvig Letters Sans": {
+  "c": null,
+  "file": "hedvig-letters-sans.woff2",
+  "h": null,
+  "kb": 30.7,
+  "l": null,
+  "n": "Hedvig Letters Sans",
+  "src": "https://github.com/KanonFoundry/HedvigLetters/archive/refs/heads/main.zip",
+  "u": "https://github.com/KanonFoundry/HedvigLetters/"
+ },
+ "Hedvig Letters Serif": {
+  "c": null,
+  "file": "hedvig-letters-serif.woff2",
+  "h": null,
+  "kb": 30.7,
+  "l": null,
+  "n": "Hedvig Letters Serif",
+  "src": "https://github.com/KanonFoundry/HedvigLetters/archive/refs/heads/main.zip",
+  "u": "https://github.com/KanonFoundry/HedvigLetters/"
+ },
+ "Helmet": {
+  "c": null,
+  "file": "helmet.woff2",
+  "h": null,
+  "kb": 15.8,
+  "l": null,
+  "n": "Helmet",
+  "src": "https://github.com/somefreefonts/helmet/blob/master/HelmetNeue-Regular.otf",
+  "u": "https://github.com/carlenlund/helmet"
+ },
+ "Honey": {
+  "c": null,
+  "file": "honey.woff2",
+  "h": null,
+  "kb": 33.2,
+  "l": null,
+  "n": "Honey",
+  "src": "https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/5fdd5985-ec09-4638-8138-ca231dbe3d29/latin.woff2",
+  "u": "https://www.onlyanother.co/honey"
+ },
+ "Inclusive Sans": {
+  "c": null,
+  "file": "inclusive-sans.woff2",
+  "h": null,
+  "kb": 26.0,
+  "l": null,
+  "n": "Inclusive Sans",
+  "src": "https://github.com/LivKing/Inclusive-Sans/archive/refs/heads/main.zip",
+  "u": "https://github.com/LivKing/Inclusive-Sans"
+ },
+ "Instrument Sans": {
+  "c": null,
+  "file": "instrument-sans.woff2",
+  "h": null,
+  "kb": 33.8,
+  "l": null,
+  "n": "Instrument Sans",
+  "src": "https://github.com/Instrument/instrument-sans/archive/refs/heads/master.zip",
+  "u": "https://github.com/Instrument/instrument-sans"
+ },
+ "Kulim Park": {
+  "c": null,
+  "file": "kulim-park.woff2",
+  "h": null,
+  "kb": 22.1,
+  "l": null,
+  "n": "Kulim Park",
+  "src": "https://github.com/noponies/Kulim-Park/archive/refs/heads/master.zip",
+  "u": "https://github.com/noponies/Kulim-Park"
+ },
+ "LC Mogi": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "LC Mogi",
+  "u": "https://lokalcontainer.com/Typeface"
+ },
+ "LT Institute": {
+  "c": null,
+  "file": "lt-institute.woff2",
+  "h": null,
+  "kb": 10.3,
+  "l": null,
+  "n": "LT Institute",
+  "src": "https://static.wixstatic.com/ufonts/356ba5_023fe337f4b04b96a3f5e9df86d25393/woff2/file.woff2",
+  "u": "https://lyonstype4.wixsite.com/lyonstype-beta/fonts"
+ },
+ "LT Remark": {
+  "c": null,
+  "file": "lt-remark.woff2",
+  "h": null,
+  "kb": 10.3,
+  "l": null,
+  "n": "LT Remark",
+  "src": "https://static.wixstatic.com/ufonts/356ba5_023fe337f4b04b96a3f5e9df86d25393/woff2/file.woff2",
+  "u": "https://lyonstype4.wixsite.com/lyonstype-beta/fonts"
+ },
+ "LT Superior Mono": {
+  "c": null,
+  "file": "lt-superior-mono.woff2",
+  "h": null,
+  "kb": 10.3,
+  "l": null,
+  "n": "LT Superior Mono",
+  "src": "https://static.wixstatic.com/ufonts/356ba5_023fe337f4b04b96a3f5e9df86d25393/woff2/file.woff2",
+  "u": "https://lyonstype4.wixsite.com/lyonstype-beta/fonts"
+ },
+ "Lab Mono": {
+  "c": null,
+  "file": "lab-mono.woff2",
+  "h": null,
+  "kb": 17.4,
+  "l": null,
+  "n": "Lab Mono",
+  "src": "https://github.com/hatsumatsu/Lab-Mono/blob/master/LabMono-Regular.otf",
+  "u": "https://github.com/hatsumatsu/Lab-Mono"
+ },
+ "Libertinage": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Libertinage",
+  "u": "https://osp.kitchen/foundry/libertinage/"
+ },
+ "Lil Grotesk": {
+  "c": null,
+  "file": "lil-grotesk.woff2",
+  "h": null,
+  "kb": 51.1,
+  "l": null,
+  "n": "Lil Grotesk",
+  "src": "https://github.com/noirblancrouge/LilGrotesk/archive/refs/heads/master.zip",
+  "u": "https://github.com/noirblancrouge/LilGrotesk"
+ },
+ "Logisoso": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Logisoso",
+  "u": "https://osp.kitchen/foundry/logisoso/"
+ },
+ "Lunchtype": {
+  "c": null,
+  "file": "lunchtype.woff2",
+  "h": null,
+  "kb": 23.2,
+  "l": null,
+  "n": "Lunchtype",
+  "src": "https://uncut.wtf/downloads/lunchtype.zip",
+  "u": "https://uncut.wtf/downloads/lunchtype.zip"
+ },
+ "Maname": {
+  "c": null,
+  "err": "zip has no font",
+  "file": "maname.woff2",
+  "h": null,
+  "kb": 16.5,
+  "l": null,
+  "n": "Maname",
+  "src": "https://fonts.gstatic.com/s/maname/v2/gNMFW3J8RpCx9myI31MHOo26_A.woff2",
+  "u": "https://github.com/mooniak/maname-font"
+ },
+ "Manifont Grotesk": {
+  "c": null,
+  "file": "manifont-grotesk.woff2",
+  "h": null,
+  "kb": 24.1,
+  "l": null,
+  "n": "Manifont Grotesk",
+  "src": "https://github.com/Interstices-/Manifont-Grotesk/archive/refs/heads/master.zip",
+  "u": "https://github.com/Interstices-/Manifont-Grotesk"
+ },
+ "Martian Mono": {
+  "c": null,
+  "file": "martian-mono.woff2",
+  "h": null,
+  "kb": 30.2,
+  "l": null,
+  "n": "Martian Mono",
+  "src": "https://github.com/evilmartians/mono/archive/refs/heads/main.zip",
+  "u": "https://github.com/evilmartians/mono"
+ },
+ "Max Hana": {
+  "c": null,
+  "err": "BadZipFile: File is not a zip file",
+  "h": null,
+  "l": null,
+  "n": "Max Hana",
+  "u": "https://github.com/max32002/max-hana"
+ },
+ "Meta Old French": {
+  "c": null,
+  "file": "meta-old-french.woff2",
+  "h": null,
+  "kb": 76.7,
+  "l": null,
+  "n": "Meta Old French",
+  "src": "https://gitlab.com/assets/gitlab-mono/GitLabMono-29c2152dac8739499dd0fe5cd37a486ebcc7d4798c9b6d3aeab65b3172375b05.woff2",
+  "u": "https://gitlab.com/Luuse/foundry/meta-old-french"
+ },
+ "Micro Grotesk": {
+  "c": null,
+  "file": "micro-grotesk.woff2",
+  "h": null,
+  "kb": 7.7,
+  "l": null,
+  "n": "Micro Grotesk",
+  "src": "https://github.com/eliheuer/micro-grotesk/archive/refs/heads/main.zip",
+  "u": "https://github.com/eliheuer/micro-grotesk"
+ },
+ "Miedinger*": {
+  "c": null,
+  "file": "miedinger.woff2",
+  "h": null,
+  "kb": 732.8,
+  "l": null,
+  "n": "Miedinger*",
+  "src": "https://github.com/indestructible-type/Miedinger/archive/refs/heads/master.zip",
+  "u": "https://github.com/indestructible-type/Miedinger"
+ },
+ "Milford": {
+  "c": null,
+  "file": "milford.woff2",
+  "h": null,
+  "kb": 22.7,
+  "l": null,
+  "n": "Milford",
+  "src": "https://uncut.wtf/downloads/milford.zip",
+  "u": "https://uncut.wtf/downloads/milford.zip"
+ },
+ "Milkman": {
+  "c": null,
+  "file": "milkman.woff2",
+  "h": null,
+  "kb": 14.7,
+  "l": null,
+  "n": "Milkman",
+  "src": "https://uncut.wtf/downloads/milkman.ttf.zip",
+  "u": "https://uncut.wtf/downloads/milkman.ttf.zip"
+ },
+ "Monor": {
+  "c": null,
+  "file": "monor.woff2",
+  "h": null,
+  "kb": 14.3,
+  "l": null,
+  "n": "Monor",
+  "src": "https://fonderiz.fr/site/assets/files/1017/monor-bold.otf",
+  "u": "https://fonderiz.fr/monor/"
+ },
+ "New Heterodox Mono": {
+  "c": null,
+  "file": "new-heterodox-mono.woff2",
+  "h": null,
+  "kb": 27.0,
+  "l": null,
+  "n": "New Heterodox Mono",
+  "src": "https://github.com/hckiang/font-new-heterodox-mono/blob/main/NewHeterodoxMono-Bold.otf",
+  "u": "https://github.com/hckiang/font-new-heterodox-mono"
+ },
+ "Opening Hours Sans": {
+  "c": null,
+  "file": "opening-hours-sans.woff2",
+  "h": null,
+  "kb": 14.4,
+  "l": null,
+  "n": "Opening Hours Sans",
+  "src": "https://github.com/opening-hours-studio/opening-hours-sans/archive/refs/heads/main.zip",
+  "u": "https://github.com/opening-hours-studio/opening-hours-sans"
+ },
+ "Optician Sans": {
+  "c": null,
+  "file": "optician-sans.woff2",
+  "h": null,
+  "kb": 12.6,
+  "l": null,
+  "n": "Optician Sans",
+  "src": "https://github.com/anewtypeofinterference/Optician-Sans/archive/refs/heads/master.zip",
+  "u": "https://github.com/anewtypeofinterference/Optician-Sans"
+ },
+ "Overused Grotesk": {
+  "c": null,
+  "file": "overused-grotesk.woff2",
+  "h": null,
+  "kb": 190.0,
+  "l": null,
+  "n": "Overused Grotesk",
+  "src": "https://raw.githubusercontent.com/RandomMaerks/Overused-Grotesk/master/fonts/variable/OverusedGrotesk-VF.woff2",
+  "u": "https://github.com/RandomMaerks/Overused-Grotesk"
+ },
+ "Panamera": {
+  "c": null,
+  "file": "panamera.woff2",
+  "h": null,
+  "kb": 66.7,
+  "l": null,
+  "n": "Panamera",
+  "src": "https://github.com/noirblancrouge/Panamera/archive/refs/heads/master.zip",
+  "u": "https://github.com/noirblancrouge/Panamera"
+ },
+ "Paragon": {
+  "c": null,
+  "file": "paragon.woff2",
+  "h": null,
+  "kb": 14.0,
+  "l": null,
+  "n": "Paragon",
+  "src": "https://fonderiz.fr/site/assets/files/1021/p-acr-agon-regular.otf",
+  "u": "https://fonderiz.fr/paragon/"
+ },
+ "Perun": {
+  "c": null,
+  "err": "BadZipFile: File is not a zip file",
+  "h": null,
+  "l": null,
+  "n": "Perun",
+  "u": "https://github.com/StefanPeev/Perun"
+ },
+ "Pretendard": {
+  "c": null,
+  "err": "BadZipFile: File is not a zip file",
+  "h": null,
+  "l": null,
+  "n": "Pretendard",
+  "u": "https://github.com/orioncactus/pretendard"
+ },
+ "Prodigy Sans": {
+  "c": null,
+  "file": "prodigy-sans.woff2",
+  "h": null,
+  "kb": 29.7,
+  "l": null,
+  "n": "Prodigy Sans",
+  "src": "https://github.com/weiweihuanghuang/Prodigy-Sans/archive/refs/heads/master.zip",
+  "u": "https://github.com/weiweihuanghuang/Prodigy-Sans"
+ },
+ "Project Blackbird": {
+  "c": null,
+  "file": "project-blackbird.woff2",
+  "h": null,
+  "kb": 10.1,
+  "l": null,
+  "n": "Project Blackbird",
+  "src": "https://uncut.wtf/downloads/projekt_blackbird.otf.zip",
+  "u": "https://uncut.wtf/downloads/projekt_blackbird.otf.zip"
+ },
+ "Queering": {
+  "c": null,
+  "file": "queering.woff2",
+  "h": null,
+  "kb": 80.8,
+  "l": null,
+  "n": "Queering",
+  "src": "https://type.cargo.site/files/CargoGaisyr-MediumItalic.woff2",
+  "u": "https://www.adamnac.com/queering"
+ },
+ "Rag": {
+  "c": null,
+  "file": "rag.woff2",
+  "h": null,
+  "kb": 16.0,
+  "l": null,
+  "n": "Rag",
+  "src": "https://github.com/dennisgrauel/Rag/archive/refs/heads/main.zip",
+  "u": "https://github.com/dennisgrauel/Rag"
+ },
+ "Redaction": {
+  "c": null,
+  "err": "no source",
+  "file": "redaction.woff2",
+  "h": null,
+  "kb": 12.1,
+  "l": null,
+  "n": "Redaction",
+  "src": "https://fonts.gstatic.com/s/redaction/v1/xn7iYH8n0nKmDdYd_W6BSP3ZVtyGZg.woff2",
+  "u": "https://www.redaction.us/"
+ },
+ "Reglo": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Reglo",
+  "u": "https://osp.kitchen/foundry/reglo/"
+ },
+ "Snap-it Mono": {
+  "c": null,
+  "file": "snap-it-mono.woff2",
+  "h": null,
+  "kb": 76.7,
+  "l": null,
+  "n": "Snap-it Mono",
+  "src": "https://gitlab.com/assets/gitlab-mono/GitLabMono-29c2152dac8739499dd0fe5cd37a486ebcc7d4798c9b6d3aeab65b3172375b05.woff2",
+  "u": "https://gitlab.com/Alune/snap-it-mono-font"
+ },
+ "Solitus": {
+  "c": null,
+  "file": "solitus.woff2",
+  "h": null,
+  "kb": 14.0,
+  "l": null,
+  "n": "Solitus",
+  "src": "https://github.com/jhudson100/Solitus-font/blob/master/Solitus.ttf",
+  "u": "https://github.com/jhudson100/Solitus-font"
+ },
+ "Sprat": {
+  "c": null,
+  "file": "sprat.woff2",
+  "h": null,
+  "kb": 16.5,
+  "l": null,
+  "n": "Sprat",
+  "src": "https://github.com/EthanNakache/Sprat-type/blob/master/Sprat-CondensedBlack.otf",
+  "u": "https://github.com/EthanNakache/Sprat-type"
+ },
+ "Sunday Masthead": {
+  "c": null,
+  "file": "sunday-masthead.woff2",
+  "h": null,
+  "kb": 15.7,
+  "l": null,
+  "n": "Sunday Masthead",
+  "src": "https://github.com/dennisgrauel/The-Sunday-Paper-fonts/archive/refs/heads/main.zip",
+  "u": "https://github.com/dennisgrauel/The-Sunday-Paper-fonts"
+ },
+ "Swansea": {
+  "c": null,
+  "file": "swansea.woff2",
+  "h": null,
+  "kb": 20.0,
+  "l": null,
+  "n": "Swansea",
+  "src": "https://uncut.wtf/downloads/swansea.zip",
+  "u": "https://uncut.wtf/downloads/swansea.zip"
+ },
+ "TASA Orbiter": {
+  "c": null,
+  "err": "zip has no font",
+  "file": "tasa-orbiter.woff2",
+  "h": null,
+  "kb": 16.8,
+  "l": null,
+  "n": "TASA Orbiter",
+  "src": "https://fonts.gstatic.com/s/tasaorbiter/v2/3XF4Erw3860rsdSUVZx78hPcTvQoDGHxaFGfVH4Cwpu-9rArCcbYPg.woff2",
+  "u": "https://github.com/adrianzwz/TASA-Typeface-Collection"
+ },
+ "Times Dot": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Times Dot",
+  "u": "https://www.librarystack.org/times-dot/"
+ },
+ "Times Newer Roman": {
+  "c": null,
+  "err": "no source",
+  "file": "times-newer-roman.woff2",
+  "h": null,
+  "kb": 63.8,
+  "l": null,
+  "n": "Times Newer Roman",
+  "src": "https://timesnewerroman.com/assets/TimesNewerRoman.zip#TimesNewerRoman-Regular.otf",
+  "u": "https://timesnewerroman.com/"
+ },
+ "Uncut Plan8": {
+  "c": null,
+  "file": "uncut-plan8.woff2",
+  "h": null,
+  "kb": 23.2,
+  "l": null,
+  "n": "Uncut Plan8",
+  "src": "https://github.com/kaspernordkvist/uncut_plan8/archive/refs/heads/main.zip",
+  "u": "https://github.com/kaspernordkvist/uncut_plan8"
+ },
+ "Uncut Sans": {
+  "c": null,
+  "file": "uncut-sans.woff2",
+  "h": null,
+  "kb": 37.7,
+  "l": null,
+  "n": "Uncut Sans",
+  "src": "https://github.com/kaspernordkvist/uncut_sans/archive/refs/heads/main.zip",
+  "u": "https://github.com/kaspernordkvist/uncut_sans/"
+ },
+ "Utara": {
+  "c": null,
+  "err": "no source",
+  "h": null,
+  "l": null,
+  "n": "Utara",
+  "u": "https://lokalcontainer.com/Typeface"
+ },
+ "Victor Mono": {
+  "c": null,
+  "err": "no source",
+  "file": "victor-mono.woff2",
+  "h": null,
+  "kb": 15.6,
+  "l": null,
+  "n": "Victor Mono",
+  "src": "https://fonts.gstatic.com/s/victormono/v5/Yq6H-LGQWyfv-LGy7lEO09xRn-T81AVB_tCyO879g9aPdUMtbKcp.woff2",
+  "u": "https://rubjo.github.io/victor-mono/"
+ },
+ "Violet Sans": {
+  "c": null,
+  "file": "violet-sans.woff2",
+  "h": null,
+  "kb": 27.5,
+  "l": null,
+  "n": "Violet Sans",
+  "src": "https://github.com/violetoffice/violet_sans/archive/refs/heads/master.zip",
+  "u": "https://github.com/violetoffice/violet_sans"
+ },
+ "Whois": {
+  "c": null,
+  "file": "whois.woff2",
+  "h": null,
+  "kb": 8.0,
+  "l": null,
+  "n": "Whois",
+  "src": "https://github.com/raphaelbastide/Whois-mono/blob/master/whois-mono.ttf",
+  "u": "https://github.com/raphaelbastide/Whois-mono"
+ },
+ "Young Serif": {
+  "c": null,
+  "file": "young-serif.woff2",
+  "h": null,
+  "kb": 79.7,
+  "l": null,
+  "n": "Young Serif",
+  "src": "https://github.com/noirblancrouge/YoungSerif/archive/refs/heads/master.zip",
+  "u": "https://github.com/noirblancrouge/YoungSerif"
+ },
+ "Zarathustra": {
+  "c": null,
+  "file": "zarathustra.woff2",
+  "h": null,
+  "kb": 12.1,
+  "l": null,
+  "n": "Zarathustra",
+  "src": "https://github.com/lorene-cn/zarathustra-typeface/archive/refs/heads/master.zip",
+  "u": "https://github.com/lorene-cn/zarathustra-typeface"
+ },
+ "Zen Kaku Gothic New": {
+  "c": null,
+  "err": "no source",
+  "file": "zen-kaku-gothic-new.woff2",
+  "h": null,
+  "kb": 9.5,
+  "l": null,
+  "n": "Zen Kaku Gothic New",
+  "src": "https://fonts.gstatic.com/s/zenkakugothicnew/v19/gNMYW2drQpDw0GjzrVNFf_valaDBcznOojxoTE76QGE.woff2",
+  "u": "https://fonts.google.com/specimen/Zen+Kaku+Gothic+New"
+ }
+}
