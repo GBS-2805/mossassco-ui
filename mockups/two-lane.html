@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Shelf — two lanes</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500&f[]=clash-display@400,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0c;--ink:#e9e8e3;--dim:#8d8d96;--faint:#5a5a63;--ghost:#34343c;
+  --line:rgba(255,255,255,.12);--hair:rgba(255,255,255,.06);
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+  --sans:Satoshi,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,.8,.2,1);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
+body{max-width:430px;margin:0 auto;display:flex;flex-direction:column;height:100dvh}
+
+/* pinned: the specimen and its one control lane ----------------------------- */
+.pin{flex:0 0 auto;padding:14px 16px 0;border-bottom:1px solid var(--line)}
+.pin .top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 2px}
+.pin .top b{font-weight:500;font-size:13.5px;letter-spacing:-.005em}
+.pin .top span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.spec{height:clamp(120px,26vh,190px);display:flex;align-items:center;overflow:hidden}
+.big{display:block;width:max-content;white-space:nowrap;line-height:.9;letter-spacing:-.02em;color:var(--ink);
+  transition:font-variation-settings .4s var(--ease),font-weight .4s var(--ease),font-size .3s var(--ease)}
+
+/* the drag area: horizontal only, so it never argues with the vertical list */
+.lane{display:flex;align-items:center;gap:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;
+  height:46px;margin:0 -16px;padding:0 16px;position:relative;cursor:grab}
+.lane::-webkit-scrollbar{display:none}
+.lane .cut{flex:0 0 auto;background:none;border:0;padding:0 13px;color:var(--ghost);font:inherit;
+  font-size:15px;line-height:1;white-space:nowrap;transition:color .25s;opacity:.55}
+.lane .cut.on{color:var(--ink);opacity:1}
+.lane .grp{flex:0 0 auto;display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:6.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--faint);padding:0 12px 0 6px;white-space:nowrap}
+.lane .grp::after{content:"";display:block;width:1px;height:18px;background:var(--line)}
+.sheet{font-family:var(--mono);font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);
+  padding:0 0 11px;display:flex;justify-content:space-between;gap:10px}
+.sheet span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* the index: native vertical scroll, snapped, centre wins ------------------- */
+.index{flex:1 1 auto;overflow-y:auto;scroll-snap-type:y mandatory;position:relative;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.index::-webkit-scrollbar{display:none}
+.pad{height:calc(50% - 37px)}
+.row{position:relative;z-index:1;height:74px;display:flex;align-items:center;justify-content:center;scroll-snap-align:center}
+.row .nm{font-size:32px;line-height:1;white-space:nowrap;color:var(--ghost);transition:color .2s}
+.row.on .nm{color:var(--ink)}
+.mid{position:absolute;left:0;right:0;top:50%;height:1px;background:var(--hair);pointer-events:none}
+.hint{font-family:var(--mono);font-size:6.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ghost);padding:0 0 10px}
+</style>
+</head>
+<body>
+
+<div class="pin">
+  <div class="top"><b id="fname">—</b><span id="fcount">—</span></div>
+  <div class="spec"><span class="big" id="big">Shelf - 123</span></div>
+  <div class="lane" id="lane"></div>
+  <div class="sheet"><span id="sheetL">—</span><span id="sheetR">—</span></div>
+  <div class="hint">drag the lane for cuts · scroll the names for faces</div>
+</div>
+
+<div class="index" id="index">
+  <div class="mid"></div>
+  <div class="pad"></div>
+  <div id="rows"></div>
+  <div class="pad"></div>
+</div>
+
+<script>
+const laneEl = document.getElementById('lane');
+const indexEl = document.getElementById('index');
+const rowsEl = document.getElementById('rows');
+const big = document.getElementById('big');
+const fname = document.getElementById('fname');
+const fcount = document.getElementById('fcount');
+const sheetL = document.getElementById('sheetL');
+const sheetR = document.getElementById('sheetR');
+
+let F = [], cur = -1, curCut = -1, rows = [], laneCuts = [], laneLocked = 0;
+
+function faceCSS(f){
+  const w = f.axes.wght ? `${f.axes.wght[0]} ${f.axes.wght[2]}` : '400';
+  return `@font-face{font-family:'S${f.slug}';src:url('../fonts/${f.slug}.woff2') format('woff2');font-weight:${w};font-display:block}`;
+}
+function cutStyle(f, c){
+  const co = c.co;
+  const parts = Object.keys(co).map(k => `'${k}' ${co[k]}`);
+  return {
+    family: `S${f.slug}`,
+    variation: parts.length ? parts.join(',') : 'normal',
+    weight: co.wght || 400,
+    italic: (co.ital || 0) > 0 || /\bitalic\b/i.test(c.label)
+  };
+}
+function fit(){
+  const avail = big.parentNode.clientWidth - 8;
+  big.style.fontSize = '100px';
+  const w = big.getBoundingClientRect().width || 1;
+  const size = Math.min(avail / w * 100, 74);
+  big.style.fontSize = Math.max(16, size).toFixed(1) + 'px';
+}
+function paintCut(animate){
+  const f = F[cur], c = f.cuts[curCut];
+  const s = cutStyle(f, c);
+  big.style.fontFamily = s.family;
+  big.style.fontVariationSettings = s.variation;
+  big.style.fontWeight = s.weight;
+  big.style.fontStyle = s.italic ? 'italic' : 'normal';
+  fit();
+  laneEl.querySelectorAll('.cut').forEach(b => b.classList.toggle('on', +b.dataset.j === curCut));
+  fcount.textContent = f.cuts.length + (f.cuts.length === 1 ? ' cut' : ' cuts');
+  sheetL.textContent = f.lic + ' · ' + f.host;
+  sheetR.textContent = c.label + ' · ' + f.kb + ' KB';
+}
+function buildLane(){
+  const f = F[cur];
+  laneEl.innerHTML = '';
+  let lastGroup = null;
+  f.cuts.forEach((c, j) => {
+    if (f.group && c.co[f.group] !== lastGroup){
+      lastGroup = c.co[f.group];
+      const g = document.createElement('span');
+      g.className = 'grp';
+      g.textContent = f.group.toLowerCase() + ' ' + lastGroup;
+      laneEl.appendChild(g);
+    }
+    const b = document.createElement('button');
+    b.className = 'cut';
+    b.dataset.j = j;
+    b.textContent = c.label;
+    b.style.fontFamily = `S${f.slug}`;
+    b.style.fontVariationSettings = cutStyle(f, c).variation;
+    b.style.fontStyle = cutStyle(f, c).italic ? 'italic' : 'normal';
+    laneEl.appendChild(b);
+  });
+  laneCuts = [...laneEl.querySelectorAll('.cut')];
+  requestAnimationFrame(() => centreLane('auto'));
+}
+function centreLane(how){
+  const b = laneCuts[curCut];
+  if (!b) return;
+  laneLocked = performance.now() + 300;   // our own centring must not be read back as a drag
+  const left = b.offsetLeft - (laneEl.clientWidth - b.offsetWidth) / 2;
+  if (laneEl.scrollTo) laneEl.scrollTo({ left, behavior: how || 'smooth' });
+  else laneEl.scrollLeft = left;
+}
+function nearestIn(container, items, axis){
+  const cr = container.getBoundingClientRect();
+  const mid = axis === 'x' ? cr.left + cr.width / 2 : cr.top + cr.height / 2;
+  let best = 0, bd = 1e9;
+  items.forEach((el, i) => {
+    const r = el.getBoundingClientRect();
+    const c = axis === 'x' ? r.left + r.width / 2 : r.top + r.height / 2;
+    const d = Math.abs(c - mid);
+    if (d < bd){ bd = d; best = i; }
+  });
+  return best;
+}
+function setFace(i){
+  if (i === cur) return;
+  cur = i;
+  fname.textContent = F[i].name;
+  rows.forEach((r, j) => r.classList.toggle('on', i === j));
+  // a family's own base cut: Regular, Book, or the bare Italic when the whole family is italic
+  let idx = -1;
+  for (const want of ['regular', 'book', 'italic']){
+    idx = F[i].cuts.findIndex(c => c.label.trim().toLowerCase() === want);
+    if (idx >= 0) break;
+  }
+  curCut = idx >= 0 ? idx : (F[i].cuts.length - 1) >> 1;
+  buildLane();
+  paintCut();
+}
+
+// lane: horizontal drag; the cut nearest the middle wins
+let laneRaf = 0;
+laneEl.addEventListener('scroll', () => {
+  if (laneRaf) return;
+  laneRaf = requestAnimationFrame(() => {
+    laneRaf = 0;
+    if (!laneCuts.length || performance.now() < laneLocked) return;
+    const j = nearestIn(laneEl, laneCuts, 'x');
+    if (j !== curCut){ curCut = j; paintCut(); }
+  });
+}, { passive: true });
+laneEl.addEventListener('click', e => {
+  const b = e.target.closest('.cut');
+  if (!b) return;
+  curCut = +b.dataset.j;
+  paintCut();
+  centreLane();
+});
+
+// index: native scroll, the row nearest the middle wins
+let idxRaf = 0;
+indexEl.addEventListener('scroll', () => {
+  if (idxRaf) return;
+  idxRaf = requestAnimationFrame(() => {
+    idxRaf = 0;
+    if (!rows.length) return;
+    const i = nearestIn(indexEl, rows, 'y');
+    if (i !== cur) setFace(i);
+  });
+}, { passive: true });
+
+(async () => {
+  F = await fetch('faces.json?t=' + Date.now()).then(r => r.json());
+  const st = document.createElement('style');
+  st.textContent = F.map(faceCSS).join('\n');
+  document.head.appendChild(st);
+
+  rowsEl.innerHTML = F.map((f, i) =>
+    `<div class="row${i === 0 ? ' on' : ''}" data-i="${i}"><span class="nm" style="font-family:'S${f.slug}'">${f.name}</span></div>`
+  ).join('');
+  rows = [...rowsEl.querySelectorAll('.row')];
+
+  await document.fonts.ready;
+  cur = -1; setFace(Math.min(2, F.length - 1));
+  const startRow = rows[cur];
+  indexEl.scrollTop = startRow.offsetTop - (indexEl.clientHeight - startRow.offsetHeight) / 2;
+  document.querySelectorAll('.row .nm').forEach(n => { n.style.fontSize = '30px'; });
+  fit();
+})();
+</script>
+</body>
+</html>
