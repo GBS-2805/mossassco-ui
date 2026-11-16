@@ -23,7 +23,7 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .kinds button.on:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;opacity:.55}
 .kinds button:hover{color:#b9b8b2}
 .rule{height:1px;margin:16px 34px 0;background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.02))}
-.gh{display:flex;align-items:center;gap:14px;padding:36px 34px 0;max-width:1400px;margin:0 auto}
+.gh{display:flex;align-items:center;gap:14px;padding:28px 34px 0;max-width:1400px;margin:0 auto}
 .gh h2{margin:0;font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#d3d2cc;font-weight:400;white-space:nowrap}
 .gh span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;color:#44444b;font-variant-numeric:tabular-nums}
 .gh i{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.13),rgba(255,255,255,0))}
@@ -31,9 +31,9 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .gh .txt{width:200%;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.16);padding:0 0 5px;font-family:var(--mono);font-size:16px;letter-spacing:.2em;color:#cfcec8;outline:none;transform:scale(.5);transform-origin:left center;-webkit-appearance:none;border-radius:0}
 .gh .txt::placeholder{color:#3f3f46}
 .gh .txt:focus{border-bottom-color:rgba(255,255,255,.42)}
-.wall{columns:2;column-gap:30px;padding:18px 34px 26px;max-width:1400px;margin:0 auto}
+.wall{columns:2;column-gap:30px;padding:18px 34px 10px;max-width:1400px;margin:0 auto}
 .group:last-child .wall{padding-bottom:54px}
-.item{break-inside:avoid;margin:0 0 30px;cursor:pointer;display:block;width:100%;-webkit-tap-highlight-color:transparent}
+.item{break-inside:avoid;margin:0 0 24px;cursor:pointer;display:block;width:100%;-webkit-tap-highlight-color:transparent}
 .frame{position:relative;overflow:hidden;background:#0d0d10;width:100%;aspect-ratio:3/1;box-shadow:0 18px 34px -20px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.06);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
 .frame:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.045);pointer-events:none;z-index:4}
 .item:hover .frame{transform:translateY(-4px);box-shadow:0 28px 46px -20px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.17)}
@@ -107,6 +107,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sheet .preview .site .nm{font-size:38px;max-width:60%}
 .sheet .preview .site li{font-size:8px}
 .pcap{font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:#4a4a52}
+.prow{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;max-width:860px}
+.copy{background:none;border:1px solid rgba(255,255,255,.16);color:#8a8a92;font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;padding:0 12px;min-height:44px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.copy:hover{color:#fff;border-color:rgba(255,255,255,.32)}
+.sheet .preview .word[contenteditable]:focus{outline:1px dashed rgba(255,255,255,.22);outline-offset:8px}
 .vars{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:860px;width:100%}
 .vars button{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:12px 15px;min-height:44px;background:none;border:1px solid rgba(255,255,255,.14);color:#8c8c94;cursor:pointer;transition:color .18s,border-color .18s,background .18s,transform .12s;font-variant-numeric:tabular-nums}
 .vars button:hover{color:#fff;border-color:rgba(255,255,255,.36)}
@@ -136,10 +140,10 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 footer{display:flex;justify-content:space-between;gap:20px;padding:0 34px 34px;font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;text-transform:uppercase;color:#3f3f46;flex-wrap:wrap}
 footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.1);margin-right:12px}
 @media(max-width:1000px){.sheet .body{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}.sheet .info{overflow:visible}.sheet .preview{border-right:0;border-bottom:1px solid var(--line);padding:22px}}
-@media(max-width:760px){.wall{columns:1;padding:22px 18px 40px}header{padding-left:18px;padding-right:18px}
+@media(max-width:760px){.wall{columns:1;padding:20px 18px 12px}header{padding-left:18px;padding-right:18px}
   .kinds{padding:20px 0 6px 18px;flex-wrap:nowrap;overflow-x:auto;gap:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 30px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 30px),transparent 100%)}
   .kinds::-webkit-scrollbar{display:none}
-  .rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}
+  .rule{margin-left:18px;margin-right:18px}.gh{padding:22px 18px 0}.sheet .info{padding:22px 18px 44px}
   .site .nm{max-width:58%}.site li{font-size:6px}
   .type .word{right:30%}.icons .pv{padding:1%}.icons.hasrail .pv{padding:1% calc(27% + 1%) 1% 1%}
   .opt{font-size:6.5px;letter-spacing:.06em;padding:0 4% 0 6%}}
@@ -208,15 +212,15 @@ IC('Iconoir','icons · iconoir',{st:[{l:'regular',b:'https://cdn.jsdelivr.net/np
 IC('Simple Icons','icons · simple icons',{base:'https://cdn.simpleicons.org/',suf:'',names:['github','figma','notion','spotify','vercel','dribbble','react','framer','linear','miro'],lic:'CC0 · brand marks',dl:'direct asset',host:'simpleicons.org',href:'https://simpleicons.org',
  lead:'Free brand marks, one slug per company.',about:'Every logo as a single-colour SVG you can request by name and tint with CSS. The pragmatic answer for social rows and integrations.',use:['Social and integration rows','Footer brand marks'],watch:'The licence is CC0 but the trademarks are not yours to redraw. Follow each brand\'s rules.',size:'3,200 brands'});
 
-IM('Potted plant 01','https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=1200&height=1200','3D','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
+IM('Potted plant 01','https://cdn.polyhaven.com/asset_img/thumbs/potted_plant_01.png?width=1200&height=1200','3d-model','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
  lead:'A scanned prop, lit and ready. Public domain, no attribution.',about:'One believable object for the corner of a scene, which is usually exactly what an arch-viz frame needs.',use:['Filling a corner of a scene','Product mockups that need a real plant'],watch:'These are built for offline renders — check polycount before realtime.',fmt:'blend / fbx / gltf',size:'scanned prop'});
-IM('Wooden bowl','https://cdn.polyhaven.com/asset_img/thumbs/wooden_bowl_01.png?width=1200&height=1200','3D','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
+IM('Wooden bowl','https://cdn.polyhaven.com/asset_img/thumbs/wooden_bowl_01.png?width=1200&height=1200','3d-model','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
  lead:'A scanned bowl with real wear on the rim.',about:'Scanned props carry surface detail that modelled primitives never get: chipped edges, uneven grain, dust in the seams.',use:['Tabletop and product scenes','Foreground props with real texture'],watch:'Scanned meshes are heavy and not optimised for games out of the box.',fmt:'blend / fbx / gltf',size:'scanned prop'});
-IM('Arm chair','https://cdn.polyhaven.com/asset_img/thumbs/modern_arm_chair_01.png?width=1200&height=1200','3D','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
+IM('Arm chair','https://cdn.polyhaven.com/asset_img/thumbs/modern_arm_chair_01.png?width=1200&height=1200','3d-model','3d · cc0',{fit:1,lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
  lead:'A modern armchair, scanned and materialled.',about:'Furniture is the fastest way to give an interior render scale. This one has believable upholstery and a neutral silhouette.',use:['Interior scenes and mood renders','Scale reference in layouts'],watch:'Upholstery scans get heavy fast — decimate before realtime use.',fmt:'blend / gltf',size:'scanned prop'});
-IM('Window render','https://cdn.polyhaven.com/site_images/home/window_rend.jpg?width=1200','3D','3d · interior render',{lic:'CC0 assets',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com',
+IM('Window render','https://cdn.polyhaven.com/site_images/home/window_rend.jpg?width=1200','3d-illust','3d · interior render',{lic:'CC0 assets',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com',
  lead:'A finished frame made entirely from their CC0 library.',about:'The clearest argument for the library: HDRI light, scanned props, PBR textures — and none of it owes anyone attribution.',use:['Reference for lighting an interior','Proving a CC0 pipeline end to end'],watch:'It is a render, not a scene file. The assets are CC0; this image is their example.',fmt:'JPEG',size:'1,200px'});
-IM('Shapefest','','3D','3d · no signal',{fit:1,lic:'512px free · no republishing',dl:'click-through',host:'shapefest.com',href:'https://shapefest.com',
+IM('Shapefest','','3d-illust','3d · no signal',{fit:1,lic:'512px free · no republishing',dl:'click-through',host:'shapefest.com',href:'https://shapefest.com',
  lead:'Good files, terms that forbid showing them here. The empty frame is the honest preview.',about:'Ray-traced objects in the soft studio look. You can use the renders in your own work, but you cannot republish them — so a public gallery of their previews would break the agreement.',use:['Decorative 3D in hero sections','One glossy shape in a social layout'],watch:'Free tier is capped at 512px, and the republishing restriction stands.',fmt:'PNG / blend',size:'512px tier'});
 
 IM('Unsplash · lake','https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1000&q=72','image','photograph · unsplash',{lic:'free use, no resale',dl:'click-through',host:'unsplash.com',href:'https://unsplash.com/s/photos/lake',pos:'50% 62%',
@@ -310,7 +314,8 @@ function frameHTML(r,i){
   if(v.t==='mesh')return '<div class="frame mesh"><div class="pv"></div></div>';
   return '<div class="frame"><div class="pv"></div></div>';
 }
-var GROUPS=[['type','Type'],['icons','Icons'],['3D','3D objects'],['image','Image'],['sites','Sites'],['plugins','Plugins'],['tools','Tools']];
+var GROUPS=[['type','Type'],['icons','Icons'],['3d-illust','3D · illustration'],['3d-model','3D · modelling'],['image','Image'],['sites','Sites'],['plugins','Plugins'],['tools','Tools']];
+function kTag(k){return k==='3d-illust'||k==='3d-model'?'3D':k}
 var groupsEl=document.getElementById('groups');
 GROUPS.forEach(function(g){
   var idxs=[];I.forEach(function(r,i){if(r.k===g[0])idxs.push(i)});
@@ -322,7 +327,7 @@ GROUPS.forEach(function(g){
   var w=sec.querySelector('.wall');
   idxs.forEach(function(i){
     var r=I[i],el=document.createElement('div');el.className='item';el.dataset.kind=r.k;el.dataset.i=i;
-    el.innerHTML='<div class="cap top"><b>'+r.n+'</b><i>'+r.k+'</i></div>'+frameHTML(r,i);
+    el.innerHTML='<div class="cap top"><b>'+r.n+'</b><i>'+kTag(r.k)+'</i></div>'+frameHTML(r,i);
     el.setAttribute('role','button');el.setAttribute('tabindex','0');
     el.setAttribute('aria-label',r.n+' — open preview, options on the right');
     el.onclick=function(e){if(e.target.closest('.opt'))return;openTab(i)};
@@ -343,12 +348,12 @@ GROUPS.forEach(function(g){
 document.querySelector('.meta').textContent=I.length+' items · '+document.querySelectorAll('.group').length+' sections · reviewed licence by licence';
 fitTypes();fitSites();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitTypes();fitSites()});
-var kinds=['all'].concat(GROUPS.map(function(g){return g[0]})),kb=document.getElementById('kinds');
-kinds.forEach(function(k,idx){
-  var b=document.createElement('button');b.textContent=k;if(idx===0)b.className='on';
+var kinds=[{k:'all',t:'all'}].concat(GROUPS.map(function(g){return {k:g[0],t:g[1]}})),kb=document.getElementById('kinds');
+kinds.forEach(function(o,idx){
+  var b=document.createElement('button');b.textContent=o.t;if(idx===0)b.className='on';
   b.onclick=function(){
     [].forEach.call(kb.children,function(c){c.classList.remove('on')});b.classList.add('on');
-    [].forEach.call(groupsEl.children,function(sec){sec.style.display=(k==='all'||sec.dataset.kind===k)?'':'none'});
+    [].forEach.call(groupsEl.children,function(sec){sec.style.display=(o.k==='all'||sec.dataset.kind===o.k)?'':'none'});
     fitTypes();fitSites();
   };
   kb.appendChild(b);
@@ -389,6 +394,12 @@ function applyVariant(i,dim,j){
   return true;
 }
 function pickDim(i,dim,j){applyVariant(i,dim,j)}
+function copySpecimen(btn){
+  var t=ptext||'';if(!t)return;
+  var done=function(){btn.textContent='copied';setTimeout(function(){btn.textContent='copy txt'},1400)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){})}
+  else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(ta)}
+}
 groupsEl.addEventListener('click',function(e){
   var o=e.target.closest('.opt');
   if(!o)return;
@@ -409,8 +420,8 @@ var histPushed=false;
 function openTab(i){
   if(!histPushed){histPushed=true;try{history.pushState({sheet:1},'')}catch(e){}}
   cur=i;var r=I[i],n=I.length;
-  sheet.innerHTML='<div class="bar"><span class="dot"></span><span>'+r.k+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()" aria-label="close preview">close ✕</button></div>'+
-  '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="pcap">'+(r.k==='type'?(typeLabel(r).split(' · ')[0]||''):r.cap)+'</div>'+varButtons(r,i)+'</div>'+
+  sheet.innerHTML='<div class="bar"><span class="dot"></span><span>'+kTag(r.k)+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()" aria-label="close preview">close ✕</button></div>'+
+  '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="prow"><span class="pcap">'+(r.k==='type'?(typeLabel(r).split(' · ')[0]||''):r.cap)+'</span>'+(r.k==='type'?'<button class="copy" onclick="copySpecimen(this)">copy txt</button>':'')+'</div>'+varButtons(r,i)+'</div>'+
   '<div class="info"><h1>'+r.n+'</h1><p class="lead">'+r.lead+'</p>'+
   '<div class="sec"><span class="lab">about</span><p>'+r.about+'</p></div>'+
   '<div class="sec"><span class="lab">use it for</span><ul>'+r.use.map(function(u){return '<li>'+u+'</li>'}).join('')+'</ul></div>'+
@@ -424,6 +435,17 @@ function openTab(i){
   '</div>'+
   '<div class="cta"><a class="go" href="'+r.href+'" target="_blank" rel="noopener">open '+r.host+' ↗</a><button class="next" onclick="step(1)">next item →</button></div>'+
   '</div></div>';
+  var sw=sheet.querySelector('.preview .word');
+  if(sw){                                             // the specimen itself is the editor
+    sw.setAttribute('contenteditable','true');sw.setAttribute('spellcheck','false');
+    sw.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();sw.blur()}});
+    sw.addEventListener('input',function(){
+      ptext=sw.textContent.replace(/\s+/g,' ').trim();
+      var inp=document.querySelector('.gh .txt');if(inp)inp.value=ptext;
+      [].forEach.call(groupsEl.querySelectorAll('.item[data-kind="type"] .word'),function(w){w.textContent=ptext||I[+w.closest('.item').dataset.i].n});
+      fitTypes();fitSites();
+    });
+  }
   sheet.classList.add('on');document.body.style.overflow='hidden';
   fitTypes(sheet);fitSites(sheet);
   var b=sheet.querySelector('.body');if(b)b.scrollTop=0;
