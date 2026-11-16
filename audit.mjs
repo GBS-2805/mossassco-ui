@@ -8,6 +8,11 @@
 //   - any icon set has a different number of names than the grid has cells
 //   - the icon grid is not uniform on all sides (or does not clear the rail)
 //   - any photo, site or plugin asset referenced by the data is unreachable
+//   - the page stops drawing behind a phone's camera cutout or rounded corners
+//   - a padded edge loses its safe-area inset (including inside a media query)
+//   - the phone, narrow-phone or three-column breakpoint goes missing or loses
+//     its order, so a wider block overrides a narrower one
+//   - a filter, close or copy button drops below thumb size
 //
 // Data is read out of d.html itself, so the audit follows the file.
 
@@ -115,12 +120,90 @@ for (const chunk of imChunks) {
   }
 }
 
+// ---- layout rules ------------------------------------------------------------
+// Each of these has a reason on a real phone (Galaxy Flip-class punch hole,
+// rounded corners) or on a wide monitor. Break one knowingly, not by accident.
+const SIDES = ['top', 'right', 'bottom', 'left'];
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const viewportMeta = (html.match(/<meta name="viewport" content="([^"]*)"/) || [])[1] || '';
+if (!/viewport-fit=cover/.test(viewportMeta)) {
+  problems.push(`viewport meta must include viewport-fit=cover, found "${viewportMeta || 'none'}"`);
+}
+
+function expandPadding(value) {
+  const parts = value.match(/calc\((?:[^()]|\([^()]*\))*\)|var\((?:[^()]|\([^()]*\))*\)|[^\s]+/g) || [];
+  if (parts.length === 1) return { top: parts[0], right: parts[0], bottom: parts[0], left: parts[0] };
+  if (parts.length === 2) return { top: parts[0], bottom: parts[0], right: parts[1], left: parts[1] };
+  if (parts.length === 3) return { top: parts[0], right: parts[1], bottom: parts[2], left: parts[1] };
+  return { top: parts[0], right: parts[1], bottom: parts[2], left: parts[3] };
+}
+
+// selector, property, and the edges that actually touch the display
+const surfaces = [
+  ['header', 'padding', ['top', 'right', 'left']],
+  ['.kinds', 'padding', ['right', 'left']],
+  ['.rule', 'margin', ['right', 'left']],
+  ['.gh', 'padding', ['right', 'left']],
+  ['.wall', 'padding', ['right', 'left']],
+  ['footer', 'padding', ['right', 'left', 'bottom']],
+  ['.sheet .bar', 'padding', ['top', 'right', 'left']],
+  ['.sheet .info', 'padding', ['right', 'left', 'bottom']],
+  ['.sheet .preview', 'padding', ['right', 'left']],
+];
+
+let edgesChecked = 0;
+for (const [selector, prop, edges] of surfaces) {
+  const blocks = [...html.matchAll(new RegExp(escapeRe(selector) + '\\{([^}]*)\\}', 'g'))];
+  if (!blocks.length) {
+    problems.push(`no ${selector} rule found, so its safe-area padding cannot be checked`);
+    continue;
+  }
+  for (const block of blocks) {
+    const body = block[1];
+    const shorthand = (body.match(new RegExp(`(?:^|;)${prop}:([^;}]*)`)) || [])[1];
+    const expanded = shorthand ? expandPadding(shorthand) : null;
+    for (const edge of edges) {
+      const longhand = (body.match(new RegExp(`${prop}-${edge}:([^;}]*)`)) || [])[1];
+      const value = longhand !== undefined ? longhand : expanded && expanded[edge];
+      if (!value || /^0(px)?$/.test(value.trim())) continue;
+      edgesChecked++;
+      if (!value.includes(`--sa-${edge[0]}`)) {
+        problems.push(`${selector} ${prop} on the ${edge} edge must add var(--sa-${edge[0]}), found "${value.trim()}"`);
+      }
+    }
+  }
+}
+
+const wideIdx = html.indexOf('@media(min-width:1280px){.wall{columns:3}}');
+const phoneIdx = html.indexOf('@media(max-width:760px)');
+const narrowIdx = html.indexOf('@media(max-width:380px)');
+if (wideIdx < 0) problems.push('the wall must take three columns from 1280px: @media(min-width:1280px){.wall{columns:3}}');
+if (phoneIdx < 0) problems.push('missing @media(max-width:760px): phones get one column and a scrolling filter row');
+if (narrowIdx < 0) problems.push('missing @media(max-width:380px): narrow phones keep the tight gutters');
+if (phoneIdx > -1 && narrowIdx > -1 && narrowIdx < phoneIdx) {
+  problems.push('the max-width:380px block sits before max-width:760px, so the wider block overrides it — put the narrower one last');
+}
+
+const touchTargets = [['.sheet .bar button', 44], ['.copy', 44], ['.kinds button', 40]];
+for (const [selector, min] of touchTargets) {
+  const blocks = [...html.matchAll(new RegExp(escapeRe(selector) + '\\{([^}]*)\\}', 'g'))];
+  if (!blocks.length) {
+    problems.push(`no ${selector} rule found, so its touch target cannot be checked`);
+    continue;
+  }
+  const heights = blocks.map((b) => Number((b[1].match(/min-height:(\d+)px/) || [])[1]) || 0);
+  const best = Math.max(...heights);
+  if (best < min) problems.push(`${selector} needs min-height:${min}px under a thumb, found ${best ? best + 'px' : 'none'}`);
+}
+
 // ---- report ------------------------------------------------------------------
 const w = (s, n) => String(s).padEnd(n);
 console.log(`grid ${cols} x ${gridRows} = ${cols * gridRows} cells, padding ${padding}, rail ${railWidth}%`);
 console.log(w('set', 18) + w('names', 7) + w('styles', 8) + w('urls', 6) + 'broken');
 for (const r of rows) console.log(w(r.label, 18) + w(r.names, 7) + w(r.styles, 8) + w(r.urls, 6) + r.broken);
 console.log(`photos/sites/plugins checked: ${imUrls}`);
+console.log(`layout: ${edgesChecked} safe-area edges checked, viewport-fit=cover, 380/760/1280 breakpoints, thumb targets`);
 
 if (problems.length) {
   console.error(`\n${problems.length} problem(s):`);
