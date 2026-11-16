@@ -26,4 +26,15 @@ licence string; a category that loses a mark or a zero; the layout rules
 regressions (layout reads in the scroll handler, a transform tween, a rebuilt
 sheet); and a script that no longer parses.
 
+## In CI
+
+`.github/workflows/audit.yml` runs `node audit.mjs` on every pull request and
+on every push to `main`; once a day it adds `--live` so a published page that
+drifts from this file is caught without anyone committing.
+
+`main` requires that `audit` check to pass before a pull request can merge.
+There is no pull-request requirement and no push restriction, so commits can
+still be pushed straight to `main` — protection stops a red pull request, not a
+push. A push that fails the audit still lands, and the run goes red afterwards.
+
 Live at https://gbs-2805.github.io/mossassco-ui/d.html
