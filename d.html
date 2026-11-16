@@ -43,7 +43,15 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sub{margin-top:4px;font-family:var(--mono);font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#3e3e45}
 .pv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .tag{position:absolute;left:4.5%;top:9%;font-family:var(--mono);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5a62;z-index:2}
-.type .word{position:absolute;left:4.5%;bottom:4%;right:28%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
+.type .word{position:absolute;left:4.5%;bottom:34px;right:4.5%;line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap}
+.frame.type{aspect-ratio:auto}
+.type .tag{top:11px}
+.strip{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;align-items:center;gap:16px;padding:0 4.5%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.08);z-index:5}
+.strip::-webkit-scrollbar{display:none}
+.strip .opt{flex:0 0 auto;width:auto;padding:12px 0;border:0;background:none;font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#55555d;line-height:1;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:color .14s}
+.strip .opt:hover{color:#c9c8c2}
+.strip .opt:active{color:#fff}
+.strip .opt.on{color:#f4f3ee}
 .icons{background:#0e0e11}
 .icons .pv{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(2,1fr);place-items:center;padding:7%}
 .icons.hasrail .pv{padding:7% calc(27% + 7%) 7% 7%}
@@ -84,8 +92,8 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .sheet .preview{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:34px 24px;background:radial-gradient(90% 90% at 50% 20%,#141417,#08080a 72%);border-right:1px solid var(--line);overflow:hidden}
 .sheet .preview .frame{max-width:860px;width:100%;box-shadow:0 50px 90px -40px #000,0 0 0 1px rgba(255,255,255,.09)}
 .sheet .preview .tag{display:none}
-.sheet .preview .rail{display:none}
-.sheet .preview .type .word{right:4.5%}
+.sheet .preview .rail,.sheet .preview .strip{display:none}
+.sheet .preview .frame.type{aspect-ratio:3/1}.sheet .preview .type .word{right:4.5%;bottom:8%}
 .sheet .preview .icons .pv{padding:7%}
 .sheet .preview .icons.hasrail .pv{padding:7%}
 .sheet .preview .site .nm{font-size:38px;max-width:60%}
@@ -125,7 +133,7 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
   .kinds::-webkit-scrollbar{display:none}
   .rule{margin-left:18px;margin-right:18px}.gh{padding:28px 18px 0}.sheet .info{padding:22px 18px 44px}
   .site .nm{max-width:58%}.site li{font-size:6px}
-  .type .word{right:30%}.icons .pv{padding:6%}.icons.hasrail .pv{padding:6% calc(27% + 6%) 6% 6%}
+  .type .word{right:4.5%}.icons .pv{padding:6%}.icons.hasrail .pv{padding:6% calc(27% + 6%) 6% 6%}
   .opt{font-size:6.5px;letter-spacing:.06em;padding:0 4% 0 6%}}
 </style></head><body>
 <div class="grain"></div>
@@ -225,15 +233,16 @@ function fitTypes(scope){
   var frames=[].slice.call((scope||document).querySelectorAll('.frame.type'));
   if(!frames.length)return;
   var data=frames.map(function(f){var w=f.querySelector('.word');if(!w)return null;var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];return{f:f,w:w,m:metrics(fam,w.textContent.trim(),w.dataset.w)}}).filter(Boolean);
-  data.forEach(function(d){
-    var W=d.f.clientWidth,H=d.f.clientHeight;
-    if(!W||!H||W>9000)return;
-    var tag=d.f.querySelector('.tag'),tagBot=tag?tag.offsetTop+tag.offsetHeight:0;
-    var room=H*0.94-(tagBot+10);                     // ink may not reach the tag
-    var fs=Math.min(62*H/d.m.asc,room/1.06);         // fill the height first
-    d.w.style.fontSize=fs.toFixed(2)+'px';
-    var r=document.createRange();r.selectNodeContents(d.w),tw=r.getBoundingClientRect().width;
-    for(var g=0;g<3&&tw>W*0.66;g++){fs*=W*0.66/tw;d.w.style.fontSize=fs.toFixed(2)+'px';tw=r.getBoundingClientRect().width}
+  var W=Math.min.apply(null,data.map(function(d){return d.f.clientWidth||99999}));
+  if(!W||W>9000)return;
+  var T=Math.min(W*0.115,(W/3)*0.42),worst=0;
+  data.forEach(function(d){worst=Math.max(worst,(d.m.w*T/d.m.asc)/(W*0.66))});
+  if(worst>1)T/=worst;
+  data.forEach(function(d){d.w.style.fontSize=(100*T/d.m.asc).toFixed(2)+'px'});
+  data.forEach(function(d){                            // frame height = tag + name + strip, no band
+    if(d.f.closest('.sheet')){d.f.style.height='';return}
+    var b=d.w.getBoundingClientRect(),tag=d.f.querySelector('.tag');
+    d.f.style.height=Math.round(34+b.height+10+(tag?tag.offsetHeight:0)+10)+'px';
   });
 }
 function fitSites(scope){
@@ -244,8 +253,8 @@ function fitSites(scope){
 }
 var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){fitTypes();fitSites()},140)});
 function varList(r){return r.k==='type'?r.vs:(r.styles||null)}
-function optList(i,list,cur){
-  var h='<div class="rail" role="group" aria-label="options">';
+function optList(i,list,cur,flat){
+  var h='<div class="'+(flat?'strip':'rail')+'" role="group" aria-label="options">';
   list.forEach(function(x,j){h+='<button class="opt'+(j===cur?' on':'')+'" data-i="'+i+'" data-v="'+j+'" aria-pressed="'+(j===cur)+'">'+x.l+'</button>'});
   return h+'</div>';
 }
@@ -259,7 +268,7 @@ function frameHTML(r,i){
   if(r.k==='sites'||r.k==='plugins')return siteFrame(r,c);
   if(v.t==='type'){
     var vs=r.vs,d=vs[r.vi]||vs[0];
-    return '<div class="'+c+' type"><div class="pv"><div class="tag">'+r.cap+'</div><div class="word" data-w="'+(d.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(d.w||400)+';font-style:'+(d.s||'normal')+'">'+r.n+'</div></div>'+optList(i,vs,r.vi)+'</div>';
+    return '<div class="'+c+' type"><div class="pv"><div class="tag">'+r.cap+'</div><div class="word" data-w="'+(d.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(d.w||400)+';font-style:'+(d.s||'normal')+'">'+r.n+'</div></div>'+optList(i,vs,r.vi,1)+'</div>';
   }
   if(v.t==='icons'){
     var st=r.styles?r.styles[r.vi]:null,base=st?st.b:v.base,suf=st?st.s:v.suf;
