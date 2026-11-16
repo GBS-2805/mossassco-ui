@@ -41,6 +41,13 @@ Controls sit on the card and act in place — tap a cut on the rail and the
 specimen on that same card changes, smoothly. Interaction never moves behind a
 sheet or a separate screen when it can happen where the thumb already is.
 
+## A reference image is already the mockup
+
+When the owner sends a picture of the thing they want, they have already drawn
+it. Send it back or work from it directly — do not spend a turn rebuilding the
+same card in HTML so they can look at a copy of their own screenshot. Build only
+what the picture cannot show (behaviour, states, the awkward data).
+
 ## Mock first, build second
 
 A UI change that is not obviously right gets a throwaway mockup in `mockups/`
