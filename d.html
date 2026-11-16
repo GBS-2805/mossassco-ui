@@ -456,7 +456,7 @@ function fitFaces(){                                   // one line of preview pe
     var m=metrics(fam,w.textContent.trim(),400);
     var W=(a.clientWidth||0)-30;
     if(!W||!m.w)return;
-    var fs=Math.max(11,Math.min(W/m.w*100,72));
+    var fs=Math.max(11,Math.min(W*0.93/m.w*100,66));   // a hair under the card: italic overhang and side bearings sit outside the measured advance
     w.style.fontSize=fs.toFixed(1)+'px';
   });
 }
