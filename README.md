@@ -28,6 +28,33 @@ sheet); a script that no longer parses; and the file's own weight — past 150 K
 or 45 KB gzip it fails, because every visitor downloads the whole thing. It
 prints what each section costs on every run.
 
+## What it costs
+
+The file is the small part. Measured on 16 Nov 2026, cold cache, 412px wide,
+after `networkidle`:
+
+| | |
+|---|---|
+| the file | 78.9 KB raw · **24.1 KB gzip** (Pages sends gzip, not brotli; `max-age=600`) |
+| fonts | **438.6 KB** over 11 files — 76% of the page |
+| icons | 107.8 KB over 80 requests, deferred and `fetchpriority="low"` |
+| total | **576.6 KB** over 96 requests |
+
+`node weigh.mjs` reports the other number: what the two font stylesheets
+*declare*. That is 44 latin woff2 and about 1,469 KB, an upper bound — a browser
+fetches only the faces the rendered text uses, which is why the real page is
+576 KB and not 1,469.
+
+Two things that look like savings and are not:
+
+- **Minifying.** Comments and all indentation removed: 1.3% gzipped (315 bytes).
+  Whitespace is already free once gzip has run, and the file is hand-read.
+- **Deferring the specimen fonts.** Every specimen shares one optical size,
+  computed at load from all the families' metrics; loading a family late
+  re-fits the whole wall and the type visibly resizes while you scroll.
+
+Pages serves gzip only, so that 24.1 KB is the floor for the file itself.
+
 ## In CI
 
 `.github/workflows/audit.yml` runs `node audit.mjs` on every pull request and

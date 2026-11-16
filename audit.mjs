@@ -363,6 +363,21 @@ for (const gone of ['Cambrian', 'Phosphène', 'Berlin Grotesk', 'Slibinas', 'Bor
   if (freeNames.includes(gone)) problems.push(`${gone}: rests only on the catalogue licence field, so it may not be shelved yet`);
 }
 
+// ---- what the page fetches -----------------------------------------------------
+// The icon grid is eighty decorative SVGs — more requests than everything else
+// combined. They are lazy and low-priority so they queue behind the fonts the
+// specimens need; if that markup changes, the grid silently starts racing the
+// type for bandwidth, which no local check would otherwise notice.
+if (!/names\.forEach[^\n]*fetchpriority="low"/.test(html)) {
+  problems.push('icon grid images lost loading="lazy" / fetchpriority="low" — eighty SVGs would compete with the specimen fonts');
+}
+
+// Fonts are the whole point of the page and also most of its weight, so the
+// stylesheets have to stay a small, known list a person can read and trim.
+const fontSheets = (html.match(/<link[^>]*(?:fonts\.googleapis\.com|api\.fontshare\.com)[^>]*>/g) || [])
+  .filter((tag) => /rel="stylesheet"/.test(tag)).length;
+if (fontSheets !== 2) problems.push(`expected 2 font stylesheets (Google, Fontshare), found ${fontSheets}`);
+
 // ---- motion -----------------------------------------------------------------
 // Layered fixes for the jitter: cached chip geometry, one rAF per scroll frame,
 // and in-place preview painting instead of rebuilding the sheet.

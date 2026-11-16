@@ -389,7 +389,7 @@ function frameHTML(r,i){
     var st=r.styles?r.styles[r.vi]:null,base=st?st.b:v.base,suf=st?st.s:v.suf;
     c+=' icons'+(r.styles?' hasrail':'')+(base.indexOf('simple-icons')>-1?' brand':'');
     var h='<div class="pv">';
-    v.names.forEach(function(n){h+='<img src="'+base+n+suf+'" alt="" decoding="async">'});
+    v.names.forEach(function(n){h+='<img src="'+base+n+suf+'" alt="" loading="lazy" decoding="async" fetchpriority="low">'});
     return '<div class="'+c+'">'+h+'</div>'+(r.styles?optList(i,r.styles,r.vi):'')+'</div>';
   }
   if(v.t==='img'&&!v.src)return '<div class="frame img fit void"><div class="pv"><span>RENDERS CANNOT BE REPUBLISHED<br>— SO THERE IS NOTHING HONEST TO SHOW</span></div></div>';
