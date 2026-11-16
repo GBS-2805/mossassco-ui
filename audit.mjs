@@ -28,6 +28,7 @@
 import { readFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync } from 'node:fs';
+import { gzipSync } from 'node:zlib';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -462,6 +463,42 @@ if (process.argv.includes('--live')) {
   }
 }
 
+// ---- page weight -------------------------------------------------------------
+// The product is one file, and every visitor downloads all of it: on Pages there
+// is no partial load, no lazy chunk, no build step to split it. So size is a
+// design decision with a number attached, and the number gets checked here.
+// Chrome is everything that is not data; data is counted per section so the one
+// that quietly doubles shows up by name instead of as a vague total.
+const RAW_BUDGET = 150 * 1024;
+const GZIP_BUDGET = 45 * 1024;
+const rawBytes = Buffer.byteLength(html);
+const gzipBytes = gzipSync(html, { level: 9 }).length;
+const kb = (n) => (n / 1024).toFixed(1) + ' KB';
+
+const byKind = {};
+for (const r of recordLines) byKind[r.kind] = (byKind[r.kind] || 0) + Buffer.byteLength(r.line);
+const indexBlock = (html.match(/var FREE=\[[\s\S]*?\n\];/) || [''])[0];
+const indexBytes = Buffer.byteLength(indexBlock);
+const indexRows = (indexBlock.match(/\{c:'/g) || []).length;
+const dataBytes = Object.values(byKind).reduce((a, b) => a + b, 0) + indexBytes;
+const chromeBytes = rawBytes - dataBytes;
+const parts = [
+  ['chrome', chromeBytes],
+  ...Object.entries(byKind),
+  [`index (${indexRows})`, indexBytes],
+].sort((a, b) => b[1] - a[1]);
+const weightLine = `${kb(rawBytes)} raw · ${kb(gzipBytes)} gzip — ` + parts.map(([n, b]) => `${n} ${kb(b)}`).join(' · ');
+
+const biggest = parts[0];
+for (const [label, budget, bytes] of [['raw', RAW_BUDGET, rawBytes], ['gzip', GZIP_BUDGET, gzipBytes]]) {
+  if (bytes > budget) {
+    problems.push(
+      `d.html is ${kb(bytes)} ${label}, over its ${kb(budget)} budget by ${kb(bytes - budget)}: ` +
+      `the whole file is one download for every visitor, and the largest part is ${biggest[0]} at ${kb(biggest[1])}`
+    );
+  }
+}
+
 // ---- report ------------------------------------------------------------------
 const w = (s, n) => String(s).padEnd(n);
 console.log(`grid ${cols} x ${gridRows} = ${cols * gridRows} cells, padding ${padding}, rail ${railWidth}%`);
@@ -472,6 +509,7 @@ console.log(`layout: ${edgesChecked} safe-area edges checked, viewport-fit=cover
 console.log(`licences: ${recordLines.length} records · FF ${tierCount.pd} · CN ${tierCount.open} · P ${tierCount.terms} · missing ${noLicence}`);
 console.log(`motion: cached chip geometry, rAF-throttled scroll, in-place preview paint`);
 console.log(`records: ${copyChecked} with https links, copy and uses · names unique · links rel=noopener`);
+console.log(`weight: ${weightLine}`);
 console.log(`script: ${scriptOk ? 'parses' : 'FAILS TO PARSE'}${liveChecked ? ' · live: byte-identical to d.html' : ' · live: not checked (pass --live)'}`);
 
 if (problems.length) {

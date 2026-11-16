@@ -24,7 +24,9 @@ no https link, no copy or a duplicate name; a tier that disagrees with its
 licence string; a category that loses a mark or a zero; the layout rules
 (viewports, safe-area insets, breakpoints, thumb targets); the jitter
 regressions (layout reads in the scroll handler, a transform tween, a rebuilt
-sheet); and a script that no longer parses.
+sheet); a script that no longer parses; and the file's own weight — past 150 KB raw
+or 45 KB gzip it fails, because every visitor downloads the whole thing. It
+prints what each section costs on every run.
 
 ## In CI
 
