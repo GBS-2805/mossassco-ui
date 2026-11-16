@@ -262,13 +262,25 @@ for (const r of recordLines) {
 for (const a of ['FF', 'CN', 'P']) {
   if (!new RegExp(`a:'${a}',`).test(html)) problems.push(`no abbreviation for the ${a} tier — every mark must read FF, CN or P`);
 }
-if (!/counts\[t\]/.test(html) || !/mark\(t,counts\[t\]\)/.test(html)) problems.push('category headers must print the licence mix: counts[t] + mark(t,counts[t])');
+if (!/counts\[t\]/.test(html) || !/mark\(t,counts\[t\]/.test(html)) problems.push('category headers must print the licence mix: counts[t] + mark(t,counts[t])');
+if (!/TIER_ORDER\.map\(function\(t\)\{return mark\(t,counts\[t\]\|\|0\)\}/.test(html)) {
+  problems.push('a header must show all three tiers with their counts, including zero — otherwise a category silently loses its CN');
+}
+if (!/\.kinds \.lic-tab\{/.test(html)) problems.push('.kinds .lic-tab must give the licence tabs their own weight so they are easy to spot');
 if (!/function paintMeta\(/.test(html)) problems.push('no paintMeta(): the header counts must follow a licence filter');
 if (!/function applyFilter\(/.test(html) || !/FILTER\.tier/.test(html)) problems.push('the licence tiers must filter the wall, not just label it');
 if (!/kinds\.push\(\{tier:t/.test(html)) problems.push('FF, CN and P must be filter tabs in the kinds row');
 if (!/\.kinds \.sep\{/.test(html)) problems.push('the kinds row needs a .kinds .sep divider before the licence tabs');
 if (!/class="lic">'\+mark\(t\)/.test(html)) problems.push('the record bar must show its tier badge: mark(t)');
-if (!/class="cap top"><b>'\+r\.n\+'<\/b>'\+mark\(t\)/.test(html)) problems.push('every card in the wall must carry its tier badge in the caption');
+if (!/<b>'\+r\.n\+'<\/b><i>'\+kTag\(r\.k\)\+'<\/i>'\+mark\(t\)/.test(html)) {
+  problems.push('a card must read name · KIND · badge: the tier badge goes after the category tag');
+}
+for (const g of ['free', 'credit', 'prohibited']) {
+  if (!new RegExp(`g:'${g}'`).test(html)) problems.push(`the legend gloss must stay one word, missing g:'${g}'`);
+}
+const kindsRule = (html.match(/\n\.kinds\{([^}]*)\}/) || [])[1] || '';
+if (!/align-items:center/.test(kindsRule)) problems.push('.kinds must align its items on the centre line, or the licence divider hangs off the top of the row');
+if (!/\.kinds \.sep\{[^}]*align-self:center/.test(html)) problems.push('.kinds .sep must sit on the centre line with the tabs');
 if (!/id="legend"/.test(html) || !/TIER_ORDER\.map/.test(html)) problems.push('the legend under the rule must spell out every tier');
 if (!/<div class="lic"/.test(html) && !/class="lic"/.test(html)) problems.push('the record bar must carry its tier mark');
 

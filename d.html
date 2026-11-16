@@ -17,12 +17,12 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .brand{font-family:"Instrument Serif",serif;font-size:18px;color:#c9c8c2}
 .brand i{font-style:italic;color:#7f7f86}
 .meta{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:#4f4f57}
-.kinds{display:flex;gap:18px;padding:22px calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;flex-wrap:wrap}
+.kinds{display:flex;align-items:center;gap:18px;padding:22px calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;flex-wrap:wrap}
 .kinds button{background:none;border:0;padding:0 0 5px;font:inherit;letter-spacing:inherit;text-transform:inherit;color:#5b5b63;cursor:pointer;position:relative;min-height:40px;display:inline-flex;align-items:center;white-space:nowrap}
 .kinds button.on{color:var(--ink)}
 .kinds button.on:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;opacity:.55}
 .kinds button:hover{color:#b9b8b2}
-.rule{height:1px;margin:16px calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.02))}
+.rule{height:1px;margin:13px calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.02))}
 .gh{display:flex;align-items:center;gap:14px;padding:28px calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));max-width:1400px;margin:0 auto}
 .gh h2{margin:0;font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#d3d2cc;font-weight:400;white-space:nowrap}
 .gh span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;color:#44444b;font-variant-numeric:tabular-nums}
@@ -36,11 +36,13 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .m .g{display:inline-flex;font-style:normal}
 .m b{font-weight:400;color:#8d8d95;letter-spacing:.13em}
 .m .c{font-style:normal;color:#45454c}
-.kinds .sep{width:1px;height:9px;flex:0 0 auto;background:rgba(255,255,255,.14)}
+.kinds .sep{width:1px;height:9px;flex:0 0 auto;align-self:center;margin:0 2px;background:rgba(255,255,255,.14)}
 .kinds button .m{color:inherit;gap:5px}
+.kinds .lic-tab{color:#7d7d86}
+.kinds .lic-tab.on,.kinds .lic-tab:hover{color:var(--ink)}
 .kinds button .m b{color:inherit}
-.legend{display:flex;align-items:center;gap:8px 20px;flex-wrap:wrap;padding:12px calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));max-width:1400px;margin:0 auto;font-family:var(--mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#4c4c54}
-.legend .m{gap:5px}
+.legend{display:flex;align-items:center;gap:6px 16px;flex-wrap:wrap;padding:11px calc(34px + var(--sa-r)) 0 calc(34px + var(--sa-l));max-width:1400px;margin:0 auto;font-family:var(--mono);font-size:7px;letter-spacing:.14em;text-transform:uppercase;color:#4c4c54}
+.legend .m{gap:4px;white-space:nowrap}
 .legend .lg{color:#3f3f46;letter-spacing:.22em}
 .legend .m b{font-weight:400;color:#5f5f67;letter-spacing:.1em}
 .gh .txtwrap{flex:1;min-width:0;overflow:hidden;display:block}
@@ -59,8 +61,8 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .item:focus-visible .frame{box-shadow:0 0 0 2px rgba(233,232,227,.55),0 28px 46px -20px #000}
 .cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:10px}
 .cap.top{margin:0 0 10px}
-.cap b{font-size:11px;font-weight:500;color:#cfcec8;transition:color .3s;flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cap .m{margin-left:7px;margin-right:auto;gap:3px;font-size:6.5px;letter-spacing:.14em;color:#5c5c64}
+.cap b{font-size:11px;font-weight:500;color:#cfcec8;transition:color .3s;flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:auto}
+.cap .m{margin:0 0 0 9px;gap:3px;font-size:6.5px;letter-spacing:.14em;color:#6a6a73}
 .cap .m b{color:#7d7d86}
 .cap .m svg{width:7px;height:7px}
 .cap .m .g{font-size:0;color:inherit;letter-spacing:0}
@@ -163,9 +165,9 @@ footer{display:flex;justify-content:space-between;gap:20px;padding:0 calc(34px +
 footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.1);margin-right:12px}
 @media(max-width:1000px){.sheet .body{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}.sheet .info{overflow:visible}.sheet .preview{border-right:0;border-bottom:1px solid var(--line);padding:22px calc(22px + var(--sa-r)) 22px calc(22px + var(--sa-l))}}
 @media(max-width:760px){.wall{columns:1;padding:20px calc(18px + var(--sa-r)) 12px calc(18px + var(--sa-l))}header{padding-left:calc(18px + var(--sa-l));padding-right:calc(18px + var(--sa-r))}
-  .kinds{padding:20px var(--sa-r) 6px calc(18px + var(--sa-l));flex-wrap:nowrap;overflow-x:auto;gap:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 30px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 30px),transparent 100%)}
+  .kinds{padding:16px var(--sa-r) 2px calc(18px + var(--sa-l));flex-wrap:nowrap;overflow-x:auto;gap:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 30px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 30px),transparent 100%)}
   .kinds::-webkit-scrollbar{display:none}
-  .rule{margin-left:calc(18px + var(--sa-l));margin-right:calc(18px + var(--sa-r))}.gh{padding:22px calc(18px + var(--sa-r)) 0 calc(18px + var(--sa-l))}.sheet .info{padding:22px calc(18px + var(--sa-r)) calc(44px + var(--sa-b)) calc(18px + var(--sa-l))}
+  .rule{margin-left:calc(18px + var(--sa-l));margin-right:calc(18px + var(--sa-r))}.gh{padding:18px calc(18px + var(--sa-r)) 0 calc(18px + var(--sa-l))}.sheet .info{padding:22px calc(18px + var(--sa-r)) calc(44px + var(--sa-b)) calc(18px + var(--sa-l))}
   .site .nm{max-width:58%}.site li{font-size:6px}
   .type .word{right:30%}.icons .pv{padding:1%}.icons.hasrail .pv{padding:1% calc(27% + 1%) 1% 1%}
   .opt{font-size:6.5px;letter-spacing:.06em;padding:0 4% 0 6%}.legend{padding-left:calc(18px + var(--sa-l));padding-right:calc(18px + var(--sa-r))}}
@@ -177,15 +179,15 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 <div class="rule"></div>
 <div class="legend" id="legend"></div>
 <div id="groups"></div>
-<footer><span>set live · icons from source · share images © their sites</span><span>older attempts <a href="b2.html">instrument</a><a href="a.html">palette</a><a href="c.html">front page</a></span></footer>
+<footer><span>set live · licences read at source · icons from source · share images © their sites</span><span>older attempts <a href="b2.html">instrument</a><a href="a.html">palette</a><a href="c.html">front page</a></span></footer>
 <div class="sheet" id="sheet"></div>
 <script>
 var I=[];var ptext='';
 // Three licence tiers: FF full freedom, CN credit needed, P prohibited terms.
 // The mark is a shape plus its letters, so it reads before it is decoded.
-var TIER={pd:{a:'FF',n:'full freedom',g:'use, change, ship',h:'FF — full freedom. Open source and free: use it, change it, ship it. No credit line; the licence file travels with the copy.'},
-           open:{a:'CN',n:'credit needed',g:'name the maker',h:'CN — credit needed. Free to use, but the creator has to be named, with a link to the licence.'},
-           terms:{a:'P',n:'prohibited',g:'read first',h:'P — prohibited terms. Free to use, but the terms forbid something: conversion, republishing or resale. Read the row.'}};
+var TIER={pd:{a:'FF',n:'full freedom',g:'free',h:'FF — full freedom. Open source and free: use it, change it, ship it. No credit line; the licence file travels with the copy.'},
+           open:{a:'CN',n:'credit needed',g:'credit',h:'CN — credit needed. Free to use, but the creator has to be named, with a link to the licence.'},
+           terms:{a:'P',n:'prohibited',g:'prohibited',h:'P — prohibited terms. Free to use, but the terms forbid something: conversion, republishing or resale. Read the row.'}};
 var TIER_ORDER=['pd','open','terms'];
 function glyph(t){return '<svg viewBox="0 0 8 8" aria-hidden="true">'+(t==='pd'?'<circle cx="4" cy="4" r="3.1"/>':t==='open'?'<path d="M4 .9A3.1 3.1 0 0 0 4 7.1z"/>':'<circle cx="4" cy="4" r="2.6" fill="none" stroke="currentColor" stroke-width="1.3"/>')+'</svg>'}
 function mark(t,c){return '<span class="m '+t+'" role="img" title="'+TIER[t].h+'" aria-label="'+(c?c+' ':'')+TIER[t].a+' '+TIER[t].n+'"><i class="g">'+glyph(t)+'</i><b>'+TIER[t].a+'</b>'+(c?'<span class="c">'+c+'</span>':'')+'</span>'}
@@ -395,7 +397,7 @@ GROUPS.forEach(function(g){
   var w=sec.querySelector('.wall');
   idxs.forEach(function(i){
     var r=I[i],t=tierOf(r),el=document.createElement('div');el.className='item';el.dataset.kind=r.k;el.dataset.i=i;
-    el.innerHTML='<div class="cap top"><b>'+r.n+'</b>'+mark(t)+'<i>'+kTag(r.k)+'</i></div>'+frameHTML(r,i);
+    el.innerHTML='<div class="cap top"><b>'+r.n+'</b><i>'+kTag(r.k)+'</i>'+mark(t)+'</div>'+frameHTML(r,i);
     el.setAttribute('role','button');el.setAttribute('tabindex','0');
     el.setAttribute('aria-label',r.n+' — '+TIER[t].a+', '+TIER[t].n+' — open preview, options on the right');
     el.onclick=function(e){if(e.target.closest('.opt'))return;openTab(i)};
@@ -421,12 +423,12 @@ function paintMeta(sec){                                 // the counts follow wh
   var items=[].slice.call(sec.querySelectorAll('.item')).filter(function(el){return el.style.display!=='none'});
   var counts={};items.forEach(function(el){var t=tierOf(I[+el.dataset.i]);counts[t]=(counts[t]||0)+1});
   var lic=sec.querySelector('.gh .lic');
-  if(lic)lic.innerHTML=TIER_ORDER.filter(function(t){return counts[t]}).map(function(t){return mark(t,counts[t])}).join('');
+  if(lic)lic.innerHTML=TIER_ORDER.map(function(t){return mark(t,counts[t]||0)}).join('');   // all three, always: a zero is information
 }
-document.querySelector('.meta').textContent=I.length+' items · '+document.querySelectorAll('.group').length+' sections · reviewed licence by licence';
+document.querySelector('.meta').textContent=I.length+' items · '+document.querySelectorAll('.group').length+' sections';
 var legend=document.getElementById('legend');
 if(legend)legend.innerHTML='<span class="lg">licence</span>'+TIER_ORDER.map(function(t){
-  return '<span class="m '+t+'"><i class="g">'+glyph(t)+'</i><b>'+TIER[t].a+'</b>'+TIER[t].n+' · '+TIER[t].g+'</span>'}).join('');
+  return '<span class="m '+t+'"><i class="g">'+glyph(t)+'</i><b>'+TIER[t].a+'</b>'+TIER[t].g+'</span>'}).join('');
 layoutAll();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layoutAll);
 var FILTER={kind:'all',tier:null};
@@ -456,7 +458,7 @@ var kb=document.getElementById('kinds');
 kinds.forEach(function(o,idx){
   if(o.sep){var sp=document.createElement('i');sp.className='sep';sp.setAttribute('aria-hidden','true');kb.appendChild(sp);return}
   var b=document.createElement('button');
-  if(o.tier)b.innerHTML='<span class="m '+o.tier+'"><i class="g">'+glyph(o.tier)+'</i><b>'+TIER[o.tier].a+'</b></span>';
+  if(o.tier){b.className='lic-tab';b.innerHTML='<span class="m '+o.tier+'"><i class="g">'+glyph(o.tier)+'</i><b>'+TIER[o.tier].a+'</b></span>'}
   else b.textContent=o.t;
   b.setAttribute('aria-label','filter: '+(o.tier?TIER[o.tier].n:o.t));
   if(idx===0)b.className='on';
