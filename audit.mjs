@@ -102,13 +102,32 @@ for (const chunk of iconChunks) {
   for (const v of variants) for (const n of names) urls.push({ style: v.label, name: n, url: v.base + n + (v.suffix || '') });
 
   const bad = [];
+  // A runner on a different network sees different weather, so a connection
+  // blip or a 5xx gets one retry. A 403 or 404 will not change on the second
+  // ask, and must never be swallowed: it means the CDN is refusing this host,
+  // which is a real risk to the page.
+  const probe = async (url) => {
+    const res = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(20000) });
+    const body = res.ok ? await res.text() : '';
+    return { ok: res.ok && /<svg/i.test(body), status: res.status, reason: res.ok ? 'not an SVG' : 'http' };
+  };
   await Promise.all(urls.map(async (u) => {
-    try {
-      const res = await fetch(u.url, { redirect: 'follow', signal: AbortSignal.timeout(20000) });
-      const body = res.ok ? await res.text() : '';
-      if (!res.ok || !/<svg/i.test(body)) bad.push({ ...u, status: res.status || 0, reason: res.ok ? 'not an SVG' : 'http' });
-    } catch (e) {
-      bad.push({ ...u, status: 0, reason: e.code || e.message });
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const r = await probe(u.url);
+        if (r.ok) return;
+        const settled = r.status && r.status !== 429 && r.status < 500;
+        if (attempt === 2 || settled) {
+          bad.push({ ...u, status: r.status, reason: r.reason });
+          return;
+        }
+      } catch (e) {
+        if (attempt === 2) {
+          bad.push({ ...u, status: 0, reason: e.code || e.message });
+          return;
+        }
+      }
+      await new Promise((r) => setTimeout(r, 350 * attempt));
     }
   }));
 

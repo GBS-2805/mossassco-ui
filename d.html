@@ -247,7 +247,7 @@ IC('Feather','icons · feather',{base:'https://cdn.jsdelivr.net/npm/feather-icon
  lead:'The 2014 set that taught everyone to draw with 2px strokes.',about:'286 icons, one weight, uncompromisingly simple. Lucide started here before growing up.',use:['Minimal UI with a single stroke weight','Small, low-count interfaces'],watch:'Frozen since 2020 — no new icons, and some shapes are now the odd ones out.',size:'286 icons'});
 IC('Iconoir','icons · iconoir',{st:[{l:'regular',b:'https://cdn.jsdelivr.net/npm/iconoir@7.7.0/icons/regular/',s:'.svg'},{l:'solid',b:'https://cdn.jsdelivr.net/npm/iconoir@7.7.0/icons/solid/',s:'.svg'}],names:['heart','star','camera','mail','clock','trash','play','bookmark','chat-bubble','eye'],lic:'MIT',dl:'direct .zip',host:'iconoir.com',href:'https://iconoir.com',
  lead:'A softer, rounder set with a slightly hand-drawn feel.',about:'A huge library behind a quiet aesthetic — 1,500 icons with rounded joins, drawn twice: regular and solid.',use:['Consumer apps with a friendly tone','Marketing pages'],watch:'Round joins read softer at large sizes; it can feel childish in dense tools.',size:'1,500 icons'});
-IC('Simple Icons','icons · simple icons',{base:'https://cdn.simpleicons.org/',suf:'',names:['github','figma','notion','spotify','vercel','dribbble','react','framer','linear','miro'],lic:'CC0 · brand marks',dl:'direct asset',host:'simpleicons.org',href:'https://simpleicons.org',
+IC('Simple Icons','icons · simple icons',{base:'https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/',suf:'.svg',names:['github','figma','notion','spotify','vercel','dribbble','react','framer','linear','miro'],lic:'CC0 · brand marks',dl:'direct asset',host:'simpleicons.org',href:'https://simpleicons.org',
  lead:'Free brand marks, one slug per company.',about:'Every logo as a single-colour SVG you can request by name and tint with CSS. The pragmatic answer for social rows and integrations.',use:['Social and integration rows','Footer brand marks'],watch:'The licence is CC0 but the trademarks are not yours to redraw. Follow each brand\'s rules.',size:'3,200 brands'});
 
 IM('Poly Haven','','3d-model','library · cc0',{options:['models, HDRIs, textures','blend / fbx / gltf','CC0, no attribution','scanned and modelled'],lic:'CC0',dl:'direct asset',host:'polyhaven.com',href:'https://polyhaven.com/models',
@@ -372,7 +372,7 @@ function frameHTML(r,i){
   }
   if(v.t==='icons'){
     var st=r.styles?r.styles[r.vi]:null,base=st?st.b:v.base,suf=st?st.s:v.suf;
-    c+=' icons'+(r.styles?' hasrail':'')+(base.indexOf('simpleicons')>-1?' brand':'');
+    c+=' icons'+(r.styles?' hasrail':'')+(base.indexOf('simple-icons')>-1?' brand':'');
     var h='<div class="pv">';
     v.names.forEach(function(n){h+='<img src="'+base+n+suf+'" alt="" decoding="async">'});
     return '<div class="'+c+'">'+h+'</div>'+(r.styles?optList(i,r.styles,r.vi):'')+'</div>';
