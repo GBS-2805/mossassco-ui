@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Shelf — live cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500&f[]=clash-display@400,500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Eckmann";src:url("../fonts/cat-eckmann.woff2") format("woff2")}
+@font-face{font-family:"Galgo";src:url("../fonts/galgo.woff2") format("woff2")}
+@font-face{font-family:"Geist";src:url("../fonts/geist.woff2") format("woff2")}
+
+:root{
+  --bg:#0a0a0c;--ink:#e9e8e3;--dim:#8d8d96;--faint:#5a5a63;--ghost:#3c3c44;
+  --line:rgba(255,255,255,.12);--hair:rgba(255,255,255,.07);
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+  --sans:Satoshi,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,.8,.2,1);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{max-width:430px;margin:0 auto;padding:20px 16px 80px}
+
+.top{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 14px}
+.top h1{font-family:'Clash Display',var(--sans);font-weight:500;font-size:17px;letter-spacing:-.01em;margin:0}
+.top span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.lede{font-size:12px;line-height:1.55;color:var(--dim);margin:0 0 12px}
+
+/* the preview text: one field, every specimen follows it */
+.field{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding:0 0 9px;margin:0 0 24px}
+.field label{font-family:var(--mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto}
+.field input{flex:1 1 auto;min-width:0;background:none;border:0;outline:0;color:var(--ink);font-family:var(--sans);font-size:14px;padding:0}
+.field input::placeholder{color:var(--ghost)}
+
+/* a face: name row above, flat card under it ------------------------------- */
+.face{margin:0 0 26px}
+.meta{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 9px}
+.meta b{font-family:var(--sans);font-weight:500;font-size:13.5px;letter-spacing:-.005em}
+.meta .r{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.meta .r i{width:5px;height:5px;border-radius:50%;background:var(--ink);display:block}
+
+.card{display:flex;align-items:stretch;border:1px solid var(--line);background:none;height:118px;overflow:hidden}
+.card .spec{flex:1 1 auto;min-width:0;display:flex;align-items:center;padding:10px 14px;overflow:hidden}
+.card .word{display:block;width:max-content;white-space:nowrap;line-height:.9;letter-spacing:-.02em;color:var(--ink);
+  transition:font-variation-settings .38s var(--ease),font-weight .38s var(--ease),font-style .2s linear}
+.rail{flex:0 0 104px;min-width:0;border-left:1px solid var(--line);display:flex;flex-direction:column}
+.strip{flex:1 1 50%;min-width:0;display:flex;align-items:center;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;position:relative;cursor:pointer}
+.strip::-webkit-scrollbar{display:none}
+.strip+.strip{border-top:1px solid var(--line)}
+.strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:14px;z-index:2;pointer-events:none}
+.strip::before{left:0;background:linear-gradient(90deg,#0a0a0c,rgba(10,10,12,0))}
+.strip::after{right:0;background:linear-gradient(270deg,#0a0a0c,rgba(10,10,12,0))}
+.strip .o{flex:0 0 auto;background:none;border:0;padding:0 7px;height:100%;
+  font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--ghost);white-space:nowrap;
+  transition:color .25s,opacity .25s;opacity:.55}
+.strip .o.on{color:var(--ink);font-size:10.5px;opacity:1}
+.strip .o.on::after{content:" —";color:var(--faint);font-size:8px;letter-spacing:0}
+.strip .o:first-child{margin-left:34px}
+.strip .o:last-child{margin-right:34px}
+.strip.solo{cursor:default}
+.strip.solo .o:first-child{margin-left:0}
+.note{font-family:var(--mono);font-size:7px;letter-spacing:.14em;text-transform:uppercase;color:var(--ghost);margin:7px 0 0}
+</style>
+</head>
+<body>
+
+<div class="top"><h1>Live cards</h1><span id="count">4 faces</span></div>
+<p class="lede">The controls sit on the card and work where your thumb already is: tap a number, the specimen on that card changes, in place. No sheet, no opening anything.</p>
+
+<div class="field">
+  <label for="txt">preview</label>
+  <input id="txt" value="Shelf - 123" placeholder="Shelf - 123" autocomplete="off" spellcheck="false">
+</div>
+
+<!-- a variable face: real weight axis, real italic ------------------------- -->
+<div class="face" data-w="400" data-s="normal">
+  <div class="meta"><b>Archivo</b><span class="r">TYPE <i></i> FF</span></div>
+  <div class="card">
+    <div class="spec"><span class="word" style="font-family:Archivo;font-size:38px;font-variation-settings:'wdth' 100,'wght' 400">Shelf - 123</span></div>
+    <div class="rail">
+      <div class="strip" data-axis="wght" aria-label="weight">
+        <button class="o" data-v="100">100</button><button class="o" data-v="200">200</button><button class="o" data-v="300">300</button><button class="o on" data-v="400">400</button><button class="o" data-v="500">500</button><button class="o" data-v="600">600</button><button class="o" data-v="700">700</button><button class="o" data-v="800">800</button><button class="o" data-v="900">900</button>
+      </div>
+      <div class="strip" data-axis="style" aria-label="style">
+        <button class="o on" data-v="normal">ROMAN</button><button class="o" data-v="italic">ITALIC</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- a second variable face, italic only in one direction ------------------- -->
+<div class="face" data-w="400" data-s="normal">
+  <div class="meta"><b>Fraunces</b><span class="r">TYPE <i></i> FF</span></div>
+  <div class="card">
+    <div class="spec"><span class="word" style="font-family:Fraunces;font-size:40px;font-variation-settings:'opsz' 144,'wght' 400">Shelf - 123</span></div>
+    <div class="rail">
+      <div class="strip" data-axis="wght" aria-label="weight">
+        <button class="o" data-v="300">300</button><button class="o on" data-v="400">400</button><button class="o" data-v="500">500</button><button class="o" data-v="700">700</button><button class="o" data-v="900">900</button>
+      </div>
+      <div class="strip" data-axis="style" aria-label="style">
+        <button class="o on" data-v="normal">ROMAN</button><button class="o" data-v="italic">ITALIC</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- the honest case: one cut, so one number and one style, flat ------------ -->
+<div class="face" data-w="400" data-s="normal">
+  <div class="meta"><b>CAT Eckmann</b><span class="r">TYPE <i></i> FF</span></div>
+  <div class="card">
+    <div class="spec"><span class="word" style="font-family:Eckmann;font-size:34px">Shelf - 123</span></div>
+    <div class="rail">
+      <div class="strip solo"><button class="o on" data-v="400">400</button></div>
+      <div class="strip solo"><button class="o on" data-v="normal">ROMAN</button></div>
+    </div>
+  </div>
+  <p class="note">one cut published</p>
+</div>
+
+<div class="face" data-w="400" data-s="normal">
+  <div class="meta"><b>Galgo</b><span class="r">TYPE <i></i> FF</span></div>
+  <div class="card">
+    <div class="spec"><span class="word" style="font-family:Galgo;font-size:34px">Shelf - 123</span></div>
+    <div class="rail">
+      <div class="strip solo"><button class="o on" data-v="400">400</button></div>
+      <div class="strip solo"><button class="o on" data-v="normal">ROMAN</button></div>
+    </div>
+  </div>
+  <p class="note">one cut published</p>
+</div>
+
+<div class="face" data-w="400" data-s="normal">
+  <div class="meta"><b>Geist</b><span class="r">TYPE <i></i> FF</span></div>
+  <div class="card">
+    <div class="spec"><span class="word" style="font-family:Geist;font-size:36px">Shelf - 123</span></div>
+    <div class="rail">
+      <div class="strip solo"><button class="o on" data-v="400">400</button></div>
+      <div class="strip solo"><button class="o on" data-v="normal">ROMAN</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const faces = document.querySelectorAll('.face');
+
+// one preview field, every specimen follows it
+const txt = document.getElementById('txt');
+function paintText(){
+  const t = txt.value.trim() || 'Shelf - 123';
+  document.querySelectorAll('.word').forEach(w => { w.textContent = t; });
+  fitAll();
+}
+txt.addEventListener('input', paintText);
+
+// tap a number or a style: the strip centres it and that card's specimen follows
+document.querySelectorAll('.strip').forEach(strip => {
+  if (strip.classList.contains('solo')) return;
+  strip.addEventListener('click', e => {
+    const btn = e.target.closest('.o');
+    if (!btn) return;
+    strip.querySelectorAll('.o').forEach(o => o.classList.toggle('on', o === btn));
+    const face = strip.closest('.face');
+    const axis = strip.dataset.axis, v = btn.dataset.v;
+    if (axis === 'wght') face.dataset.w = v; else face.dataset.s = v;
+    apply(face);
+    centre(strip);
+    fit(face);                 // a heavier or italic cut is wider: refit after it lands
+  });
+  requestAnimationFrame(() => centre(strip, 'auto'));
+});
+
+function centre(strip, how){
+  const on = strip.querySelector('.o.on');
+  if (!on) return;
+  const left = on.offsetLeft - (strip.clientWidth - on.offsetWidth) / 2;
+  if (strip.scrollTo) strip.scrollTo({ left, behavior: how || 'smooth' });
+  else strip.scrollLeft = left;
+}
+function fit(face){
+  const box = face.querySelector('.spec'), word = face.querySelector('.word');
+  const avail = box.clientWidth - 26;
+  if (!avail) return;
+  word.style.fontSize = '100px';
+  const w = word.getBoundingClientRect().width || 1;
+  const size = Math.min(avail / w * 100, 56);
+  word.style.fontSize = Math.max(15, size).toFixed(1) + 'px';
+}
+function apply(face){
+  const word = face.querySelector('.word');
+  const w = face.dataset.w, s = face.dataset.s;
+  word.style.fontWeight = w;
+  word.style.fontStyle = s;
+  // variable families read the axis directly, so 100-900 are real steps
+  const fam = word.style.fontFamily;
+  if (fam === 'Archivo') word.style.fontVariationSettings = `'wdth' 100,'wght' ${w}`;
+  if (fam === 'Fraunces') word.style.fontVariationSettings = `'opsz' 144,'wght' ${w}`;
+}
+
+// fit the preview to the specimen box, the same rule the wall uses
+function fitAll(){ faces.forEach(fit); }
+document.fonts.ready.then(() => { fitAll(); document.querySelectorAll('.face').forEach(apply); document.querySelectorAll('.strip').forEach(s => centre(s, 'auto')); });
+window.addEventListener('resize', fitAll);
+fitAll();
+</script>
+</body>
+</html>

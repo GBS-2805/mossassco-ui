@@ -34,6 +34,13 @@ Every face shows real type, not a name in a fallback font. Where a family has
 more than one cut, the cut is switchable in place and changes smoothly. Where it
 has one cut, say so plainly instead of showing a control that does nothing.
 
+## Flat cards, controls on the card
+
+Cards are flat: a 1px hairline, no rounded pills, no filled chips, no bubbles.
+Controls sit on the card and act in place — tap a cut on the rail and the
+specimen on that same card changes, smoothly. Interaction never moves behind a
+sheet or a separate screen when it can happen where the thumb already is.
+
 ## Mock first, build second
 
 A UI change that is not obviously right gets a throwaway mockup in `mockups/`
