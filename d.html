@@ -437,12 +437,18 @@ function roulette(s){                                 // one read, one pass of w
     chips[i].style.opacity=(1-.5*ap).toFixed(2);
   }
   if(s.__p)return;
+  var best=null,bd=half;                              // the chip nearest the front wins, using cached centres
+  for(var j=0;j<chips.length;j++){var dj=s.__c[j]-mid;if(dj<0)dj=-dj;if(dj<bd){bd=dj;best=chips[j]}}
+  if(best){
+    var key=best.dataset.i+'|'+(best.dataset.d||'v')+'|'+best.dataset.v;
+    if(s.__sel!==key&&(!s.__t0||Date.now()-s.__t0>90)){s.__sel=key;s.__t0=Date.now();applyVariant(+best.dataset.i,best.dataset.d||'v',+best.dataset.v)}
+  }
   clearTimeout(s.__t);
-  s.__t=setTimeout(function(){                       // whichever sits in front becomes the live preview
+  s.__t=setTimeout(function(){                       // and once it settles, take whatever ended up in front
     if(s.__p)return;
-    var mid2=s.scrollLeft+(s.clientWidth/2),best=null,bd=1e9;
-    for(var j=0;j<chips.length;j++){var d=Math.abs(s.__c[j]-mid2);if(d<bd){bd=d;best=chips[j]}}
-    if(best)applyVariant(+best.dataset.i,best.dataset.d||'v',+best.dataset.v);
+    var mid2=s.scrollLeft+(s.clientWidth/2),last=null,ld=1e9;
+    for(var k=0;k<chips.length;k++){var d2=Math.abs(s.__c[k]-mid2);if(d2<ld){ld=d2;last=chips[k]}}
+    if(last){s.__sel=last.dataset.i+'|'+(last.dataset.d||'v')+'|'+last.dataset.v;applyVariant(+last.dataset.i,last.dataset.d||'v',+last.dataset.v)}
   },70);
 }
 function applyVariant(i,dim,j){                       // paint what changed; never rebuild the sheet
