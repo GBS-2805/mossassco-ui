@@ -276,6 +276,7 @@ function siteFrame(r,c){
   list.forEach(function(x){h+='<li>'+x+'</li>'});
   return h+'</ul></div></div>';
 }
+function typeLabel(r){var src=(r.cap||'').split('·')[1];src=src?src.trim():'';return r.n+(src?' · '+src:'')+(r.lic?' · '+r.lic:'')}
 function frameHTML(r,i){
   var v=r.view,c='frame';
   if(r.k==='sites'||r.k==='plugins')return siteFrame(r,c);
@@ -284,7 +285,7 @@ function frameHTML(r,i){
     var dials=(r.ws.length>1?1:0)+(r.ss.length>1?1:0);
     var tail=(r.ws.length>1?optList(i,r.ws,r.wi,1,'w',dials>1?'wtop':''):'')
             +(r.ss.length>1?optList(i,r.ss,r.si,1,'s',dials>1?'sbot':''):'');
-    return '<div class="'+c+' type"><div class="pv"><div class="tag">'+r.cap+'</div><div class="word" data-w="'+(wv.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(wv.w||400)+';font-style:'+(sv.s||'normal')+'">'+r.n+'</div></div>'+tail+'</div>';
+    return '<div class="'+c+' type"><div class="pv"><div class="tag">'+typeLabel(r)+'</div><div class="word" data-w="'+(wv.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(wv.w||400)+';font-style:'+(sv.s||'normal')+'">'+r.n+'</div></div>'+tail+'</div>';
   }
   if(v.t==='icons'){
     var st=r.styles?r.styles[r.vi]:null,base=st?st.b:v.base,suf=st?st.s:v.suf;
@@ -308,7 +309,7 @@ GROUPS.forEach(function(g){
   var w=sec.querySelector('.wall');
   idxs.forEach(function(i){
     var r=I[i],el=document.createElement('div');el.className='item';el.dataset.kind=r.k;el.dataset.i=i;
-    el.innerHTML=frameHTML(r,i)+'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.lic+'</div>';
+    el.innerHTML=frameHTML(r,i)+(r.k==='type'?'':'<div class="cap"><b>'+r.n+'</b><i>'+r.k+'</i></div><div class="sub">'+r.lic+'</div>');
     el.setAttribute('role','button');el.setAttribute('tabindex','0');
     el.setAttribute('aria-label',r.n+' — open preview, options on the right');
     el.onclick=function(e){if(e.target.closest('.opt'))return;openTab(i)};
@@ -385,7 +386,7 @@ function varButtons(r,i){
 function openTab(i){
   cur=i;var r=I[i],n=I.length;
   sheet.innerHTML='<div class="bar"><span class="dot"></span><span>'+r.k+'</span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()" aria-label="close preview">close ✕</button></div>'+
-  '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="pcap">'+r.cap+'</div>'+varButtons(r,i)+'</div>'+
+  '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="pcap">'+(r.k==='type'?(typeLabel(r).split(' · ')[1]||''):r.cap)+'</div>'+varButtons(r,i)+'</div>'+
   '<div class="info"><h1>'+r.n+'</h1><p class="lead">'+r.lead+'</p>'+
   '<div class="sec"><span class="lab">about</span><p>'+r.about+'</p></div>'+
   '<div class="sec"><span class="lab">use it for</span><ul>'+r.use.map(function(u){return '<li>'+u+'</li>'}).join('')+'</ul></div>'+
