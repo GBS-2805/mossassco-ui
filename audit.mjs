@@ -259,7 +259,15 @@ for (const r of recordLines) {
   tierCount[tier]++;
 }
 
+for (const a of ['FF', 'CN', 'P']) {
+  if (!new RegExp(`a:'${a}',`).test(html)) problems.push(`no abbreviation for the ${a} tier — every mark must read FF, CN or P`);
+}
 if (!/counts\[t\]/.test(html) || !/mark\(t,counts\[t\]\)/.test(html)) problems.push('category headers must print the licence mix: counts[t] + mark(t,counts[t])');
+if (!/function paintMeta\(/.test(html)) problems.push('no paintMeta(): the header counts must follow a licence filter');
+if (!/function applyFilter\(/.test(html) || !/FILTER\.tier/.test(html)) problems.push('the licence tiers must filter the wall, not just label it');
+if (!/kinds\.push\(\{tier:t/.test(html)) problems.push('FF, CN and P must be filter tabs in the kinds row');
+if (!/\.kinds \.sep\{/.test(html)) problems.push('the kinds row needs a .kinds .sep divider before the licence tabs');
+if (!/class="lic">'\+mark\(t\)/.test(html)) problems.push('the record bar must show its tier badge: mark(t)');
 if (!/id="legend"/.test(html) || !/TIER_ORDER\.map/.test(html)) problems.push('the legend under the rule must spell out every tier');
 if (!/<div class="lic"/.test(html) && !/class="lic"/.test(html)) problems.push('the record bar must carry its tier mark');
 
@@ -301,7 +309,7 @@ console.log(w('set', 18) + w('names', 7) + w('styles', 8) + w('urls', 6) + 'brok
 for (const r of rows) console.log(w(r.label, 18) + w(r.names, 7) + w(r.styles, 8) + w(r.urls, 6) + r.broken);
 console.log(`photos/sites/plugins checked: ${imUrls}`);
 console.log(`layout: ${edgesChecked} safe-area edges checked, viewport-fit=cover, 380/760/1280 breakpoints, thumb targets`);
-console.log(`licences: ${recordLines.length} records · full freedom ${tierCount.pd} · credit ${tierCount.open} · restricted ${tierCount.terms} · missing ${noLicence}`);
+console.log(`licences: ${recordLines.length} records · FF ${tierCount.pd} · CN ${tierCount.open} · P ${tierCount.terms} · missing ${noLicence}`);
 console.log(`motion: cached chip geometry, rAF-throttled scroll, in-place preview paint`);
 
 if (problems.length) {
