@@ -322,6 +322,46 @@ if (!/align-items:center/.test(kindsRule)) problems.push('.kinds must align its 
 if (!/\.kinds \.sep\{[^}]*align-self:center/.test(html)) problems.push('.kinds .sep must sit on the centre line with the tabs');
 if (!/id="legend"/.test(html) || !/TIER_ORDER\.map/.test(html)) problems.push('the legend under the rule must spell out every tier');
 
+// ---- the free-font index -----------------------------------------------------
+// 102 faces whose licence was read at the foundry. They are a list, not a
+// specimen wall: no font file is embedded, so the index must say so, and every
+// row must carry a licence this shelf calls FF.
+const freeBlock = (html.match(/var FREE=\[([\s\S]*?)\n\];/) || [])[1] || '';
+if (!freeBlock) problems.push('no FREE[] — the free-font index has no data to draw');
+if (html.indexOf('var FREE=[') < html.indexOf("var groupsEl=document.getElementById('groups');")) {
+  problems.push('the index builds itself before groupsEl exists — it throws on load, and a syntax check will not see it');
+}
+const freeRows = [...freeBlock.matchAll(/\{c:'([^']+)',n:'([^']+)',h:'([^']+)',u:'(https:\/\/[^']+)',l:'([^']+)'\}/g)]
+  .map((m) => ({ c: m[1], n: m[2], h: m[3], u: m[4], l: m[5] }));
+if (freeRows.length < 100) problems.push(`FREE[] lists ${freeRows.length} faces, expected at least 100`);
+for (const r of freeRows) {
+  if (!['display', 'sans-serif', 'serif', 'monospace'].includes(r.c)) problems.push(`${r.n}: unknown category "${r.c}"`);
+  if (!/OFL|CC0|MIT|GPL|WTFPL|MPL|public domain|Apache|ISC/i.test(r.l)) {
+    problems.push(`${r.n}: "${r.l}" is not a licence this shelf calls FF — the index may only hold full-freedom faces`);
+  }
+  if (!r.h || !/^https:\/\//.test(r.u)) problems.push(`${r.n}: no https link to the foundry`);
+}
+const freeNames = freeRows.map((r) => r.n);
+const dupes = freeNames.filter((n, i) => freeNames.indexOf(n) !== i);
+if (dupes.length) problems.push(`FREE[] repeats ${dupes.join(', ')}`);
+const wallNames = [...html.matchAll(/\nT\('([^']+)'/g)].map((m) => m[1]);
+for (const n of freeNames) {
+  if (wallNames.includes(n)) problems.push(`${n}: in the wall and in the index — one face, one place`);
+}
+if (freeRows.length !== new Set(freeNames).size) problems.push('FREE[] has duplicate names, so a count in the header would lie');
+if (!/TIER_TOTAL\.pd=\(TIER_TOTAL\.pd\|\|0\)\+FREE\.length/.test(html)) {
+  problems.push('the FF tab count must add FREE.length, or the tab undercounts by the whole index');
+}
+if (!/\.faces \.row\{/.test(html) || !/\.faces \.fnote\{/.test(html)) problems.push('the free-font index has no row or note style');
+if (!/no specimen embedded/.test(html)) {
+  problems.push('the index must say it embeds no specimen: the list would otherwise read as a specimen sheet');
+}
+if (!/kinds\.push\(\{k:'faces'/.test(html)) problems.push('the kinds row needs a free fonts tab, or the index cannot be filtered to');
+if (!/sec\.dataset\.kind==='faces'/.test(html)) problems.push('applyFilter must treat the index as one block: it has rows, not .item cards');
+for (const gone of ['Cambrian', 'Phosphène', 'Berlin Grotesk', 'Slibinas', 'Boris', 'Granturismo']) {
+  if (freeNames.includes(gone)) problems.push(`${gone}: rests only on the catalogue licence field, so it may not be shelved yet`);
+}
+
 // ---- motion -----------------------------------------------------------------
 // Layered fixes for the jitter: cached chip geometry, one rAF per scroll frame,
 // and in-place preview painting instead of rebuilding the sheet.
