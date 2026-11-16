@@ -268,6 +268,7 @@ if (!/function applyFilter\(/.test(html) || !/FILTER\.tier/.test(html)) problems
 if (!/kinds\.push\(\{tier:t/.test(html)) problems.push('FF, CN and P must be filter tabs in the kinds row');
 if (!/\.kinds \.sep\{/.test(html)) problems.push('the kinds row needs a .kinds .sep divider before the licence tabs');
 if (!/class="lic">'\+mark\(t\)/.test(html)) problems.push('the record bar must show its tier badge: mark(t)');
+if (!/class="cap top"><b>'\+r\.n\+'<\/b>'\+mark\(t\)/.test(html)) problems.push('every card in the wall must carry its tier badge in the caption');
 if (!/id="legend"/.test(html) || !/TIER_ORDER\.map/.test(html)) problems.push('the legend under the rule must spell out every tier');
 if (!/<div class="lic"/.test(html) && !/class="lic"/.test(html)) problems.push('the record bar must carry its tier mark');
 

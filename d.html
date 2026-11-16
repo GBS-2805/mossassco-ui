@@ -59,7 +59,11 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .item:focus-visible .frame{box-shadow:0 0 0 2px rgba(233,232,227,.55),0 28px 46px -20px #000}
 .cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:10px}
 .cap.top{margin:0 0 10px}
-.cap b{font-size:11px;font-weight:500;color:#cfcec8;transition:color .3s}
+.cap b{font-size:11px;font-weight:500;color:#cfcec8;transition:color .3s;flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap .m{margin-left:7px;margin-right:auto;gap:3px;font-size:6.5px;letter-spacing:.14em;color:#5c5c64}
+.cap .m b{color:#7d7d86}
+.cap .m svg{width:7px;height:7px}
+.cap .m .g{font-size:0;color:inherit;letter-spacing:0}
 .item:hover .cap b{color:#fff}
 .cap i{font-family:var(--mono);font-style:normal;font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#4c4c54;white-space:nowrap}
 .sub{margin-top:4px;font-family:var(--mono);font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#3e3e45}
@@ -390,10 +394,10 @@ GROUPS.forEach(function(g){
   +'</div><div class="wall"></div>';
   var w=sec.querySelector('.wall');
   idxs.forEach(function(i){
-    var r=I[i],el=document.createElement('div');el.className='item';el.dataset.kind=r.k;el.dataset.i=i;
-    el.innerHTML='<div class="cap top"><b>'+r.n+'</b><i>'+kTag(r.k)+'</i></div>'+frameHTML(r,i);
+    var r=I[i],t=tierOf(r),el=document.createElement('div');el.className='item';el.dataset.kind=r.k;el.dataset.i=i;
+    el.innerHTML='<div class="cap top"><b>'+r.n+'</b>'+mark(t)+'<i>'+kTag(r.k)+'</i></div>'+frameHTML(r,i);
     el.setAttribute('role','button');el.setAttribute('tabindex','0');
-    el.setAttribute('aria-label',r.n+' — open preview, options on the right');
+    el.setAttribute('aria-label',r.n+' — '+TIER[t].a+', '+TIER[t].n+' — open preview, options on the right');
     el.onclick=function(e){if(e.target.closest('.opt'))return;openTab(i)};
     el.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openTab(i)}};
     w.appendChild(el);
