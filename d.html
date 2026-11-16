@@ -254,7 +254,10 @@ function fitTypes(scope){
   var FH=Math.round(W*0.19);                          // one height for every card, whatever text is shown
   [].forEach.call((scope||document).querySelectorAll('.item .frame'),function(f){
     if(f.closest('.sheet')){f.style.height='';return}
-    f.style.height=FH+'px';f.style.setProperty('--fh',FH+'px');
+    var k=f.closest('.item').dataset.kind,h=FH;              // icons and link lists need more room than a specimen
+    if(k==='icons')h=Math.round(FH*1.7);
+    else if(k==='sites'||k==='plugins')h=Math.round(FH*1.55);
+    f.style.height=h+'px';f.style.setProperty('--fh',h+'px');
   });
   data.forEach(function(d){                           // a tall string may shrink, it may never grow the card
     var cur=parseFloat(d.w.style.fontSize)||0,max=(FH-24)/1.06;
