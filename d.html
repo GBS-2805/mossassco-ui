@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#08080a">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Shelf — a repository</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0c'/><rect x='7' y='9' width='18' height='3' fill='%23e9e8e3'/><rect x='7' y='15' width='12' height='3' fill='%23e9e8e3' opacity='.7'/><rect x='7' y='21' width='18' height='3' fill='%23e9e8e3' opacity='.45'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -8,9 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;700;900&family=Archivo:wght@400;500;700;900&family=Bricolage+Grotesque:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&f[]=clash-display@200,300,400,500,700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--sa-t:env(safe-area-inset-top,0px);--sa-r:env(safe-area-inset-right,0px);--sa-b:env(safe-area-inset-bottom,0px);--sa-l:env(safe-area-inset-left,0px);--ink:#e9e8e3;--line:rgba(255,255,255,.07);--mono:"JetBrains Mono",monospace}
+:root{--sa-t:env(safe-area-inset-top,0px);--sa-r:env(safe-area-inset-right,0px);--sa-b:env(safe-area-inset-bottom,0px);--sa-l:env(safe-area-inset-left,0px);--ink:#e9e8e3;--line:rgba(255,255,255,.07);--mono:"JetBrains Mono",monospace}
 *{box-sizing:border-box}
-html{background:#08080a}
+html{background:#08080a;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;color:var(--ink);font-family:Satoshi,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh;
   background:radial-gradient(140% 70% at 50% -10%,#17171a 0%,#0c0c0e 45%,#08080a 100%) fixed}
 .grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.32;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.55'/></svg>")}
@@ -152,7 +152,7 @@ header{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
 .gh .txtwrap{flex:1;min-width:0;overflow:hidden;display:block}
 .gh .txt{width:200%;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.16);padding:0 0 5px;font-family:var(--mono);font-size:16px;letter-spacing:.2em;color:#cfcec8;outline:none;transform:scale(.5);transform-origin:left center;-webkit-appearance:none;border-radius:0}
 .gh .txt::placeholder{color:#3f3f46}
-.gh .txt:focus{border-bottom-color:rgba(255,255,255,.42)}.gh .txt:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
+.gh .txt:focus{border-bottom-color:rgba(255,255,255,.42)}
 .wall{columns:2;column-gap:30px;padding:18px calc(34px + var(--sa-r)) 10px calc(34px + var(--sa-l));max-width:1400px;margin:0 auto}
 .group:last-child .wall{padding-bottom:54px}
 @media(min-width:1280px){.wall{columns:3}}
@@ -279,25 +279,33 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 #home{position:fixed;inset:0;z-index:40;display:none;flex-direction:column;background:radial-gradient(140% 70% at 50% -10%,#17171a 0%,#0c0c0e 45%,#08080a 100%)}
 body.home-on #home{display:flex}
 body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,body.home-on #groups,body.home-on footer{display:none}
-.htop{display:flex;align-items:center;gap:14px;padding:calc(10px + var(--sa-t)) calc(18px + var(--sa-r)) 10px calc(18px + var(--sa-l));border-bottom:1px solid var(--line)}
-.hbrand{font-family:"Instrument Serif",serif;font-size:16px;color:#c9c8c2;flex:0 0 auto;white-space:nowrap}
+.htop{display:block;padding:calc(10px + var(--sa-t)) calc(18px + var(--sa-r)) 0 calc(18px + var(--sa-l));border-bottom:1px solid var(--line)}
+.hbrand{font-family:"Instrument Serif",serif;font-size:16px;color:#c9c8c2;flex:0 0 auto;white-space:nowrap;display:block}
 .hbrand i{font-style:italic;color:#7f7f86}
-#htxt{flex:1;min-width:0;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.16);padding:0 0 5px;font-family:var(--mono);font-size:16px;letter-spacing:.2em;color:#cfcec8;outline:none;-webkit-appearance:none;border-radius:0}
+#htxt{display:block;width:100%;box-sizing:border-box;min-height:44px;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.16);margin:2px 0 0;padding:9px 0 11px;font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:#cfcec8;outline:none;-webkit-appearance:none;border-radius:0}
 #htxt::placeholder{color:#3f3f46}
 #htxt:focus{border-bottom-color:rgba(255,255,255,.42)}
 #htxt:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
 .hpane{flex:1;min-height:0;display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
 #hspec{flex:1;min-height:0;position:relative;overflow:hidden}
 #hspec .frame{position:absolute;inset:0;width:100%;height:100%;box-shadow:none;transition:none}
-#hspec .frame:after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.045)}
+#hspec .frame:after{box-shadow:none}
 #hspec .wordlink{position:absolute;inset:0;display:block;color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
-#hspec .word{position:absolute;left:4.5%;right:4.5%;top:50%;transform:translateY(-50%);line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap;overflow:hidden;transition:opacity .15s}
-#hspec .word.nofile{font-family:'Clash Display',Satoshi,system-ui,sans-serif;color:#6b6b74;letter-spacing:-.01em}
+#hspec .word{position:absolute;left:8%;right:8%;top:50%;transform:translateY(-50%);line-height:1.05;font-weight:400;color:#f4f3ee;white-space:pre-line;overflow:hidden;transition:opacity .15s}
+#hspec .word.nofile{font-family:var(--mono);letter-spacing:.02em;color:#6b6b74}
 #hstrips{flex:0 0 auto}
 #hstrips .strip{position:static;width:auto;height:46px;border-top:1px solid rgba(255,255,255,.07);border-left:0;padding:0 50%;gap:22px}
 #hstrips .strip.wtop,#hstrips .strip.sbot{top:auto;bottom:auto;border-bottom:0}
 #hstrips .strip .opt{padding:8px 0;min-height:44px}
 .hdead{height:46px;display:flex;align-items:center;justify-content:center;border-top:1px solid rgba(255,255,255,.07);color:#3f3f46;font-family:var(--mono);font-size:7px;letter-spacing:.2em;text-transform:uppercase;text-align:center;padding:0 12px}
+.hslider{-webkit-appearance:none;appearance:none;position:absolute;z-index:6;margin:0;height:34px;background:transparent;cursor:pointer;padding:0}
+#htrack{left:16%;right:16%;bottom:calc(7% + 6px)}
+.hslider::-webkit-slider-runnable-track{height:2px;background:rgba(255,255,255,.16)}
+.hslider::-webkit-slider-thumb{-webkit-appearance:none;width:9px;height:24px;background:#cfcec8;margin-top:-11px;border-radius:1px}
+.hslider:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
+.hspin{position:absolute;right:calc(4.5% - 5px);top:50%;width:34px;height:max(210px,50%);transform:translateY(-50%);z-index:6;pointer-events:none}
+#home.iconson #htrack,#home.iconson .hspin{display:none!important}
+#hsize{left:50%;top:50%;width:210px;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:auto}
 .hmeta{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px calc(18px + var(--sa-r)) 10px calc(18px + var(--sa-l));border-top:1px solid var(--line);min-height:40px}
 .hmeta b{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#d3d2cc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .hmeta span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#4c4c54;white-space:nowrap;flex:0 0 auto}
@@ -305,16 +313,16 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 .hdeck{flex:0 0 auto;border-top:1px solid var(--line)}
 #hfam{display:flex;align-items:center;height:64px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:0 38%;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
 #hfam::-webkit-scrollbar{display:none}
-#hfam .opt{flex:0 0 auto;min-height:44px;padding:8px 14px;border:0;background:none;font-family:var(--mono);font-size:14px;letter-spacing:.02em;color:#55555d;line-height:1;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;scroll-snap-align:center;transform-origin:50% 50%;backface-visibility:hidden;will-change:transform,opacity;transition:color .14s}
+#hfam .opt{flex:0 0 auto;width:auto;min-height:44px;padding:0 16px;border:0;background:none;font-family:var(--mono);font-size:14px;letter-spacing:.02em;text-transform:none;color:#55555d;line-height:1;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;scroll-snap-align:center;transition:color .14s}
 #hfam .opt.on{color:#f4f3ee}
-.hcats{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:0;padding:0 calc(8px + var(--sa-r)) calc(8px + var(--sa-b)) calc(8px + var(--sa-l));border-top:1px solid var(--line);-webkit-overflow-scrolling:touch}
+.hcats{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:7px;padding:0 calc(8px + var(--sa-r)) calc(8px + var(--sa-b)) calc(8px + var(--sa-l));border-top:1px solid var(--line);-webkit-overflow-scrolling:touch}
 .hcats::-webkit-scrollbar{display:none}
-.hcats button{flex:1 0 auto;background:none;border:0;padding:10px 6px 12px;min-height:44px;font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:#5b5b63;cursor:pointer;position:relative;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.hcats button{flex:0 0 auto;background:none;border:0;padding:10px 2px 12px;min-height:44px;font-family:var(--mono);font-size:7.5px;letter-spacing:.06em;text-transform:uppercase;color:#5b5b63;cursor:pointer;position:relative;white-space:nowrap;-webkit-tap-highlight-color:transparent}
 .hcats button.on{color:var(--ink)}
-.hcats button.on:after{content:"";position:absolute;left:6px;right:6px;bottom:6px;height:1px;background:currentColor;opacity:.55}
+.hcats button.on:after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;background:currentColor;opacity:.55}
 </style></head><body class="home-on">
 <div class="grain"></div>
-<div id="home"><div class="htop"><span class="hbrand">Shelf<i> — a repository</i></span><input id="htxt" type="text" placeholder="type to preview every font" aria-label="preview text for every specimen" autocomplete="off" spellcheck="false"></div><div class="hpane"><div id="hspec"></div><div id="hstrips"></div><div class="hmeta" id="hmeta"></div></div><div class="hdeck"><div id="hfam" role="listbox" aria-label="families, one per stop"></div><div class="hcats" id="hcats"></div></div></div>
+<div id="home"><div class="htop"><span class="hbrand">Shelf<i> — a repository</i></span><input id="htxt" type="text" placeholder="preview text" aria-label="preview text for every specimen" autocomplete="off" spellcheck="false"></div><div class="hpane"><div id="hspec"></div><div id="hstrips"></div><div class="hmeta" id="hmeta"></div></div><div class="hdeck"><div id="hfam" role="listbox" aria-label="families, one per stop"></div><div class="hcats" id="hcats"></div></div></div>
 <header><span class="brand">Shelf<i> — a repository</i></span><span class="meta">loading</span></header>
 <div class="kinds" id="kinds"></div>
 <div class="rule"></div>
@@ -323,7 +331,7 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 <footer><span>set live · licences read at source · icons from source · share images © their sites</span><span>older attempts <a href="b2.html">instrument</a><a href="a.html">palette</a><a href="c.html">front page</a></span></footer>
 <div class="sheet" id="sheet"></div>
 <script>
-var I=[];var PTX='12345 - Shelf';var ptext=PTX;   // what every specimen shows until someone types something else
+var I=[];var PTX='0123456789 - the quick brown fox jumps over the lazy dog';var ptext=PTX;   // numbers and a sentence: what every specimen shows until someone types their own text
 // Three licence tiers: FF full freedom, CN credit needed, P prohibited terms.
 // The mark is a shape plus its letters, so it reads before it is decoded.
 var TIER={pd:{a:'FF',n:'full freedom',g:'free',h:'FF — full freedom. Open source and free: use it, change it, ship it. No credit line; the licence file travels with the copy.'},
@@ -559,9 +567,9 @@ GROUPS.forEach(function(g){
   if(g[0]==='type'){
     var inp=sec.querySelector('.txt');
     inp.addEventListener('input',function(){
-      ptext=inp.value;
-      var ht=document.getElementById('htxt');if(ht&&ht.value!==ptext)ht.value=ptext;
-      if(hspec){var hw=hspec.querySelector('.word');if(hw&&!hw.classList.contains('nofile')){var hf=HOME.fams[HOME.cur];hw.textContent=ptext||(hf&&hf.face!=null?PTX:I[hf.rec].n)}homeFit()}
+      ptext=inp.value||PTX;                             // an emptied box returns to the default specimen
+      var ht=document.getElementById('htxt');if(ht&&ht.value!==mirror(ptext))ht.value=mirror(ptext);
+      if(hspec){var hw=hspec.querySelector('.word');if(hw&&!hw.classList.contains('nofile')){var hf=HOME.fams[HOME.cur];hw.textContent=ptext===PTX?HOPTX:(ptext||(hf&&hf.face!=null?PTX:I[hf.rec].n))}homeFit()}
       [].forEach.call(sec.querySelectorAll('.item[data-kind="type"] .word'),function(w){w.textContent=ptext||I[+w.closest('.item').dataset.i].n});
       [].forEach.call(document.querySelectorAll('.faces .fc:not([data-nofile]) .word'),function(w){w.textContent=ptext||PTX});
       fitTypes();fitFaces();
@@ -844,7 +852,7 @@ function openTab(i){
   if(!histPushed){histPushed=true;try{history.pushState({sheet:1},'')}catch(e){}}
   cur=i;var r=I[i],n=I.length,t=tierOf(r);
   sheet.innerHTML='<div class="bar"><span class="dot"></span><span>'+kTag(r.k)+'</span><span class="lic">'+mark(t)+'<b>'+TIER[t].n+'</b></span><span class="sp"></span><span>'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><button onclick="closeTab()" aria-label="close preview">close ✕</button></div>'+
-  '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="prow"><span class="pcap">'+(r.k==='type'?(typeLabel(r).split(' · ')[0]||''):r.cap)+'</span>'+(r.k==='type'?'<button class="copy" onclick="copySpecimen(this)" aria-live="polite">copy txt</button>':'')+'</div>'+varButtons(r,i)+'</div>'+
+  '<div class="body"><div class="preview">'+frameHTML(r,i)+'<div class="prow"><span class="pcap">'+(r.k==='type'?(typeLabel(r).split(' · ')[0]||''):r.cap)+'</span>'+(r.k==='type'?'<button class="copy" onclick="copySpecimen(this)">copy txt</button>':'')+'</div>'+varButtons(r,i)+'</div>'+
   '<div class="info"><h1>'+r.n+'</h1><p class="lead">'+r.lead+'</p>'+
   '<div class="sec"><span class="lab">about</span><p>'+r.about+'</p></div>'+
   '<div class="sec"><span class="lab">use it for</span><ul>'+r.use.map(function(u){return '<li>'+u+'</li>'}).join('')+'</ul></div>'+
@@ -863,10 +871,10 @@ function openTab(i){
     sw.setAttribute('contenteditable','true');sw.setAttribute('spellcheck','false');
     sw.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();sw.blur()}});
     sw.addEventListener('input',function(){
-      ptext=sw.textContent.replace(/\s+/g,' ').trim();
-      var inp=document.querySelector('.gh .txt');if(inp)inp.value=ptext;
-      var ht=document.getElementById('htxt');if(ht&&ht.value!==ptext)ht.value=ptext;
-      if(hspec){var hw=hspec.querySelector('.word');if(hw&&!hw.classList.contains('nofile')){var hf=HOME.fams[HOME.cur];hw.textContent=ptext||(hf&&hf.face!=null?PTX:I[hf.rec].n)}homeFit()}
+      ptext=sw.textContent.replace(/\s+/g,' ').trim()||PTX;
+      var inp=document.querySelector('.gh .txt');if(inp)inp.value=mirror(ptext);
+      var ht=document.getElementById('htxt');if(ht&&ht.value!==mirror(ptext))ht.value=mirror(ptext);
+      if(hspec){var hw=hspec.querySelector('.word');if(hw&&!hw.classList.contains('nofile')){var hf=HOME.fams[HOME.cur];hw.textContent=ptext===PTX?HOPTX:(ptext||(hf&&hf.face!=null?PTX:I[hf.rec].n))}homeFit()}
       [].forEach.call(groupsEl.querySelectorAll('.item[data-kind="type"] .word'),function(w){w.textContent=ptext||I[+w.closest('.item').dataset.i].n});
       fitTypes();fitSites();
     });
@@ -893,7 +901,10 @@ document.addEventListener('keydown',function(e){
 // settle timer picks what stopped in front. The family wheel renders the pane
 // only once it settles, so a fast spin never fires a font request per notch.
 var FCUT={'Azeret Mono':[{"l":"Light","w":300,"fvs":"\"MONO\" 0"},{"l":"Regular","w":400,"fvs":"\"MONO\" 0"},{"l":"Medium","w":500,"fvs":"\"MONO\" 0"},{"l":"SemiBold","w":600,"fvs":"\"MONO\" 0"},{"l":"Bold","w":700,"fvs":"\"MONO\" 0"},{"l":"Heavy","w":900,"fvs":"\"MONO\" 0"},{"l":"Light Italic","w":300,"s":"italic","fvs":"\"MONO\" 0"},{"l":"Regular Italic","w":400,"s":"italic","fvs":"\"MONO\" 0"},{"l":"Medium Italic","w":500,"s":"italic","fvs":"\"MONO\" 0"},{"l":"SemiBold Italic","w":600,"s":"italic","fvs":"\"MONO\" 0"},{"l":"Bold Italic","w":700,"s":"italic","fvs":"\"MONO\" 0"},{"l":"Heavy Italic","w":900,"s":"italic","fvs":"\"MONO\" 0"},{"l":"SemiMono Light","w":300,"fvs":"\"MONO\" 50"},{"l":"SemiMono Regular","w":400,"fvs":"\"MONO\" 50"},{"l":"SemiMono Medium","w":500,"fvs":"\"MONO\" 50"},{"l":"SemiMono SemiBold","w":600,"fvs":"\"MONO\" 50"},{"l":"SemiMono Bold","w":700,"fvs":"\"MONO\" 50"},{"l":"SemiMono Heavy","w":900,"fvs":"\"MONO\" 50"},{"l":"SemiMono Light Italic","w":300,"s":"italic","fvs":"\"MONO\" 50"},{"l":"SemiMono Regular Italic","w":400,"s":"italic","fvs":"\"MONO\" 50"},{"l":"SemiMono Medium Italic","w":500,"s":"italic","fvs":"\"MONO\" 50"},{"l":"SemiMono SemiBold Italic","w":600,"s":"italic","fvs":"\"MONO\" 50"},{"l":"SemiMono Bold Italic","w":700,"s":"italic","fvs":"\"MONO\" 50"},{"l":"SemiMono Heavy Italic","w":900,"s":"italic","fvs":"\"MONO\" 50"},{"l":"Mono Light","w":300,"fvs":"\"MONO\" 100"},{"l":"Mono Regular","w":400,"fvs":"\"MONO\" 100"},{"l":"Mono Medium","w":500,"fvs":"\"MONO\" 100"},{"l":"Mono SemiBold","w":600,"fvs":"\"MONO\" 100"},{"l":"Mono Bold","w":700,"fvs":"\"MONO\" 100"},{"l":"Mono Heavy","w":900,"fvs":"\"MONO\" 100"},{"l":"Mono Light Italic","w":300,"s":"italic","fvs":"\"MONO\" 100"},{"l":"Mono Regular Italic","w":400,"s":"italic","fvs":"\"MONO\" 100"},{"l":"Mono Medium Italic","w":500,"s":"italic","fvs":"\"MONO\" 100"},{"l":"Mono SemiBold Italic","w":600,"s":"italic","fvs":"\"MONO\" 100"},{"l":"Mono Bold Italic","w":700,"s":"italic","fvs":"\"MONO\" 100"},{"l":"Mono Heavy Italic","w":900,"s":"italic","fvs":"\"MONO\" 100"}],'Geist':[{"l":"Thin","w":100},{"l":"ExtraLight","w":200},{"l":"Light","w":300},{"l":"Regular","w":400},{"l":"Medium","w":500},{"l":"SemiBold","w":600},{"l":"Bold","w":700},{"l":"ExtraBold","w":800},{"l":"Black","w":900}],'Micro Grotesk':[{"l":"Thin","w":100},{"l":"ExtraLight","w":200},{"l":"Light","w":300},{"l":"Regular","w":400},{"l":"Medium","w":500},{"l":"SemiBold","w":600},{"l":"Bold","w":700},{"l":"ExtraBold","w":800},{"l":"Black","w":900}],'Handjet':[{"l":"Thin","w":100,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"ExtraLight","w":200,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"Light","w":300,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"Regular","w":400,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"Medium","w":500,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"SemiBold","w":600,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"Bold","w":700,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"ExtraBold","w":800,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"Black","w":900,"fvs":"\"ELSH\" 2, \"ELGR\" 1"}],'Snap-it Mono':[{"l":"Thin","w":100},{"l":"ExtraLight","w":200},{"l":"Light","w":300},{"l":"Regular","w":400},{"l":"Medium","w":500},{"l":"SemiBold","w":600},{"l":"Bold","w":700},{"l":"ExtraBold","w":800}],'Honey':[{"l":"Light Italic","w":300},{"l":"Italic","w":400},{"l":"Medium Italic","w":500},{"l":"SemiBold Italic","w":600},{"l":"Bold Italic","w":700},{"l":"ExtraBold Italic","w":800},{"l":"Black Italic","w":900}],'Galgo':[{"l":"Light","w":200},{"l":"Regular","w":400},{"l":"Bold","w":700}]};
-var HOME={mode:'type',at:{type:0,icons:0}};
+var HOME={mode:'type',at:{type:0,icons:0},track:-.035,scale:1};
+var HOPTX='0123456789\nthe quick brown fox jumps over the lazy dog';   // the home pane shows numbers, then the sentence
+function homeTxt(fb){return ptext===PTX?HOPTX:(ptext||fb||'')}
+function mirror(v){return v===PTX?'':v}               // the default shows as an empty input, not as typed text
 var hspec=document.getElementById('hspec'),hstrips=document.getElementById('hstrips'),
     hmeta=document.getElementById('hmeta'),hfam=document.getElementById('hfam'),
     hcats=document.getElementById('hcats'),htxt=document.getElementById('htxt');
@@ -905,14 +916,24 @@ function homeFams(){
   I.forEach(function(r,i){if(r.k==='type')a.push({rec:i})});
   return a;
 }
-function homeFit(){                                   // the pane's one specimen, fitted to the pane
+function homeFit(){                                   // the specimen fitted inside its frame; size may wrap the sentence
   if(!hspec)return;
   var w=hspec.querySelector('.word');if(!w)return;
+  w.style.letterSpacing=(HOME.track||0)+'em';
   if(w.classList.contains('nofile')){w.style.fontSize='30px';return}
-  var W=hspec.clientWidth*0.9,H=hspec.clientHeight*0.58;if(!W||!H)return;
+  var W=hspec.clientWidth*0.82,H=hspec.clientHeight*0.52;if(!W||!H)return;
   var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];if(!fam)return;
-  var m=metrics(fam,w.textContent.trim(),w.dataset.w||400);if(!m.w)return;
-  w.style.fontSize=Math.min(W/m.w*100,H/m.asc*100,170).toFixed(1)+'px';
+  var wt=w.dataset.w||400,tr=HOME.track,sc=HOME.scale;
+  var segs=w.textContent.split('\n');
+  var m0=metrics(fam,segs[0],wt);if(!m0.w)return;    // the numbers line never wraps, so it caps the size
+  var F=W/(m0.w/100+tr*segs[0].length)*sc;          // the size scale participates, so the frame always wins
+  var wraps=segs.slice(1).map(function(s){var m=metrics(fam,s,wt);return s&&m.w?(m.w/100+tr*s.length):0});
+  function fits(F){                                  // height grows with the wrapped line count: monotone, so descent converges
+    var lines=1;wraps.forEach(function(a){lines+=Math.max(1,Math.ceil(a*F/W))});
+    return F*(m0.asc/100+(lines-1)*1.05)<=H;
+  }
+  for(var g=0;g<24&&F>6&&!fits(F);g++)F*=.94;
+  w.style.fontSize=Math.max(6,F).toFixed(1)+'px';
 }
 function homeIconsFit(){                              // the icon grid reads its row height from --fh
   if(!hspec)return;
@@ -946,23 +967,23 @@ function renderHomePane(){
     var fr=FREE[f.face],cuts=FCUT[fr.n];
     if(fr.f){
       h='<a class="wordlink" href="'+fr.u+'" target="_blank" rel="noopener" aria-label="'+fr.n+' \u2014 open the foundry">'
-       +'<div class="word" data-w="400" style="font-family:\''+fr.n+'\'">'+(ptext||PTX)+'</div></a>';
+       +'<div class="word" data-w="400" style="font-family:\''+fr.n+'\'">'+homeTxt()+'</div></a>';
       if(cuts){
         var chips='';
         cuts.forEach(function(c,j){chips+='<button class="opt'+(j===0?' on':'')+'" data-i="-'+(f.face+1)+'" data-d="c" data-v="'+j+'" aria-pressed="'+(j===0)+'">'+c.l+'</button>'});
         hstrips.innerHTML='<div class="strip" data-i="-'+(f.face+1)+'" data-d="c" role="group" aria-label="cuts">'+chips+'</div>';
       } else dead='one cut \u00b7 '+fr.h;
     } else {
-      h='<div class="wordlink"><div class="word nofile">'+fr.n+'</div></div>';
-      dead='no file \u00b7 '+fr.h;
+      h='<a class="wordlink" href="'+fr.u+'" target="_blank" rel="noopener" aria-label="'+fr.n+' \u2014 no file, open the foundry"><div class="word nofile">'+homeTxt()+'</div></a>';
+      dead='no file \u00b7 tap the preview to open the foundry';
     }
-    meta='<b>'+fr.n+'</b><span>'+(fr.f?fr.l+' \u00b7 ':'')+'<a href="'+fr.u+'" target="_blank" rel="noopener">'+fr.h+' \u2197</a></span>';
+    meta='<b>'+fr.n+'</b><span>'+(fr.l?fr.l+' \u00b7 ':'')+'<a href="'+fr.u+'" target="_blank" rel="noopener">'+fr.h+' \u2197</a></span>';
   } else if(f){
     var r=I[f.rec],v=r.view;
     if(v.t==='type'){
       var wv=r.ws[r.wi]||{w:400},sv=r.ss[r.si]||{s:'normal'};
       h='<div class="wordlink" role="button" tabindex="0" aria-label="'+r.n+' \u2014 open preview">'
-       +'<div class="word" data-w="'+(wv.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(wv.w||400)+';font-style:'+(sv.s||'normal')+'">'+(ptext||r.n)+'</div></div>';
+       +'<div class="word" data-w="'+(wv.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(wv.w||400)+';font-style:'+(sv.s||'normal')+'">'+homeTxt(r.n)+'</div></div>';
       var tails='';
       if(r.ws.length>1)tails+=optList(f.rec,r.ws,r.wi,1,'w','');
       if(r.ss.length>1)tails+=optList(f.rec,r.ss,r.si,1,'s','');
@@ -987,6 +1008,8 @@ function renderHomePane(){
     wl.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openTab(f.rec)}};
   }
   [].forEach.call(hstrips.querySelectorAll('.strip'),function(st){prepStrip(st);centreStrip(st);roulette(st)});
+  if(HOME.mode==='icons'){if(htrack.parentNode)htrack.parentNode.removeChild(htrack);if(hspin.parentNode)hspin.parentNode.removeChild(hspin)}
+  else{hspec.appendChild(htrack);hspec.appendChild(hspin)}
   homeFit();homeIconsFit();
   hmeta.innerHTML=meta;
 }
@@ -999,19 +1022,10 @@ function prepWheel(s){                                // same discipline as prep
     s.__raf=requestAnimationFrame(function(){s.__raf=0;homeRoulette(s)});
   },{passive:true})}
 }
-function homeRoulette(s){                             // tilt now, render the pane once the wheel settles
+function homeRoulette(s){                             // the wheel stays flat, only the settled face renders
   if(!s.__chips)prepWheel(s);
   var chips=s.__chips,c=s.__c;
   if(!chips||!chips.length)return;
-  var half=s.clientWidth/2||1,mid=s.scrollLeft+half;
-  for(var i=0;i<chips.length;i++){
-    var p=(c[i]-mid)/half;if(p>1)p=1;else if(p<-1)p=-1;
-    if(chips[i].__p===p)continue;
-    chips[i].__p=p;
-    var ap=p<0?-p:p;
-    chips[i].style.transform='translate3d(0,0,0) rotateY('+(-p*38).toFixed(1)+'deg) scale('+(1-.14*ap).toFixed(3)+')';
-    chips[i].style.opacity=(1-.55*ap).toFixed(2);
-  }
   if(s.__p)return;
   clearTimeout(s.__t);
   s.__t=setTimeout(function(){
@@ -1033,10 +1047,8 @@ function buildHomeWheel(){
   if(homeCur()>=HOME.fams.length)HOME.at[HOME.mode]=0;
   var h='';
   HOME.fams.forEach(function(f,j){
-    var label,fam='';
-    if(f.face!=null){label=FREE[f.face].n;if(FREE[f.face].f)fam=' style="font-family:\''+FREE[f.face].n+'\'"'}
-    else{var r=I[f.rec];label=r.n;if(r.view.t==='type')fam=' style="font-family:\''+r.view.fam+'\'"'}
-    h+='<button class="opt'+(j===homeCur()?' on':'')+'" data-f="'+j+'"'+fam+' aria-pressed="'+(j===homeCur())+'">'+label+'</button>';
+    var label=f.face!=null?FREE[f.face].n:I[f.rec].n;
+    h+='<button class="opt'+(j===homeCur()?' on':'')+'" data-f="'+j+'" aria-pressed="'+(j===homeCur())+'">'+label+'</button>';
   });
   hfam.innerHTML=h;
   prepWheel(hfam);
@@ -1045,6 +1057,7 @@ function buildHomeWheel(){
 }
 function setHome(j,recentre){
   HOME.at[HOME.mode]=j;
+  HOME.track=-.035;HOME.scale=1;htrack.value=HOME.track;hsize.value=1;   // every face starts neutral
   [].forEach.call(hfam.querySelectorAll('.opt'),function(o,k){o.classList.toggle('on',k===j);o.setAttribute('aria-pressed',k===j)});
   renderHomePane();
   if(recentre)centreWheel(hfam,j);
@@ -1069,6 +1082,7 @@ function syncCats(){[].forEach.call(hcats.querySelectorAll('button'),function(b,
 function showHome(mode){
   HOME.mode=mode;
   document.body.classList.add('home-on');
+  document.getElementById('home').classList.toggle('iconson',mode==='icons');
   buildHomeWheel();renderHomePane();syncCats();
 }
 function openLegacy(kind){                            // the shelves that keep their wall: show the page pre-filtered
@@ -1078,13 +1092,20 @@ function openLegacy(kind){                            // the shelves that keep t
   for(var i=0;i<btns.length;i++){if(btns[i].getAttribute('aria-label')===want){btns[i].click();break}}
 }
 htxt.addEventListener('input',function(){
-  ptext=htxt.value;
-  var gi=document.querySelector('.gh .txt');if(gi&&gi.value!==ptext)gi.value=ptext;
+  ptext=htxt.value||PTX;
+  var gi=document.querySelector('.gh .txt');if(gi&&gi.value!==mirror(ptext))gi.value=mirror(ptext);
   var w=hspec.querySelector('.word');
-  if(w&&!w.classList.contains('nofile')){var f=HOME.fams[homeCur()];w.textContent=ptext||(f&&f.face!=null?PTX:I[f.rec].n)}
+  if(w&&!w.classList.contains('nofile')){var f=HOME.fams[homeCur()];w.textContent=ptext===PTX?HOPTX:(ptext||(f&&f.face!=null?PTX:I[f.rec].n))}
   [].forEach.call(groupsEl.querySelectorAll('.item[data-kind="type"] .word'),function(x){x.textContent=ptext||I[+x.closest('.item').dataset.i].n});
   [].forEach.call(document.querySelectorAll('.faces .fc:not([data-nofile]) .word'),function(x){x.textContent=ptext||PTX});
   fitTypes();fitFaces();homeFit();
 });
+var htrack=document.createElement('input');htrack.id='htrack';htrack.type='range';htrack.className='hslider';
+htrack.min=-.08;htrack.max=.5;htrack.step=.01;htrack.value=HOME.track;htrack.setAttribute('aria-label','kerning: space between letters');
+htrack.addEventListener('input',function(){HOME.track=parseFloat(htrack.value);homeFit()});
+var hsize=document.createElement('input');hsize.id='hsize';hsize.type='range';hsize.className='hslider';
+hsize.min=.4;hsize.max=1.8;hsize.step=.01;hsize.value=1;hsize.setAttribute('aria-label','letter size');
+hsize.addEventListener('input',function(){HOME.scale=parseFloat(hsize.value);homeFit()});
+var hspin=document.createElement('span');hspin.className='hspin';hspin.appendChild(hsize);
 showHome('type');
 </script></body></html>
