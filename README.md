@@ -13,6 +13,7 @@ terms.
   `manifest.json` recording the source each file came from.
 - `weigh.mjs` — `node weigh.mjs` reports page and font weight; a report, not a gate.
 - `audit.mjs` — the gates; dependency-free.
+- `skills/` — the repo's own procedures as SKILL.md files: adding a face, publishing and verifying, the mock-first loop.
 
 `a.html`, `b.html`, `b2.html`, `c.html` are older attempts, linked from the footer.
 
