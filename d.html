@@ -279,18 +279,17 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 #home{position:fixed;inset:0;z-index:40;display:none;flex-direction:column;background:radial-gradient(140% 70% at 50% -10%,#17171a 0%,#0c0c0e 45%,#08080a 100%)}
 body.home-on #home{display:flex}
 body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,body.home-on #groups,body.home-on footer{display:none}
-.htop{display:flex;align-items:center;gap:14px;padding:calc(10px + var(--sa-t)) calc(18px + var(--sa-r)) 10px calc(18px + var(--sa-l));border-bottom:1px solid var(--line)}
-.hbrand{font-family:"Instrument Serif",serif;font-size:16px;color:#c9c8c2;flex:0 0 auto;white-space:nowrap}
+.htop{display:block;padding:calc(10px + var(--sa-t)) calc(18px + var(--sa-r)) 0 calc(18px + var(--sa-l));border-bottom:1px solid var(--line)}
+.hbrand{font-family:"Instrument Serif",serif;font-size:16px;color:#c9c8c2;flex:0 0 auto;white-space:nowrap;display:block}
 .hbrand i{font-style:italic;color:#7f7f86}
-#htxt{flex:1;min-width:0;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.16);padding:0 0 5px;font-family:var(--mono);font-size:16px;letter-spacing:.2em;color:#cfcec8;outline:none;-webkit-appearance:none;border-radius:0}
+#htxt{display:block;width:100%;box-sizing:border-box;min-height:44px;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.16);margin:2px 0 0;padding:9px 0 11px;font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:#cfcec8;outline:none;-webkit-appearance:none;border-radius:0}
 #htxt::placeholder{color:#3f3f46}
 #htxt:focus{border-bottom-color:rgba(255,255,255,.42)}
 #htxt:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
 .hpane{flex:1;min-height:0;display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
 #hspec{flex:1;min-height:0;position:relative;overflow:hidden}
-#hspec:before{content:"";position:absolute;left:4.5%;right:4.5%;top:7%;bottom:7%;border:1px solid rgba(255,255,255,.1);pointer-events:none}
 #hspec .frame{position:absolute;inset:0;width:100%;height:100%;box-shadow:none;transition:none}
-#hspec .frame:after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.045)}
+#hspec .frame:after{box-shadow:none}
 #hspec .wordlink{position:absolute;inset:0;display:block;color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
 #hspec .word{position:absolute;left:8%;right:8%;top:50%;transform:translateY(-50%);line-height:1.05;font-weight:400;color:#f4f3ee;white-space:pre-line;overflow:hidden;transition:opacity .15s}
 #hspec .word.nofile{font-family:var(--mono);letter-spacing:.02em;color:#6b6b74}
@@ -305,7 +304,8 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 .hslider::-webkit-slider-thumb{-webkit-appearance:none;width:9px;height:24px;background:#cfcec8;margin-top:-11px;border-radius:1px}
 .hslider:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
 .hspin{position:absolute;right:calc(4.5% - 5px);top:50%;width:34px;height:max(210px,50%);transform:translateY(-50%);z-index:6;pointer-events:none}
-#hsize{left:50%;top:50%;width:210px;transform:translate(-50%,-50%) rotate(-90deg)}
+#home.iconson #htrack,#home.iconson .hspin{display:none!important}
+#hsize{left:50%;top:50%;width:210px;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:auto}
 .hmeta{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px calc(18px + var(--sa-r)) 10px calc(18px + var(--sa-l));border-top:1px solid var(--line);min-height:40px}
 .hmeta b{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#d3d2cc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .hmeta span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#4c4c54;white-space:nowrap;flex:0 0 auto}
@@ -313,7 +313,7 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 .hdeck{flex:0 0 auto;border-top:1px solid var(--line)}
 #hfam{display:flex;align-items:center;height:64px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:0 38%;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
 #hfam::-webkit-scrollbar{display:none}
-#hfam .opt{flex:0 0 auto;min-height:44px;padding:0 16px;border:0;background:none;font-family:var(--mono);font-size:14px;letter-spacing:.02em;text-transform:none;color:#55555d;line-height:1;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;scroll-snap-align:center;transition:color .14s}
+#hfam .opt{flex:0 0 auto;width:auto;min-height:44px;padding:0 16px;border:0;background:none;font-family:var(--mono);font-size:14px;letter-spacing:.02em;text-transform:none;color:#55555d;line-height:1;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;scroll-snap-align:center;transition:color .14s}
 #hfam .opt.on{color:#f4f3ee}
 .hcats{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:7px;padding:0 calc(8px + var(--sa-r)) calc(8px + var(--sa-b)) calc(8px + var(--sa-l));border-top:1px solid var(--line);-webkit-overflow-scrolling:touch}
 .hcats::-webkit-scrollbar{display:none}
@@ -1008,7 +1008,8 @@ function renderHomePane(){
     wl.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openTab(f.rec)}};
   }
   [].forEach.call(hstrips.querySelectorAll('.strip'),function(st){prepStrip(st);centreStrip(st);roulette(st)});
-  if(HOME.mode!=='icons'){hspec.appendChild(htrack);hspec.appendChild(hspin)}
+  if(HOME.mode==='icons'){if(htrack.parentNode)htrack.parentNode.removeChild(htrack);if(hspin.parentNode)hspin.parentNode.removeChild(hspin)}
+  else{hspec.appendChild(htrack);hspec.appendChild(hspin)}
   homeFit();homeIconsFit();
   hmeta.innerHTML=meta;
 }
@@ -1081,6 +1082,7 @@ function syncCats(){[].forEach.call(hcats.querySelectorAll('button'),function(b,
 function showHome(mode){
   HOME.mode=mode;
   document.body.classList.add('home-on');
+  document.getElementById('home').classList.toggle('iconson',mode==='icons');
   buildHomeWheel();renderHomePane();syncCats();
 }
 function openLegacy(kind){                            // the shelves that keep their wall: show the page pre-filtered
