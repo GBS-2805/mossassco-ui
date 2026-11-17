@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0c">
+<title>Shelf — roulette home</title>
+<style>
+/* Throwaway mockup: roulette home. One face at a time, giant live specimen on top,
+   vertical cut wheel inside the pane, family wheel + other categories at the bottom.
+   d.html is untouched. Real FREE records + real cut coordinates. */
+:root{
+  --bg:#0a0a0c;--ink:#e9e8e3;--dim:#8d8d96;--faint:#5a5a63;
+  --line:rgba(255,255,255,.12);--hair:rgba(255,255,255,.06);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg);color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--mono);font-size:10px;letter-spacing:.08em}
+body{max-width:430px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ---- top pane: the live face ---- */
+#pane{position:relative;flex:1 1 62%;min-height:0;border-bottom:1px solid var(--line);overflow:hidden}
+#word{position:absolute;left:0;right:96px;top:50%;transform:translateY(-50%);
+  padding:0 14px 0 18px;text-align:left;font-size:44px;line-height:1.04;
+  transition:font-size .25s ease,opacity .25s ease;overflow-wrap:break-word}
+#word.nofile{color:var(--faint)}
+#cut{position:absolute;top:0;right:0;bottom:44px;width:96px;overflow-y:auto;overscroll-behavior:contain;
+  scroll-snap-type:y mandatory;border-left:1px solid var(--hair);scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
+          mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent)}
+#cut::-webkit-scrollbar{display:none}
+#cut .it{display:flex;align-items:center;justify-content:flex-end;min-height:52px;
+  padding:0 10px 0 6px;scroll-snap-align:center;color:var(--faint);font-size:9px;
+  letter-spacing:.06em;text-align:right;transition:color .2s}
+#cut .it span{overflow-wrap:anywhere}
+#cut .it.mid{color:var(--ink)}
+#cutmarker{position:absolute;right:0;bottom:44px;width:96px;height:0;
+  border-top:1px solid var(--line);pointer-events:none}
+#cutmarker{top:auto}
+#cutdead{position:absolute;top:0;right:0;bottom:44px;width:96px;border-left:1px solid var(--hair);
+  display:flex;align-items:center;justify-content:center;color:#3f3f46;font-size:9px;
+  letter-spacing:.06em;text-align:right;padding:0 10px}
+#meta{position:absolute;left:0;right:0;bottom:0;height:44px;border-top:1px solid var(--hair);
+  display:flex;align-items:center;justify-content:space-between;padding:0 18px;color:var(--dim)}
+#meta b{font-weight:400;color:var(--ink);font-size:10px}
+#meta a{color:var(--dim);text-decoration:none}
+
+/* ---- bottom: family roulette + everything else ---- */
+#deck{flex:1 1 38%;min-height:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+#ptext{background:none;border:0;border-bottom:1px solid var(--hair);color:var(--ink);
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:12px 18px;width:100%}
+#ptext:focus-visible{outline:1px solid rgba(233,232,227,.55);outline-offset:-1px}
+#fam{flex:1 1 auto;min-height:0;display:flex;align-items:center;overflow-x:auto;overscroll-behavior:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 40%;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
+#fam::-webkit-scrollbar{display:none}
+#fam .it{flex:0 0 auto;scroll-snap-align:center;padding:0 16px;color:var(--faint);
+  font-size:17px;line-height:1;white-space:nowrap;transition:color .2s;cursor:pointer}
+#fam .it.mid{color:var(--ink)}
+#fammaker{position:relative;height:0;border-top:1px solid var(--line);margin:0 18px}
+#cats{display:flex;flex-wrap:wrap;gap:8px 18px;padding:12px 18px calc(14px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid var(--hair);color:var(--faint);font-size:9px}
+#cats a{color:var(--faint);text-decoration:none;padding:8px 0;margin:-8px 0}
+#cats a:first-child{color:var(--ink)}
+@font-face{font-family:"F alfphabet";src:url("../fonts/alfphabet.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F aspekta";src:url("../fonts/aspekta.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F azeret-mono";src:url("../fonts/azeret-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F barlaxent";src:url("../fonts/barlaxent.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F basically-a-mono";src:url("../fonts/basically-a-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F biz-udmincho";src:url("../fonts/biz-udmincho.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F biz-udpmincho";src:url("../fonts/biz-udpmincho.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F blocks-on-blocks";src:url("../fonts/blocks-on-blocks.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F breite-grotesk";src:url("../fonts/breite-grotesk.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F career";src:url("../fonts/career.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F cat-eckmann";src:url("../fonts/cat-eckmann.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F cat-neuzeit";src:url("../fonts/cat-neuzeit.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F dauphine";src:url("../fonts/dauphine.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F destra";src:url("../fonts/destra.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F evening";src:url("../fonts/evening.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F fibel-nord";src:url("../fonts/fibel-nord.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F fragment-mono";src:url("../fonts/fragment-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F freemono";src:url("../fonts/freemono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F freesans";src:url("../fonts/freesans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F freeserif";src:url("../fonts/freeserif.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F frick";src:url("../fonts/frick.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F fudd";src:url("../fonts/fudd.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F galgo";src:url("../fonts/galgo.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F gap-sans";src:url("../fonts/gap-sans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F geist";src:url("../fonts/geist.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F geist-mono";src:url("../fonts/geist-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F getai-grotesk-display";src:url("../fonts/getai-grotesk-display.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F gloock";src:url("../fonts/gloock.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F gtl001";src:url("../fonts/gtl001.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F handjet";src:url("../fonts/handjet.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F hauora-sans";src:url("../fonts/hauora-sans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F hedvig-letters-sans";src:url("../fonts/hedvig-letters-sans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F hedvig-letters-serif";src:url("../fonts/hedvig-letters-serif.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F helmet";src:url("../fonts/helmet.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F hikaru-mono";src:url("../fonts/hikaru-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F honey";src:url("../fonts/honey.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F inclusive-sans";src:url("../fonts/inclusive-sans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F instrument-sans";src:url("../fonts/instrument-sans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F kulim-park";src:url("../fonts/kulim-park.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F lab-mono";src:url("../fonts/lab-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F lil-grotesk";src:url("../fonts/lil-grotesk.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F lt-institute";src:url("../fonts/lt-institute.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F lt-remark";src:url("../fonts/lt-remark.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F lt-superior-mono";src:url("../fonts/lt-superior-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F lunchtype";src:url("../fonts/lunchtype.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F maname";src:url("../fonts/maname.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F manifont-grotesk";src:url("../fonts/manifont-grotesk.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F martian-mono";src:url("../fonts/martian-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F meta-old-french";src:url("../fonts/meta-old-french.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F micro-grotesk";src:url("../fonts/micro-grotesk.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F miedinger";src:url("../fonts/miedinger.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F milford";src:url("../fonts/milford.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F milkman";src:url("../fonts/milkman.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F monor";src:url("../fonts/monor.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F new-heterodox-mono";src:url("../fonts/new-heterodox-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F opening-hours-sans";src:url("../fonts/opening-hours-sans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F optician-sans";src:url("../fonts/optician-sans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F overused-grotesk";src:url("../fonts/overused-grotesk.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F panamera";src:url("../fonts/panamera.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F paragon";src:url("../fonts/paragon.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F prodigy-sans";src:url("../fonts/prodigy-sans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F project-blackbird";src:url("../fonts/project-blackbird.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F queering";src:url("../fonts/queering.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F rag";src:url("../fonts/rag.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F redaction";src:url("../fonts/redaction.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F snap-it-mono";src:url("../fonts/snap-it-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F solitus";src:url("../fonts/solitus.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F sprat";src:url("../fonts/sprat.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F sunday-masthead";src:url("../fonts/sunday-masthead.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F swansea";src:url("../fonts/swansea.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F tasa-orbiter";src:url("../fonts/tasa-orbiter.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F times-newer-roman";src:url("../fonts/times-newer-roman.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F uncut-plan8";src:url("../fonts/uncut-plan8.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F uncut-sans";src:url("../fonts/uncut-sans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F victor-mono";src:url("../fonts/victor-mono.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F violet-sans";src:url("../fonts/violet-sans.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F whois";src:url("../fonts/whois.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F young-serif";src:url("../fonts/young-serif.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F zarathustra";src:url("../fonts/zarathustra.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"F zen-kaku-gothic-new";src:url("../fonts/zen-kaku-gothic-new.woff2") format("woff2");font-display:swap}
+</style>
+</head>
+<body>
+  <div id="pane">
+    <div id="word">Shelf - 123</div>
+    <div id="cut" hidden></div>
+    <div id="cutmarker" hidden></div>
+    <div id="cutdead" hidden></div>
+    <div id="meta"><b id="mname"></b><a id="mhost" target="_blank" rel="noopener"></a></div>
+  </div>
+  <div id="deck">
+    <input id="ptext" value="Shelf - 123" autocomplete="off" spellcheck="false" aria-label="Preview text">
+    <div id="fam"></div>
+    <div id="fammaker"></div>
+    <div id="cats">
+      <a href="#">type · 100</a><a href="#">icons</a><a href="#">3d · illust</a><a href="#">3d · model</a><a href="#">image</a><a href="#">sites</a><a href="#">plugins</a><a href="#">tools</a>
+    </div>
+  </div>
+<script>
+var FAMS = [{"n": "Blocks on Blocks", "c": "display", "l": "OFL", "h": "github.com", "u": "https://github.com/nervousattack/BLOCKS-ON-BLOCKS", "f": "blocks-on-blocks", "cuts": [{"label": "ON BLOCKS", "co": {}}]}, {"n": "Cakra", "c": "display", "l": "OFL", "h": "cakra.oomtype.com", "u": "https://www.cakra.oomtype.com/", "f": null, "cuts": []}, {"n": "CAT Eckmann", "c": "display", "l": "OFL / GPL+exception", "h": "peter-wiegel.de", "u": "https://www.peter-wiegel.de/eckmann.html", "f": "cat-eckmann", "cuts": [{"label": "Regular", "co": {}}]}, {"n": "Destra", "c": "display", "l": "OFL", "h": "fonderiz.fr", "u": "https://fonderiz.fr/destra/", "f": "destra", "cuts": []}, {"n": "Frick", "c": "display", "l": "OFL", "h": "github.com", "u": "https://github.com/dennisgrauel/Frick", "f": "frick", "cuts": []}, {"n": "Galgo", "c": "display", "l": "OFL", "h": "uncut.wtf", "u": "https://uncut.wtf/downloads/galgovf.zip", "f": "galgo", "cuts": [{"label": "Light", "co": {"wght": 200}}, {"label": "Regular", "co": {"wght": 400}}, {"label": "Bold", "co": {"wght": 700}}]}, {"n": "Gap Sans", "c": "display", "l": "OFL", "h": "github.com", "u": "https://github.com/Interstices-/GapSans", "f": "gap-sans", "cuts": []}, {"n": "Garamon(d/t)", "c": "display", "l": "WTFPL", "h": "fonderie.download", "u": "https://fonderie.download/garamondt.html", "f": null, "cuts": []}, {"n": "Gemini", "c": "display", "l": "OFL 1.1", "h": "hiyaaaaa.com", "u": "https://hiyaaaaa.com/gemini/", "f": null, "cuts": []}, {"n": "Getai Grotesk Display", "c": "display", "l": "OFL", "h": "deathoftypography.com", "u": "https://deathoftypography.com/getai-grotesk-display/", "f": "getai-grotesk-display", "cuts": []}, {"n": "Gloock", "c": "display", "l": "OFL", "h": "github.com", "u": "https://github.com/duartp/gloock", "f": "gloock", "cuts": []}, {"n": "GTL001", "c": "display", "l": "OFL", "h": "github.com", "u": "https://github.com/eliheuer/GTL001", "f": "gtl001", "cuts": []}, {"n": "Handjet", "c": "display", "l": "OFL", "h": "github.com", "u": "https://github.com/rosettatype/handjet", "f": "handjet", "cuts": [{"label": "Thin", "co": {"wght": 100, "ELSH": 2, "ELGR": 1}}, {"label": "ExtraLight", "co": {"wght": 200, "ELSH": 2, "ELGR": 1}}, {"label": "Light", "co": {"wght": 300, "ELSH": 2, "ELGR": 1}}, {"label": "Regular", "co": {"wght": 400, "ELSH": 2, "ELGR": 1}}, {"label": "Medium", "co": {"wght": 500, "ELSH": 2, "ELGR": 1}}, {"label": "SemiBold", "co": {"wght": 600, "ELSH": 2, "ELGR": 1}}, {"label": "Bold", "co": {"wght": 700, "ELSH": 2, "ELGR": 1}}, {"label": "ExtraBold", "co": {"wght": 800, "ELSH": 2, "ELGR": 1}}, {"label": "Black", "co": {"wght": 900, "ELSH": 2, "ELGR": 1}}]}, {"n": "Heal the Web", "c": "display", "l": "MPL 2.0", "h": "healtheweb.site", "u": "https://healtheweb.site/", "f": null, "cuts": []}, {"n": "HIKARU MONO", "c": "display", "l": "OFL", "h": "github.com", "u": "https://github.com/AntoineVRM/VRM-HIKARU/tree/main", "f": "hikaru-mono", "cuts": []}, {"n": "Honey", "c": "display", "l": "OFL", "h": "onlyanother.co", "u": "https://www.onlyanother.co/honey", "f": "honey", "cuts": [{"label": "Light Italic", "co": {"wght": 300}}, {"label": "Italic", "co": {"wght": 400}}, {"label": "Medium Italic", "co": {"wght": 500}}, {"label": "SemiBold Italic", "co": {"wght": 600}}, {"label": "Bold Italic", "co": {"wght": 700}}, {"label": "ExtraBold Italic", "co": {"wght": 800}}, {"label": "Black Italic", "co": {"wght": 900}}]}, {"n": "LC Mogi", "c": "display", "l": "OFL 1.1", "h": "lokalcontainer.com", "u": "https://lokalcontainer.com/Typeface", "f": null, "cuts": []}, {"n": "Queering", "c": "display", "l": "OFL", "h": "adamnac.com", "u": "https://www.adamnac.com/queering", "f": "queering", "cuts": []}, {"n": "Sunday Masthead", "c": "display", "l": "OFL", "h": "github.com", "u": "https://github.com/dennisgrauel/The-Sunday-Paper-fonts", "f": "sunday-masthead", "cuts": []}, {"n": "Utara", "c": "display", "l": "OFL 1.1", "h": "lokalcontainer.com", "u": "https://lokalcontainer.com/Typeface", "f": null, "cuts": []}, {"n": "Alfphabet", "c": "sans-serif", "l": "OFL", "h": "osp.kitchen", "u": "https://osp.kitchen/foundry/alfphabet/", "f": "alfphabet", "cuts": [{"label": "Alfphabet-I", "co": {}}]}, {"n": "Aspekta", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/ivodolenc/aspekta", "f": "aspekta", "cuts": []}, {"n": "AUTHENTIC Sans", "c": "sans-serif", "l": "WTFPL", "h": "authentic.website", "u": "https://authentic.website/sans", "f": null, "cuts": []}, {"n": "Barlaxent", "c": "sans-serif", "l": "OFL", "h": "typotheque.le75.be", "u": "https://typotheque.le75.be/#barlaxent", "f": "barlaxent", "cuts": []}, {"n": "BDO Grotesk", "c": "sans-serif", "l": "OFL 1.1", "h": "lokalcontainer.com", "u": "https://lokalcontainer.com/Typeface", "f": null, "cuts": []}, {"n": "Bertioga Sans", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/cssobral2013/Bertioga-Sans", "f": null, "cuts": []}, {"n": "Breite Grotesk", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/metapolator/Breite", "f": "breite-grotesk", "cuts": []}, {"n": "CAT Neuzeit", "c": "sans-serif", "l": "OFL / GPL+exception", "h": "peter-wiegel.de", "u": "https://www.peter-wiegel.de/CAT_Neuzeit.html", "f": "cat-neuzeit", "cuts": []}, {"n": "Dauphine", "c": "sans-serif", "l": "OFL 1.1", "h": "esad-gv.fr", "u": "https://github.com/no-feature/dauphine", "f": "dauphine", "cuts": []}, {"n": "Evening", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/brycewilner/Evening", "f": "evening", "cuts": []}, {"n": "Fibel Nord", "c": "sans-serif", "l": "OFL", "h": "peter-wiegel.de", "u": "https://www.peter-wiegel.de/Fibel.html", "f": "fibel-nord", "cuts": []}, {"n": "FreeSans", "c": "sans-serif", "l": "GPL + font exception", "h": "ftp.gnu.org", "u": "https://ftp.gnu.org/gnu/freefont/", "f": "freesans", "cuts": []}, {"n": "Fudd", "c": "sans-serif", "l": "MIT-style", "h": "squaregear.net", "u": "https://squaregear.net/fonts/fudd.html", "f": "fudd", "cuts": []}, {"n": "Geist", "c": "sans-serif", "l": "OFL", "h": "vercel.com", "u": "https://vercel.com/font", "f": "geist", "cuts": [{"label": "Thin", "co": {"wght": 100}}, {"label": "ExtraLight", "co": {"wght": 200}}, {"label": "Light", "co": {"wght": 300}}, {"label": "Regular", "co": {"wght": 400}}, {"label": "Medium", "co": {"wght": 500}}, {"label": "SemiBold", "co": {"wght": 600}}, {"label": "Bold", "co": {"wght": 700}}, {"label": "ExtraBold", "co": {"wght": 800}}, {"label": "Black", "co": {"wght": 900}}]}, {"n": "Giphurs", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/Corne2Plum3/Giphurs", "f": null, "cuts": []}, {"n": "Hasköy", "c": "sans-serif", "l": "OFL", "h": "haskoy.ertekinn.com", "u": "https://haskoy.ertekinn.com/", "f": null, "cuts": []}, {"n": "Hauora Sans", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/WCYS-Co/Hauora-Sans", "f": "hauora-sans", "cuts": []}, {"n": "Hedvig Letters Sans", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/KanonFoundry/HedvigLetters/", "f": "hedvig-letters-sans", "cuts": []}, {"n": "Helmet", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/carlenlund/helmet", "f": "helmet", "cuts": []}, {"n": "Inclusive Sans", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/LivKing/Inclusive-Sans", "f": "inclusive-sans", "cuts": []}, {"n": "Instrument Sans", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/Instrument/instrument-sans", "f": "instrument-sans", "cuts": []}, {"n": "Kulim Park", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/noponies/Kulim-Park", "f": "kulim-park", "cuts": []}, {"n": "Lil Grotesk", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/noirblancrouge/LilGrotesk", "f": "lil-grotesk", "cuts": []}, {"n": "Logisoso", "c": "sans-serif", "l": "GPL-2", "h": "osp.kitchen", "u": "https://osp.kitchen/foundry/logisoso/", "f": null, "cuts": []}, {"n": "LT Institute", "c": "sans-serif", "l": "CC0 / PD", "h": "lyonstype4.wixsite.com", "u": "https://lyonstype4.wixsite.com/lyonstype-beta/fonts", "f": "lt-institute", "cuts": []}, {"n": "Lunchtype", "c": "sans-serif", "l": "OFL 1.1", "h": "uncut.wtf", "u": "https://uncut.wtf/downloads/lunchtype.zip", "f": "lunchtype", "cuts": []}, {"n": "Manifont Grotesk", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/Interstices-/Manifont-Grotesk", "f": "manifont-grotesk", "cuts": []}, {"n": "Micro Grotesk", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/eliheuer/micro-grotesk", "f": "micro-grotesk", "cuts": [{"label": "Thin", "co": {"wght": 100}}, {"label": "ExtraLight", "co": {"wght": 200}}, {"label": "Light", "co": {"wght": 300}}, {"label": "Regular", "co": {"wght": 400}}, {"label": "Medium", "co": {"wght": 500}}, {"label": "SemiBold", "co": {"wght": 600}}, {"label": "Bold", "co": {"wght": 700}}, {"label": "ExtraBold", "co": {"wght": 800}}, {"label": "Black", "co": {"wght": 900}}]}, {"n": "Miedinger*", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/indestructible-type/Miedinger", "f": "miedinger", "cuts": []}, {"n": "Milford", "c": "sans-serif", "l": "public domain · credit asked", "h": "uncut.wtf", "u": "https://uncut.wtf/downloads/milford.zip", "f": "milford", "cuts": []}, {"n": "Milkman", "c": "sans-serif", "l": "OFL 1.1", "h": "uncut.wtf", "u": "https://uncut.wtf/downloads/milkman.ttf.zip", "f": "milkman", "cuts": []}, {"n": "Opening Hours Sans", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/opening-hours-studio/opening-hours-sans", "f": "opening-hours-sans", "cuts": []}, {"n": "Optician Sans", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/anewtypeofinterference/Optician-Sans", "f": "optician-sans", "cuts": []}, {"n": "Overused Grotesk", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/RandomMaerks/Overused-Grotesk", "f": "overused-grotesk", "cuts": []}, {"n": "Panamera", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/noirblancrouge/Panamera", "f": "panamera", "cuts": []}, {"n": "Perun", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/StefanPeev/Perun", "f": null, "cuts": []}, {"n": "Pretendard", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/orioncactus/pretendard", "f": null, "cuts": []}, {"n": "Prodigy Sans", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/weiweihuanghuang/Prodigy-Sans", "f": "prodigy-sans", "cuts": []}, {"n": "Project Blackbird", "c": "sans-serif", "l": "OFL", "h": "uncut.wtf", "u": "https://uncut.wtf/downloads/projekt_blackbird.otf.zip", "f": "project-blackbird", "cuts": []}, {"n": "Rag", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/dennisgrauel/Rag", "f": "rag", "cuts": []}, {"n": "Reglo", "c": "sans-serif", "l": "OFL 1.1", "h": "osp.kitchen", "u": "https://osp.kitchen/foundry/reglo/", "f": null, "cuts": []}, {"n": "Solitus", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/jhudson100/Solitus-font", "f": "solitus", "cuts": []}, {"n": "Swansea", "c": "sans-serif", "l": "public domain · credit asked", "h": "uncut.wtf", "u": "https://uncut.wtf/downloads/swansea.zip", "f": "swansea", "cuts": []}, {"n": "TASA Orbiter", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/adrianzwz/TASA-Typeface-Collection", "f": "tasa-orbiter", "cuts": []}, {"n": "Uncut Sans", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/kaspernordkvist/uncut_sans/", "f": "uncut-sans", "cuts": []}, {"n": "Violet Sans", "c": "sans-serif", "l": "OFL", "h": "github.com", "u": "https://github.com/violetoffice/violet_sans", "f": "violet-sans", "cuts": []}, {"n": "Zen Kaku Gothic New", "c": "sans-serif", "l": "OFL 1.1", "h": "fonts.google.com", "u": "https://fonts.google.com/specimen/Zen+Kaku+Gothic+New", "f": "zen-kaku-gothic-new", "cuts": []}, {"n": "BIZ UDPMincho", "c": "serif", "l": "OFL 1.1", "h": "fonts.google.com", "u": "https://fonts.google.com/specimen/BIZ+UDPMincho", "f": "biz-udpmincho", "cuts": []}, {"n": "Career", "c": "serif", "l": "OFL", "h": "github.com", "u": "https://github.com/Antoine-Gelgon/CareerFont", "f": "career", "cuts": []}, {"n": "FreeSerif", "c": "serif", "l": "GPL + font exception", "h": "ftp.gnu.org", "u": "https://ftp.gnu.org/gnu/freefont/", "f": "freeserif", "cuts": []}, {"n": "Hedvig Letters Serif", "c": "serif", "l": "OFL", "h": "github.com", "u": "https://github.com/KanonFoundry/HedvigLetters/", "f": "hedvig-letters-serif", "cuts": []}, {"n": "Libertinage", "c": "serif", "l": "OFL 1.1", "h": "osp.kitchen", "u": "https://osp.kitchen/foundry/libertinage/", "f": null, "cuts": []}, {"n": "LT Remark", "c": "serif", "l": "CC0 / PD", "h": "lyonstype4.wixsite.com", "u": "https://lyonstype4.wixsite.com/lyonstype-beta/fonts", "f": "lt-remark", "cuts": []}, {"n": "Maname", "c": "serif", "l": "OFL", "h": "github.com", "u": "https://github.com/mooniak/maname-font", "f": "maname", "cuts": []}, {"n": "Meta Old French", "c": "serif", "l": "OFL", "h": "gitlab.com", "u": "https://gitlab.com/Luuse/foundry/meta-old-french", "f": "meta-old-french", "cuts": []}, {"n": "Paragon", "c": "serif", "l": "OFL", "h": "fonderiz.fr", "u": "https://fonderiz.fr/paragon/", "f": "paragon", "cuts": []}, {"n": "Redaction", "c": "serif", "l": "OFL 1.1", "h": "redaction.us", "u": "https://www.redaction.us/", "f": "redaction", "cuts": []}, {"n": "Sprat", "c": "serif", "l": "OFL", "h": "github.com", "u": "https://github.com/EthanNakache/Sprat-type", "f": "sprat", "cuts": []}, {"n": "Times Dot", "c": "serif", "l": "OFL", "h": "librarystack.org", "u": "https://www.librarystack.org/times-dot/", "f": null, "cuts": []}, {"n": "Times Newer Roman", "c": "serif", "l": "GPL-2", "h": "timesnewerroman.com", "u": "https://timesnewerroman.com/", "f": "times-newer-roman", "cuts": []}, {"n": "Young Serif", "c": "serif", "l": "OFL", "h": "github.com", "u": "https://github.com/noirblancrouge/YoungSerif", "f": "young-serif", "cuts": [{"label": "Regular", "co": {}}]}, {"n": "Zarathustra", "c": "serif", "l": "OFL", "h": "github.com", "u": "https://github.com/lorene-cn/zarathustra-typeface", "f": "zarathustra", "cuts": []}, {"n": "Azeret Mono", "c": "monospace", "l": "OFL 1.1", "h": "displaay.net", "u": "https://displaay.net/typeface/azeret/azeret-mono/", "f": "azeret-mono", "cuts": [{"label": "Light", "co": {"wght": 300, "ital": 0, "MONO": 0}}, {"label": "Regular", "co": {"wght": 400, "ital": 0, "MONO": 0}}, {"label": "Medium", "co": {"wght": 500, "ital": 0, "MONO": 0}}, {"label": "SemiBold", "co": {"wght": 600, "ital": 0, "MONO": 0}}, {"label": "Bold", "co": {"wght": 700, "ital": 0, "MONO": 0}}, {"label": "Heavy", "co": {"wght": 900, "ital": 0, "MONO": 0}}, {"label": "Light Italic", "co": {"wght": 300, "ital": 10, "MONO": 0}}, {"label": "Regular Italic", "co": {"wght": 400, "ital": 10, "MONO": 0}}, {"label": "Medium Italic", "co": {"wght": 500, "ital": 10, "MONO": 0}}, {"label": "SemiBold Italic", "co": {"wght": 600, "ital": 10, "MONO": 0}}, {"label": "Bold Italic", "co": {"wght": 700, "ital": 10, "MONO": 0}}, {"label": "Heavy Italic", "co": {"wght": 900, "ital": 10, "MONO": 0}}, {"label": "SemiMono Light", "co": {"wght": 300, "ital": 0, "MONO": 50}}, {"label": "SemiMono Regular", "co": {"wght": 400, "ital": 0, "MONO": 50}}, {"label": "SemiMono Medium", "co": {"wght": 500, "ital": 0, "MONO": 50}}, {"label": "SemiMono SemiBold", "co": {"wght": 600, "ital": 0, "MONO": 50}}, {"label": "SemiMono Bold", "co": {"wght": 700, "ital": 0, "MONO": 50}}, {"label": "SemiMono Heavy", "co": {"wght": 900, "ital": 0, "MONO": 50}}, {"label": "SemiMono Light Italic", "co": {"wght": 300, "ital": 10, "MONO": 50}}, {"label": "SemiMono Regular Italic", "co": {"wght": 400, "ital": 10, "MONO": 50}}, {"label": "SemiMono Medium Italic", "co": {"wght": 500, "ital": 10, "MONO": 50}}, {"label": "SemiMono SemiBold Italic", "co": {"wght": 600, "ital": 10, "MONO": 50}}, {"label": "SemiMono Bold Italic", "co": {"wght": 700, "ital": 10, "MONO": 50}}, {"label": "SemiMono Heavy Italic", "co": {"wght": 900, "ital": 10, "MONO": 50}}, {"label": "Mono Light", "co": {"wght": 300, "ital": 0, "MONO": 100}}, {"label": "Mono Regular", "co": {"wght": 400, "ital": 0, "MONO": 100}}, {"label": "Mono Medium", "co": {"wght": 500, "ital": 0, "MONO": 100}}, {"label": "Mono SemiBold", "co": {"wght": 600, "ital": 0, "MONO": 100}}, {"label": "Mono Bold", "co": {"wght": 700, "ital": 0, "MONO": 100}}, {"label": "Mono Heavy", "co": {"wght": 900, "ital": 0, "MONO": 100}}, {"label": "Mono Light Italic", "co": {"wght": 300, "ital": 10, "MONO": 100}}, {"label": "Mono Regular Italic", "co": {"wght": 400, "ital": 10, "MONO": 100}}, {"label": "Mono Medium Italic", "co": {"wght": 500, "ital": 10, "MONO": 100}}, {"label": "Mono SemiBold Italic", "co": {"wght": 600, "ital": 10, "MONO": 100}}, {"label": "Mono Bold Italic", "co": {"wght": 700, "ital": 10, "MONO": 100}}, {"label": "Mono Heavy Italic", "co": {"wght": 900, "ital": 10, "MONO": 100}}]}, {"n": "Basically A Mono", "c": "monospace", "l": "OFL 1.1", "h": "experi.mentallydesigned.com", "u": "https://experi.mentallydesigned.com/type/bam/", "f": "basically-a-mono", "cuts": []}, {"n": "BIZ UDMincho", "c": "monospace", "l": "OFL 1.1", "h": "fonts.google.com", "u": "https://fonts.google.com/specimen/BIZ+UDMincho", "f": "biz-udmincho", "cuts": []}, {"n": "Commit Mono", "c": "monospace", "l": "OFL 1.1", "h": "commitmono.com", "u": "https://commitmono.com/", "f": null, "cuts": []}, {"n": "Fairfax HD", "c": "monospace", "l": "OFL 1.1", "h": "kreativekorp.com", "u": "https://www.kreativekorp.com/software/fonts/fairfaxhd.shtml", "f": null, "cuts": []}, {"n": "Fragment Mono", "c": "monospace", "l": "OFL", "h": "github.com", "u": "https://github.com/weiweihuanghuang/fragment-mono", "f": "fragment-mono", "cuts": []}, {"n": "FreeMono", "c": "monospace", "l": "GPL + font exception", "h": "ftp.gnu.org", "u": "https://ftp.gnu.org/gnu/freefont/", "f": "freemono", "cuts": []}, {"n": "Geist Mono", "c": "monospace", "l": "OFL", "h": "vercel.com", "u": "https://vercel.com/font/mono", "f": "geist-mono", "cuts": []}, {"n": "Lab Mono", "c": "monospace", "l": "OFL", "h": "github.com", "u": "https://github.com/hatsumatsu/Lab-Mono", "f": "lab-mono", "cuts": []}, {"n": "LT Superior Mono", "c": "monospace", "l": "CC0 / PD", "h": "lyonstype4.wixsite.com", "u": "https://lyonstype4.wixsite.com/lyonstype-beta/fonts", "f": "lt-superior-mono", "cuts": []}, {"n": "Martian Mono", "c": "monospace", "l": "OFL", "h": "github.com", "u": "https://github.com/evilmartians/mono", "f": "martian-mono", "cuts": []}, {"n": "Max Hana", "c": "monospace", "l": "OFL", "h": "github.com", "u": "https://github.com/max32002/max-hana", "f": null, "cuts": []}, {"n": "Monor", "c": "monospace", "l": "OFL", "h": "fonderiz.fr", "u": "https://fonderiz.fr/monor/", "f": "monor", "cuts": []}, {"n": "New Heterodox Mono", "c": "monospace", "l": "OFL", "h": "github.com", "u": "https://github.com/hckiang/font-new-heterodox-mono", "f": "new-heterodox-mono", "cuts": []}, {"n": "Snap-it Mono", "c": "monospace", "l": "OFL", "h": "gitlab.com", "u": "https://gitlab.com/Alune/snap-it-mono-font", "f": "snap-it-mono", "cuts": [{"label": "Thin", "co": {"wght": 100}}, {"label": "ExtraLight", "co": {"wght": 200}}, {"label": "Light", "co": {"wght": 300}}, {"label": "Regular", "co": {"wght": 400}}, {"label": "Medium", "co": {"wght": 500}}, {"label": "SemiBold", "co": {"wght": 600}}, {"label": "Bold", "co": {"wght": 700}}, {"label": "ExtraBold", "co": {"wght": 800}}]}, {"n": "Uncut Plan8", "c": "monospace", "l": "OFL", "h": "github.com", "u": "https://github.com/kaspernordkvist/uncut_plan8", "f": "uncut-plan8", "cuts": []}, {"n": "Victor Mono", "c": "monospace", "l": "OFL 1.1", "h": "rubjo.github.io", "u": "https://rubjo.github.io/victor-mono/", "f": "victor-mono", "cuts": []}, {"n": "Whois", "c": "monospace", "l": "OFL", "h": "github.com", "u": "https://github.com/raphaelbastide/Whois-mono", "f": "whois", "cuts": []}];
+var mc = document.createElement('canvas').getContext('2d');
+var word = document.getElementById('word');
+var cutEl = document.getElementById('cut');
+var cutDead = document.getElementById('cutdead');
+var cutMarker = document.getElementById('cutmarker');
+var famEl = document.getElementById('fam');
+var mname = document.getElementById('mname');
+var mhost = document.getElementById('mhost');
+var ptext = document.getElementById('ptext');
+var cur = 0, curCut = 0, lockFam = false, lockCut = false;
+
+function fam(i){ return FAMS[i]; }
+function famCss(f){ return f.f ? '"F ' + f.f + '", monospace' : 'var(--mono)'; }
+
+function fitWord(){
+  var f = fam(cur);
+  var pane = document.getElementById('pane');
+  var W = pane.clientWidth - 96 - 32;
+  if (!f.f){ word.style.fontSize = '26px'; return; }
+  var wt = parseFloat(word.style.fontWeight) || 400;
+  var st = word.style.fontStyle === 'italic' ? 'italic ' : '';
+  mc.font = st + wt + ' 100px "F ' + f.f + '"';
+  var m = mc.measureText(word.textContent);
+  var asc = m.actualBoundingBoxAscent || 72, wid = m.width || word.textContent.length * 52;
+  if (!W || W > 9000) return;
+  var lines = Math.max(1, Math.ceil((wid * 0.62) / W));
+  var per = wid / lines;
+  var T = Math.min(W * 0.92 / (per / 100), (pane.clientHeight - 90) / (asc / 100) / lines * 0.8, 120);
+  word.style.fontSize = Math.max(14, T * asc / 100 * 0.92).toFixed(1) + 'px';
+}
+
+function applyCut(i){
+  var f = fam(cur), cuts = f.cuts;
+  curCut = i;
+  if (!cuts.length) return;
+  var co = cuts[i].co || {};
+  if ('wght' in co) word.style.fontWeight = co.wght;
+  if ('ital' in co) word.style.fontStyle = co.ital ? 'italic' : 'normal';
+  var rest = {}; for (var k in co) if (k !== 'wght' && k !== 'ital') rest[k] = co[k];
+  var keys = Object.keys(rest);
+  word.style.fontVariationSettings = keys.length ? keys.map(function(k){ return '"' + k + '" ' + rest[k]; }).join(', ') : '';
+  fitWord();
+}
+
+function buildCut(){
+  var f = fam(cur), cuts = f.cuts;
+  cutEl.innerHTML = '';
+  if (cuts.length > 1){
+    cutDead.hidden = true; cutMarker.hidden = false; cutEl.hidden = false;
+    cuts.forEach(function(c, i){
+      var d = document.createElement('div');
+      d.className = 'it'; d.innerHTML = '<span></span>';
+      d.querySelector('span').textContent = c.label;
+      d.addEventListener('click', function(){ snapTo(cutEl, d, 'top'); });
+      cutEl.appendChild(d);
+    });
+    applyCut(Math.min(curCut, cuts.length - 1));
+    markMid(cutEl);
+  } else {
+    cutEl.hidden = true; cutMarker.hidden = true; cutDead.hidden = false;
+    cutDead.textContent = cuts.length ? cuts[0].label : (f.f ? 'one cut' : 'no file · ' + (f.h || 'host'));
+    word.classList.toggle('nofile', !f.f);
+  }
+}
+
+function buildFam(){
+  FAMS.forEach(function(f, i){
+    var d = document.createElement('div');
+    d.className = 'it'; d.textContent = f.n;
+    if (f.f) d.style.fontFamily = '"F ' + f.f + '", monospace';
+    d.addEventListener('click', function(){ snapTo(famEl, d, 'left'); });
+    famEl.appendChild(d);
+  });
+}
+
+function markMid(wheel){
+  var box = wheel.getBoundingClientRect();
+  var cx = box.left + box.width / 2, cy = box.top + box.height / 2;
+  var horizontal = wheel === famEl;
+  var best = -1, bd = 1e9;
+  [].forEach.call(wheel.children, function(el, i){
+    var r = el.getBoundingClientRect();
+    var d = horizontal ? Math.abs(r.left + r.width / 2 - cx) : Math.abs(r.top + r.height / 2 - cy);
+    if (d < bd){ bd = d; best = i; }
+  });
+  [].forEach.call(wheel.children, function(el, i){ el.classList.toggle('mid', i === best); });
+  return best;
+}
+
+function snapTo(wheel, el, axis){
+  el.scrollIntoView({ behavior: 'smooth', block: axis === 'top' ? 'center' : 'nearest', inline: 'center' });
+}
+
+var tFam, tCut;
+famEl.addEventListener('scroll', function(){
+  clearTimeout(tFam);
+  tFam = setTimeout(function(){
+    if (lockFam) return;
+    var i = markMid(famEl);
+    if (i !== cur && i >= 0) setFam(i, true);
+  }, 140);
+}, { passive: true });
+cutEl.addEventListener('scroll', function(){
+  clearTimeout(tCut);
+  tCut = setTimeout(function(){
+    if (lockCut) return;
+    var i = markMid(cutEl);
+    if (i !== curCut && i >= 0) applyCut(i);
+  }, 140);
+}, { passive: true });
+
+function setFam(i, fromWheel){
+  cur = i;
+  var f = fam(i);
+  word.style.fontWeight = ''; word.style.fontStyle = ''; word.style.fontVariationSettings = '';
+  word.style.fontFamily = famCss(f);
+  word.textContent = f.f ? ptext.value || 'Shelf - 123' : f.n;
+  mname.textContent = f.n;
+  mhost.textContent = (f.l || '') + ' · ' + (f.h || '');
+  mhost.href = f.u || '#';
+  curCut = 0;
+  buildCut();
+  fitWord();
+  if (f.f && document.fonts){
+    document.fonts.load('400 100px "F ' + f.f + '"').then(fitWord);
+    document.fonts.load('900 100px "F ' + f.f + '"').then(fitWord);
+  }
+  if (!fromWheel){
+    lockFam = true;
+    snapTo(famEl, famEl.children[i], 'left');
+    setTimeout(function(){ lockFam = false; }, 500);
+  }
+}
+
+ptext.addEventListener('input', function(){
+  var f = fam(cur);
+  word.textContent = f.f ? (ptext.value || 'Shelf - 123') : f.n;
+  fitWord();
+});
+window.addEventListener('resize', fitWord);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ fitWord(); markMid(famEl); markMid(cutEl); });
+
+buildFam();
+setFam(0);
+</script>
+</body>
+</html>
