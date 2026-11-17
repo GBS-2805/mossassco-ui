@@ -12,10 +12,10 @@ sentence like "it's live in the Browser panel" is not a link and cannot be
 opened. If a page is published, give its `https://gbs-2805.github.io/...`
 address, not a preview host that needs a sign-in, and not the file name alone.
 
-- site: https://gbs-2805.github.io/mossassco-ui/d.html
-- mockups: https://gbs-2805.github.io/mossassco-ui/mockups/<name>.html
-- source: https://github.com/GBS-2805/mossassco-ui/blob/main/<path>
-- a commit: https://github.com/GBS-2805/mossassco-ui/commit/<sha>
+- site: https://gbs-2805.github.io/shelf/d.html
+- mockups: https://gbs-2805.github.io/shelf/mockups/<name>.html
+- source: https://github.com/GBS-2805/shelf/blob/main/<path>
+- a commit: https://github.com/GBS-2805/shelf/commit/<sha>
 
 ## The owner is on a phone
 

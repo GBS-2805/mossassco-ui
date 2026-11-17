@@ -1,4 +1,4 @@
-# mossassco-ui — Shelf
+# Shelf
 
 A repository of free type, icons, 3D, images and tools, with the licence of every
 entry stated plainly: **FF** full freedom, **CN** credit needed, **P** prohibited
@@ -71,4 +71,4 @@ There is no pull-request requirement and no push restriction, so commits can
 still be pushed straight to `main` — protection stops a red pull request, not a
 push. A push that fails the audit still lands, and the run goes red afterwards.
 
-Live at https://gbs-2805.github.io/mossassco-ui/d.html
+Live at https://gbs-2805.github.io/shelf/d.html

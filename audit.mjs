@@ -491,7 +491,7 @@ if (!scriptBody) {
 let liveChecked = false;
 if (process.argv.includes('--live')) {
   try {
-    const res = await fetch('https://gbs-2805.github.io/mossassco-ui/d.html?v=' + Date.now(), { signal: AbortSignal.timeout(20000) });
+    const res = await fetch('https://gbs-2805.github.io/shelf/d.html?v=' + Date.now(), { signal: AbortSignal.timeout(20000) });
     const live = await res.text();
     liveChecked = true;
     if (!res.ok) problems.push(`live page answered ${res.status}`);
