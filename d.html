@@ -292,7 +292,7 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 #hspec .frame:after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.045)}
 #hspec .wordlink{position:absolute;inset:0;display:block;color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
 #hspec .word{position:absolute;left:4.5%;right:4.5%;top:50%;transform:translateY(-50%);line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap;overflow:hidden;transition:opacity .15s}
-#hspec .word.nofile{font-family:'Clash Display',Satoshi,system-ui,sans-serif;color:#6b6b74;letter-spacing:-.01em}
+#hspec .word.nofile{font-family:var(--mono);letter-spacing:.02em;color:#6b6b74}
 #hstrips{flex:0 0 auto}
 #hstrips .strip{position:static;width:auto;height:46px;border-top:1px solid rgba(255,255,255,.07);border-left:0;padding:0 50%;gap:22px}
 #hstrips .strip.wtop,#hstrips .strip.sbot{top:auto;bottom:auto;border-bottom:0}
@@ -305,7 +305,7 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 .hdeck{flex:0 0 auto;border-top:1px solid var(--line)}
 #hfam{display:flex;align-items:center;height:64px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:0 38%;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
 #hfam::-webkit-scrollbar{display:none}
-#hfam .opt{flex:0 0 auto;min-height:44px;padding:8px 14px;border:0;background:none;font-family:var(--mono);font-size:14px;letter-spacing:.02em;color:#55555d;line-height:1;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;scroll-snap-align:center;transform-origin:50% 50%;backface-visibility:hidden;will-change:transform,opacity;transition:color .14s}
+#hfam .opt{flex:0 0 auto;min-height:44px;padding:0 16px;border:0;background:none;font-family:var(--mono);font-size:14px;letter-spacing:.02em;text-transform:none;color:#55555d;line-height:1;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;scroll-snap-align:center;transition:color .14s}
 #hfam .opt.on{color:#f4f3ee}
 .hcats{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:0;padding:0 calc(8px + var(--sa-r)) calc(8px + var(--sa-b)) calc(8px + var(--sa-l));border-top:1px solid var(--line);-webkit-overflow-scrolling:touch}
 .hcats::-webkit-scrollbar{display:none}
@@ -314,7 +314,7 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 .hcats button.on:after{content:"";position:absolute;left:6px;right:6px;bottom:6px;height:1px;background:currentColor;opacity:.55}
 </style></head><body class="home-on">
 <div class="grain"></div>
-<div id="home"><div class="htop"><span class="hbrand">Shelf<i> — a repository</i></span><input id="htxt" type="text" placeholder="type to preview every font" aria-label="preview text for every specimen" autocomplete="off" spellcheck="false"></div><div class="hpane"><div id="hspec"></div><div id="hstrips"></div><div class="hmeta" id="hmeta"></div></div><div class="hdeck"><div id="hfam" role="listbox" aria-label="families, one per stop"></div><div class="hcats" id="hcats"></div></div></div>
+<div id="home"><div class="htop"><span class="hbrand">Shelf<i> — a repository</i></span><input id="htxt" type="text" placeholder="preview text" aria-label="preview text for every specimen" autocomplete="off" spellcheck="false"></div><div class="hpane"><div id="hspec"></div><div id="hstrips"></div><div class="hmeta" id="hmeta"></div></div><div class="hdeck"><div id="hfam" role="listbox" aria-label="families, one per stop"></div><div class="hcats" id="hcats"></div></div></div>
 <header><span class="brand">Shelf<i> — a repository</i></span><span class="meta">loading</span></header>
 <div class="kinds" id="kinds"></div>
 <div class="rule"></div>
@@ -953,10 +953,10 @@ function renderHomePane(){
         hstrips.innerHTML='<div class="strip" data-i="-'+(f.face+1)+'" data-d="c" role="group" aria-label="cuts">'+chips+'</div>';
       } else dead='one cut \u00b7 '+fr.h;
     } else {
-      h='<div class="wordlink"><div class="word nofile">'+fr.n+'</div></div>';
-      dead='no file \u00b7 '+fr.h;
+      h='<a class="wordlink" href="'+fr.u+'" target="_blank" rel="noopener" aria-label="'+fr.n+' \u2014 no file, open the foundry"><div class="word nofile">'+(ptext||PTX)+'</div></a>';
+      dead='no file \u00b7 tap the preview to open the foundry';
     }
-    meta='<b>'+fr.n+'</b><span>'+(fr.f?fr.l+' \u00b7 ':'')+'<a href="'+fr.u+'" target="_blank" rel="noopener">'+fr.h+' \u2197</a></span>';
+    meta='<b>'+fr.n+'</b><span>'+(fr.l?fr.l+' \u00b7 ':'')+'<a href="'+fr.u+'" target="_blank" rel="noopener">'+fr.h+' \u2197</a></span>';
   } else if(f){
     var r=I[f.rec],v=r.view;
     if(v.t==='type'){
@@ -999,19 +999,10 @@ function prepWheel(s){                                // same discipline as prep
     s.__raf=requestAnimationFrame(function(){s.__raf=0;homeRoulette(s)});
   },{passive:true})}
 }
-function homeRoulette(s){                             // tilt now, render the pane once the wheel settles
+function homeRoulette(s){                             // the wheel stays flat, only the settled face renders
   if(!s.__chips)prepWheel(s);
   var chips=s.__chips,c=s.__c;
   if(!chips||!chips.length)return;
-  var half=s.clientWidth/2||1,mid=s.scrollLeft+half;
-  for(var i=0;i<chips.length;i++){
-    var p=(c[i]-mid)/half;if(p>1)p=1;else if(p<-1)p=-1;
-    if(chips[i].__p===p)continue;
-    chips[i].__p=p;
-    var ap=p<0?-p:p;
-    chips[i].style.transform='translate3d(0,0,0) rotateY('+(-p*38).toFixed(1)+'deg) scale('+(1-.14*ap).toFixed(3)+')';
-    chips[i].style.opacity=(1-.55*ap).toFixed(2);
-  }
   if(s.__p)return;
   clearTimeout(s.__t);
   s.__t=setTimeout(function(){
@@ -1033,10 +1024,8 @@ function buildHomeWheel(){
   if(homeCur()>=HOME.fams.length)HOME.at[HOME.mode]=0;
   var h='';
   HOME.fams.forEach(function(f,j){
-    var label,fam='';
-    if(f.face!=null){label=FREE[f.face].n;if(FREE[f.face].f)fam=' style="font-family:\''+FREE[f.face].n+'\'"'}
-    else{var r=I[f.rec];label=r.n;if(r.view.t==='type')fam=' style="font-family:\''+r.view.fam+'\'"'}
-    h+='<button class="opt'+(j===homeCur()?' on':'')+'" data-f="'+j+'"'+fam+' aria-pressed="'+(j===homeCur())+'">'+label+'</button>';
+    var label=f.face!=null?FREE[f.face].n:I[f.rec].n;
+    h+='<button class="opt'+(j===homeCur()?' on':'')+'" data-f="'+j+'" aria-pressed="'+(j===homeCur())+'">'+label+'</button>';
   });
   hfam.innerHTML=h;
   prepWheel(hfam);
