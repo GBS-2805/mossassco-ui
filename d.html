@@ -288,16 +288,24 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 #htxt:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
 .hpane{flex:1;min-height:0;display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
 #hspec{flex:1;min-height:0;position:relative;overflow:hidden}
+#hspec:before{content:"";position:absolute;left:4.5%;right:4.5%;top:7%;bottom:7%;border:1px solid rgba(255,255,255,.1);pointer-events:none}
 #hspec .frame{position:absolute;inset:0;width:100%;height:100%;box-shadow:none;transition:none}
 #hspec .frame:after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.045)}
 #hspec .wordlink{position:absolute;inset:0;display:block;color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
-#hspec .word{position:absolute;left:4.5%;right:4.5%;top:50%;transform:translateY(-50%);line-height:1.02;letter-spacing:-.035em;font-weight:400;color:#f4f3ee;white-space:nowrap;overflow:hidden;transition:opacity .15s}
+#hspec .word{position:absolute;left:8%;right:8%;top:50%;transform:translateY(-50%);line-height:1.05;font-weight:400;color:#f4f3ee;white-space:pre-line;overflow:hidden;transition:opacity .15s}
 #hspec .word.nofile{font-family:var(--mono);letter-spacing:.02em;color:#6b6b74}
 #hstrips{flex:0 0 auto}
 #hstrips .strip{position:static;width:auto;height:46px;border-top:1px solid rgba(255,255,255,.07);border-left:0;padding:0 50%;gap:22px}
 #hstrips .strip.wtop,#hstrips .strip.sbot{top:auto;bottom:auto;border-bottom:0}
 #hstrips .strip .opt{padding:8px 0;min-height:44px}
 .hdead{height:46px;display:flex;align-items:center;justify-content:center;border-top:1px solid rgba(255,255,255,.07);color:#3f3f46;font-family:var(--mono);font-size:7px;letter-spacing:.2em;text-transform:uppercase;text-align:center;padding:0 12px}
+.hslider{-webkit-appearance:none;appearance:none;position:absolute;z-index:6;margin:0;height:34px;background:transparent;cursor:pointer;padding:0}
+#htrack{left:16%;right:16%;bottom:calc(7% + 6px)}
+.hslider::-webkit-slider-runnable-track{height:2px;background:rgba(255,255,255,.16)}
+.hslider::-webkit-slider-thumb{-webkit-appearance:none;width:9px;height:24px;background:#cfcec8;margin-top:-11px;border-radius:1px}
+.hslider:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
+.hspin{position:absolute;right:calc(4.5% - 5px);top:50%;width:34px;height:max(210px,50%);transform:translateY(-50%);z-index:6;pointer-events:none}
+#hsize{left:50%;top:50%;width:210px;transform:translate(-50%,-50%) rotate(-90deg)}
 .hmeta{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px calc(18px + var(--sa-r)) 10px calc(18px + var(--sa-l));border-top:1px solid var(--line);min-height:40px}
 .hmeta b{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#d3d2cc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .hmeta span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#4c4c54;white-space:nowrap;flex:0 0 auto}
@@ -559,9 +567,9 @@ GROUPS.forEach(function(g){
   if(g[0]==='type'){
     var inp=sec.querySelector('.txt');
     inp.addEventListener('input',function(){
-      ptext=inp.value;
-      var ht=document.getElementById('htxt');if(ht&&ht.value!==ptext)ht.value=ptext;
-      if(hspec){var hw=hspec.querySelector('.word');if(hw&&!hw.classList.contains('nofile')){var hf=HOME.fams[HOME.cur];hw.textContent=ptext||(hf&&hf.face!=null?PTX:I[hf.rec].n)}homeFit()}
+      ptext=inp.value||PTX;                             // an emptied box returns to the default specimen
+      var ht=document.getElementById('htxt');if(ht&&ht.value!==mirror(ptext))ht.value=mirror(ptext);
+      if(hspec){var hw=hspec.querySelector('.word');if(hw&&!hw.classList.contains('nofile')){var hf=HOME.fams[HOME.cur];hw.textContent=ptext===PTX?HOPTX:(ptext||(hf&&hf.face!=null?PTX:I[hf.rec].n))}homeFit()}
       [].forEach.call(sec.querySelectorAll('.item[data-kind="type"] .word'),function(w){w.textContent=ptext||I[+w.closest('.item').dataset.i].n});
       [].forEach.call(document.querySelectorAll('.faces .fc:not([data-nofile]) .word'),function(w){w.textContent=ptext||PTX});
       fitTypes();fitFaces();
@@ -863,10 +871,10 @@ function openTab(i){
     sw.setAttribute('contenteditable','true');sw.setAttribute('spellcheck','false');
     sw.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();sw.blur()}});
     sw.addEventListener('input',function(){
-      ptext=sw.textContent.replace(/\s+/g,' ').trim();
-      var inp=document.querySelector('.gh .txt');if(inp)inp.value=ptext;
-      var ht=document.getElementById('htxt');if(ht&&ht.value!==ptext)ht.value=ptext;
-      if(hspec){var hw=hspec.querySelector('.word');if(hw&&!hw.classList.contains('nofile')){var hf=HOME.fams[HOME.cur];hw.textContent=ptext||(hf&&hf.face!=null?PTX:I[hf.rec].n)}homeFit()}
+      ptext=sw.textContent.replace(/\s+/g,' ').trim()||PTX;
+      var inp=document.querySelector('.gh .txt');if(inp)inp.value=mirror(ptext);
+      var ht=document.getElementById('htxt');if(ht&&ht.value!==mirror(ptext))ht.value=mirror(ptext);
+      if(hspec){var hw=hspec.querySelector('.word');if(hw&&!hw.classList.contains('nofile')){var hf=HOME.fams[HOME.cur];hw.textContent=ptext===PTX?HOPTX:(ptext||(hf&&hf.face!=null?PTX:I[hf.rec].n))}homeFit()}
       [].forEach.call(groupsEl.querySelectorAll('.item[data-kind="type"] .word'),function(w){w.textContent=ptext||I[+w.closest('.item').dataset.i].n});
       fitTypes();fitSites();
     });
@@ -893,7 +901,10 @@ document.addEventListener('keydown',function(e){
 // settle timer picks what stopped in front. The family wheel renders the pane
 // only once it settles, so a fast spin never fires a font request per notch.
 var FCUT={'Azeret Mono':[{"l":"Light","w":300,"fvs":"\"MONO\" 0"},{"l":"Regular","w":400,"fvs":"\"MONO\" 0"},{"l":"Medium","w":500,"fvs":"\"MONO\" 0"},{"l":"SemiBold","w":600,"fvs":"\"MONO\" 0"},{"l":"Bold","w":700,"fvs":"\"MONO\" 0"},{"l":"Heavy","w":900,"fvs":"\"MONO\" 0"},{"l":"Light Italic","w":300,"s":"italic","fvs":"\"MONO\" 0"},{"l":"Regular Italic","w":400,"s":"italic","fvs":"\"MONO\" 0"},{"l":"Medium Italic","w":500,"s":"italic","fvs":"\"MONO\" 0"},{"l":"SemiBold Italic","w":600,"s":"italic","fvs":"\"MONO\" 0"},{"l":"Bold Italic","w":700,"s":"italic","fvs":"\"MONO\" 0"},{"l":"Heavy Italic","w":900,"s":"italic","fvs":"\"MONO\" 0"},{"l":"SemiMono Light","w":300,"fvs":"\"MONO\" 50"},{"l":"SemiMono Regular","w":400,"fvs":"\"MONO\" 50"},{"l":"SemiMono Medium","w":500,"fvs":"\"MONO\" 50"},{"l":"SemiMono SemiBold","w":600,"fvs":"\"MONO\" 50"},{"l":"SemiMono Bold","w":700,"fvs":"\"MONO\" 50"},{"l":"SemiMono Heavy","w":900,"fvs":"\"MONO\" 50"},{"l":"SemiMono Light Italic","w":300,"s":"italic","fvs":"\"MONO\" 50"},{"l":"SemiMono Regular Italic","w":400,"s":"italic","fvs":"\"MONO\" 50"},{"l":"SemiMono Medium Italic","w":500,"s":"italic","fvs":"\"MONO\" 50"},{"l":"SemiMono SemiBold Italic","w":600,"s":"italic","fvs":"\"MONO\" 50"},{"l":"SemiMono Bold Italic","w":700,"s":"italic","fvs":"\"MONO\" 50"},{"l":"SemiMono Heavy Italic","w":900,"s":"italic","fvs":"\"MONO\" 50"},{"l":"Mono Light","w":300,"fvs":"\"MONO\" 100"},{"l":"Mono Regular","w":400,"fvs":"\"MONO\" 100"},{"l":"Mono Medium","w":500,"fvs":"\"MONO\" 100"},{"l":"Mono SemiBold","w":600,"fvs":"\"MONO\" 100"},{"l":"Mono Bold","w":700,"fvs":"\"MONO\" 100"},{"l":"Mono Heavy","w":900,"fvs":"\"MONO\" 100"},{"l":"Mono Light Italic","w":300,"s":"italic","fvs":"\"MONO\" 100"},{"l":"Mono Regular Italic","w":400,"s":"italic","fvs":"\"MONO\" 100"},{"l":"Mono Medium Italic","w":500,"s":"italic","fvs":"\"MONO\" 100"},{"l":"Mono SemiBold Italic","w":600,"s":"italic","fvs":"\"MONO\" 100"},{"l":"Mono Bold Italic","w":700,"s":"italic","fvs":"\"MONO\" 100"},{"l":"Mono Heavy Italic","w":900,"s":"italic","fvs":"\"MONO\" 100"}],'Geist':[{"l":"Thin","w":100},{"l":"ExtraLight","w":200},{"l":"Light","w":300},{"l":"Regular","w":400},{"l":"Medium","w":500},{"l":"SemiBold","w":600},{"l":"Bold","w":700},{"l":"ExtraBold","w":800},{"l":"Black","w":900}],'Micro Grotesk':[{"l":"Thin","w":100},{"l":"ExtraLight","w":200},{"l":"Light","w":300},{"l":"Regular","w":400},{"l":"Medium","w":500},{"l":"SemiBold","w":600},{"l":"Bold","w":700},{"l":"ExtraBold","w":800},{"l":"Black","w":900}],'Handjet':[{"l":"Thin","w":100,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"ExtraLight","w":200,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"Light","w":300,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"Regular","w":400,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"Medium","w":500,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"SemiBold","w":600,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"Bold","w":700,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"ExtraBold","w":800,"fvs":"\"ELSH\" 2, \"ELGR\" 1"},{"l":"Black","w":900,"fvs":"\"ELSH\" 2, \"ELGR\" 1"}],'Snap-it Mono':[{"l":"Thin","w":100},{"l":"ExtraLight","w":200},{"l":"Light","w":300},{"l":"Regular","w":400},{"l":"Medium","w":500},{"l":"SemiBold","w":600},{"l":"Bold","w":700},{"l":"ExtraBold","w":800}],'Honey':[{"l":"Light Italic","w":300},{"l":"Italic","w":400},{"l":"Medium Italic","w":500},{"l":"SemiBold Italic","w":600},{"l":"Bold Italic","w":700},{"l":"ExtraBold Italic","w":800},{"l":"Black Italic","w":900}],'Galgo':[{"l":"Light","w":200},{"l":"Regular","w":400},{"l":"Bold","w":700}]};
-var HOME={mode:'type',at:{type:0,icons:0}};
+var HOME={mode:'type',at:{type:0,icons:0},track:-.035,scale:1};
+var HOPTX='0123456789\nthe quick brown fox jumps over the lazy dog';   // the home pane shows numbers, then the sentence
+function homeTxt(fb){return ptext===PTX?HOPTX:(ptext||fb||'')}
+function mirror(v){return v===PTX?'':v}               // the default shows as an empty input, not as typed text
 var hspec=document.getElementById('hspec'),hstrips=document.getElementById('hstrips'),
     hmeta=document.getElementById('hmeta'),hfam=document.getElementById('hfam'),
     hcats=document.getElementById('hcats'),htxt=document.getElementById('htxt');
@@ -905,14 +916,24 @@ function homeFams(){
   I.forEach(function(r,i){if(r.k==='type')a.push({rec:i})});
   return a;
 }
-function homeFit(){                                   // the pane's one specimen, fitted to the pane
+function homeFit(){                                   // the specimen fitted inside its frame; size may wrap the sentence
   if(!hspec)return;
   var w=hspec.querySelector('.word');if(!w)return;
+  w.style.letterSpacing=(HOME.track||0)+'em';
   if(w.classList.contains('nofile')){w.style.fontSize='30px';return}
-  var W=hspec.clientWidth*0.9,H=hspec.clientHeight*0.58;if(!W||!H)return;
+  var W=hspec.clientWidth*0.82,H=hspec.clientHeight*0.52;if(!W||!H)return;
   var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];if(!fam)return;
-  var m=metrics(fam,w.textContent.trim(),w.dataset.w||400);if(!m.w)return;
-  w.style.fontSize=Math.min(W/m.w*100,H/m.asc*100,170).toFixed(1)+'px';
+  var wt=w.dataset.w||400,tr=HOME.track,sc=HOME.scale;
+  var segs=w.textContent.split('\n');
+  var m0=metrics(fam,segs[0],wt);if(!m0.w)return;    // the numbers line never wraps, so it caps the size
+  var F=W/(m0.w/100+tr*segs[0].length)*sc;          // the size scale participates, so the frame always wins
+  var wraps=segs.slice(1).map(function(s){var m=metrics(fam,s,wt);return s&&m.w?(m.w/100+tr*s.length):0});
+  function fits(F){                                  // height grows with the wrapped line count: monotone, so descent converges
+    var lines=1;wraps.forEach(function(a){lines+=Math.max(1,Math.ceil(a*F/W))});
+    return F*(m0.asc/100+(lines-1)*1.05)<=H;
+  }
+  for(var g=0;g<24&&F>6&&!fits(F);g++)F*=.94;
+  w.style.fontSize=Math.max(6,F).toFixed(1)+'px';
 }
 function homeIconsFit(){                              // the icon grid reads its row height from --fh
   if(!hspec)return;
@@ -946,14 +967,14 @@ function renderHomePane(){
     var fr=FREE[f.face],cuts=FCUT[fr.n];
     if(fr.f){
       h='<a class="wordlink" href="'+fr.u+'" target="_blank" rel="noopener" aria-label="'+fr.n+' \u2014 open the foundry">'
-       +'<div class="word" data-w="400" style="font-family:\''+fr.n+'\'">'+(ptext||PTX)+'</div></a>';
+       +'<div class="word" data-w="400" style="font-family:\''+fr.n+'\'">'+homeTxt()+'</div></a>';
       if(cuts){
         var chips='';
         cuts.forEach(function(c,j){chips+='<button class="opt'+(j===0?' on':'')+'" data-i="-'+(f.face+1)+'" data-d="c" data-v="'+j+'" aria-pressed="'+(j===0)+'">'+c.l+'</button>'});
         hstrips.innerHTML='<div class="strip" data-i="-'+(f.face+1)+'" data-d="c" role="group" aria-label="cuts">'+chips+'</div>';
       } else dead='one cut \u00b7 '+fr.h;
     } else {
-      h='<a class="wordlink" href="'+fr.u+'" target="_blank" rel="noopener" aria-label="'+fr.n+' \u2014 no file, open the foundry"><div class="word nofile">'+(ptext||PTX)+'</div></a>';
+      h='<a class="wordlink" href="'+fr.u+'" target="_blank" rel="noopener" aria-label="'+fr.n+' \u2014 no file, open the foundry"><div class="word nofile">'+homeTxt()+'</div></a>';
       dead='no file \u00b7 tap the preview to open the foundry';
     }
     meta='<b>'+fr.n+'</b><span>'+(fr.l?fr.l+' \u00b7 ':'')+'<a href="'+fr.u+'" target="_blank" rel="noopener">'+fr.h+' \u2197</a></span>';
@@ -962,7 +983,7 @@ function renderHomePane(){
     if(v.t==='type'){
       var wv=r.ws[r.wi]||{w:400},sv=r.ss[r.si]||{s:'normal'};
       h='<div class="wordlink" role="button" tabindex="0" aria-label="'+r.n+' \u2014 open preview">'
-       +'<div class="word" data-w="'+(wv.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(wv.w||400)+';font-style:'+(sv.s||'normal')+'">'+(ptext||r.n)+'</div></div>';
+       +'<div class="word" data-w="'+(wv.w||400)+'" style="font-family:\''+v.fam+'\';font-weight:'+(wv.w||400)+';font-style:'+(sv.s||'normal')+'">'+homeTxt(r.n)+'</div></div>';
       var tails='';
       if(r.ws.length>1)tails+=optList(f.rec,r.ws,r.wi,1,'w','');
       if(r.ss.length>1)tails+=optList(f.rec,r.ss,r.si,1,'s','');
@@ -987,6 +1008,7 @@ function renderHomePane(){
     wl.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openTab(f.rec)}};
   }
   [].forEach.call(hstrips.querySelectorAll('.strip'),function(st){prepStrip(st);centreStrip(st);roulette(st)});
+  if(HOME.mode!=='icons'){hspec.appendChild(htrack);hspec.appendChild(hspin)}
   homeFit();homeIconsFit();
   hmeta.innerHTML=meta;
 }
@@ -1034,6 +1056,7 @@ function buildHomeWheel(){
 }
 function setHome(j,recentre){
   HOME.at[HOME.mode]=j;
+  HOME.track=-.035;HOME.scale=1;htrack.value=HOME.track;hsize.value=1;   // every face starts neutral
   [].forEach.call(hfam.querySelectorAll('.opt'),function(o,k){o.classList.toggle('on',k===j);o.setAttribute('aria-pressed',k===j)});
   renderHomePane();
   if(recentre)centreWheel(hfam,j);
@@ -1067,13 +1090,20 @@ function openLegacy(kind){                            // the shelves that keep t
   for(var i=0;i<btns.length;i++){if(btns[i].getAttribute('aria-label')===want){btns[i].click();break}}
 }
 htxt.addEventListener('input',function(){
-  ptext=htxt.value;
-  var gi=document.querySelector('.gh .txt');if(gi&&gi.value!==ptext)gi.value=ptext;
+  ptext=htxt.value||PTX;
+  var gi=document.querySelector('.gh .txt');if(gi&&gi.value!==mirror(ptext))gi.value=mirror(ptext);
   var w=hspec.querySelector('.word');
-  if(w&&!w.classList.contains('nofile')){var f=HOME.fams[homeCur()];w.textContent=ptext||(f&&f.face!=null?PTX:I[f.rec].n)}
+  if(w&&!w.classList.contains('nofile')){var f=HOME.fams[homeCur()];w.textContent=ptext===PTX?HOPTX:(ptext||(f&&f.face!=null?PTX:I[f.rec].n))}
   [].forEach.call(groupsEl.querySelectorAll('.item[data-kind="type"] .word'),function(x){x.textContent=ptext||I[+x.closest('.item').dataset.i].n});
   [].forEach.call(document.querySelectorAll('.faces .fc:not([data-nofile]) .word'),function(x){x.textContent=ptext||PTX});
   fitTypes();fitFaces();homeFit();
 });
+var htrack=document.createElement('input');htrack.id='htrack';htrack.type='range';htrack.className='hslider';
+htrack.min=-.08;htrack.max=.5;htrack.step=.01;htrack.value=HOME.track;htrack.setAttribute('aria-label','kerning: space between letters');
+htrack.addEventListener('input',function(){HOME.track=parseFloat(htrack.value);homeFit()});
+var hsize=document.createElement('input');hsize.id='hsize';hsize.type='range';hsize.className='hslider';
+hsize.min=.4;hsize.max=1.8;hsize.step=.01;hsize.value=1;hsize.setAttribute('aria-label','letter size');
+hsize.addEventListener('input',function(){HOME.scale=parseFloat(hsize.value);homeFit()});
+var hspin=document.createElement('span');hspin.className='hspin';hspin.appendChild(hsize);
 showHome('type');
 </script></body></html>
