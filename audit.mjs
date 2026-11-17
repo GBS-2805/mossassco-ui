@@ -378,7 +378,7 @@ for (const rule of faceRules) {
   if (!tagged.some((r) => r.f + '.woff2' === rule.file)) problems.push(`fonts/${rule.file} is declared but no face uses it — dead weight in the download`);
 }
 if (!tagged.length) problems.push('no face in the index carries a specimen file');
-if (!/var PTX='12345 - Shelf'/.test(html)) problems.push("the preview text must default to '12345 - Shelf'");
+if (!/var PTX='0123456789 - the quick brown fox jumps over the lazy dog'/.test(html)) problems.push("the preview text must default to numbers plus the pangram sentence");
 if (!/\.faces \.fc:not\(\[data-nofile\]\) \.word/.test(html)) problems.push('typing in the preview box must reach the index cards too');
 if (!/kinds\.push\(\{k:'faces'/.test(html)) problems.push('the kinds row needs a free fonts tab, or the index cannot be filtered to');
 if (!/sec\.dataset\.kind==='faces'/.test(html)) problems.push('applyFilter must treat the index as one block: it has rows, not .item cards');
