@@ -333,8 +333,8 @@ if (!freeBlock) problems.push('no FREE[] — the free-font index has no data to 
 if (html.indexOf('var FREE=[') < html.indexOf("var groupsEl=document.getElementById('groups');")) {
   problems.push('the index builds itself before groupsEl exists — it throws on load, and a syntax check will not see it');
 }
-const freeRows = [...freeBlock.matchAll(/\{c:'([^']+)',n:'([^']+)',h:'([^']+)',u:'(https:\/\/[^']+)',(?:f:'([^']+)',)?l:'([^']+)'\}/g)]
-  .map((m) => ({ c: m[1], n: m[2], h: m[3], u: m[4], f: m[5] || '', l: m[6] }));
+const freeRows = [...freeBlock.matchAll(/\{c:'([^']+)',n:'([^']+)',h:'([^']+)',u:'(https:\/\/[^']+)',(?:f:'([^']+)',)?(?:sample:'([^']+)',)?l:'([^']+)'\}/g)]
+  .map((m) => ({ c: m[1], n: m[2], h: m[3], u: m[4], f: m[5] || '', l: m[7] }));
 if (freeRows.length < 100) problems.push(`FREE[] lists ${freeRows.length} faces, expected at least 100`);
 for (const r of freeRows) {
   if (!['display', 'sans-serif', 'serif', 'monospace'].includes(r.c)) problems.push(`${r.n}: unknown category "${r.c}"`);

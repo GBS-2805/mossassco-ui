@@ -33,10 +33,10 @@
   "c": null,
   "file": "azeret-mono.woff2",
   "h": null,
-  "kb": 137.3,
+  "kb": 31.1,
   "l": null,
   "n": "Azeret Mono",
-  "src": "https://displaay.net/fonts/SaansVF.woff2",
+  "src": "https://raw.githubusercontent.com/google/fonts/main/ofl/azeretmono/AzeretMono%5Bwght%5D.ttf",
   "u": "https://displaay.net/typeface/azeret/azeret-mono/"
  },
  "BDO Grotesk": {
@@ -239,20 +239,20 @@
   "c": null,
   "file": "freesans.woff2",
   "h": null,
-  "kb": 116.9,
+  "kb": 12.6,
   "l": null,
   "n": "FreeSans",
-  "src": "https://ftp.gnu.org/gnu/freefont/freefont-otf-20080912.zip#freefont-20080912/FreeMono.otf",
+  "src": "https://ftp.gnu.org/gnu/freefont/freefont-otf-20080912.zip",
   "u": "https://ftp.gnu.org/gnu/freefont/"
  },
  "FreeSerif": {
   "c": null,
   "file": "freeserif.woff2",
   "h": null,
-  "kb": 116.9,
+  "kb": 15.8,
   "l": null,
   "n": "FreeSerif",
-  "src": "https://ftp.gnu.org/gnu/freefont/freefont-otf-20080912.zip#freefont-20080912/FreeMono.otf",
+  "src": "https://ftp.gnu.org/gnu/freefont/freefont-otf-20080912.zip",
   "u": "https://ftp.gnu.org/gnu/freefont/"
  },
  "Frick": {
@@ -329,10 +329,10 @@
   "c": null,
   "file": "geist-mono.woff2",
   "h": null,
-  "kb": 67.9,
+  "kb": 33.3,
   "l": null,
   "n": "Geist Mono",
-  "src": "https://vercel.com/vc-ap-b3331f/_next/static/immutable/media/Geist_Variable-s.p.2wz-lhd5-5z0-.woff2",
+  "src": "https://codeload.github.com/vercel/geist-font/zip/refs/heads/main",
   "u": "https://vercel.com/font/mono"
  },
  "Gemini": {
@@ -457,10 +457,10 @@
   "c": null,
   "file": "honey.woff2",
   "h": null,
-  "kb": 33.2,
+  "kb": 8.5,
   "l": null,
   "n": "Honey",
-  "src": "https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/5fdd5985-ec09-4638-8138-ca231dbe3d29/latin.woff2",
+  "src": "https://www.onlyanother.co/s/Honey-Demo-Light.zip",
   "u": "https://www.onlyanother.co/honey"
  },
  "Inclusive Sans": {
@@ -505,30 +505,30 @@
   "c": null,
   "file": "lt-institute.woff2",
   "h": null,
-  "kb": 10.3,
+  "kb": 13.4,
   "l": null,
   "n": "LT Institute",
-  "src": "https://static.wixstatic.com/ufonts/356ba5_023fe337f4b04b96a3f5e9df86d25393/woff2/file.woff2",
+  "src": "https://2d6ef404-3457-416f-9d11-f7188f68ac99.filesusr.com/archives/356ba5_6cbb8bc1fc79445190ae6b9ff9b05d69.zip?dn=LTInstitute.zip",
   "u": "https://lyonstype4.wixsite.com/lyonstype-beta/fonts"
  },
  "LT Remark": {
   "c": null,
   "file": "lt-remark.woff2",
   "h": null,
-  "kb": 10.3,
+  "kb": 15.4,
   "l": null,
   "n": "LT Remark",
-  "src": "https://static.wixstatic.com/ufonts/356ba5_023fe337f4b04b96a3f5e9df86d25393/woff2/file.woff2",
+  "src": "https://2d6ef404-3457-416f-9d11-f7188f68ac99.filesusr.com/archives/356ba5_281d856130f8489595b72da78696c437.zip?dn=LTRemark-V2001-2.zip",
   "u": "https://lyonstype4.wixsite.com/lyonstype-beta/fonts"
  },
  "LT Superior Mono": {
   "c": null,
   "file": "lt-superior-mono.woff2",
   "h": null,
-  "kb": 10.3,
+  "kb": 11.1,
   "l": null,
   "n": "LT Superior Mono",
-  "src": "https://static.wixstatic.com/ufonts/356ba5_023fe337f4b04b96a3f5e9df86d25393/woff2/file.woff2",
+  "src": "https://2d6ef404-3457-416f-9d11-f7188f68ac99.filesusr.com/archives/356ba5_88c97821914340459012341d1e83814d.zip?dn=LTSuperiorMono.zip",
   "u": "https://lyonstype4.wixsite.com/lyonstype-beta/fonts"
  },
  "Lab Mono": {
@@ -621,10 +621,10 @@
   "c": null,
   "file": "meta-old-french.woff2",
   "h": null,
-  "kb": 76.7,
+  "kb": 15.8,
   "l": null,
   "n": "Meta Old French",
-  "src": "https://gitlab.com/assets/gitlab-mono/GitLabMono-29c2152dac8739499dd0fe5cd37a486ebcc7d4798c9b6d3aeab65b3172375b05.woff2",
+  "src": "https://gitlab.com/Luuse/foundry/fonts.luuse/-/raw/main/fonts/Meta-Old-French/fonts/meta-old-french-regular.otf",
   "u": "https://gitlab.com/Luuse/foundry/meta-old-french"
  },
  "Micro Grotesk": {
@@ -779,13 +779,11 @@
  },
  "Queering": {
   "c": null,
-  "file": "queering.woff2",
   "h": null,
-  "kb": 80.8,
   "l": null,
   "n": "Queering",
-  "src": "https://type.cargo.site/files/CargoGaisyr-MediumItalic.woff2",
-  "u": "https://www.adamnac.com/queering"
+  "u": "https://www.adamnac.com/queering",
+  "err": "no mirrored source: the foundry serves it through a Gumroad checkout only"
  },
  "Rag": {
   "c": null,
@@ -821,10 +819,10 @@
   "c": null,
   "file": "snap-it-mono.woff2",
   "h": null,
-  "kb": 76.7,
+  "kb": 7.5,
   "l": null,
   "n": "Snap-it Mono",
-  "src": "https://gitlab.com/assets/gitlab-mono/GitLabMono-29c2152dac8739499dd0fe5cd37a486ebcc7d4798c9b6d3aeab65b3172375b05.woff2",
+  "src": "https://gitlab.com/Alune/snap-it-mono-font/-/raw/master/font-files/Snap-itmono-1.6-Regular.woff2",
   "u": "https://gitlab.com/Alune/snap-it-mono-font"
  },
  "Solitus": {
