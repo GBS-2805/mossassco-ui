@@ -16,7 +16,7 @@ button{font:inherit}
 .hbrand .tag{font-family:var(--mono);font-style:normal;font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a92;margin-left:10px}
 .hpane{flex:1;min-height:0;display:flex;flex-direction:column;border-bottom:1px solid rgba(255,255,255,.12)}
 #hspec{flex:1;min-height:0;position:relative;overflow:hidden}
-#hspec .word{position:absolute;left:8%;right:8%;top:50%;transform:translateY(-50%);line-height:1.05;font-weight:400;color:#f4f3ee;overflow:hidden;opacity:0;transition:opacity .16s}
+#hspec .word{position:absolute;left:5%;right:5%;top:50%;transform:translateY(-50%);line-height:1.05;font-weight:400;color:#f4f3ee;overflow:hidden;opacity:0;transition:opacity .16s}
 #hspec .word .n{display:block;white-space:nowrap}
 #hspec .word .s{display:block;white-space:normal;line-height:1.15;margin-top:.38em}
 #hspec .word.in{opacity:1}
@@ -66,7 +66,7 @@ var FAC=[
  {n:'Solway',cuts:[{l:'regular'},{l:'medium',w:500},{l:'bold',w:700}]}
 ];
 var TEX='0123456789\nthe quick brown fox jumps over the lazy dog';
-var HOME={at:0,cut:0,track:-.035,scale:.9};
+var HOME={at:0,cut:0,track:-.035,scale:1};
 var hspec=document.getElementById('hspec'),hstrips=document.getElementById('hstrips'),
     hfam=document.getElementById('hfam'),hmenu=document.getElementById('hmenu'),hpagebtn=document.getElementById('hpagebtn');
 var SENT='the quick brown fox jumps over the lazy dog';
@@ -75,7 +75,7 @@ function trueFit(times){                             // canvas metrics are only 
   var w=hspec.querySelector('.word');if(!w||!w.parentNode)return;
   var n=w.querySelector('.n');if(!n)return;
   requestAnimationFrame(function(){
-    var allowed=Math.min(w.clientWidth,hspec.clientWidth*0.82)*0.985;   // aim a touch inside the margins, never flush
+    var allowed=Math.min(w.clientWidth,hspec.clientWidth*0.90)*0.985;   // aim a touch inside the margins, never flush
     var rng=document.createRange();rng.selectNodeContents(n);
     var nw=rng.getBoundingClientRect().width;
     if(!allowed||!nw)return;
@@ -95,7 +95,7 @@ function reveal(w){                    // fade the specimen in once its face is 
 function homeFit(){                                   // the numerals are the anchor: the size slider always visibly scales them, the sentence re-wraps as a caption beneath
   var w=hspec.querySelector('.word');if(!w)return;
   w.style.letterSpacing=(HOME.track||0)+'em';
-  var W=hspec.clientWidth*0.82,H=hspec.clientHeight*0.86;if(!W||!H)return;
+  var W=hspec.clientWidth*0.90,H=hspec.clientHeight*0.86;if(!W||!H)return;
   var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];if(!fam)return;
   var wt=w.dataset.w||400,tr=HOME.track,sc=HOME.scale;
   var m0=metrics(fam,'0123456789',wt);if(!m0.w)return;
@@ -122,7 +122,7 @@ function trueFit(times){                             // canvas metrics are only 
   var w=hspec.querySelector('.word');if(!w||!w.parentNode)return;
   var n=w.querySelector('.n');if(!n)return;
   requestAnimationFrame(function(){
-    var allowed=Math.min(w.clientWidth,hspec.clientWidth*0.82)*0.985;   // aim a touch inside the margins, never flush
+    var allowed=Math.min(w.clientWidth,hspec.clientWidth*0.90)*0.985;   // aim a touch inside the margins, never flush
     var rng=document.createRange();rng.selectNodeContents(n);
     var nw=rng.getBoundingClientRect().width;
     if(!allowed||!nw)return;
@@ -143,7 +143,7 @@ function homeFit(){                                   // numerals hold their siz
   var w=hspec.querySelector('.word');if(!w)return;
   var nn=w.querySelector('.n'),sn=w.querySelector('.s');
   if(sn)sn.style.letterSpacing=(HOME.track||0)+'em';
-  var W=hspec.clientWidth*0.82,H=hspec.clientHeight*0.86;if(!W||!H)return;
+  var W=hspec.clientWidth*0.90,H=hspec.clientHeight*0.86;if(!W||!H)return;
   var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];if(!fam)return;
   var wt=w.dataset.w||400,tr=HOME.track,sc=HOME.scale;
   var m0=nn?metrics(fam,nn.textContent,wt):metrics(fam,'0123456789',wt);if(!m0.w)return;
@@ -152,7 +152,7 @@ function homeFit(){                                   // numerals hold their siz
   F=Math.min(F,H*0.55/(m0.asc/100));
   var k=0.07;if(sn){
     var a1=m1.w/100+tr*st.length;
-    var ks=[.32,.26,.21,.17,.14,.11,.09,.07,.05,.04];
+    var ks=[.8,.66,.54,.44,.36,.30,.25,.21,.17,.14,.11,.09,.07,.05,.04];   // the caption grows to fill the leftover height before anything overflows
     function fits(F,k){
       var sF=F*k,lines=Math.max(1,Math.ceil(a1*sF/W));
       return F*(m0.asc/100)+sF*(m1.asc/100+(lines-1)*1.15)<=H;
@@ -263,7 +263,7 @@ function buildHomeWheel(){
   prepWheel(hfam);centreWheel(hfam,HOME.at);homeRoulette(hfam);
 }
 function setHome(j,recentre){
-  HOME.at=j;HOME.cut=0;HOME.track=-.035;HOME.scale=.9;htrack.value=HOME.track;hsize.value=.9;
+  HOME.at=j;HOME.cut=0;HOME.track=-.035;HOME.scale=1;htrack.value=HOME.track;hsize.value=1;
   [].forEach.call(hfam.querySelectorAll('.opt'),function(o,k){o.classList.toggle('on',k===j);o.setAttribute('aria-pressed',(k===j))});
   renderPane();
   if(recentre)centreWheel(hfam,j);
@@ -321,7 +321,7 @@ htrack.min=-.08;htrack.max=.5;htrack.step=.01;htrack.value=HOME.track;htrack.set
 htrack.addEventListener('input',function(){HOME.track=parseFloat(htrack.value);homeFit()});
 var ltrack=document.createElement('div');ltrack.appendChild(dial('track',htrack));
 var hsize=document.createElement('input');hsize.type='range';hsize.className='hslider';
-hsize.min=.4;hsize.max=1;hsize.step=.005;hsize.value=.9;hsize.setAttribute('aria-label','letter size');   // 1 = the numerals fill the boundary; every position below it visibly shrinks them
+hsize.min=.4;hsize.max=1;hsize.step=.005;hsize.value=1;hsize.setAttribute('aria-label','letter size');   // 1 = the numerals fill the boundary; every position below it visibly shrinks them
 hsize.addEventListener('input',function(){HOME.scale=parseFloat(hsize.value);homeFit()});
 var lsize=document.createElement('div');lsize.appendChild(dial('size',hsize));
 dials.appendChild(ltrack);dials.appendChild(lsize);
