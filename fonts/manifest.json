@@ -1,10 +1,12 @@
 {
  "AUTHENTIC Sans": {
   "c": null,
-  "err": "no source",
+  "file": "authentic-sans.woff2",
   "h": null,
+  "kb": 8.2,
   "l": null,
   "n": "AUTHENTIC Sans",
+  "src": "https://authentic.website/fonts/authentic-sans-90.woff2",
   "u": "https://authentic.website/sans"
  },
  "Alfphabet": {
@@ -47,7 +49,6 @@
  },
  "BIZ UDMincho": {
   "c": null,
-  "err": "no source",
   "file": "biz-udmincho.woff2",
   "h": null,
   "kb": 21.1,
@@ -58,7 +59,6 @@
  },
  "BIZ UDPMincho": {
   "c": null,
-  "err": "no source",
   "file": "biz-udpmincho.woff2",
   "h": null,
   "kb": 25.9,
@@ -79,7 +79,6 @@
  },
  "Basically A Mono": {
   "c": null,
-  "err": "no source",
   "file": "basically-a-mono.woff2",
   "h": null,
   "kb": 94.5,
@@ -90,10 +89,12 @@
  },
  "Bertioga Sans": {
   "c": null,
-  "err": "BadZipFile: File is not a zip file",
+  "file": "bertioga-sans.woff2",
   "h": null,
+  "kb": 16.7,
   "l": null,
   "n": "Bertioga Sans",
+  "src": "https://raw.githubusercontent.com/cssobral2013/Bertioga-Sans/main/ttf/BertiogaSans-Regular.ttf",
   "u": "https://github.com/cssobral2013/Bertioga-Sans"
  },
  "Blocks on Blocks": {
@@ -146,7 +147,6 @@
  },
  "Career": {
   "c": null,
-  "err": "BadZipFile: File is not a zip file",
   "file": "career.woff2",
   "h": null,
   "kb": 25.0,
@@ -157,10 +157,12 @@
  },
  "Commit Mono": {
   "c": null,
-  "err": "no source",
+  "file": "commit-mono.woff2",
   "h": null,
+  "kb": 37.8,
   "l": null,
   "n": "Commit Mono",
+  "src": "https://codeload.github.com/eigilnikolajsen/commit-mono/zip/refs/heads/main",
   "u": "https://commitmono.com/"
  },
  "Dauphine": {
@@ -195,10 +197,12 @@
  },
  "Fairfax HD": {
   "c": null,
-  "err": "no source",
+  "file": "fairfax-hd.woff2",
   "h": null,
+  "kb": 9.6,
   "l": null,
   "n": "Fairfax HD",
+  "src": "https://www.kreativekorp.com/swdownload/fonts/core/fairfaxhd.zip",
   "u": "https://www.kreativekorp.com/software/fonts/fairfaxhd.shtml"
  },
  "Fibel Nord": {
@@ -223,7 +227,6 @@
  },
  "FreeMono": {
   "c": null,
-  "err": "no source",
   "file": "freemono.woff2",
   "h": null,
   "kb": 116.8,
@@ -234,7 +237,6 @@
  },
  "FreeSans": {
   "c": null,
-  "err": "no source",
   "file": "freesans.woff2",
   "h": null,
   "kb": 116.9,
@@ -245,7 +247,6 @@
  },
  "FreeSerif": {
   "c": null,
-  "err": "no source",
   "file": "freeserif.woff2",
   "h": null,
   "kb": 116.9,
@@ -266,7 +267,6 @@
  },
  "Fudd": {
   "c": null,
-  "err": "no source",
   "file": "fudd.woff2",
   "h": null,
   "kb": 13.3,
@@ -297,7 +297,6 @@
  },
  "Gap Sans": {
   "c": null,
-  "err": "BadZipFile: File is not a zip file",
   "file": "gap-sans.woff2",
   "h": null,
   "kb": 15.1,
@@ -308,10 +307,12 @@
  },
  "Garamon(d/t)": {
   "c": null,
-  "err": "no source",
+  "file": "garamondt.woff2",
   "h": null,
+  "kb": 26.5,
   "l": null,
   "n": "Garamon(d/t)",
+  "src": "https://fonderie.download/downloads/FD_Garamon(d-t).zip",
   "u": "https://fonderie.download/garamondt.html"
  },
  "Geist": {
@@ -354,15 +355,16 @@
  },
  "Giphurs": {
   "c": null,
-  "err": "BadZipFile: File is not a zip file",
+  "file": "giphurs.woff2",
   "h": null,
+  "kb": 24.5,
   "l": null,
   "n": "Giphurs",
+  "src": "https://raw.githubusercontent.com/Corne2Plum3/Giphurs/master/fonts/webfonts/Giphurs-Regular.woff2",
   "u": "https://github.com/Corne2Plum3/Giphurs"
  },
  "Gloock": {
   "c": null,
-  "err": "BadZipFile: File is not a zip file",
   "file": "gloock.woff2",
   "h": null,
   "kb": 17.2,
@@ -391,12 +393,14 @@
   "src": "https://github.com/rosettatype/handjet/archive/refs/heads/master.zip",
   "u": "https://github.com/rosettatype/handjet"
  },
- "Hask\u00f6y": {
+ "Hasköy": {
   "c": null,
-  "err": "no source",
+  "file": "haskoy.woff2",
   "h": null,
+  "kb": 29.8,
   "l": null,
-  "n": "Hask\u00f6y",
+  "n": "Hasköy",
+  "src": "https://haskoy.ertekinn.com/fonts/Haskoy[wght].woff2",
   "u": "https://haskoy.ertekinn.com/"
  },
  "Hauora Sans": {
@@ -411,10 +415,12 @@
  },
  "Heal the Web": {
   "c": null,
-  "err": "no source",
+  "file": "heal-the-web.woff2",
   "h": null,
+  "kb": 19.6,
   "l": null,
   "n": "Heal the Web",
+  "src": "https://codeload.github.com/rainbowunicornstudio/healtheweb-typeface/zip/refs/heads/main",
   "u": "https://healtheweb.site/"
  },
  "Hedvig Letters Sans": {
@@ -573,7 +579,6 @@
  },
  "Maname": {
   "c": null,
-  "err": "zip has no font",
   "file": "maname.woff2",
   "h": null,
   "kb": 16.5,
@@ -604,10 +609,12 @@
  },
  "Max Hana": {
   "c": null,
-  "err": "BadZipFile: File is not a zip file",
+  "file": "max-hana.woff2",
   "h": null,
+  "kb": 18.0,
   "l": null,
   "n": "Max Hana",
+  "src": "https://raw.githubusercontent.com/max32002/max-hana/master/webfont/B2Hana-Regular-Lite.woff2",
   "u": "https://github.com/max32002/max-hana"
  },
  "Meta Old French": {
@@ -732,18 +739,22 @@
  },
  "Perun": {
   "c": null,
-  "err": "BadZipFile: File is not a zip file",
+  "file": "perun.woff2",
   "h": null,
+  "kb": 17.8,
   "l": null,
   "n": "Perun",
+  "src": "https://localfonts.eu/wp-content/uploads/2021/10/Perun-Regular.woff",
   "u": "https://github.com/StefanPeev/Perun"
  },
  "Pretendard": {
   "c": null,
-  "err": "BadZipFile: File is not a zip file",
+  "file": "pretendard.woff2",
   "h": null,
+  "kb": 25.0,
   "l": null,
   "n": "Pretendard",
+  "src": "https://github.com/orioncactus/pretendard/releases/download/v1.3.9/Pretendard-1.3.9.zip",
   "u": "https://github.com/orioncactus/pretendard"
  },
  "Prodigy Sans": {
@@ -788,7 +799,6 @@
  },
  "Redaction": {
   "c": null,
-  "err": "no source",
   "file": "redaction.woff2",
   "h": null,
   "kb": 12.1,
@@ -799,10 +809,12 @@
  },
  "Reglo": {
   "c": null,
-  "err": "no source",
+  "file": "reglo.woff2",
   "h": null,
+  "kb": 4.1,
   "l": null,
   "n": "Reglo",
+  "src": "https://codeload.github.com/osp/osp.foundry.reglo/zip/refs/heads/master",
   "u": "https://osp.kitchen/foundry/reglo/"
  },
  "Snap-it Mono": {
@@ -857,7 +869,6 @@
  },
  "TASA Orbiter": {
   "c": null,
-  "err": "zip has no font",
   "file": "tasa-orbiter.woff2",
   "h": null,
   "kb": 16.8,
@@ -868,15 +879,16 @@
  },
  "Times Dot": {
   "c": null,
-  "err": "no source",
+  "file": "times-dot.woff2",
   "h": null,
+  "kb": 23.6,
   "l": null,
   "n": "Times Dot",
+  "src": "https://raw.githubusercontent.com/laurelschwulst/art.laurelschwulst.com/master/assets/fonts/timesdotrom-webfont.ttf",
   "u": "https://www.librarystack.org/times-dot/"
  },
  "Times Newer Roman": {
   "c": null,
-  "err": "no source",
   "file": "times-newer-roman.woff2",
   "h": null,
   "kb": 63.8,
@@ -915,7 +927,6 @@
  },
  "Victor Mono": {
   "c": null,
-  "err": "no source",
   "file": "victor-mono.woff2",
   "h": null,
   "kb": 15.6,
@@ -966,7 +977,6 @@
  },
  "Zen Kaku Gothic New": {
   "c": null,
-  "err": "no source",
   "file": "zen-kaku-gothic-new.woff2",
   "h": null,
   "kb": 9.5,
