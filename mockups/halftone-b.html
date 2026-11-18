@@ -1,0 +1,233 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>halftone b — ink tone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;700&family=Work+Sans:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Archivo:wght@400;600;900&family=JetBrains+Mono:wght@400;500&family=Solway:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#08080a;--ink:#e9e8e3;--line:rgba(255,255,255,.07);--lime:#c8f14a;--dim:#8a8a92;--mono:'JetBrains Mono',monospace;--sa-t:env(safe-area-inset-top,0px);--sa-r:env(safe-area-inset-right,0px);--sa-b:env(safe-area-inset-bottom,0px);--sa-l:env(safe-area-inset-left,0px)}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{height:100%}
+body{font-family:'Space Grotesk',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit}
+#home{position:fixed;inset:0;display:flex;flex-direction:column}
+.htop{padding:calc(10px + var(--sa-t)) calc(18px + var(--sa-r)) 8px calc(18px + var(--sa-l))}
+.hbrand{font-family:'Instrument Serif',serif;font-size:16px;color:#c9c8c2;white-space:nowrap}
+.hbrand i{font-style:italic;color:#7f7f86}
+.hbrand .tag{font-family:var(--mono);font-style:normal;font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a92;margin-left:10px}
+.hpane{flex:1;min-height:0;display:flex;flex-direction:column;border-bottom:1px solid rgba(255,255,255,.12)}
+#hspec{flex:1;min-height:0;position:relative;overflow:hidden}
+.tone{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(233,232,227,.13) 1.4px,transparent 1.55px);background-size:5px 5px;-webkit-mask-image:linear-gradient(180deg,transparent 42%,#000 96%);mask-image:linear-gradient(180deg,transparent 42%,#000 96%)}
+.tone:after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(200,241,74,.14) 1.4px,transparent 1.55px);background-size:5px 5px;-webkit-mask-image:linear-gradient(180deg,transparent 62%,rgba(0,0,0,1) 100%);mask-image:linear-gradient(180deg,transparent 62%,rgba(0,0,0,1) 100%)}
+#hspec .word{position:absolute;left:8%;right:8%;top:50%;transform:translateY(-50%);line-height:1.05;font-weight:400;color:#f4f3ee;overflow:hidden;opacity:0;transition:opacity .16s}
+#hspec .word .n{display:block;white-space:nowrap}
+#hspec .word .s{display:block;white-space:normal;line-height:1.15;margin-top:.38em}
+#hspec .word.in{opacity:1}
+#hstrips{flex:0 0 auto}
+#hstrips .strip{display:flex;align-items:center;width:auto;height:46px;border-top:1px solid rgba(255,255,255,.1);padding:0 50%;gap:22px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+#hstrips .strip::-webkit-scrollbar{display:none}
+#hstrips .strip .opt{flex:0 0 auto;width:auto;padding:8px 0;min-height:44px;border:0;background:none;font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#8a8a92;line-height:1;cursor:pointer;scroll-snap-align:center;backface-visibility:hidden;will-change:transform,opacity;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.hslider{-webkit-appearance:none;appearance:none;position:absolute;z-index:6;margin:0;height:34px;background:transparent;cursor:pointer;padding:0}
+#htrack{left:16%;right:16%;bottom:calc(7% + 6px)}
+.hslider::-webkit-slider-runnable-track{height:2px;background:rgba(255,255,255,.16)}
+.hslider::-webkit-slider-thumb{-webkit-appearance:none;width:9px;height:24px;background:var(--lime);margin-top:-11px;border-radius:1px}
+.hslider:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
+.hspin{position:absolute;right:calc(4.5% - 5px);top:50%;width:34px;height:max(210px,50%);transform:translateY(-50%);z-index:6;pointer-events:none}
+#hsize{left:50%;top:50%;width:210px;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:auto}
+.hdeck{flex:0 0 auto;border-top:1px solid rgba(255,255,255,.12)}
+#hfam{display:flex;align-items:center;height:64px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:0 38%;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+#hfam::-webkit-scrollbar{display:none}
+#hfam .opt{flex:0 0 auto;width:auto;min-height:44px;padding:0 16px 0;border:0;background:none;font-family:var(--mono);font-size:14px;letter-spacing:.02em;text-transform:none;color:#8a8a92;line-height:1;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;scroll-snap-align:center;position:relative;transition:color .14s}
+#hfam .opt.on{color:#f4f3ee}
+#hfam .opt.on:after{content:"";position:absolute;left:16px;right:16px;bottom:9px;height:1px;background:var(--lime)}
+.hcats{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:7px;padding:0 calc(8px + var(--sa-r)) calc(8px + var(--sa-b)) calc(8px + var(--sa-l));border-top:1px solid rgba(255,255,255,.1);-webkit-overflow-scrolling:touch}
+.hcats::-webkit-scrollbar{display:none}
+.hcats button{flex:0 0 auto;background:none;border:0;padding:10px 2px 12px;min-height:44px;font-family:var(--mono);font-size:7.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a8a92;cursor:pointer;position:relative;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.hcats button.on{color:var(--ink)}
+.hcats button.on:after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;background:var(--lime);opacity:.9}
+</style></head>
+<body class="home-on">
+<div id="home">
+ <div class="htop"><span class="hbrand">Shelf<i> — a repository</i><b class="tag">halftone B · ink tone</b></span></div>
+ <div class="hpane"><div id="hspec"><div class="tone"></div></div><div id="hstrips"></div></div>
+ <div class="hdeck"><div id="hfam" role="listbox" aria-label="families, one per stop"></div><div class="hcats" id="hcats"></div></div>
+</div>
+<script>
+var mc=document.createElement('canvas').getContext('2d');
+function metrics(fam,txt,w){mc.font=(w||400)+' 100px "'+fam+'", serif';var m=mc.measureText(txt);return{asc:m.actualBoundingBoxAscent||72,w:m.width||txt.length*52}}
+var FAC=[
+ {n:'Instrument Serif',cuts:[{l:'regular'},{l:'italic',s:'italic'}]},
+ {n:'Playfair Display',cuts:[{l:'regular'},{l:'italic',s:'italic'},{l:'bold',w:700}]},
+ {n:'Space Grotesk',cuts:[{l:'regular'},{l:'medium',w:500},{l:'bold',w:700}]},
+ {n:'Work Sans',cuts:[{l:'regular'},{l:'italic',s:'italic'},{l:'bold',w:700}]},
+ {n:'DM Serif Display',cuts:[{l:'regular'},{l:'italic',s:'italic'}]},
+ {n:'Archivo',cuts:[{l:'regular'},{l:'semibold',w:600},{l:'black',w:900}]},
+ {n:'JetBrains Mono',cuts:[{l:'regular'},{l:'medium',w:500}]},
+ {n:'Solway',cuts:[{l:'regular'},{l:'medium',w:500},{l:'bold',w:700}]}
+];
+var TEX='0123456789\nthe quick brown fox jumps over the lazy dog';
+var HOME={at:0,cut:0,track:-.035,scale:1};
+var hspec=document.getElementById('hspec'),hstrips=document.getElementById('hstrips'),
+    hfam=document.getElementById('hfam'),hcats=document.getElementById('hcats');
+var SENT='the quick brown fox jumps over the lazy dog';
+function homeFit(){                                   // the numerals are the anchor: the size slider always visibly scales them, the sentence re-wraps as a caption beneath
+  var w=hspec.querySelector('.word');if(!w)return;
+  w.style.letterSpacing=(HOME.track||0)+'em';
+  var W=hspec.clientWidth*0.82,H=hspec.clientHeight*0.86;if(!W||!H)return;
+  var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];if(!fam)return;
+  var wt=w.dataset.w||400,tr=HOME.track,sc=HOME.scale;
+  var m0=metrics(fam,'0123456789',wt);if(!m0.w)return;
+  var m1=metrics(fam,SENT,wt);
+  var F=W/(m0.w/100+tr*10)*sc;                       // width-bound on the numbers line, so every slider step shows
+  F=Math.min(F,H*0.55/(m0.asc/100));                 // and the frame always wins on height
+  var a1=m1.w/100+tr*SENT.length;
+  var ks=[.32,.26,.21,.17,.14,.11,.09,.07];          // the caption shrinks before the frame is violated
+  function fits(F,k){
+    var sF=F*k,lines=Math.max(1,Math.ceil(a1*sF/W));
+    return F*(m0.asc/100)+sF*(m1.asc/100+(lines-1)*1.15)<=H;
+  }
+  var k=ks[ks.length-1];
+  for(var g=0;g<24&&F>6;g++){
+    var done=false;
+    for(var i=0;i<ks.length;i++){if(fits(F,ks[i])){k=ks[i];done=true;break}}
+    if(done)break;F*=.94;
+  }
+  w.style.fontSize=Math.max(6,F).toFixed(1)+'px';
+  var sn=w.querySelector('.s');if(sn)sn.style.fontSize=k+'em';
+}
+function reveal(w){                    // loading state + settle feedback: fade once the face is ready, and re-fit with its real metrics
+  if(!w)return;w.classList.remove('in');
+  var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];
+  function go(){homeFit();w.getBoundingClientRect();w.classList.add('in')}
+  if(document.fonts&&document.fonts.load)document.fonts.load((w.dataset.w||400)+' 32px "'+fam+'"').then(go,go);else go();
+}
+function renderPane(){
+  var f=FAC[HOME.at],c=(f.cuts[HOME.cut]||f.cuts[0]),h='';
+  h='<div class="word" data-w="'+(c.w||400)+'" style="font-family:\''+f.n+'\';font-weight:'+(c.w||400)+';font-style:'+(c.s||'normal')+'"><span class="n">0123456789</span><span class="s">'+SENT+'</span></div>';
+  var chips='';f.cuts.forEach(function(cu,j){chips+='<button class="opt'+(j===HOME.cut?' on':'')+'" data-v="'+j+'" aria-pressed="'+(j===HOME.cut)+'">'+cu.l+'</button>'});
+  var s=hstrips.querySelector('.strip');
+  if(!s){s=document.createElement('div');s.className='strip';hstrips.appendChild(s)}
+  s.innerHTML=chips;prepStrip(s);centreStrip(s);
+  var old=hspec.querySelector('.word');if(old)old.remove();
+  hspec.insertAdjacentHTML('beforeend',h);
+  homeFit();reveal(hspec.querySelector('.word'));
+}
+function prepStrip(s){
+  s.__chips=[].slice.call(s.querySelectorAll('.opt'));
+  s.__c=s.__chips.map(function(c){return c.offsetLeft+c.offsetWidth/2});
+  s.__chips.forEach(function(c){c.__p=null});
+  if(!s.__on){s.__on=1;s.addEventListener('scroll',function(){
+    if(s.__raf)return;
+    s.__raf=requestAnimationFrame(function(){s.__raf=0;roulette(s)});
+  },{passive:true})}
+}
+function centreStrip(s){
+  var on=s.querySelector('.opt.on');if(!on)return;
+  var x=on.offsetLeft-(s.clientWidth-on.offsetWidth)/2;
+  s.__p=1;
+  if(Math.abs(s.scrollLeft-x)>1)s.scrollLeft=x;
+  setTimeout(function(){s.__p=0;roulette(s)},60);
+}
+function roulette(s){
+  if(!s.__chips)prepStrip(s);
+  var chips=s.__chips,c=s.__c;
+  if(!chips||!chips.length)return;
+  var half=s.clientWidth/2||1,mid=s.scrollLeft+half;
+  for(var i=0;i<chips.length;i++){
+    var p=(c[i]-mid)/half;if(p>1)p=1;else if(p<-1)p=-1;
+    if(chips[i].__p===p)continue;
+    chips[i].__p=p;
+    var ap=p<0?-p:p;
+    chips[i].style.transform='translate3d(0,0,0) rotateY('+(-p*38).toFixed(1)+'deg) scale('+(1-.12*ap).toFixed(3)+')';
+    chips[i].style.opacity=(1-.4*ap).toFixed(2);
+  }
+  if(s.__p)return;
+  var best=null,bd=half;
+  for(var j=0;j<chips.length;j++){var dj=s.__c[j]-mid;if(dj<0)dj=-dj;if(dj<bd){bd=dj;best=chips[j]}}
+  if(best)best.classList.add('on');
+  clearTimeout(s.__t);
+  s.__t=setTimeout(function(){
+    var mid2=s.scrollLeft+(s.clientWidth/2),last=null,ld=1e9;
+    for(var k=0;k<chips.length;k++){var d2=Math.abs(s.__c[k]-mid2);if(d2<ld){ld=d2;last=chips[k]}}
+    if(last&&+last.dataset.v!==HOME.cut){
+      HOME.cut=+last.dataset.v;
+      var f=FAC[HOME.at],cu=f.cuts[HOME.cut]||f.cuts[0],w=hspec.querySelector('.word');
+      if(w){w.style.fontWeight=cu.w||400;w.style.fontStyle=cu.s||'normal';w.dataset.w=cu.w||400}
+      [].forEach.call(s.querySelectorAll('.opt'),function(o,k){o.classList.toggle('on',k===HOME.cut)});
+      homeFit();
+    }
+  },70);
+}
+function prepWheel(s){
+  s.__chips=[].slice.call(s.querySelectorAll('.opt'));
+  s.__c=s.__chips.map(function(c){return c.offsetLeft+c.offsetWidth/2});
+  s.__chips.forEach(function(c){c.__p=null});
+  if(!s.__on){s.__on=1;s.addEventListener('scroll',function(){
+    if(s.__raf)return;
+    s.__raf=requestAnimationFrame(function(){s.__raf=0;homeRoulette(s)});
+  },{passive:true})}
+}
+function homeRoulette(s){
+  if(!s.__chips)prepWheel(s);
+  var chips=s.__chips,c=s.__c;
+  if(!chips||!chips.length)return;
+  if(s.__p)return;
+  clearTimeout(s.__t);
+  s.__t=setTimeout(function(){
+    if(s.__p)return;
+    var mid2=s.scrollLeft+(s.clientWidth/2),last=null,ld=1e9;
+    for(var k=0;k<chips.length;k++){var d2=Math.abs(s.__c[k]-mid2);if(d2<ld){ld=d2;last=chips[k]}}
+    if(last&&+last.dataset.f!==HOME.at)setHome(+last.dataset.f,false);
+  },70);
+}
+function centreWheel(s,idx){
+  var el=s.__chips&&s.__chips[idx];if(!el)return;
+  var x=el.offsetLeft-(s.clientWidth-el.offsetWidth)/2;
+  s.__p=1;
+  if(Math.abs(s.scrollLeft-x)>1)s.scrollLeft=x;
+  setTimeout(function(){s.__p=0;homeRoulette(s)},60);
+}
+function buildHomeWheel(){
+  var h='';
+  FAC.forEach(function(f,j){
+    h+='<button class="opt'+(j===HOME.at?' on':'')+'" data-f="'+j+'" aria-pressed="'+(j===HOME.at)+'">'+f.n+'</button>';
+  });
+  hfam.innerHTML=h;
+  prepWheel(hfam);centreWheel(hfam,HOME.at);homeRoulette(hfam);
+}
+function setHome(j,recentre){
+  HOME.at=j;HOME.cut=0;HOME.track=-.035;HOME.scale=1;htrack.value=HOME.track;hsize.value=1;
+  [].forEach.call(hfam.querySelectorAll('.opt'),function(o,k){o.classList.toggle('on',k===j);o.setAttribute('aria-pressed',(k===j))});
+  renderPane();
+  if(recentre)centreWheel(hfam,j);
+}
+hfam.addEventListener('click',function(e){
+  var o=e.target.closest('.opt');if(!o)return;
+  setHome(+o.dataset.f,true);
+});
+hstrips.addEventListener('click',function(e){
+  var o=e.target.closest('.opt');if(!o)return;
+  var f=FAC[HOME.at],cu=f.cuts[+o.dataset.v]||f.cuts[0];
+  HOME.cut=+o.dataset.v;
+  var w=hspec.querySelector('.word');
+  if(w){w.style.fontWeight=cu.w||400;w.style.fontStyle=cu.s||'normal';w.dataset.w=cu.w||400}
+  [].forEach.call(hstrips.querySelectorAll('.opt'),function(x,k){x.classList.toggle('on',k===HOME.cut)});
+  centreStrip(hstrips.querySelector('.strip'));homeFit();
+});
+[['Type',1],['Icons',0],['Illust',0],['Model',0],['Image',0],['Sites',0]].forEach(function(c){
+  var b=document.createElement('button');b.textContent=c[0];
+  if(c[1])b.classList.add('on');
+  b.setAttribute('aria-label','category: '+c[0]);
+  hcats.appendChild(b);
+});
+var htrack=document.createElement('input');htrack.id='htrack';htrack.type='range';htrack.className='hslider';
+htrack.min=-.08;htrack.max=.5;htrack.step=.01;htrack.value=HOME.track;htrack.setAttribute('aria-label','kerning: space between letters');
+htrack.addEventListener('input',function(){HOME.track=parseFloat(htrack.value);homeFit()});
+var hsize=document.createElement('input');hsize.id='hsize';hsize.type='range';hsize.className='hslider';
+hsize.min=.4;hsize.max=1.8;hsize.step=.01;hsize.value=1;hsize.setAttribute('aria-label','letter size');
+hsize.addEventListener('input',function(){HOME.scale=parseFloat(hsize.value);homeFit()});
+var hspin=document.createElement('span');hspin.className='hspin';hspin.appendChild(hsize);
+hspec.appendChild(htrack);hspec.appendChild(hspin);
+buildHomeWheel();renderPane();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){homeFit()});
+if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',function(){homeFit()});   // a specimen measured before its face arrived runs wide
+</script></body></html>
