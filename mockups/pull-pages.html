@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>pull-down catalog — corner dials</title>
+<title>pull-down pages — wheel stays</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;700&family=Work+Sans:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Archivo:wght@400;600;900&family=JetBrains+Mono:wght@400;500&family=Solway:wght@400;500;700&display=swap">
 <style>
@@ -30,26 +30,27 @@ button{font:inherit}
 .hslider::-webkit-slider-runnable-track{height:2px;background:rgba(255,255,255,.16)}
 .hslider::-webkit-slider-thumb{-webkit-appearance:none;width:7px;height:16px;background:var(--lime);margin-top:-7px;border-radius:1px}
 .hslider:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
-.hcatalog{position:absolute;top:8px;right:8px;z-index:8}
-.hcatalog>button{background:rgba(8,8,10,.55);border:0;padding:10px 12px;min-height:40px;font-family:var(--mono);font-size:7.5px;letter-spacing:.16em;text-transform:uppercase;color:#8a8a92;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.hcatalog>button:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
-.hmenu{position:absolute;top:50px;right:0;width:216px;max-height:56vh;overflow-y:auto;background:rgba(8,8,10,.94);border:1px solid rgba(255,255,255,.12);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .15s,transform .15s}
+.hdeck{flex:0 0 auto;border-top:1px solid rgba(255,255,255,.12)}
+#hfam{display:flex;align-items:center;height:64px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:0 38%;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+#hfam::-webkit-scrollbar{display:none}
+#hfam .opt{flex:0 0 auto;width:auto;min-height:44px;padding:0 16px 0;border:0;background:none;font-family:var(--mono);font-size:14px;letter-spacing:.02em;text-transform:none;color:#8a8a92;line-height:1;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;scroll-snap-align:center;position:relative;transition:color .14s}
+#hfam .opt.on{color:#f4f3ee}
+#hfam .opt.on:after{content:"";position:absolute;left:16px;right:16px;bottom:9px;height:1px;background:var(--lime)}
+.hpages{position:absolute;top:8px;right:8px;z-index:8}
+.hpages>button{background:rgba(8,8,10,.55);border:0;padding:10px 12px;min-height:40px;font-family:var(--mono);font-size:7.5px;letter-spacing:.16em;text-transform:uppercase;color:#8a8a92;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hpages>button:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
+.hpages>button b{color:#f4f3ee;font-weight:400;margin-right:6px}
+.hmenu{position:absolute;top:50px;right:0;width:200px;max-height:54vh;overflow-y:auto;background:rgba(8,8,10,.94);border:1px solid rgba(255,255,255,.12);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .15s,transform .15s}
 .hmenu.open{opacity:1;transform:translateY(0);pointer-events:auto}
-.hmenu button{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.07);padding:13px 14px;min-height:44px;font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:#8a8a92;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.hmenu button{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.07);padding:12px 14px;min-height:44px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a8a92;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .hmenu button:last-child{border-bottom:0}
 .hmenu button.on{color:#f4f3ee;box-shadow:inset 2px 0 0 var(--lime)}
-.hdeck{flex:0 0 auto;border-top:1px solid rgba(255,255,255,.12)}
-.hcats{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:7px;padding:0 calc(8px + var(--sa-r)) calc(8px + var(--sa-b)) calc(8px + var(--sa-l));border-top:1px solid rgba(255,255,255,.1);-webkit-overflow-scrolling:touch}
-.hcats::-webkit-scrollbar{display:none}
-.hcats button{flex:0 0 auto;background:none;border:0;padding:10px 2px 12px;min-height:44px;font-family:var(--mono);font-size:7.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a8a92;cursor:pointer;position:relative;white-space:nowrap;-webkit-tap-highlight-color:transparent}
-.hcats button.on{color:var(--ink)}
-.hcats button.on:after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;background:var(--lime);opacity:.9}
 </style></head>
 <body class="home-on">
 <div id="home">
- <div class="htop"><span class="hbrand">Shelf<i> — a repository</i><b class="tag">pull-down catalog · b route</b></span></div>
- <div class="hpane"><div id="hspec"></div><div id="hstrips"></div><div class="hcatalog"><button id="hcatbtn" aria-expanded="false" aria-haspopup="listbox">catalog ▾</button><div class="hmenu" id="hmenu" role="listbox" aria-label="catalog: every family"></div></div></div>
- <div class="hdeck"><div class="hcats" id="hcats"></div></div>
+ <div class="htop"><span class="hbrand">Shelf<i> — a repository</i><b class="tag">pull-down pages · b route</b></span></div>
+ <div class="hpane"><div id="hspec"><div class="hpages"><button id="hpagebtn" aria-expanded="false" aria-haspopup="listbox"><b>type</b> ▾</button><div class="hmenu" id="hmenu" role="listbox" aria-label="site areas"></div></div></div><div id="hstrips"></div></div>
+ <div class="hdeck"><div id="hfam" role="listbox" aria-label="families, one per stop"></div></div>
 </div>
 <script>
 var mc=document.createElement('canvas').getContext('2d');
@@ -65,9 +66,9 @@ var FAC=[
  {n:'Solway',cuts:[{l:'regular'},{l:'medium',w:500},{l:'bold',w:700}]}
 ];
 var TEX='0123456789\nthe quick brown fox jumps over the lazy dog';
-var HOME={at:0,cut:0,track:-.035,scale:1};
+var HOME={at:0,cut:0,track:-.035,scale:.9};
 var hspec=document.getElementById('hspec'),hstrips=document.getElementById('hstrips'),
-    hcats=document.getElementById('hcats'),hmenu=document.getElementById('hmenu'),hcatbtn=document.getElementById('hcatbtn');
+    hfam=document.getElementById('hfam'),hmenu=document.getElementById('hmenu'),hpagebtn=document.getElementById('hpagebtn');
 var SENT='the quick brown fox jumps over the lazy dog';
 function trueFit(times){                             // canvas metrics are only a first guess on a real phone: verify against the rendered glyphs
   times=times||0;
@@ -224,33 +225,52 @@ function roulette(s){
     }
   },70);
 }
-function setHome(j){
-  HOME.at=j;HOME.cut=0;HOME.track=-.035;HOME.scale=1;htrack.value=HOME.track;hsize.value=1;
-  renderPane();syncMenu();
+function prepWheel(s){
+  s.__chips=[].slice.call(s.querySelectorAll('.opt'));
+  s.__c=s.__chips.map(function(c){return c.offsetLeft+c.offsetWidth/2});
+  s.__chips.forEach(function(c){c.__p=null});
+  if(!s.__on){s.__on=1;s.addEventListener('scroll',function(){
+    if(s.__raf)return;
+    s.__raf=requestAnimationFrame(function(){s.__raf=0;homeRoulette(s)});
+  },{passive:true})}
 }
-function buildMenu(){
+function homeRoulette(s){
+  if(!s.__chips)prepWheel(s);
+  var chips=s.__chips,c=s.__c;
+  if(!chips||!chips.length)return;
+  if(s.__p)return;
+  clearTimeout(s.__t);
+  s.__t=setTimeout(function(){
+    if(s.__p)return;
+    var mid2=s.scrollLeft+(s.clientWidth/2),last=null,ld=1e9;
+    for(var k=0;k<chips.length;k++){var d2=Math.abs(s.__c[k]-mid2);if(d2<ld){ld=d2;last=chips[k]}}
+    if(last&&+last.dataset.f!==HOME.at)setHome(+last.dataset.f,false);
+  },70);
+}
+function centreWheel(s,idx){
+  var el=s.__chips&&s.__chips[idx];if(!el)return;
+  var x=el.offsetLeft-(s.clientWidth-el.offsetWidth)/2;
+  s.__p=1;
+  if(Math.abs(s.scrollLeft-x)>1)s.scrollLeft=x;
+  setTimeout(function(){s.__p=0;homeRoulette(s)},60);
+}
+function buildHomeWheel(){
   var h='';
   FAC.forEach(function(f,j){
-    h+='<button role="option"'+(j===HOME.at?' class="on" aria-selected="true"':' aria-selected="false"')+' data-f="'+j+'">'+f.n+'</button>';
+    h+='<button class="opt'+(j===HOME.at?' on':'')+'" data-f="'+j+'" aria-pressed="'+(j===HOME.at)+'">'+f.n+'</button>';
   });
-  hmenu.innerHTML=h;
+  hfam.innerHTML=h;
+  prepWheel(hfam);centreWheel(hfam,HOME.at);homeRoulette(hfam);
 }
-function syncMenu(){
-  [].forEach.call(hmenu.querySelectorAll('button'),function(b,i){b.classList.toggle('on',i===HOME.at);b.setAttribute('aria-selected',i===HOME.at)});
+function setHome(j,recentre){
+  HOME.at=j;HOME.cut=0;HOME.track=-.035;HOME.scale=.9;htrack.value=HOME.track;hsize.value=.9;
+  [].forEach.call(hfam.querySelectorAll('.opt'),function(o,k){o.classList.toggle('on',k===j);o.setAttribute('aria-pressed',(k===j))});
+  renderPane();
+  if(recentre)centreWheel(hfam,j);
 }
-function closeMenu(){hmenu.classList.remove('open');hcatbtn.setAttribute('aria-expanded','false')}
-hcatbtn.addEventListener('click',function(e){
-  e.stopPropagation();
-  var open=hmenu.classList.toggle('open');
-  hcatbtn.setAttribute('aria-expanded',open);
-  if(open)buildMenu();
-});
-hmenu.addEventListener('click',function(e){
-  var o=e.target.closest('button');if(!o)return;
-  setHome(+o.dataset.f);closeMenu();
-});
-document.addEventListener('click',function(e){
-  if(!e.target.closest('.hcatalog'))closeMenu();
+hfam.addEventListener('click',function(e){
+  var o=e.target.closest('.opt');if(!o)return;
+  setHome(+o.dataset.f,true);
 });
 hstrips.addEventListener('click',function(e){
   var o=e.target.closest('.opt');if(!o)return;
@@ -261,11 +281,38 @@ hstrips.addEventListener('click',function(e){
   [].forEach.call(hstrips.querySelectorAll('.opt'),function(x,k){x.classList.toggle('on',k===HOME.cut)});
   centreStrip(hstrips.querySelector('.strip'));homeFit();
 });
-[['Type',1],['Icons',0],['Illust',0],['Model',0],['Image',0],['Sites',0]].forEach(function(c){
-  var b=document.createElement('button');b.textContent=c[0];
-  if(c[1])b.classList.add('on');
-  b.setAttribute('aria-label','category: '+c[0]);
-  hcats.appendChild(b);
+var PAGES=['Type','Icons','Illust','Model','Image','Sites','Plugins','Tools','All'];
+var PAGE='Type';
+function buildMenu(){
+  var h='';
+  PAGES.forEach(function(pg){
+    h+='<button role="option"'+(pg===PAGE?' class="on" aria-selected="true"':' aria-selected="false"')+' data-p="'+pg+'">'+pg+'</button>';
+  });
+  hmenu.innerHTML=h;
+}
+function syncPageBtn(){hpagebtn.innerHTML='<b>'+PAGE.toLowerCase()+'</b> \u25be';hpagebtn.setAttribute('aria-label','site area: '+PAGE)}
+function closeMenu(){hmenu.classList.remove('open');hpagebtn.setAttribute('aria-expanded','false')}
+hpagebtn.addEventListener('click',function(e){
+  e.stopPropagation();
+  var open=hmenu.classList.toggle('open');
+  hpagebtn.setAttribute('aria-expanded',open);
+  if(open)buildMenu();
+});
+hmenu.addEventListener('click',function(e){
+  var o=e.target.closest('button');if(!o)return;
+  PAGE=o.dataset.p;buildMenu();syncPageBtn();closeMenu();
+  if(PAGE!=='Type'){
+    hspec.querySelector('.word')&&(hspec.querySelector('.word').style.display='none');
+    var ph=document.getElementById('hph');
+    if(!ph){ph=document.createElement('div');ph.id='hph';ph.style.cssText='position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(233,232,227,.02)';hspec.insertBefore(ph,hspec.firstChild)}
+    ph.innerHTML='<span style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#6b6b74">'+PAGE+' — not in this mock</span>';
+  }else{
+    var ph=document.getElementById('hph');if(ph)ph.remove();
+    var w=hspec.querySelector('.word');if(w)w.style.display='';
+  }
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.hpages'))closeMenu();
 });
 var dials=document.createElement('div');dials.className='hdials';dials.setAttribute('role','group');dials.setAttribute('aria-label','letter spacing and size');
 function dial(label,inp){var l=document.createElement('label');var s=document.createElement('span');s.textContent=label;l.appendChild(s);l.appendChild(inp);return l}
@@ -274,11 +321,11 @@ htrack.min=-.08;htrack.max=.5;htrack.step=.01;htrack.value=HOME.track;htrack.set
 htrack.addEventListener('input',function(){HOME.track=parseFloat(htrack.value);homeFit()});
 var ltrack=document.createElement('div');ltrack.appendChild(dial('track',htrack));
 var hsize=document.createElement('input');hsize.type='range';hsize.className='hslider';
-hsize.min=.4;hsize.max=1.8;hsize.step=.01;hsize.value=1;hsize.setAttribute('aria-label','letter size');
+hsize.min=.4;hsize.max=1;hsize.step=.005;hsize.value=.9;hsize.setAttribute('aria-label','letter size');   // 1 = the numerals fill the boundary; every position below it visibly shrinks them
 hsize.addEventListener('input',function(){HOME.scale=parseFloat(hsize.value);homeFit()});
 var lsize=document.createElement('div');lsize.appendChild(dial('size',hsize));
 dials.appendChild(ltrack);dials.appendChild(lsize);
-renderPane();
+buildHomeWheel();renderPane();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){homeFit()});
 if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',function(){homeFit()});   // a specimen measured before its face arrived runs wide
 </script></body></html>
