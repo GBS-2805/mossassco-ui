@@ -279,14 +279,7 @@ footer a{color:#67676f;text-decoration:none;border-bottom:1px solid rgba(255,255
 #home{position:fixed;inset:0;z-index:40;display:none;flex-direction:column;background:radial-gradient(140% 70% at 50% -10%,#17171a 0%,#0c0c0e 45%,#08080a 100%)}
 body.home-on #home{display:flex}
 body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,body.home-on #groups,body.home-on footer{display:none}
-.htop{display:block;padding:calc(10px + var(--sa-t)) calc(18px + var(--sa-r)) 0 calc(18px + var(--sa-l));border-bottom:1px solid var(--line)}
-.hbrand{font-family:"Instrument Serif",serif;font-size:16px;color:#c9c8c2;flex:0 0 auto;white-space:nowrap;display:block}
-.hbrand i{font-style:italic;color:#7f7f86}
-#htxt{display:block;width:100%;box-sizing:border-box;min-height:44px;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.16);margin:2px 0 0;padding:9px 0 11px;font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:#cfcec8;outline:none;-webkit-appearance:none;border-radius:0}
-#htxt::placeholder{color:#3f3f46}
-#htxt:focus{border-bottom-color:rgba(255,255,255,.42)}
-#htxt:focus-visible{outline:2px solid rgba(233,232,227,.55);outline-offset:4px}
-.hpane{flex:1;min-height:0;display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
+.hpane{flex:1;min-height:0;display:flex;flex-direction:column;border-bottom:1px solid var(--line);padding-top:calc(10px + var(--sa-t))}
 #hspec{flex:1;min-height:0;position:relative;overflow:hidden}
 #hspec .frame{position:absolute;inset:0;width:100%;height:100%;box-shadow:none;transition:none}
 #hspec .frame:after{box-shadow:none}
@@ -297,7 +290,6 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 #hstrips .strip{position:static;width:auto;height:46px;border-top:1px solid rgba(255,255,255,.07);border-left:0;padding:0 50%;gap:22px}
 #hstrips .strip.wtop,#hstrips .strip.sbot{top:auto;bottom:auto;border-bottom:0}
 #hstrips .strip .opt{padding:8px 0;min-height:44px}
-.hdead{height:46px;display:flex;align-items:center;justify-content:center;border-top:1px solid rgba(255,255,255,.07);color:#3f3f46;font-family:var(--mono);font-size:7px;letter-spacing:.2em;text-transform:uppercase;text-align:center;padding:0 12px}
 .hslider{-webkit-appearance:none;appearance:none;position:absolute;z-index:6;margin:0;height:34px;background:transparent;cursor:pointer;padding:0}
 #htrack{left:16%;right:16%;bottom:calc(7% + 6px)}
 .hslider::-webkit-slider-runnable-track{height:2px;background:rgba(255,255,255,.16)}
@@ -306,10 +298,6 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 .hspin{position:absolute;right:calc(4.5% - 5px);top:50%;width:34px;height:max(210px,50%);transform:translateY(-50%);z-index:6;pointer-events:none}
 #home.iconson #htrack,#home.iconson .hspin{display:none!important}
 #hsize{left:50%;top:50%;width:210px;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:auto}
-.hmeta{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px calc(18px + var(--sa-r)) 10px calc(18px + var(--sa-l));border-top:1px solid var(--line);min-height:40px}
-.hmeta b{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#d3d2cc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-.hmeta span{font-family:var(--mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#4c4c54;white-space:nowrap;flex:0 0 auto}
-.hmeta a{color:#67676f;text-decoration:none}
 .hdeck{flex:0 0 auto;border-top:1px solid var(--line)}
 #hfam{display:flex;align-items:center;height:64px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:0 38%;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
 #hfam::-webkit-scrollbar{display:none}
@@ -322,7 +310,7 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 .hcats button.on:after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;background:currentColor;opacity:.55}
 </style></head><body class="home-on">
 <div class="grain"></div>
-<div id="home"><div class="htop"><span class="hbrand">Shelf<i> — a repository</i></span><input id="htxt" type="text" placeholder="preview text" aria-label="preview text for every specimen" autocomplete="off" spellcheck="false"></div><div class="hpane"><div id="hspec"></div><div id="hstrips"></div><div class="hmeta" id="hmeta"></div></div><div class="hdeck"><div id="hfam" role="listbox" aria-label="families, one per stop"></div><div class="hcats" id="hcats"></div></div></div>
+<div id="home"><div class="hpane"><div id="hspec"></div><div id="hstrips"></div></div><div class="hdeck"><div id="hfam" role="listbox" aria-label="families, one per stop"></div><div class="hcats" id="hcats"></div></div></div>
 <header><span class="brand">Shelf<i> — a repository</i></span><span class="meta">loading</span></header>
 <div class="kinds" id="kinds"></div>
 <div class="rule"></div>
@@ -568,7 +556,6 @@ GROUPS.forEach(function(g){
     var inp=sec.querySelector('.txt');
     inp.addEventListener('input',function(){
       ptext=inp.value||PTX;                             // an emptied box returns to the default specimen
-      var ht=document.getElementById('htxt');if(ht&&ht.value!==mirror(ptext))ht.value=mirror(ptext);
       if(hspec){var hw=hspec.querySelector('.word');if(hw&&!hw.classList.contains('nofile')){var hf=HOME.fams[HOME.cur];hw.textContent=ptext===PTX?HOPTX:(ptext||(hf&&hf.face!=null?PTX:I[hf.rec].n))}homeFit()}
       [].forEach.call(sec.querySelectorAll('.item[data-kind="type"] .word'),function(w){w.textContent=ptext||I[+w.closest('.item').dataset.i].n});
       [].forEach.call(document.querySelectorAll('.faces .fc:not([data-nofile]) .word'),function(w){w.textContent=ptext||PTX});
@@ -873,7 +860,6 @@ function openTab(i){
     sw.addEventListener('input',function(){
       ptext=sw.textContent.replace(/\s+/g,' ').trim()||PTX;
       var inp=document.querySelector('.gh .txt');if(inp)inp.value=mirror(ptext);
-      var ht=document.getElementById('htxt');if(ht&&ht.value!==mirror(ptext))ht.value=mirror(ptext);
       if(hspec){var hw=hspec.querySelector('.word');if(hw&&!hw.classList.contains('nofile')){var hf=HOME.fams[HOME.cur];hw.textContent=ptext===PTX?HOPTX:(ptext||(hf&&hf.face!=null?PTX:I[hf.rec].n))}homeFit()}
       [].forEach.call(groupsEl.querySelectorAll('.item[data-kind="type"] .word'),function(w){w.textContent=ptext||I[+w.closest('.item').dataset.i].n});
       fitTypes();fitSites();
@@ -906,8 +892,8 @@ var HOPTX='0123456789\nthe quick brown fox jumps over the lazy dog';   // the ho
 function homeTxt(fb){return ptext===PTX?HOPTX:(ptext||fb||'')}
 function mirror(v){return v===PTX?'':v}               // the default shows as an empty input, not as typed text
 var hspec=document.getElementById('hspec'),hstrips=document.getElementById('hstrips'),
-    hmeta=document.getElementById('hmeta'),hfam=document.getElementById('hfam'),
-    hcats=document.getElementById('hcats'),htxt=document.getElementById('htxt');
+    hfam=document.getElementById('hfam'),
+    hcats=document.getElementById('hcats');
 function homeCur(){return HOME.at[HOME.mode]}
 function homeFams(){
   var a=[];
@@ -962,7 +948,7 @@ function paintHomeRec(r,dim,j){                      // the home pane mirrors th
   [].forEach.call(hstrips.querySelectorAll('.opt[data-d="'+dim+'"]'),function(o,k){o.classList.toggle('on',k===j);o.setAttribute('aria-pressed',k===j)});
 }
 function renderHomePane(){
-  var f=HOME.fams[homeCur()],h='',meta='',dead='';
+  var f=HOME.fams[homeCur()],h='';
   if(f&&f.face!=null){
     var fr=FREE[f.face],cuts=FCUT[fr.n];
     if(fr.f){
@@ -972,12 +958,10 @@ function renderHomePane(){
         var chips='';
         cuts.forEach(function(c,j){chips+='<button class="opt'+(j===0?' on':'')+'" data-i="-'+(f.face+1)+'" data-d="c" data-v="'+j+'" aria-pressed="'+(j===0)+'">'+c.l+'</button>'});
         hstrips.innerHTML='<div class="strip" data-i="-'+(f.face+1)+'" data-d="c" role="group" aria-label="cuts">'+chips+'</div>';
-      } else dead='one cut \u00b7 '+fr.h;
+      } else hstrips.innerHTML='';
     } else {
       h='<a class="wordlink" href="'+fr.u+'" target="_blank" rel="noopener" aria-label="'+fr.n+' \u2014 no file, open the foundry"><div class="word nofile">'+homeTxt()+'</div></a>';
-      dead='no file \u00b7 tap the preview to open the foundry';
     }
-    meta='<b>'+fr.n+'</b><span>'+(fr.l?fr.l+' \u00b7 ':'')+'<a href="'+fr.u+'" target="_blank" rel="noopener">'+fr.h+' \u2197</a></span>';
   } else if(f){
     var r=I[f.rec],v=r.view;
     if(v.t==='type'){
@@ -987,21 +971,18 @@ function renderHomePane(){
       var tails='';
       if(r.ws.length>1)tails+=optList(f.rec,r.ws,r.wi,1,'w','');
       if(r.ss.length>1)tails+=optList(f.rec,r.ss,r.si,1,'s','');
-      if(tails)hstrips.innerHTML=tails; else dead='one cut';
-      meta='<b>'+r.n+'</b><span>'+typeLabel(r)+'</span>';
+      if(tails)hstrips.innerHTML=tails; else hstrips.innerHTML='';
     } else {
       var st=r.styles?r.styles[r.vi]:null,base=st?st.b:v.base,suf=st?st.s:v.suf;
       var grid='<div class="frame icons'+(base.indexOf('simple-icons')>-1?' brand':'')+'"><div class="pv">';
       v.names.forEach(function(n){grid+='<img src="'+base+n+suf+'" alt="" loading="lazy" decoding="async" fetchpriority="low">'});
       h=grid+'</div></div>';
       hstrips.innerHTML=r.styles?optList(f.rec,r.styles,r.vi,1,'v',''):'';
-      if(!r.styles)dead='one style';
-      meta='<b>'+r.n+'</b><span>'+r.cap+'</span>';
+      if(!r.styles)hstrips.innerHTML='';
     }
   }
   if(!hstrips.innerHTML)hstrips.innerHTML='';
   hspec.innerHTML=h;
-  if(dead)hstrips.innerHTML='<div class="hdead">'+dead+'</div>';
   var wl=hspec.querySelector('.wordlink');
   if(wl&&!wl.getAttribute('href')&&f&&f.rec!=null){
     wl.onclick=function(e){if(e.target.closest('.opt'))return;openTab(f.rec)};
@@ -1011,7 +992,6 @@ function renderHomePane(){
   if(HOME.mode==='icons'){if(htrack.parentNode)htrack.parentNode.removeChild(htrack);if(hspin.parentNode)hspin.parentNode.removeChild(hspin)}
   else{hspec.appendChild(htrack);hspec.appendChild(hspin)}
   homeFit();homeIconsFit();
-  hmeta.innerHTML=meta;
 }
 function prepWheel(s){                                // same discipline as prepStrip: geometry once, never in the handler
   s.__chips=[].slice.call(s.querySelectorAll('.opt'));
@@ -1091,15 +1071,6 @@ function openLegacy(kind){                            // the shelves that keep t
   var btns=kb.querySelectorAll('button');
   for(var i=0;i<btns.length;i++){if(btns[i].getAttribute('aria-label')===want){btns[i].click();break}}
 }
-htxt.addEventListener('input',function(){
-  ptext=htxt.value||PTX;
-  var gi=document.querySelector('.gh .txt');if(gi&&gi.value!==mirror(ptext))gi.value=mirror(ptext);
-  var w=hspec.querySelector('.word');
-  if(w&&!w.classList.contains('nofile')){var f=HOME.fams[homeCur()];w.textContent=ptext===PTX?HOPTX:(ptext||(f&&f.face!=null?PTX:I[f.rec].n))}
-  [].forEach.call(groupsEl.querySelectorAll('.item[data-kind="type"] .word'),function(x){x.textContent=ptext||I[+x.closest('.item').dataset.i].n});
-  [].forEach.call(document.querySelectorAll('.faces .fc:not([data-nofile]) .word'),function(x){x.textContent=ptext||PTX});
-  fitTypes();fitFaces();homeFit();
-});
 var htrack=document.createElement('input');htrack.id='htrack';htrack.type='range';htrack.className='hslider';
 htrack.min=-.08;htrack.max=.5;htrack.step=.01;htrack.value=HOME.track;htrack.setAttribute('aria-label','kerning: space between letters');
 htrack.addEventListener('input',function(){HOME.track=parseFloat(htrack.value);homeFit()});
