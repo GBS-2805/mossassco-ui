@@ -310,22 +310,22 @@ body.home-on header,body.home-on .kinds,body.home-on .rule,body.home-on .legend,
 #hspec .icons .pv .cellb{aspect-ratio:1;display:grid;place-items:center;padding:13%;border-radius:12px;min-width:0;min-height:0}
 #hspec.picking .cellb{outline:1px dashed rgba(244,243,238,.16);outline-offset:-3px}
 #hspec .icons .mk{width:100%;height:100%;background:var(--iconcol,#fff);-webkit-mask:var(--u) center/contain no-repeat;mask:var(--u) center/contain no-repeat;transition:background .18s ease}
-.hctab{position:absolute;right:var(--sa-r,0px);bottom:16px;z-index:12;width:40px;height:56px;border:1px solid var(--line);border-right:0;padding:0;background:rgba(8,8,10,.55);cursor:pointer;transition:transform .25s cubic-bezier(.2,.9,.25,1.25);-webkit-tap-highlight-color:transparent}
+.hctab{position:absolute;z-index:12;width:34px;border:1px solid var(--line);border-left:0;padding:0;background:rgba(8,8,10,.8);cursor:pointer;transition:transform .25s cubic-bezier(.2,.9,.25,1.25);-webkit-tap-highlight-color:transparent;box-shadow:inset -3px 0 0 var(--lime)}
 .hctab:active{transform:scale(.94)}
-.hctab .hblob{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8a92}
-.hctab.on .hblob{color:var(--hcol,#f4f3ee);box-shadow:inset -2px 0 0 var(--lime)}
-.hcw{position:absolute;right:0;bottom:80px;z-index:11;transform-origin:100% 50%;display:none;clip-path:circle(131px at 100% 50%)}
-.hcw.open{display:block;animation:hblobin .5s cubic-bezier(.2,.9,.25,1.15) both}
-.hcw.closing{display:block;animation:hblobout .28s ease both}
-@keyframes hblobin{0%{transform:scale(.12,.42);opacity:0}38%{transform:scale(1.14,.86);opacity:1}62%{transform:scale(.9,1.08)}80%{transform:scale(1.04,.97)}100%{transform:scale(1,1);opacity:1}}
-@keyframes hblobout{0%{transform:scale(1,1);opacity:1}100%{transform:scale(.14,.5);opacity:0}}
-.hcwb{position:relative;width:130px;height:260px;border-radius:130px 0 0 130px;overflow:hidden;box-shadow:-10px 0 34px rgba(0,0,0,.6),inset -2px 0 0 rgba(255,255,255,.1);transform-origin:100% 50%;transition:transform .3s cubic-bezier(.2,.9,.25,1.1)}
-.hcw.zoom .hcwb{transform:translateX(8px) scale(1.09)}
-#hcvc{display:block;width:130px;height:260px;touch-action:none;cursor:crosshair}
+.hctab .hblob{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime)}
+.hctab.on .hblob{color:var(--hcol,#f4f3ee)}
+.hcw{position:absolute;z-index:11;transform-origin:100% 50%;display:none}
+.hcw.open{display:block;animation:hblobin .45s cubic-bezier(.2,.9,.25,1.15) both}
+.hcw.closing{display:block;animation:hblobout .26s ease both}
+@keyframes hblobin{0%{transform:scale(.1,.72);opacity:0}38%{transform:scale(1.1,.94);opacity:1}62%{transform:scale(.94,1.06)}100%{transform:scale(1,1);opacity:1}}
+@keyframes hblobout{0%{transform:scale(1,1);opacity:1}100%{transform:scale(.12,.66);opacity:0}}
+.hcwb{position:relative;width:100%;height:100%;border-radius:10px 0 0 10px;overflow:hidden;box-shadow:-8px 0 26px rgba(0,0,0,.55),inset 1px 0 0 rgba(255,255,255,.1);transform-origin:100% 50%;transition:transform .3s cubic-bezier(.2,.9,.25,1.1)}
+.hcw.zoom .hcwb{transform:scale(1.05)}
+#hcvc{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
 .hecho{position:absolute;width:44px;height:44px;pointer-events:none;transform:translate(-50%,-50%);border-radius:50%;filter:blur(1px);opacity:0}
 .hlens{position:absolute;width:52px;height:52px;pointer-events:none;box-shadow:0 0 0 2px rgba(255,255,255,.85),0 6px 18px rgba(0,0,0,.5);transform:translate(-50%,-50%)}
-.hhex{position:absolute;left:12px;bottom:14px;background:rgba(8,8,10,.8);border:1px solid var(--line);border-radius:999px;color:#f4f3ee;font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:4px 9px}
-.hhint{position:absolute;left:12px;top:14px;background:rgba(8,8,10,.8);border:1px solid var(--line);border-radius:999px;color:#8a8a92;font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:4px 9px}
+.hhex{position:absolute;left:10px;bottom:9px;background:rgba(8,8,10,.8);border:1px solid var(--line);border-radius:999px;color:#f4f3ee;font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:3px 8px;pointer-events:none}
+.hhint{position:absolute;left:10px;top:9px;background:rgba(8,8,10,.8);border:1px solid var(--line);border-radius:999px;color:#8a8a92;font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:3px 8px;pointer-events:none}
 #hstrips{flex:0 0 auto}
 #hstrips .strip{position:static;width:auto;height:46px;border-top:1px solid rgba(255,255,255,.07);border-left:0;padding:0 50%;gap:22px}
 #hstrips .strip.wtop,#hstrips .strip.sbot{top:auto;bottom:auto;border-bottom:0}
@@ -991,13 +991,17 @@ function trueFit(times){                             // canvas metrics are only 
     if(nw>allowed+0.5){w.style.fontSize=(fs*allowed/nw).toFixed(1)+'px';trueFit(times+1);return}
     var wr=w.getBoundingClientRect(),pr=hspec.getBoundingClientRect();
     if(wr.height>pr.height-12&&times<6){w.style.fontSize=(fs*(pr.height-12)/wr.height).toFixed(1)+'px';trueFit(times+1);return}
-    var tb=hctab&&hctab.parentNode?hctab.getBoundingClientRect():null;
-    if(tb&&!hOpen&&wr.bottom>tb.top-1&&wr.right>tb.left){
+    var ob=hOpen&&hcw&&hcw.parentNode?hcw.getBoundingClientRect():null;   // while open the rectangle itself is the obstacle: it is wider than the tab
+    var tb=ob&&ob.height>40?ob:(hctab&&hctab.parentNode?hctab.getBoundingClientRect():null);
+    if(tb&&wr.bottom>tb.top-1&&wr.right>tb.left){
       var dsh=wr.bottom-(tb.top-4),room=wr.top-pr.top-6,sh=Math.min(dsh,Math.max(0,room));
-      w.style.transform='translateY(calc(-50% - '+Math.round(sh)+'px))';
-      if(sh<dsh-0.5)w.style.fontSize=(fs*(1-(dsh-sh)/wr.height)).toFixed(1)+'px';
-      trueFit(times+1);return;
-    }else if(w.style.transform.indexOf('calc(')>-1){w.style.transform='';if(times<8)trueFit(times+1)}
+      var tf='translateY(calc(-50% - '+Math.round(sh)+'px))';
+      if(w.style.transform!==tf){                        // only rewrite when the value truly changes, or the guard cancels its own slide
+        w.style.transform=tf;
+        if(sh<dsh-0.5)w.style.fontSize=(fs*(1-(dsh-sh)/wr.height)).toFixed(1)+'px';
+        trueFit(times+1);
+      }
+    }
   });
 }
 function reveal(w){                    // fade the specimen in once its face is really loaded, then re-fit with true metrics
@@ -1082,7 +1086,7 @@ function renderHomePane(){
     var cwp=hspec.querySelector('.word');if(cwp&&!cwp.classList.contains('nofile'))cwp.style.color=HOME.col;
     var cif=hspec.querySelector('.frame.icons');if(cif)cif.style.setProperty('--iconcol',HOME.col);
   }
-  hspec.appendChild(hcw);hspec.appendChild(hctab);
+  hspec.appendChild(hcw);hspec.appendChild(hctab);hAlign();
   homeFit();homeIconsFit();
   reveal(hspec.querySelector('.word'));
 }
@@ -1201,23 +1205,32 @@ hdials.appendChild(ltrack);hdials.appendChild(lsize);
 var hctab=document.createElement('button');hctab.className='hctab';hctab.setAttribute('aria-expanded','false');hctab.setAttribute('aria-label','colour wheel');
 hctab.innerHTML='<span class="hblob"><span class="hcl">C</span></span>';
 var hcw=document.createElement('div');hcw.className='hcw';hcw.setAttribute('role','dialog');hcw.setAttribute('aria-label','colour wheel');
-hcw.innerHTML='<div class="hcwb"><canvas id="hcvc" width="130" height="260"></canvas><div class="hecho" id="hce1"></div><div class="hecho" id="hce2"></div><div class="hlens" id="hlens"></div><span class="hhint">slide \u00b7 lift to keep</span><span class="hhex" id="hchex">#F4F3EE</span></div>';
+hcw.innerHTML='<div class="hcwb"><canvas id="hcvc" width="150" height="86"></canvas><div class="hecho" id="hce1"></div><div class="hecho" id="hce2"></div><div class="hlens" id="hlens"></div><span class="hhint">slide</span><span class="hhex" id="hchex">#F4F3EE</span></div>';
 HOME.col='';
-var hOpen=false,hSpr={x:65,y:130,vx:0,vy:0},hTg={x:65,y:130},hActive=false;
-(function hdraw(){var v=hcw.querySelector('canvas'),c=v.getContext('2d'),R=130,CX=130,CY=130,im=c.createImageData(130,260),d=im.data;
-  function hueAt(dx,dy){var a2=Math.atan2(dy,dx);if(a2>0)a2-=Math.PI*2;var t=(-Math.PI/2-a2)/Math.PI;return Math.max(0,Math.min(1,t))*330}
-  function hsl(h,s,l){function f(n){var k=(n+h/30)%12,a=s*Math.min(l,1-l);return l-a*Math.max(-1,Math.min(k-3,9-k,1))}return[f(0),f(8),f(4)]}
-  for(var y=0;y<260;y++)for(var x=0;x<130;x++){var dx=x-CX,dy=y-CY,r=Math.hypot(dx,dy),i=(y*130+x)*4;
-    if(r>R){d[i+3]=0;continue}
-    var n=r/R,rgb=hsl(hueAt(dx,dy),.35+.65*n,.95-.48*n);
-    d[i]=rgb[0]*255;d[i+1]=rgb[1]*255;d[i+2]=rgb[2]*255;d[i+3]=255}
-  c.putImageData(im,0,0);
-  hcw.__hueAt=hueAt})();
+var hOpen=false,hSpr={x:75,y:43,vx:0,vy:0},hTg={x:75,y:43},hActive=false;
+function hsl(h,s,l){function f(n){var k=(n+h/30)%12,a=s*Math.min(l,1-l);return l-a*Math.max(-1,Math.min(k-3,9-k,1))}return[f(0),f(8),f(4)]}
 function hhex(rgb){return'#'+rgb.map(function(v){return('0'+Math.round(255*Math.max(0,Math.min(1,v))).toString(16)).slice(-2)}).join('')}
-function hColorAt(px,py){var v=hcw.querySelector('canvas'),R=130,CX=130,CY=130;
-  function hsl(h,s,l){function f(n){var k=(n+h/30)%12,a=s*Math.min(l,1-l);return l-a*Math.max(-1,Math.min(k-3,9-k,1))}return[f(0),f(8),f(4)]}
-  var dx=px-CX,dy=py-CY,r=Math.min(Math.hypot(dx,dy),R-1),n=r/R;
-  return hhex(hsl(hcw.__hueAt(dx,dy),.35+.65*n,.95-.48*n))}
+function hColorAt(px,py){var v=hcw.querySelector('canvas'),W=v.width,H=v.height;
+  var h2=Math.max(0,Math.min(1,px/(W-1)))*330,t=Math.max(0,Math.min(1,py/(H-1)));
+  return hhex(hsl(h2,.3+.7*t,.93-.42*t))}
+function hPaint(){var v=hcw.querySelector('canvas'),W=v.width,H=v.height;if(!W||!H)return;
+  var c=v.getContext('2d'),im=c.createImageData(W,H),d=im.data;
+  for(var y=0;y<H;y++)for(var x=0;x<W;x++){var t=y/(H-1),hh=x/(W-1)*330,i=(y*W+x)*4,rgb=hsl(hh,.3+.7*t,.93-.42*t);
+    d[i]=rgb[0]*255;d[i+1]=rgb[1]*255;d[i+2]=rgb[2]*255;d[i+3]=255}
+  c.putImageData(im,0,0)}
+function hAlign(){                                     // the rectangle parks next to the dials and borrows their exact top and bottom span; the tab rides its right edge
+  var d=hspec.querySelector('.hdials'),hs=hspec.getBoundingClientRect();
+  var r=d?d.getBoundingClientRect():null;
+  var ok=r&&r.height>0&&r.width>0;                         // nofile faces hide the dials with display:none — fall back to the same slot
+  var H=ok?r.height:86,B=ok?hs.bottom-r.bottom:10,A=ok?r.right-hs.left+8:10;
+  var W=Math.max(110,Math.min(180,hs.width-A-34-18));
+  hcw.style.left=A+'px';hcw.style.bottom=B+'px';hcw.style.width=Math.round(W)+'px';hcw.style.height=Math.round(H)+'px';
+  var v=hcw.querySelector('canvas');
+  if(v.width!==Math.round(W)){v.width=Math.round(W)}
+  if(v.height!==Math.round(H)){v.height=Math.round(H)}
+  hPaint();
+  hctab.style.left=Math.round(A+W)+'px';hctab.style.bottom=B+'px';hctab.style.height=Math.round(H)+'px';
+  if(!hActive){hSpr.x=hTg.x=Math.round(W/2);hSpr.y=hTg.y=Math.round(H/2)}}
 function hSpring(){
   if(hActive){hSpr.vx+=(hTg.x-hSpr.x)*.24;hSpr.vy+=(hTg.y-hSpr.y)*.24;hSpr.vx*=.78;hSpr.vy*=.78;hSpr.x+=hSpr.vx;hSpr.y+=hSpr.vy}
   var lens=hcw.querySelector('.hlens'),e1=hcw.querySelector('#hce1'),e2=hcw.querySelector('#hce2');
@@ -1228,7 +1241,8 @@ function hSpring(){
   requestAnimationFrame(hSpring);
 }
 requestAnimationFrame(hSpring);
-function hPick(px,py){var col=hColorAt(px,py),w=hspec.querySelector('.word'),fi=hspec.querySelector('.frame.icons');
+function hPick(px,py){var v=hcw.querySelector('canvas');px=Math.max(3,Math.min(v.width-3,px));py=Math.max(3,Math.min(v.height-3,py));
+  var col=hColorAt(px,py),w=hspec.querySelector('.word'),fi=hspec.querySelector('.frame.icons');
   hcw.querySelector('.hhex').textContent=col.toUpperCase();
   var lens=hcw.querySelector('.hlens');lens.style.background=col;
   hcw.querySelector('#hce1').style.background=col;hcw.querySelector('#hce2').style.background=col;
@@ -1240,14 +1254,14 @@ function hPick(px,py){var col=hColorAt(px,py),w=hspec.querySelector('.word'),fi=
   hspec.classList.add('picking');
 }
 function hSlide(e){var v=hcw.querySelector('canvas'),r=v.getBoundingClientRect();if(!r.width)return;
-  hPick(Math.min(126,Math.max(4,(e.clientX-r.left)*130/r.width)),Math.min(256,Math.max(4,(e.clientY-r.top)*260/r.height)))}
+  hPick(e.clientX-r.left,e.clientY-r.top)}
 hcw.addEventListener('pointerdown',function(e){hcw.classList.add('zoom');hActive=true;try{hcw.querySelector('canvas').setPointerCapture(e.pointerId)}catch(err){}hSlide(e)});
 hcw.addEventListener('pointermove',function(e){if(e.buttons||e.pointerType==='touch')hSlide(e)});
 hcw.addEventListener('pointerup',function(e){hActive=false;hcw.classList.remove('zoom');hspec.classList.remove('picking');hSlide(e)});
 hcw.addEventListener('pointercancel',function(e){hActive=false;hcw.classList.remove('zoom');hspec.classList.remove('picking')});
 function hSetOpen(v){hOpen=v;hctab.setAttribute('aria-expanded',v);
   hctab.setAttribute('aria-label',v?'pull colour wheel in':'colour wheel');
-  if(v){hcw.classList.remove('closing');hcw.classList.add('open')}
+  if(v){hcw.classList.remove('closing');hcw.classList.add('open');trueFit(0)}
   else{hcw.classList.remove('open');hcw.classList.add('closing');hActive=false;
     setTimeout(function(){hcw.classList.remove('closing');hcw.classList.remove('zoom');hspec.classList.remove('picking');if(HOME.mode!=='icons')homeFit()},290)}}
 hctab.addEventListener('click',function(e){e.stopPropagation();hSetOpen(!hOpen)});
