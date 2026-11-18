@@ -79,11 +79,10 @@ function trueFit(times){                             // canvas metrics are only 
     var rng=document.createRange();rng.selectNodeContents(n);
     var nw=rng.getBoundingClientRect().width;
     if(!allowed||!nw)return;
-    if(nw>allowed+0.5&&times<4){
-      var fs=parseFloat(w.style.fontSize)||30;
-      w.style.fontSize=(fs*allowed/nw).toFixed(1)+'px';
-      trueFit(times+1);
-    }
+    var fs=parseFloat(w.style.fontSize)||30;
+    if(nw>allowed+0.5){w.style.fontSize=(fs*allowed/nw).toFixed(1)+'px';trueFit(times+1);return}
+    var wr=w.getBoundingClientRect(),pr=hspec.getBoundingClientRect();
+    if(wr.height>pr.height-12&&times<6){w.style.fontSize=(fs*(pr.height-12)/wr.height).toFixed(1)+'px';trueFit(times+1)}
   });
 }
 function reveal(w){                    // fade the specimen in once its face is really loaded, then re-fit with true metrics
@@ -126,11 +125,10 @@ function trueFit(times){                             // canvas metrics are only 
     var rng=document.createRange();rng.selectNodeContents(n);
     var nw=rng.getBoundingClientRect().width;
     if(!allowed||!nw)return;
-    if(nw>allowed+0.5&&times<4){
-      var fs=parseFloat(w.style.fontSize)||30;
-      w.style.fontSize=(fs*allowed/nw).toFixed(1)+'px';
-      trueFit(times+1);
-    }
+    var fs=parseFloat(w.style.fontSize)||30;
+    if(nw>allowed+0.5){w.style.fontSize=(fs*allowed/nw).toFixed(1)+'px';trueFit(times+1);return}
+    var wr=w.getBoundingClientRect(),pr=hspec.getBoundingClientRect();
+    if(wr.height>pr.height-12&&times<6){w.style.fontSize=(fs*(pr.height-12)/wr.height).toFixed(1)+'px';trueFit(times+1)}
   });
 }
 function reveal(w){                    // fade the specimen in once its face is really loaded, then re-fit with true metrics
@@ -152,7 +150,7 @@ function homeFit(){                                   // numerals hold their siz
   F=Math.min(F,H*0.55/(m0.asc/100));
   var k=0.07;if(sn){
     var a1=m1.w/100+tr*st.length;
-    var ks=[.8,.66,.54,.44,.36,.30,.25,.21,.17,.14,.11,.09,.07,.05,.04];   // the caption grows to fill the leftover height before anything overflows
+    var ks=[1,.88,.78,.68,.58,.48,.4,.32,.26,.21,.17,.14,.11,.09,.07,.05,.04];   // the caption grows to fill the leftover height before anything overflows
     function fits(F,k){
       var sF=F*k,lines=Math.max(1,Math.ceil(a1*sF/W));
       return F*(m0.asc/100)+sF*(m1.asc/100+(lines-1)*1.15)<=H;
