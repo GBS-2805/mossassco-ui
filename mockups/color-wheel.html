@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>color wheel mock — shelf</title>
+<style>
+  :root{--bg:#0b0b0d;--ink:#f4f3ee;--lime:#c8f14a;--mono:'Courier New',ui-monospace,monospace}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{background:#161618;color:var(--ink);font-family:var(--mono)}
+  .stage{position:relative;width:390px;margin:0 auto;background:var(--bg);min-height:780px;overflow:hidden;outline:1px solid #26262b;border-radius:18px}
+  header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 8px}
+  header .brand{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#8a8a92}
+  .pulldown{display:flex;align-items:center;gap:6px;background:#141417;border:1px solid #26262b;border-radius:999px;color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;cursor:pointer}
+  .pulldown i{width:6px;height:6px;border-radius:50%;background:var(--lime);display:inline-block}
+
+  /* ---- top 2/3 live pane ---- */
+  .pane{position:relative;height:62%;min-height:430px;margin:0 10px;border-radius:14px;background:#0e0e10;overflow:hidden}
+  .word{position:absolute;left:5%;right:5%;top:5%;color:var(--ink);text-align:center;transition:color .18s ease}
+  .word .n{display:block;font-size:64px;line-height:1.04;letter-spacing:-.035em;white-space:nowrap}
+  .word .s{display:block;font-size:19px;line-height:1.3;margin-top:2vmin;color:inherit;opacity:.92}
+  .famname{position:absolute;left:12px;top:10px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a92}
+  .famname b{color:var(--ink);font-weight:400}
+
+  /* ---- dials, bottom-right of the pane (type mode only, as on the site) ---- */
+  .hdials{position:absolute;bottom:10px;right:10px;z-index:6;display:flex;flex-direction:column;gap:7px;background:rgba(8,8,10,.55);border:0;border-radius:10px;padding:9px 10px 10px}
+  .hdials label{display:flex;justify-content:space-between;gap:8px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a92;margin-bottom:4px}
+  .hdials input[type=range]{width:104px;accent-color:var(--lime);height:18px;margin:0}
+
+  /* ---- the C tab: half circle docked to the right edge, just above the dials ---- */
+  .ctab{position:absolute;right:0;bottom:104px;z-index:10;width:44px;height:62px;border:0;border-radius:62px 0 0 62px;background:linear-gradient(90deg,#1a1a1e,#101013);box-shadow:-4px 0 14px rgba(0,0,0,.45),inset -1px 0 0 rgba(255,255,255,.08);color:var(--ink);font-family:var(--mono);font-size:13px;letter-spacing:.1em;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:transform .22s cubic-bezier(.2,.9,.25,1.2)}
+  .ctab:active{transform:scale(.94)}
+  .ctab .dot{width:12px;height:12px;border-radius:50%;background:var(--ink);border:1px solid rgba(255,255,255,.25);transition:background .18s ease}
+  .ctab:hover{background:linear-gradient(90deg,#232328,#141417)}
+
+  /* ---- the wheel drawer: half disc, flat side against the right edge ----
+     clip-path keeps its square corners from blocking taps on the specimen */
+  .cw{position:absolute;right:0;bottom:178px;z-index:9;transform-origin:100% 50%;display:none;clip-path:circle(131px at 100% 50%)}
+  .cw.open{display:block;animation:blobIn .5s cubic-bezier(.2,.9,.25,1.15) both}
+  .cw.closing{display:block;animation:blobOut .28s ease both}
+  @keyframes blobIn{
+    0%{transform:scale(.12,.42);opacity:0}
+    38%{transform:scale(1.14,.86);opacity:1}
+    62%{transform:scale(.9,1.08)}
+    80%{transform:scale(1.04,.97)}
+    100%{transform:scale(1,1);opacity:1}
+  }
+  @keyframes blobOut{
+    0%{transform:scale(1,1);opacity:1}
+    100%{transform:scale(.14,.5);opacity:0}
+  }
+  .cwbody{position:relative;width:130px;height:260px;border-radius:130px 0 0 130px;overflow:hidden;box-shadow:-10px 0 34px rgba(0,0,0,.6),inset -2px 0 0 rgba(255,255,255,.1);transform-origin:100% 50%;transition:transform .28s cubic-bezier(.2,.9,.25,1.1)}
+  .cw.zoom .cwbody{transform:translateX(8px) scale(1.09)}
+  canvas{display:block;width:130px;height:260px;touch-action:none;cursor:crosshair}
+  .lens{position:absolute;width:52px;height:52px;border-radius:47% 53% 55% 45%/52% 46% 54% 48%;pointer-events:none;box-shadow:0 0 0 2px rgba(255,255,255,.85),0 6px 18px rgba(0,0,0,.5);transform:translate(-50%,-50%) scale(0);transition:transform .15s ease;animation:blob 1.6s ease-in-out infinite}
+  .cw.zoom .lens{transform:translate(-50%,-50%) scale(1.25)}
+  @keyframes blob{0%,100%{border-radius:47% 53% 55% 45%/52% 46% 54% 48%}33%{border-radius:54% 46% 44% 56%/47% 55% 45% 53%}66%{border-radius:44% 56% 51% 49%/55% 44% 56% 45%}}
+  .cwhex{position:absolute;left:12px;bottom:14px;background:rgba(8,8,10,.8);border:1px solid #26262b;border-radius:999px;color:var(--ink);font-size:10px;letter-spacing:.1em;padding:4px 9px}
+  .cwhint{position:absolute;left:12px;top:14px;background:rgba(8,8,10,.8);border:1px solid #26262b;border-radius:999px;color:#8a8a92;font-size:10px;letter-spacing:.1em;padding:4px 9px}
+
+  /* ---- family roulette, bottom ---- */
+  .deck{padding:12px 0 16px}
+  .deck .lbl{display:flex;justify-content:space-between;padding:0 16px 8px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a92}
+  .roul{display:flex;gap:8px;overflow-x:auto;padding:2px 16px 6px;scrollbar-width:none}
+  .roul::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;background:#141417;border:1px solid #26262b;border-radius:999px;color:#a2a2aa;font-family:var(--mono);font-size:11px;padding:8px 13px;cursor:pointer;white-space:nowrap}
+  .chip.on{color:#0b0b0d;background:var(--lime);border-color:var(--lime)}
+
+  /* ---- icons pane: 15 icons, each in its own invisible, non-overlapping cell ---- */
+  #iconspane{inset:6% 6%;display:grid;place-items:center}
+  .icons .pv{display:grid;grid-template-columns:repeat(5,1fr);width:100%;row-gap:14px}
+  .icons .cell{aspect-ratio:1;display:grid;place-items:center;padding:14%;border-radius:12px;min-width:0;min-height:0}
+  /* boundaries are invisible at rest; while the colour wheel is open they faintly appear */
+  .pane.picking .cell{outline:1px dashed rgba(244,243,238,.16);outline-offset:-3px}
+  .icons .mk{width:100%;height:100%;background:var(--iconcol,#fff);-webkit-mask:var(--u) center/contain no-repeat;mask:var(--u) center/contain no-repeat;transition:background .18s ease}
+  .icnote{position:absolute;left:12px;bottom:10px;font-size:10px;color:#8a8a92;letter-spacing:.12em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <header>
+    <span class="brand">shelf — color wheel mock</span>
+    <button class="pulldown" id="modebtn"><i></i><span id="modelbl">type</span> ▾</button>
+  </header>
+
+  <div class="pane" id="pane">
+    <span class="famname" id="famname"><b>Giphurs</b> · 400</span>
+
+    <div class="word" id="word">
+      <span class="n">0123456789</span>
+      <span class="s">the quick brown fox jumps over the lazy dog</span>
+    </div>
+
+    <div class="word icons" id="iconspane" style="display:none">
+      <div class="pv" id="pv"></div>
+      <span class="icnote">15 of 1,600 · invisible cells</span>
+    </div>
+
+    <div class="hdials" id="hdials">
+      <label>size <span>92%</span></label><input type="range" min="60" max="120" value="92" id="sz">
+      <label>track <span>-0.035em</span></label><input type="range" min="-10" max="30" value="-4" id="tr">
+    </div>
+
+    <button class="ctab" id="ctab" aria-expanded="false" aria-label="colour wheel">
+      <span class="dot" id="cdot"></span><span>C</span>
+    </button>
+
+    <div class="cw" id="cw" role="dialog" aria-label="colour wheel">
+      <div class="cwbody" id="cwbody">
+        <canvas id="wheel" width="130" height="260"></canvas>
+        <div class="lens" id="lens"></div>
+        <span class="cwhint">slide · lift to keep</span>
+        <span class="cwhex" id="chex">#F4F3EE</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="deck">
+    <span class="lbl">families <span>roulette</span></span>
+    <div class="roul" id="roul"></div>
+  </div>
+</div>
+
+<script>
+var INK='#f4f3ee';
+var state={mode:'type'};
+var pane=document.getElementById('pane'),
+    word=document.getElementById('word'),ico=document.getElementById('iconspane'),
+    hdials=document.getElementById('hdials'),ctab=document.getElementById('ctab'),
+    cw=document.getElementById('cw'),cwbody=document.getElementById('cwbody'),
+    wheel=document.getElementById('wheel'),lens=document.getElementById('lens'),
+    chex=document.getElementById('chex'),cdot=document.getElementById('cdot');
+
+/* family roulette chips */
+var fams=['Aspekta','Giphurs','Hask\u00f6y','Geist','Commit Mono','Handjet'];
+var rou=document.getElementById('roul');
+fams.forEach(function(f,j){var b=document.createElement('button');b.className='chip'+(j===1?' on':'');b.textContent=f;
+  b.onclick=function(){[].forEach.call(rou.children,function(c,k){c.classList.toggle('on',k===j)});
+    document.getElementById('famname').innerHTML='<b>'+f+'</b> \u00b7 400';};rou.appendChild(b)});
+
+/* icons: 15 per set, each in its own invisible cell */
+var names=['heart','star','bell','camera','mail','lock','search','house','calendar','clock','user','bookmark','trash','play','settings'];
+var pv=document.getElementById('pv');
+names.forEach(function(n){var c=document.createElement('div');c.className='cell';
+  var mk=document.createElement('i');mk.className='mk';
+  mk.style.setProperty('--u','url(https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/'+n+'.svg)');
+  c.appendChild(mk);pv.appendChild(c)});
+
+/* mode toggle */
+document.getElementById('modebtn').onclick=function(){
+  var toIcons=state.mode==='type';
+  if(open)setOpen(false);
+  state.mode=toIcons?'icons':'type';
+  ico.style.display=toIcons?'grid':'none';word.style.display=toIcons?'none':'block';
+  hdials.style.display=toIcons?'none':'flex';
+  document.getElementById('modelbl').textContent=toIcons?'icons':'type';
+};
+
+/* dials really adjust */
+var sz=document.getElementById('sz'),tr=document.getElementById('tr');
+function dial(){var n=word.querySelector('.n');if(!n)return;
+  n.style.fontSize=(sz.value*0.7)+'px';n.style.letterSpacing=(tr.value/1000)+'em';}
+sz.oninput=dial;tr.oninput=dial;
+
+/* ---- the half-disc colour wheel ---- */
+var ctx=wheel.getContext('2d'),R=130,CX=130,CY=130;
+function hueAt(dx,dy){var a2=Math.atan2(dy,dx);if(a2>0)a2-=Math.PI*2;var t=(-Math.PI/2-a2)/Math.PI;return Math.max(0,Math.min(1,t))*330}
+function hsl(h,s,l){function f(n){var k=(n+h/30)%12,a=s*Math.min(l,1-l);return l-a*Math.max(-1,Math.min(k-3,9-k,1))}return[f(0),f(8),f(4)]}
+function hex(rgb){return'#'+rgb.map(function(v){return('0'+Math.round(255*Math.max(0,Math.min(1,v))).toString(16)).slice(-2)}).join('')}
+function colorAt(px,py){var dx=px-CX,dy=py-CY,r=Math.min(Math.hypot(dx,dy),R-1),n=r/R;
+  return hex(hsl(hueAt(dx,dy),.35+.65*n,.95-.48*n))}
+(function draw(){var im=ctx.createImageData(130,260),d=im.data;
+  for(var y=0;y<260;y++)for(var x=0;x<130;x++){var dx=x-CX,dy=y-CY,r=Math.hypot(dx,dy),i=(y*130+x)*4;
+    if(r>R){d[i+3]=0;continue}
+    var n=r/R,rgb=hsl(hueAt(dx,dy),.35+.65*n,.95-.48*n);
+    d[i]=rgb[0];d[i+1]=rgb[1];d[i+2]=rgb[2];d[i+3]=255}
+  ctx.putImageData(im,0,0)})();
+
+function pick(px,py){var col=colorAt(px,py);
+  chex.textContent=col.toUpperCase();
+  lens.style.left=px+'px';lens.style.top=py+'px';lens.style.background=col;
+  if(state.mode==='type'){word.style.color=col}
+  else{pv.style.setProperty('--iconcol',col)}
+  cdot.style.background=col;cdot.style.borderColor=col;
+  pane.classList.add('picking');
+}
+function slide(e){var r=wheel.getBoundingClientRect(),sx=130/r.width,sy=260/r.height;
+  pick((e.clientX-r.left)*sx,(e.clientY-r.top)*sy)}
+wheel.addEventListener('pointerdown',function(e){cw.classList.add('zoom');try{wheel.setPointerCapture(e.pointerId)}catch(err){}slide(e)});
+wheel.addEventListener('pointermove',function(e){if(e.buttons||e.pointerType==='touch')slide(e)});
+wheel.addEventListener('pointerup',function(e){cw.classList.remove('zoom');pane.classList.remove('picking');slide(e)});
+wheel.addEventListener('pointercancel',function(e){cw.classList.remove('zoom');pane.classList.remove('picking')});
+
+/* open / pull in as a half circle; tap anywhere else on the pane to dismiss */
+var open=false;
+function setOpen(v){open=v;ctab.setAttribute('aria-expanded',v);ctab.setAttribute('aria-label',v?'pull colour wheel in':'colour wheel');
+  if(v){cw.classList.remove('closing');cw.classList.add('open')}
+  else{cw.classList.remove('open');cw.classList.add('closing');
+    setTimeout(function(){cw.classList.remove('closing');cw.classList.remove('zoom');pane.classList.remove('picking')},290)}}
+ctab.onclick=function(){setOpen(!open)};
+pane.addEventListener('click',function(e){if(open&&!cw.contains(e.target)&&e.target!==ctab&&!ctab.contains(e.target))setOpen(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)setOpen(false)});
+
+/* reset to ink: double-tap the C dot */
+cdot.ondblclick=function(){word.style.color=INK;chex.textContent='#F4F3EE';
+  pv.style.setProperty('--iconcol','#fff');
+  cdot.style.background=INK;cdot.style.borderColor=''};
+</script>
+</body>
+</html>
