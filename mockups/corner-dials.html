@@ -66,6 +66,22 @@ var HOME={at:0,cut:0,track:-.035,scale:1};
 var hspec=document.getElementById('hspec'),hstrips=document.getElementById('hstrips'),
     hfam=document.getElementById('hfam'),hcats=document.getElementById('hcats');
 var SENT='the quick brown fox jumps over the lazy dog';
+function trueFit(times){                             // canvas metrics are only a first guess on a real phone: verify against the rendered glyphs
+  times=times||0;
+  var w=hspec.querySelector('.word');if(!w||!w.parentNode)return;
+  var n=w.querySelector('.n');if(!n)return;
+  requestAnimationFrame(function(){
+    var allowed=Math.min(w.clientWidth,hspec.clientWidth*0.82)*0.985;   // aim a touch inside the margins, never flush
+    var rng=document.createRange();rng.selectNodeContents(n);
+    var nw=rng.getBoundingClientRect().width;
+    if(!allowed||!nw)return;
+    if(nw>allowed+0.5&&times<4){
+      var fs=parseFloat(w.style.fontSize)||30;
+      w.style.fontSize=(fs*allowed/nw).toFixed(1)+'px';
+      trueFit(times+1);
+    }
+  });
+}
 function reveal(w){                    // fade the specimen in once its face is really loaded, then re-fit with true metrics
   if(!w)return;w.classList.remove('in');
   var fam=(w.style.fontFamily||'').replace(/["']/g,'').split(',')[0];
@@ -96,6 +112,22 @@ function homeFit(){                                   // the numerals are the an
   }
   w.style.fontSize=Math.max(6,F).toFixed(1)+'px';
   var sn=w.querySelector('.s');if(sn)sn.style.fontSize=k+'em';
+}
+function trueFit(times){                             // canvas metrics are only a first guess on a real phone: verify against the rendered glyphs
+  times=times||0;
+  var w=hspec.querySelector('.word');if(!w||!w.parentNode)return;
+  var n=w.querySelector('.n');if(!n)return;
+  requestAnimationFrame(function(){
+    var allowed=Math.min(w.clientWidth,hspec.clientWidth*0.82)*0.985;   // aim a touch inside the margins, never flush
+    var rng=document.createRange();rng.selectNodeContents(n);
+    var nw=rng.getBoundingClientRect().width;
+    if(!allowed||!nw)return;
+    if(nw>allowed+0.5&&times<4){
+      var fs=parseFloat(w.style.fontSize)||30;
+      w.style.fontSize=(fs*allowed/nw).toFixed(1)+'px';
+      trueFit(times+1);
+    }
+  });
 }
 function reveal(w){                    // fade the specimen in once its face is really loaded, then re-fit with true metrics
   if(!w)return;w.classList.remove('in');
@@ -129,6 +161,7 @@ function homeFit(){                                   // numerals hold their siz
   }
   w.style.fontSize=Math.max(6,F).toFixed(1)+'px';
   if(sn)sn.style.fontSize=k+'em';
+  trueFit();
 }
 function renderPane(){
   var f=FAC[HOME.at],c=(f.cuts[HOME.cut]||f.cuts[0]),h='';
